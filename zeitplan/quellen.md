@@ -64,6 +64,8 @@ Enables the picture element on browsers (like IE) that do not support them yet
 
 # Facts
 
+Larry page quote: 22 min 15 sec. && In game industry they know: speed is number #1, you wont play a car driving game which is sluggish
+["Speed is product feature number #1"](https://www.youtube.com/watch?v=MStKwEff_kY&list=PLD1D3B0B233F2AD66&index=5)
 [Response Times: The 3 Important Limits](http://www.nngroup.com/articles/response-times-3-important-limits/)
 [http archive stats](http://www.httparchive.org/interesting.php)  
 [The average web page takes over 10 seconds to load on mobile - Google research](http://analytics.blogspot.de/2012/04/global-site-speed-overview-how-fast-are.html)  

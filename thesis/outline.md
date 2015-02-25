@@ -1,5 +1,11 @@
 # Thema: Angewandte Webperformance
 
+## Motivation:
+
+Niemand hat es gerne zu warten. Auch nicht auf eine langsame Webseite. Deshalb lässt Google bereits seit 2010 die Ladezeit einer Seite in ihr \texttt{Page Ranking} mit einfließen.\cite{google2010} (http://googlewebmastercentral.blogspot.de/2010/04/using-site-speed-in-web-search-ranking.html). Aber Google geht sogar noch weiter. So sagt Larry Page, CEO und Mitgründer von Google: "As a product manager, you should know that speed is feature number one"\cite{holzle2010}. 
+
+Die Art auf die wir heutzutage Medien konsumieren, hat einen starken Wandel hinter sich. So stieg allein die Gerätenutzung von Smartphones innerhalb von nur 3 Jahren von 18\% auf 50\% an. 
+
 ### Probjektbeschreibung
 * Problem beschreiben: Warum ist das Internet vor allem auf Mobile Devices langsam? (Why is ... so ? Why is facebook so... ect.)
 	* Steigende Anzahl an Bildern
