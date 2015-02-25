@@ -1,11 +1,11 @@
-% Bachelor Thesis Angewandte Webperformance
+% Bachelor Thesis Webperformance für den mobilen Endanwender
 % von Andreas Lorer
 % 2015
 % Studiengang: Angewandte Informatik - HS Ravensburg-Weingarten
 \documentclass[a4paper,11pt,singlespacing]{article}
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
 \usepackage[hyphens]{url}
-\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+\usepackage[backend=biber,style=alphabetic,backref=true,citecounter=true,citestyle=authoryear]{biblatex}
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage{setspace}
@@ -17,9 +17,10 @@
 \usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{csquotes}
 \addbibresource{sections/zitate.bib}
 \pagestyle{myheadings}
-\markright{\centerline{Angewandte Webperformance}}
+\markright{\centerline{Webperformance für den mobilen Endanwender}}
 \author{Andreas Lorer}
 
 \graphicspath{{images/}}            
@@ -28,6 +29,10 @@
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\newenvironment{italicquotes}
+{\begin{quote}\itshape}
+{\end{quote}}
 
 \begin{document}
   % document styles for listings
@@ -55,7 +60,7 @@
 
 	%Deckblatt
 	\newcommand{\headline}{Bachelor-Thesis}
-	\newcommand{\subheadline}{Angewandte Webperformance}
+	\newcommand{\subheadline}{Webperformance für den mobilen Endanwender}
 	\input{../deckblatt/deckblatt.tex}
 	
 	%Inhaltsverzeichnis
