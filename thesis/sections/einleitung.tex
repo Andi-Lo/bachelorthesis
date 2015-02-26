@@ -44,20 +44,27 @@
 
 \subsection{Zielsetzung} % (fold)
 \label{sub:zielsetzung}
-	Um gängige Methoden und Techniken der Performance Optimierung anzuwenden wird das Projekt anhand der Webseite \url{http://andreaslorer.de} durchgeführt.
+	Um gängige Methoden und Techniken der Ladezeit Optimierung anzuwenden wird das Projekt anhand der Website \url{http://andreaslorer.de} durchgeführt. Das Ziel ist es, die Ladezeit der Website auf dem Smartphone, als auch auf dem Desktop von 10 Sekunden auf unter 1 Sekunden zu verringern. Mit Ladezeit ist dabei nicht die Zeit gemeint, die benötigt wird um die Website komplett zu laden, sondern die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist. Diese vom Anwender wahrgenommene Rückmeldung nennt man auch "`Perceived Performance"' und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Näheres dazu wird in dem Kapitel \ref{..fehlt noch} beschrieben.\\
+	% todo: referencing chapter
+	Es soll herausgefunden werden, was die "`Best Practices"' sind um die Ladezeit zu minimieren, wie ein moderner "`workflow"' aussehen kann, damit eine Webanwendung schon bei seiner Entstehung schnell ladet und im Projektverlauf schnell bleibt. Des weiteren soll erklärt werden, was für herausforderungen es zu meistern gilt um eine schnelle Webanwendung zu erreichen, welche Tools es gibt und welche Vor- oder Nachteile diese mit sich bringen.\\
+	Diese Arbeit befasst sich nicht, mit der Geschwindigkeit von Datenbanken, SQL-Abfragen oder sonstigen problemen die durch einen Engpass ein schnelles Laden der Seite verhindern könnten.
 
 % subsection zielsetzung (end)
 
-
-
 \section{Eigene Leistung} % (fold)
 \label{sub:eigene_leistung}
+	Meine Leistung besteht darin, einen Leitfaden zu erstellen, der einen Gesamtüberblick ermöglicht. Die Arbeit soll es dem Leser ermöglichen Fehler in der Struktur von Webanwendungen zu finden, die für die Geschwindigkeit hinderlich sind.
+	% todo: überarbieten, nicht greifbar was meine Leistung ist
+	% Folgender Ansatz für die Argumentation könnte aufgebracht werden:
+	% Meine Leistung besteht darin, aufzuzeigen wie ich die Webseite http://andreaslorer.de von einer Ladezeit von rund 10 sekunden auf unter 1 Sekunden bringen könnte, welche Schwirigkeiten es zu meistern gilt und so weiter
 
 % subsection eigene_leistung (end)
 
 
-
 \section{Ist-Zustand} % (fold)
 \label{sec:Ist-Zustand}
-
+	Die Webseite ist auf einem \texttt{shared Hosting}
+	\footnote{Bei shared Hosting werden mehrere Websites von verschiedenen Website-Betreibern von dem gleichen Webserver gehostet. Bei Shared Hosting teilen sich in der Regel Hunderte andere Websites einen Server \autocite{itWissen}} 
+	aufgesetzt und antwortet auf ein Ping Kommando in rund 13ms. Dadurch, dass es keine Möglichkeit gibt \texttt{root Rechte} \footnote{Standardmäßig existiert unter Linux immer ein Konto für den Benutzer "`root"' mit der User-ID 0. Dies ist ein Systemaccount mit vollem Zugriff auf das gesamte System, und damit auch auf alle Dateien und Einstellungen aller Benutzer \autocite{ubuntu14}} auf einem shared hosting zu bekommen können so manche serverseitige Einstellungen nicht durchgeführt werden. Diese werden dann zwar Aufgezeigt, aber kommen für dieses Projekt nicht zum Einsatz.\\
+	Die Website hat als Ausgangsbasis einen gängigen Aufbau. Sie besteht aus einer Bilder Gallerie basierend auf PHP und dem Bootstrap Framework.
 % section  (end)

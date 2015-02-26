@@ -13,8 +13,6 @@
 * ~~Verfügbare Techniken anwenden~~
 * ~~Automatisierung und build process~~
 * ~~Picturefill anwenden (srcset)~~
-* Caching
+* ~~Debugging~~
 * Bilder in verschiedenen größen rausrechnen
-
-* *Neu: Debugging
-* *Neu: Adaptive Images
+* Caching
