@@ -1,3 +1,5 @@
+
+
 \section{Grundlagen} % (fold)
 \label{sec:grundlagen}
 
@@ -7,22 +9,52 @@
 		\label{ssub:pattern_und_anti_pattern}
 			"`Entwurfsmuster (englisch design patterns) sind bewährte Lösungsschablonen für wiederkehrende Entwurfsprobleme sowohl in der Architektur als auch in der Softwarearchitektur und -entwicklung. Sie stellen damit eine wiederverwendbare Vorlage zur Problemlösung dar, die in einem bestimmten Zusammenhang einsetzbar ist."'\autocite{pattern15}
 			\\
+
 			"`Während "`Design Patterns"' in der Software-Entwicklung allgemein übliche und bekannte Ansätze sind, um Probleme zu lösen, sind Anti-Patterns Negativ-Beispiele – die zeigen, wie man es nicht macht - von bereits durchgeführten, gescheiterten Projekten, die dem erkennenden Mitarbeiter zielgerichtete Hinweise darauf geben, wie die Aufgabenstellung besser gelöst werden könnte. Als Synonym ist auch der Begriff Negativmuster im Gebrauch. Es ist tatsächlich möglich, daß das, was gestern noch als allgemein gangbarer Lösungsweg bezeichnet wurde, heute schon ein "`Antipattern"' ist [...]"' \autocite{Stepken06}
 
 		% subsubsection pattern_und_anti_pattern (end)
 
-		\subsubsection{TTFB} % (fold)
-		\label{ssub:ttfb}
-		TTFB ist die Abkürzung für "`Time to first byte"'. Dieser Begriff beschreibt den Prozess: Sende eine Anfrage an den Server mittels HTTP Protokoll, baue eine Verbindung zum Server auf, verarbeite diese Anfrage und sende die Antwort zurück. Die Zeit bis der Browser das erste byte der Antwort erhält, ist die TTFB.
-		% subsubsection ttfb (end)
+		\subsubsection{HTTP-Request Komponenten} % (fold)
+		\label{ssub:http_request_komponente}
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.6\textwidth]{http_components.jpg}
+					\caption{Anfrage der HTML-Datei vom server http://andreaslorer.de}
+					\label{fig:http_components}
+				\end{center}
+			\end{figure}
+
+			\begin{itemize}
+				\item DNS Lookup: Um eine Verbindung mit dem Server herzustellen benötigt das HTTP Protokoll die IP Adresse des Ziels. Das heißt beim DNS Server wird für den Namen "`http://andreaslorer.de"' die zu diesem Namen zugehörige IP Adresse zurückgegeben.
+
+				\item Initial Connection bezeichnet die Zeit die vergeht, bis eine Verbindung zum Server hergestellt wurde und eine Kommunikation zwischen Browser und Server stattfinden kann. Hierbei findet der sogenannte TCP "`Three-Way-Handshake"' statt.\footnote{TCP ist das meistgenutzte Verbindungsprotokoll im Internet. Für ein tieferes Verständnis empfiehlt sich dieser Artikel: \href{http://chimera.labs.oreilly.com/books/1230000000545/ch02.html}{High Performance Browser Networking - Chapter 2: Building Blocks of TCP}}
+
+				\begin{figure}[htbp]
+					\begin{center}
+						\includegraphics[width=0.6\textwidth]{three_way_handshake.jpg}
+						\caption{Three-Way-Handshake zum Aufbau einer TCP Verbindung zwischen Browser und Server}
+						\label{fig:three_way_handshake}
+					\end{center}
+				\end{figure}
+
+				\item TTFB: Ist die Abkürzung für "`Time to first byte"'. Dieser Begriff beschreibt die Zeit die vergeht, bis das erste Byte vom Server beim Browser ankommt. Die Geschwindigkeit und Güte des Servers, Zugriffzeiten auf eine Datenbank oder die Entfernung des Servers können diesen Wert hauptsächlich beeinflussen.
+
+				\item Content Download: Die Zeit die benötigt wird bis die Datei vom Server Heruntergeladen wurde.
+			\end{itemize}
+
+			Wie in Abbildung \ref{fig:http_components} zu sehen ist, ist die Zeit für das Herunterladen des HTML Dokuments verschwindend gering im Vergleich zu der Zeit die damit verbracht wurde um das Herunterladen zu ermöglichen. Dieses Problem ist vor allem auf Smartphones ausschlaggebend dafür, dass Webanwendungen sehr viel langsamer laden als mit einer Kabelverbindung. Das Thema wird in Punkt \ref{sub:latenz} noch ausführlicher behandelt.
+			
+			
+		% subsubsection http_request_komponente (end)
 
 		\subsubsection{RTT} % (fold)
 		\label{ssub:rtt}
-			Round Trip Time wird im Deutschen Paketumlaufzeit genannt. Es bezeichnet die Zeit die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen.
+			Round Trip Time wird im Deutschen Paketumlaufzeit genannt. Es bezeichnet die Zeit die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen. Ein RTT kann dabei nicht beliebig viele Bytes transportieren sondern ist durch den TCP Slow start limitiert. 
 		% subsubsection rtt (end)
-
+		
 		\subsubsection{Above The Fold} % (fold)
 		\label{ssub:above_the_fold}
+			Damit ist der auf einem Bildschirm sichtbare Bereich vor dem Scrollen gemeint. Diesem Bereich wird eine besondere Wichtigkeit zugesprochen.
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.3\textwidth]{above_the_fold.jpg}
@@ -30,8 +62,6 @@
 					\label{fig:above_the_fold}
 				\end{center}
 			\end{figure}
-			
-			Damit ist der auf einem Bildschirm sichtbare Bereich vor dem Scrollen gemeint. Diesem Bereich wird eine besondere Wichtigkeit zugesprochen.
 
 			\begin{quote}
 				 \textit{"`In an analysis of 57,453 eyetracking fixations, we found that there was a dramatic drop-off in user attention at the position of the page fold. Elements above the fold were seen more than elements below the fold: the 100 pixels just above the fold were viewed 102\% more than the 100 pixels just below the fold."'} \autocite{nng15}
@@ -42,16 +72,9 @@
 
 		\subsubsection{Kritischer Rendering-Pfad} % (fold)
 		\label{ssub:critical_render_path}
-			Auf Englisch "`critical render path"' genannt, ist der wohl wichtigste Begriff, wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden.\\
+			Auf Englisch "`critical render path"' genannt, ist der wohl wichtigste Begriff, wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine wesentliche Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden. Dabei wird er Begriff in seine zwei Teile Zerlegt: Kritischer und Rendering-Pfad.\\
 
-			Wie kann der Browser eine Webanwendung rendern?
-
-			\begin{itemize}
-				\item Nach dem Seitenaufruf läd der Browser die HTML Datei vom Server.
-				\item Der Browser liest das HTML und sieht nach, ob zusätzliche Ressourcen benötigt werden (zum Beispiel Bilder, Javascript oder Stylesheets).
-				\item Diese Ressourcen werden angefragt 
-			\end{itemize}
-
+			Der Rendering-Pfad setzt sich aus den für die Anwendung nötige Ressourcen zusammen. Webanwendungen bestehen meist aus mehreren ausgelagerten Javascript und CSS Dateien die benötigt werden um überhaupt mit dem Rendern zu beginnen. Ein Seitenaufruf erzeugt folgenden Prozess:
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.4\textwidth]{critical_render_path.jpg}
@@ -60,16 +83,54 @@
 				\end{center}
 			\end{figure}
 
-			Kritischer Rendering-Pfad (engl. Critical Render path) bezeichnet die für den Browser nötigen Ressourcen um die aufgerufene Seite zu zeichnen.
+			\begin{enumerate}
+				\item Nachdem die Adresse per DNS-Lookup (siehe Punkt: \ref{ssub:http_request_komponente}) in eine IP Adresse übersetzt wurde, wird eine TCP Verbindung hergestellt und der Browser beginnt damit die HTML Datei vom Server zu laden.
+				\item Der Browser liest das HTML von oben nach unten und sieht nach, ob zusätzliche Ressourcen benötigt werden (Bilder, Javascript oder CSS).
+				\item Diese Ressourcen werden beim Server angefragt.
+				\item Der Browser kann mit dem Rendern der Seite noch nicht beginnen, da er noch auf den Abschluss des Downloads wartet.
+				\item Der Browser liest das Javascript und sieht nach, welche CSS Selektoren auf das HTML Dokument passen.
+				\item Der Browser stellt fest, dass die Seite nun Angezeigt werden kann und beginnt mit dem Rendern.
+			\end{enumerate}
 
-			Dazu zählt auch das Übersetzen ("`Parsing"' genannt) des HTML Dokuments, das Ausführen von Javascript und das Anfragen von nötigen externen Ressourcen. Als Ressourcen zählen: Bilder, Javascript, Stylesheets und XHR\footnote{XMLHttpRequest (XHR) ist eine Programmierschnittstelle für JavaScript zum Übertragen von Daten über das HTTP-Protokoll. XMLHttpRequest bildet einen Grundbaustein der Ajax-Technik.\autocite{xhr15}}.\\
-
-			Mehr dazu wird in Abschnitt \ref{..fehlt} erläutert.
-			% todo: ref fehlt
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{browser_render.jpg}
+					\caption{Der Render Prozess der im Browser abläuft}
+					\label{fig:browser_render}
+				\end{center}
+			\end{figure}
+		
+			Wie im Prozessablauf abgebildet, ist ein frühes Rendering oft nicht möglich, weil Javascript und CSS das Rendern dadurch Blockieren, da sie zuerst Herunterladen werden und dann Übersetzt werden müssen, bevor der Browser entscheiden kann, dass die Seite gerendert werden kann. Kritischer Rendering-Pfad bedeutet, dass dem Browser die Daten zuerst zur Verfügung gestellt werden, die nötig sind um den "`above the fold"' Inhalt zu rendern. Alle anderen Ressourcen sollten erst nach dem Laden der Seite Heruntergeladen werden um das Rendern nicht zu verzögern. 
 
 		% subsubsection critical_render_path (end)
+		\pagebreak
 	
 	% subsection begriffe (end)
+
+	\subsection{Perceived Performance} % (fold)
+	\label{sub:perceived_performance}
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=0.9\textwidth]{perceived_performance.jpg}
+				\caption{Zwei Seiten im Vergleich}
+				\label{fig:perceived_performance}
+			\end{center}
+		\end{figure}
+
+		Abbildung \ref{fig:perceived_performance} zeigt die Seiten A und B, mit nahezu identischer Ladezeit. Der Unterschied besteht darin, dass Seite B bereits nach 1.5 Sekunden eine erste visuelles Rückmeldung für den Anwender zu sehen ist wohingegen Seite A erst nach 5.5 Sekunden dem Anwender zeigt, dass sie überhaupt ladet.
+		"`Perceived Performance"' steht also für die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Warum diese "`Perceived Performance"' für eine Webanwendung so wichtig ist zeigen mehrere Studien, deren Daten in folgender Infographik aufbereitet sind.
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{effect_of_slow_loadtimes.jpg}
+				\caption{Einfluss und Effekt einer langsamen Seite auf den Anwender \autocite[p. 8]{radware14}\autocite{nng93}}
+				\label{fig:effect_of_slow_loadtimes}
+			\end{center}
+		\end{figure}
+
+		Bereits kleine verbesser- oder verschlechterungen der Ladezeit können einen großen Einfluss in auf den Anwender haben. Yahoo hat herausgefunden, dass wenn eine Seite um nur 400 Milisikunden schneller ist, sich der Traffic um 9\% erhöhte.\autocite{stefanov08} 57\% der Online Konsumenten haben eine Seite, die länger als 3 Sekunden ladet bereits wieder verlassen. 78\% der Anwender empfinden sogar Zorn oder Stress wenn eine Seite nicht Ladet oder es nicht ersichtlich ist, dass die Seite reagiert.
+
+	% subsubsection perceived_performance (end)
 
 	\subsection{Latenz}
 	\label{sub:latenz}
