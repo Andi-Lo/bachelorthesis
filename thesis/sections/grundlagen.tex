@@ -19,7 +19,7 @@
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.6\textwidth]{http_components.jpg}
-					\caption{Anfrage der HTML-Datei vom server http://andreaslorer.de}
+					\caption{Anfrage der HTML-Datei vom server http://andreaslorer.de (Abbildung nach \url{http://webpagetest.org})}
 					\label{fig:http_components}
 				\end{center}
 			\end{figure}
@@ -32,7 +32,7 @@
 				\begin{figure}[htbp]
 					\begin{center}
 						\includegraphics[width=0.6\textwidth]{three_way_handshake.jpg}
-						\caption{Three-Way-Handshake zum Aufbau einer TCP Verbindung zwischen Browser und Server}
+						\caption{Three-Way-Handshake zum Aufbau einer TCP Verbindung zwischen Browser und Server (Eigene Abbildung nach: \autocite{bos})}
 						\label{fig:three_way_handshake}
 					\end{center}
 				\end{figure}
@@ -42,15 +42,37 @@
 				\item Content Download: Die Zeit die benötigt wird bis die Datei vom Server Heruntergeladen wurde.
 			\end{itemize}
 
-			Wie in Abbildung \ref{fig:http_components} zu sehen ist, ist die Zeit für das Herunterladen des HTML Dokuments verschwindend gering im Vergleich zu der Zeit die damit verbracht wurde um das Herunterladen zu ermöglichen. Dieses Problem ist vor allem auf Smartphones ausschlaggebend dafür, dass Webanwendungen sehr viel langsamer laden als mit einer Kabelverbindung. Das Thema wird in Punkt \ref{sub:latenz} noch ausführlicher behandelt.
-			
-			
+			Wie in Abbildung \ref{fig:http_components} zu sehen ist, ist die Zeit für das Herunterladen des HTML Dokuments verschwindend gering im Vergleich zu der Zeit die damit verbracht wurde, um das Herunterladen zu ermöglichen. Dieses Problem ist vor allem auf Smartphones ausschlaggebend dafür, dass Webanwendungen sehr viel langsamer laden als mit einer Kabelverbindung. Das Thema wird in Punkt \ref{sub:latenz} noch ausführlicher behandelt.
+					
 		% subsubsection http_request_komponente (end)
 
-		\subsubsection{RTT} % (fold)
+		\subsubsection{Round Trip Time (RTT)} % (fold)
 		\label{ssub:rtt}
-			Round Trip Time wird im Deutschen Paketumlaufzeit genannt. Es bezeichnet die Zeit die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen. Ein RTT kann dabei nicht beliebig viele Bytes transportieren sondern ist durch den TCP Slow start limitiert. 
+			"`Round Trip Time"' wird im Deutschen Paketumlaufzeit genannt. Es bezeichnet die Zeit die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen.
 		% subsubsection rtt (end)
+
+		\subsubsection{TCP Slow Start} % (fold)
+		\label{ssub:tcp_slow_start}
+
+			Ein Round Trip kann nicht beliebig viele Bytes transportieren sondern ist durch die sogenannte "`Congestion Window Size"'\footnote{engl. congestion: Stauung, Überlastung, Anhäufung} limitiert. Der Überbegriff für dieses Verhalten nennt sich "`Slow Start"'
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{congestion_window_size.jpg}
+					\caption{Congestion Control und Congestion Avoidance (Eigene Abbildung nach \autocite{grigorik13})}
+					\label{fig:congestion_window_size}
+				\end{center}
+			\end{figure} 
+
+			\begin{itemize}
+				\item Congestion Control: Nach dem eine neue Verbindung per TCP aufgebaut wurde, können weder Server noch Client wissen, wie schnell die Verfügbare Bandbreite ist, mit der Daten ausgetauscht werden können. Um das Netzwerk, vor einem Datenstau zu schützen, wird mit einem sehr niedrigen Wert begonnen, der dann ansteigt bis das Limit erreicht ist. Dieses Verhalten nennt sich auch "`Congestion Control"' und verhindert das Aufstauen von Daten.
+				\item Congestion Window Size: Diese Größe bestimmt, wieviel Bytes der Server pro Segmente schicken darf, bis diese vom Client per \texttt{ACK} (acknowledgement) bestätigt werden müssen. Die Größe der Segmente ist Standardmäßig 1460 bytes und die Rate bis zum ACK ist im April 2013 von 4 auf 10 Segmente erhöht worden.\autocite{grigorik13}. In der Grafik wird davon ausgegangen, das der erste Round Trip 4 Segmente senden darf. Die Datenrate Wächst exponentiell an, damit möglichst schnell die volle Bandbreite nutzbar ist.\\
+				\item Congestion Avoidance bedeutet, dass sich die Datenrate wieder um ein Vielfaches verringert, falls es zu einem Paketverlust kommt. Da es besonders bei WLAN oder Mobilfunknetzen des öfteren zu Packetverlusten kommen kann ist dieser Aspekt besonders hervorzuheben, denn er verzögert das erreichen der maximal möglichen Datenrate.
+			\end{itemize}
+
+			Slow Start bedeutet also aus sicht der Performance, dass bei einer neuen TCP Verbindung nicht die maximale Bandbreite zu Verfügung steht. Bei größeren Dateien ist zwar durch das exponentielle Wachstum das Maximum schnell erreicht, gerade aber bei kleineren mit wenigen Kilobyte ist dies oft nicht der Fall.
+
+		% subsubsection tcp_slow_start (end)
 		
 		\subsubsection{Above The Fold} % (fold)
 		\label{ssub:above_the_fold}

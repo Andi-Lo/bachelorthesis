@@ -16,3 +16,4 @@
 * ~~Debugging~~
 * Bilder in verschiedenen größen rausrechnen
 * Caching
+* Hosting via Azure in USA hosten
