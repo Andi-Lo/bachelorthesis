@@ -9,6 +9,7 @@
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage{setspace}
+\usepackage{csquotes}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
@@ -17,18 +18,21 @@
 \usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage{listings}
-% \usepackage{csquotes}
 \addbibresource{sections/zitate.bib}
 \pagestyle{myheadings}
-\markright{\centerline{Webperformance für den mobilen Endanwender}}
+\markright{\centerline{Web Performance für den mobilen Endanwender}}
 \author{Andreas Lorer}
 
 \graphicspath{{images/}}            
 \setlength{\parindent}{0ex}  	% Absatzeinrueckung verhindern
 
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{materialGrey}{rgb}{0.27,0.27,0.27}
+% \definecolor{materialGreen}{HTML}{009f5d}
+\definecolor{materialGreen}{rgb}{0.0, 0.8, 0.6}
+% \definecolor{materialRed}{HTML}{dc4437}
+\definecolor{materialRed}{rgb}{0.82, 0.1, 0.26}
+% \definecolor{materialYellow}{HTML}{eeb302}
+\definecolor{materialYellow}{rgb}{1.0, 0.75, 0.0}
 
 \newenvironment{italicquotes}
 {\begin{quote}\itshape}
@@ -48,8 +52,8 @@
     showspaces=false,
     showtabs=false,
     language=html,
-    keywordstyle=\bfseries\color{mymauve},
-    commentstyle=\itshape\color{mygreen},
+    keywordstyle=\bfseries\color{materialRed},
+    commentstyle=\itshape\color{materialGreen},
     columns=fullflexible,
     xleftmargin=0.5cm,
     xrightmargin=1cm,
