@@ -61,6 +61,11 @@
 
 	% subsubsection tcp_slow_start (end)
 
+	\subsection{Http/1.1}
+	\label{sub:http_1_1}
+	
+	% subsection http_1_1 (end)
+
 
 	\subsection{Content Delivery Network (CDN)} % (fold)
 	\label{sub:content_delivery_network}
@@ -283,11 +288,9 @@
 				\end{center}
 			\end{figure}
 			
-			Wenn ein Anwender also hs-weingarten.de eingibt erfolgt der DNS Lookup und die TCP Verbindung wird aufgebaut nur um dann zu erfahren, dass die Ressource unter dieser Adresse nicht zur Verfügung steht. Danach erfolgt die DNS auflösung für www.hs-weingarten.de bei dem der gleiche Vorgang vonstatten geht. Es erfolgt die Weiterleitung auf www.hs-weingarten.de/web/willkommen/startseite.html mit wieder dem selben Vorgang.\\
+			Wenn ein Anwender also hs-weingarten.de eingibt erfolgt der DNS Lookup und die TCP Verbindung wird aufgebaut nur um dann zu erfahren, dass die Ressource unter dieser Adresse nicht zur Verfügung steht. Danach erfolgt die DNS auflösung für www.hs-weingarten.de bei dem der gleiche Vorgang vonstatten geht. Es erfolgt die Weiterleitung auf www.hs-weingarten.de/web/willkommen/startseite.html mit wieder dem selben Vorgang.	Nach 855ms konnte die erste Anfrage an die richtige Zieladresse aufgegeben werden! Ruft man sich die RTT von einem 3G Netz ins Gedächtnis dürfte klar werden, was Weiterleitungen für den Smartphonenutzer bedeuten können. \\
 
-			% TODO: Lösung für dieses URL Mapping Problem?
-
-			Nach 855ms konnte die erste Anfrage an die richtige Zieladresse aufgegeben werden! Ruft man sich die RTT von einem 3G Netz ins Gedächtnis dürfte klar werden, was Weiterleitungen für den Smartphonenutzer bedeuten können. Das der Server rund 3 Sekunden für eine Antwort benötigt ist natürlich noch einmal eine andere Sache.
+			Die Weiterleitung von hs-weingarten.de auf www.hs-weingarten.de ist für die Suchmaschinenoptimierung \footnote{engl. SEO - search engine optimization} allerdings Sinnvoll, denn sonst würde unter zwei Namen der gleiche Inhalt zu finden sein. Dies ist aus sicht von Google "`Duplicated Content"' und kann zu einer Abstrafung im Ranking führen.\footnote{Mehr zu diesem Thema gibt es unter \url{http://www.sem-deutschland.de/seo-tipps/duplicate-content-definition/}}
 
 		\end{itemize}
 
@@ -334,9 +337,26 @@
 			\end{center}
 		\end{figure}
 	
-		\texttt{Critical render path} sind genau die Javascript und CSS Dateien, die für den für das Rendern des \texttt{above the fold} von nöten sind. Um dies umzusetzen ist es nötig, die Ressourcen in 2 Teile zu zerlegen: Für das Rendering absolut notwendig und nicht notwendig. Alle Dateien die nicht notwendig für das erste Rendern sind sollten so lange mit dem Laden verzögert werden, bis die Anwendung geladen ist.
+		\texttt{Critical render path} sind genau die Javascript und CSS Dateien, die für den für das Rendern des \texttt{above the fold} von nöten sind. Um dies umzusetzen ist es nötig, die Ressourcen in zwei Teile zu zerlegen: Für das Rendering absolut notwendig und nicht notwendig. Alle Dateien die nicht notwendig für das erste Rendern sind sollten so lange mit dem Laden verzögert werden, bis die Anwendung geladen ist. Wie genau so eine Umsetzung aussieht, wird in Punkt: ~\ref{..} ausführlich gezeigt.
 
 	% subsection critical_render_path (end)
+
+
+	\subsection{Analyse des Wasserfalls}
+	\label{sub:analyse_des_wasserfalls}
+		Für ein besseres Verständnis des Kritischen Rendering-Pfads soll der stand meiner Webseite vor und nach den Performance Optimierungsmaßnahmen analyisiert werden. In Abbildung ~\ref{fig:wasserfall_old} ist ein Ausschnitt des Wasserfallmodell der nicht Optimisierten Webseite dargestellt. Das volle Diagramm ist der Fußnote \footnote{\url{http://www.webpagetest.org/result/150206_11_M2M/1/details/}} zu entnehmen.
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=\textwidth]{wasserfall_old.jpg}
+				\caption{Ausschnitt des Wasserfallmodells der alten Seite (Eigene Abbildung nach webpagetest.org)}
+				\label{fig:wasserfall_old}
+			\end{center}
+		\end{figure}
+		
+	  Die Abbildung zeigt, dass der Browser zuerst alle CSS und Javascript Dateien herunterläd. Hierbei fällt auf, dass er nicht mit allen gleichzeitig beginnen kann, sondern wie in Punkt ~\ref{sub:http_1_1}: HTTP/1.1 nur 6 TCP Verbindungen pro Hostname aufbauen darf. 
+
+	% subsection analyse_des_wasserfalls (end)
 
 
 % section die_1000_ms_barriere (end)
