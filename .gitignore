@@ -8,5 +8,4 @@
 *.aux~
 *.log
 *.synctex.gz
-*.html
 node_modules
