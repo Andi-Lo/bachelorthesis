@@ -1,0 +1,32 @@
+.container .jumbotron, .container-fluid .jumbotron {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 10px; }
+
+h1 {
+  font-size: 24px; }
+
+.legende {
+  text-align: center;
+  margin-top: 20px; }
+
+.btn {
+  color: white;
+  cursor: default;
+  border-radius: 0;
+  padding: 6px 24px;
+  margin: 0 15px; }
+  .btn:hover {
+    color: white; }
+
+.btn.btn-red, .btn-red:hover {
+  background-color: #dc4437; }
+
+.btn.btn-blue, .btn-blue:hover {
+  background-color: #3e86ed; }
+
+.btn.btn-yellow, .btn-yellow:hover {
+  background-color: #eeb302; }
+
+.btn.btn-green, .btn-green:hover {
+  background-color: #009f5d; }
