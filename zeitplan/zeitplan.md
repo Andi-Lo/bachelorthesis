@@ -14,6 +14,10 @@
 * ~~Automatisierung und build process~~
 * ~~Picturefill anwenden (srcset)~~
 * ~~Debugging~~
-* Bilder in verschiedenen größen rausrechnen
-* Caching
+* Bilder in verschiedenen größen rausrechnen (optional)
 * Hosting via Azure in USA hosten
+* Datenauswertung
+* Github pages
+* Webpagetest von neuen locations
+* schreiben schreiben schreiben schreiben
+* alte seite nochmal durch tests jagen
