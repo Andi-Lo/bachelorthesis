@@ -21,3 +21,5 @@
 * Webpagetest von neuen locations
 * schreiben schreiben schreiben schreiben
 * alte seite nochmal durch tests jagen
+* noch andere Diagrammarten außer line-chart?
+* data overview alt / neu
