@@ -259,7 +259,7 @@
 		Folgende Optimierungsmaßnahmen ergeben sich auf der Ebene des Netzwerks:
 		\begin{itemize}
 			\item Näheres Platzieren der Bits: Die Latenz bestimmt vorrangig die Geschwindigkeit des Ladevorgangs. Durch die benutzung eines CDN's lassen sich Bits und Bytes näher am Endanwender platzieren.
-			\item Sage das Nutzerverhalten vorraus: Wenn der Anwender in einer Einkaufs-App 3 Schritte zum vollenden des Kaufvorgangs benötigt, dann lässt sich bei Schritt 1 bereits vorhersagen was er für weitere Ressourcen im nächsten Schritt benötigt. Diese Ressourcen könnten bereits geladen werden.
+			\item Sage das Nutzerverhalten voraus: Wenn der Anwender in einer Einkaufs-App 3 Schritte zum vollenden des Kaufvorgangs benötigt, dann lässt sich bei Schritt 1 bereits vorhersagen was er für weitere Ressourcen im nächsten Schritt benötigt. Diese Ressourcen könnten bereits geladen werden.
 			\item Wahl eines guten Hostings: Die RTT als auch die \texttt{Server Response Time} sind je nach Anbieter unterschiedlich. Ein gutes Hosting kann hier unter umständen bereits eine enorme Verbesserung bedeuten. Zur not sollte gewechselt werden!
 
 			\begin{figure}[htbp]
@@ -273,6 +273,8 @@
 			Wie in der Grafik zu sehen ist, sank die Response Zeit meines Hosting Providers von durchschnittlichen fast 400 Millisekunden auf 183 ms. Dies kann mehrere Gründe haben, so kann sich das Routing zum Server geändert haben, der Server kann ein Update erhalten haben oder die Maschine kann gewechselt worden sein. Was letzten endes dazu geführt hat kann nicht gesagt werden.
 
 			\item Senden von weniger Daten: Das schnellste Bit ist das, dass nicht gesendet wird. Das zusammenfügen und verkleinern von Javascript und CSS Dateien verringert die Dategröße. Zudem lassen sich die Daten per GZIP zwischen Browser und Server komprimieren. Wie dies Möglich ist wird später noch Konkretisiert.
+
+			\item todo: serve useful bits in the first 14kb of your html
 
 			\item Vermeiden von Weiterleitungen: Abbildung ~\ref{fig:eliminate_redirects} zeigt den Seitenaufruf von hs-weingarten.de. Wie zu sehen ist, bekommen wir zwei mal einen HTTP 301 (Wert in Klammer) Response zurück: 
 
@@ -301,43 +303,81 @@
 
 	\subsection{Kritischer Rendering-Pfad} % (fold)
 	\label{sub:critical_render_path}
-		Auf Englisch "`critical render path"' genannt, ist der wohl wichtigste Begriff, wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine wesentliche Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden. Dabei wird der Begriff in seine zwei Teile Zerlegt: Kritischer und Rendering-Pfad.\\
+		Auf Englisch "`critical render path"' genannt, ist der wohl wichtigste Begriff, wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering-Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine wesentliche Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden. Dabei wird der Begriff in seine Teile Zerlegt: Kritischer, Rendering und Rendering-Pfad.\\
 
-		Der \texttt{Rendering-Pfad} setzt sich aus den für die Anwendung nötige Ressourcen zusammen. Webanwendungen bestehen schließlich nicht nur aus einer HTML Datei, sondern aus mehreren Javascript und CSS Dateien.
+		\subsubsection{Rendering} % (fold)
+		\label{ssub:rendering}
+			
 
-		\begin{figure}[htbp]
-			\begin{center}
-				\includegraphics[width=0.4\textwidth]{critical_render_path.jpg}
-				\caption{Ressourcen die für das Rendern von nöten sind (Eigene Abbildung)}
-				\label{fig:critical_render_path}
-			\end{center}
-		\end{figure}
+			Rendering: Der Browser liest das HTML Dokument und übersetzt dieses. Diesen Vorgang nennt man auch parsing. Stellt der Browser fest, dass die für das Rendern nötigen Ressourcen vorhanden sind, beginnt er mit dem Zeichnen. Bei der Optimierung von Webanwendungen ist besonderst das Auftreten des ersten Zeichnens interessant (engl. "`First Paint Event"'). Je früher das sogenannte \texttt{First Paint Event} auftritt umso höher ist die \texttt{Perceived Performance} der Webanwendung. 
 
-		Gegeben ist das folgende Beispiel einer simplen HTML Datei.
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.75\textwidth]{browser_render.jpg}
+					\caption{Der Render Prozess (Eigene Abbildung)}
+					\label{fig:browser_render}
+				\end{center}
+			\end{figure}
 
-		\begin{lstlisting}
-			<!DOCTYPE html>
-			<meta charset="utf-8">
-			<title>Web Performance fuer den mobilen Endanwender</title>
+		% subsubsection rendering (end)
 
-			<link href="assets/styles.css" rel="stylesheet" />
-			<script src="assets/script.js"></script>
+		\subsubsection{Rendering-Pfad} % (fold)
+		\label{ssub:rendering_pfad}
 
-			<p> Hello world! </p>
+			Der \texttt{Rendering-Pfad} setzt sich aus den für die Anwendung nötige Ressourcen zusammen. Webanwendungen bestehen schließlich nicht nur aus einer HTML Datei, sondern aus mehreren Javascript und CSS Dateien.
 
-		\end{lstlisting}
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{critical_render_path.jpg}
+					\caption{Ressourcen die für das Rendern von nöten sind (Eigene Abbildung)}
+					\label{fig:critical_render_path}
+				\end{center}
+			\end{figure}
 
-		Nachdem diese Datei heruntergeladen wurde, beginnt der Browser sie von oben nach unten zu lesen. Dabei stößt er in Zeile 5 auf einen \texttt{link tag} der ihn anweißt diese Datei herunterzuladen. In der nächsten Zeile findet der Browser einen \texttt{script tag}. Auch diese Datei muss herunterladen, interpretiert und ausgeführt werden, denn jede Javascript Datei kann den DOM-Baum oder das CSS manipulieren. Bevor also das "`Hello world"' in Zeile 8 angezeigt werden kann, ist das rendern blockiert. Dieses verhalten nennt sich auch "`Render Blocking"' und wird sowohl von Javascript als auch von CSS Dateien ausgelöst.	Erst dann kann der Browser mit dem rendern beginnen. Dieser Umstand erklärt auch warum die Regel gilt: CSS Dateien in den "`<head>"' und Javascript vor dem schließen des "`</body> tags"' zu platzieren.
+			\pagebreak
 
-		\begin{figure}[htbp]
-			\begin{center}
-				\includegraphics[width=0.75\textwidth]{browser_render.jpg}
-				\caption{Der Render Prozess (Eigene Abbildung)}
-				\label{fig:browser_render}
-			\end{center}
-		\end{figure}
-	
-		\texttt{Critical render path} sind genau die Javascript und CSS Dateien, die für den für das Rendern des \texttt{above the fold} von nöten sind. Um dies umzusetzen ist es nötig, die Ressourcen in zwei Teile zu zerlegen: Für das Rendering absolut notwendig und nicht notwendig. Alle Dateien die nicht notwendig für das erste Rendern sind sollten so lange mit dem Laden verzögert werden, bis die Anwendung geladen ist. Wie genau so eine Umsetzung aussieht, wird in Punkt: ~\ref{..} ausführlich gezeigt.
+			Gegeben ist das folgende Beispiel einer simplen HTML Datei.
+
+			\begin{lstlisting}[captionpos=b, caption=Beispiel Code, label=beispielCode]
+				<!DOCTYPE html>
+				<meta charset="utf-8">
+				<title>Web Performance fuer den mobilen Endanwender</title>
+
+				<link href="assets/styles.css" rel="stylesheet" />
+				<script src="assets/script.js"></script>
+
+				<p> Hello world! </p>
+
+			\end{lstlisting}
+
+			Nachdem diese Datei heruntergeladen wurde, beginnt der Browser sie von oben nach unten zu Parsen. Dabei stößt er in Zeile 5 auf einen \texttt{Link-Tag} der ihn anweißt diese Datei herunterzuladen. In Zeile 6 findet der Browser einen \texttt{Script-Tag}. Auch diese Datei muss herunterladen, interpretiert und ausgeführt werden, denn jede Javascript Datei kann den DOM-Baum\footnote{Der DOM-Baum: \url{http://wiki.selfhtml.org/wiki/JavaScript/Objekte/DOM}} oder das CSS manipulieren. So können per Javascript sowohl Elemente dem DOM-Baum hinzugefügt, als auch weggenommen werden oder Elemente können eine Änderung ihrer CSS Attribute erhalten. Dieser Umstand verbietet es dem Browser mit dem Rendering zu beginnen, da bis zur Ausführung der Javascript Dateien noch Manipulationen erfolgen können.
+			Bevor also das "`Hello world"' in Zeile 8 angezeigt werden kann, ist das rendern blockiert. Dieses Verhalten nennt sich auch "`Render Blocking"' und wird sowohl von Javascript als auch von CSS Dateien ausgelöst. Folglich spricht man hierbei auch von "`Render Blocking Javascript"' und "`Render Blocking CSS"'. Erst wenn diese Blockierenden Ressourcen geladen und interpretiert wurden, kann der Browser mit dem Rendern beginnen. 
+
+		% subsubsection rendering_pfad (end)
+
+		\subsubsection{Critical render path} % (fold)
+		\label{ssub:critical_render_path}
+			
+			\texttt{Critical render path} sind genau die Javascript und CSS Dateien, die für den für das Rendern des \texttt{above the fold} (Punkt: ~\ref{sub:above_the_fold}) von nöten sind. Um dies umzusetzen ist es nötig, die Ressourcen in zwei Teile zu zerlegen: Für das Rendering \textbf{absolut} notwendig und nicht notwendig. Alle Dateien die nicht notwendig für das erste Rendern sind sollten so lange mit dem Laden verzögert werden, bis die Anwendung geladen ist. Wie genau so eine Umsetzung aussieht, wird in Punkt: ~\ref{..} ausführlich gezeigt.
+		% subsubsection critical_render_path (end)
+
+
+		\subsubsection{Zusammengefasst} % (fold)
+		\label{ssub:zusammengefasst}
+		  Folgende Pattern lassen sich, bedingt durch den \texttt{Kritischen Rendering-Pfad}, für die Erstellung von Webanwendungen ableiten.
+
+			\begin{itemize}
+				\item CSS Dateien möglichst weit oben im "`<head>"' Bereich platzieren und Javascript vor dem schließen des "`</body> tags"'. Da Javascript und CSS so lange Blockieren, bis sie heruntergeladen wurden, kann mit dem Parsen des gesamten Dokumentes nicht fortgefahren werden. \autocite{placingScripts}\\
+				Das Platzieren von Javascript am Ende des Dokuments hat allerdings den Nachteil, dass sich der Zeitpunkt des Herunterladens verzögert. Deshalb ist es ratsam genau die Javascript Dateien in den "`<head>"' zu verlagern, die \texttt{Kritisch} für das Rendern des \texttt{above the fold} Bereichs sind und den rest der Scripte vor den "`</body> tag"'. 
+				\item ... todo concatenating wegen anzahl an blockierenden elementen und http 1.1 und anzahl an roundtrips. Nachteil caching
+				\item aufteilen von ressourcen in 2 gruppen, defering
+				\item inlining von css (datei muss nicht requestet / heruntergeladen werden sondern kann gleich geparsed werden)
+				\item herausforderung: critical ressourcen erkennen
+				\item detect render blocking css / js via pagespeed insight
+
+			\end{itemize}
+
+		% subsubsection zusammengefasst (end)
 
 	% subsection critical_render_path (end)
 

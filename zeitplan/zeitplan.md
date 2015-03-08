@@ -15,4 +15,3 @@
 * ~~Picturefill anwenden (srcset)~~
 * ~~Debugging~~
 * Hosting via Azure in USA hosten
-* Datenauswertung
