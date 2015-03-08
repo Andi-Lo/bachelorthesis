@@ -62,6 +62,57 @@
         </div>
       </div>
 
+      <div class="jumbotron">
+        <h4>Time to visually complete (ms)</h4>
+        <div class="chart-wrapper">
+          <canvas id="loadTime"></canvas>
+          <div class="legende">
+            Legende: <div class="btn btn-blue">First View</div>
+                     <div class="btn btn-red">Repeat View</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <h4>Speed Index</h4>
+        <div class="chart-wrapper">
+          <canvas id="speedIndex"></canvas>
+          <div class="legende">
+            Legende: <div class="btn btn-blue">First View</div>
+                     <div class="btn btn-red">Repeat View</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
+        <h3>Direct comparisons Desktop version:</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
+              <h3>42 requests</h3>
+              <canvas id="requestsOld"></canvas>
+            </div>
+          </div>  <!-- ./col-lg-6 -->
+          <div class="col-lg-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
+              <h3>27 requests</h3>
+              <canvas id="requestsNew"></canvas>
+              
+            </div>     
+          </div>  <!-- ./col-lg-6 -->
+          </div>
+          <div class="legende">
+            Legende: <div class="btn btn-blue">CSS</div>
+                     <div class="btn btn-red">Images</div>
+                     <div class="btn btn-yellow">JS</div>
+                     <div class="btn btn-grey">other</div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="footer"></div>
     </div>
 
@@ -71,7 +122,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/chartjs/Chart.min.js"></script>
-    <script src="assets/js/bundle.min.js"></script>
+    <script src="assets/js/bundle.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
