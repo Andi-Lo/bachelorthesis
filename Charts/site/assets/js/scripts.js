@@ -245,30 +245,30 @@ var dataRequestsMobileNew = [
 
 var dataSiteSizeMobile = [
     {
-        value: 363,
-        color:"#7B1FA2",
-        highlight: "#892cb0",
-        label: "KB"
-    },
-    {
         value: 145,
         color: "#009f5d",
         highlight: "#10b06e",
+        label: "KB"
+    },
+    {
+        value: 363,
+        color:"#7B1FA2",
+        highlight: "#892cb0",
         label: "KB"
     }
 ];
 
 var dataSiteSizeDesktop = [
     {
-        value: 1000,
-        color:"#7B1FA2",
-        highlight: "#892cb0",
-        label: "KB"
-    },
-    {
         value: 517,
         color: "#009f5d",
         highlight: "#10b06e",
+        label: "KB"
+    },
+    {
+        value: 1000,
+        color:"#7B1FA2",
+        highlight: "#892cb0",
         label: "KB"
     }
 ];
