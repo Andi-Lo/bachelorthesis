@@ -10,7 +10,7 @@ h1 {
 
 .legende {
 	text-align: center;
-	margin-top: 20px;
+	margin: 20px 0 40px;
 }
 
 .btn {
@@ -24,21 +24,44 @@ h1 {
 	}
 }
 
-.btn.btn-red, .btn-red:hover{
-	background-color: rgba(220,68,55,1);
+.btn.btn-red{
+	background-color: #dc4437;
+	&.btn-red:hover{
+		background-color: #eb6156;
+	}
 }
 
-.btn.btn-blue, .btn-blue:hover{
-	background-color: rgba(62,134,237,1);
+.btn.btn-blue{
+	background-color: #3e86ed;
+	&.btn-blue:hover{
+		background-color: #5296f8;
+	}
 }
 
-.btn.btn-yellow, .btn-yellow:hover{
-	background-color: rgba(238,179,2,1);
+.btn.btn-yellow{
+	background-color: #eeb302;
+	&.btn-yellow:hover{
+		background-color: #fac62b;
+	}
 }
 
-.btn.btn-green, .btn-green:hover{
-	background-color: rgba(0,159,93,1);
+.btn.btn-green{
+	background-color: #009f5d;
+	&.btn-green:hover{
+		background-color: #10b06e;
+	}
 }
-.btn.btn-grey, .btn-grey:hover{
+
+.btn.btn-grey{
 	background-color: #949FB1;
+	&.btn-grey:hover{
+		background-color: #A8B3C5;
+	}
+}
+
+.btn.btn-teal{
+	background-color: #7B1FA2;
+	&.btn-teal:hover{
+		background-color: #892cb0;
+	}
 }

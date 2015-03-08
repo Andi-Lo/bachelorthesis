@@ -8,7 +8,7 @@ h1 {
 
 .legende {
   text-align: center;
-  margin-top: 20px; }
+  margin: 20px 0 40px; }
 
 .btn {
   color: white;
@@ -19,17 +19,32 @@ h1 {
   .btn:hover {
     color: white; }
 
-.btn.btn-red, .btn-red:hover {
+.btn.btn-red {
   background-color: #dc4437; }
+  .btn.btn-red.btn-red:hover {
+    background-color: #eb6156; }
 
-.btn.btn-blue, .btn-blue:hover {
+.btn.btn-blue {
   background-color: #3e86ed; }
+  .btn.btn-blue.btn-blue:hover {
+    background-color: #5296f8; }
 
-.btn.btn-yellow, .btn-yellow:hover {
+.btn.btn-yellow {
   background-color: #eeb302; }
+  .btn.btn-yellow.btn-yellow:hover {
+    background-color: #fac62b; }
 
-.btn.btn-green, .btn-green:hover {
+.btn.btn-green {
   background-color: #009f5d; }
+  .btn.btn-green.btn-green:hover {
+    background-color: #10b06e; }
 
-.btn.btn-grey, .btn-grey:hover {
+.btn.btn-grey {
   background-color: #949FB1; }
+  .btn.btn-grey.btn-grey:hover {
+    background-color: #A8B3C5; }
+
+.btn.btn-teal {
+  background-color: #7B1FA2; }
+  .btn.btn-teal.btn-teal:hover {
+    background-color: #892cb0; }

@@ -2,9 +2,6 @@
 
 /**
  * TODO: 
- * Piechar colors
- * Chart with comparison of page size
- * Comparison: mobile vs mobile
  */
 'use strict';
 
@@ -143,19 +140,19 @@ var dataRequestsOld = [
     {
         value: 30,
         color:"#dc4437",
-        highlight: "#FF5A5E",
+        highlight: "#eb6156",
         label: "Images"
     },
     {
         value: 3,
         color: "#3e86ed",
-        highlight: "#5AD3D1",
+        highlight: "#5296f8",
         label: "CSS"
     },
     {
         value: 5,
         color: "#eeb302",
-        highlight: "#FFC870",
+        highlight: "#fac62b",
         label: "JS"
     },
     {
@@ -170,19 +167,19 @@ var dataRequestsNew = [
     {
         value: 9,
         color:"#dc4437",
-        highlight: "#FF5A5E",
+        highlight: "#eb6156",
         label: "Images"
     },
     {
-        value: 6,
+        value: 1,
         color: "#3e86ed",
-        highlight: "#5AD3D1",
+        highlight: "#5296f8",
         label: "CSS"
     },
     {
-        value: 3,
+        value: 5,
         color: "#eeb302",
-        highlight: "#FFC870",
+        highlight: "#fac62b",
         label: "JS"
     },
     {
@@ -193,6 +190,91 @@ var dataRequestsNew = [
     }
 ];
 
+var dataRequestsMobileOld = [
+    {
+        value: 4,
+        color:"#dc4437",
+        highlight: "#eb6156",
+        label: "Images"
+    },
+    {
+        value: 3,
+        color: "#3e86ed",
+        highlight: "#5296f8",
+        label: "CSS"
+    },
+    {
+        value: 5,
+        color: "#eeb302",
+        highlight: "#fac62b",
+        label: "JS"
+    },
+    {
+        value: 4,
+        color: "#949FB1",
+        highlight: "#A8B3C5",
+        label: "Other"
+    }
+];
+
+var dataRequestsMobileNew = [
+    {
+        value: 2,
+        color:"#dc4437",
+        highlight: "#eb6156",
+        label: "Images"
+    },
+    {
+        value: 1,
+        color: "#3e86ed",
+        highlight: "#5296f8",
+        label: "CSS"
+    },
+    {
+        value: 5,
+        color: "#eeb302",
+        highlight: "#fac62b",
+        label: "JS"
+    },
+    {
+        value: 2,
+        color: "#949FB1",
+        highlight: "#A8B3C5",
+        label: "Other"
+    }
+];
+
+var dataSiteSizeMobile = [
+    {
+        value: 363,
+        color:"#7B1FA2",
+        highlight: "#892cb0",
+        label: "KB"
+    },
+    {
+        value: 145,
+        color: "#009f5d",
+        highlight: "#10b06e",
+        label: "KB"
+    }
+];
+
+var dataSiteSizeDesktop = [
+    {
+        value: 1000,
+        color:"#7B1FA2",
+        highlight: "#892cb0",
+        label: "KB"
+    },
+    {
+        value: 517,
+        color: "#009f5d",
+        highlight: "#10b06e",
+        label: "KB"
+    }
+];
+
+
 // Get the context of the canvas element we want to select
 var tmpTTFB = document.getElementById("ttfb").getContext("2d");
 var tmpRender = document.getElementById("renderStart").getContext("2d");
@@ -201,6 +283,10 @@ var tmpLoadTime = document.getElementById("loadTime").getContext("2d");
 var tmpSpeedIndex = document.getElementById("speedIndex").getContext("2d");
 var tmpRerquestsOld = document.getElementById("requestsOld").getContext("2d");
 var tmpRequestsNew = document.getElementById("requestsNew").getContext("2d");
+var tmpRerquestsMobileOld = document.getElementById("requestsMobileOld").getContext("2d");
+var tmpRequestsMobileNew = document.getElementById("requestsMobileNew").getContext("2d");
+var tmpSiteSizeDesktop = document.getElementById("siteSizeDesktop").getContext("2d");
+var tmpSiteSizeMobile = document.getElementById("siteSizeMobile").getContext("2d");
 
 Chart.defaults.global.responsive = true;
 Chart.defaults.global.animation = true;
@@ -219,6 +305,12 @@ new Chart(tmpSpeedIndex).Line(dataSpeedIndex, {});
 // polar chart
 new Chart(tmpRerquestsOld).Doughnut(dataRequestsOld, {scaleOverride: false});
 new Chart(tmpRequestsNew).Doughnut(dataRequestsNew, {scaleOverride: false});
+new Chart(tmpRerquestsMobileOld).Doughnut(dataRequestsMobileOld, {scaleOverride: false});
+new Chart(tmpRequestsMobileNew).Doughnut(dataRequestsMobileNew, {scaleOverride: false});
+
+// pie charts
+new Chart(tmpSiteSizeDesktop).Pie(dataSiteSizeDesktop, {scaleOverride: false});
+new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
 },{}]},{},["./site/assets/js/scripts.js"]);
 
 //# sourceMappingURL=bundle.js.map

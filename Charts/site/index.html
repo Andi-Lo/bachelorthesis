@@ -30,6 +30,109 @@
       </div>
 
       <div class="jumbotron">
+        <h3>Direct comparisons Desktop version:</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
+              <h3>42 requests</h3>
+              <canvas id="requestsOld"></canvas>
+            </div>
+          </div>  <!-- ./col-sm-6 -->
+          
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
+              <h3>23 requests</h3>
+              <canvas id="requestsNew"></canvas>
+              
+            </div>     
+          </div>  <!-- ./col-sm-6 -->
+        </div> <!-- ./row -->
+        <div class="legende">
+          Legende: <div class="btn btn-blue">CSS</div>
+                   <div class="btn btn-red">Images</div>
+                   <div class="btn btn-yellow">JS</div>
+                   <div class="btn btn-grey">other</div>
+        </div>
+
+
+        <h3>Site size in kilobyte</h3>
+        <div class="row">
+          
+          <div class="col-sm-offset-3 col-sm-6">
+            <div class="chart-wrapper">
+              <canvas id="siteSizeDesktop"></canvas>
+              
+            </div>     
+          </div>  <!-- ./col-sm-6 -->
+        </div>  <!-- ./row -->
+        <div class="legende">
+          Legende: 
+                  <div class="btn btn-teal">andreaslorer.de/old/</div>
+                  <div class="btn btn-green">andreaslorer.de</div>
+        </div>
+
+        <hr>
+
+        <h3>Direct comparisons Mobile version:</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
+              <h3>17 requests</h3>
+              <canvas id="requestsMobileOld"></canvas>
+            </div>
+          </div>  <!-- ./col-sm-6 -->
+          
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
+              <h3>17 requests</h3>
+              <canvas id="requestsMobileNew"></canvas>
+              
+            </div>     
+          </div>  <!-- ./col-sm-6 -->
+          
+        </div> <!-- ./row -->
+        <div class="legende">
+          Legende: <div class="btn btn-blue">CSS</div>
+                   <div class="btn btn-red">Images</div>
+                   <div class="btn btn-yellow">JS</div>
+                   <div class="btn btn-grey">other</div>
+        </div>
+
+        <h3>Site size in kilobyte</h3>
+        <div class="row">
+          
+          <div class="col-sm-offset-3 col-sm-6">
+            <div class="chart-wrapper">
+              <canvas id="siteSizeMobile"></canvas>
+              
+            </div>     
+          </div>  <!-- ./col-sm-6 -->
+        </div>  <!-- ./row -->
+        <div class="legende">
+          Legende: 
+                  <div class="btn btn-teal">andreaslorer.de/old/</div>
+                  <div class="btn btn-green">andreaslorer.de</div>
+        </div>
+          
+      </div>
+      <!-- ./jumbotron comparison -->
+
+      <div class="jumbotron">
+        <h4>Speed Index</h4>
+        <div class="chart-wrapper">
+          <canvas id="speedIndex"></canvas>
+          <div class="legende">
+            Legende: <div class="btn btn-blue">First View</div>
+                     <div class="btn btn-red">Repeat View</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="jumbotron">
         <h4>Time to first byte (ms)</h4>
         <div class="chart-wrapper">
           <canvas id="ttfb"></canvas>
@@ -73,47 +176,10 @@
         </div>
       </div>
 
-      <div class="jumbotron">
-        <h4>Speed Index</h4>
-        <div class="chart-wrapper">
-          <canvas id="speedIndex"></canvas>
-          <div class="legende">
-            Legende: <div class="btn btn-blue">First View</div>
-                     <div class="btn btn-red">Repeat View</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="jumbotron">
-        <h3>Direct comparisons Desktop version:</h3>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
-              <h3>42 requests</h3>
-              <canvas id="requestsOld"></canvas>
-            </div>
-          </div>  <!-- ./col-lg-6 -->
-          <div class="col-lg-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
-              <h3>27 requests</h3>
-              <canvas id="requestsNew"></canvas>
-              
-            </div>     
-          </div>  <!-- ./col-lg-6 -->
-          </div>
-          <div class="legende">
-            Legende: <div class="btn btn-blue">CSS</div>
-                     <div class="btn btn-red">Images</div>
-                     <div class="btn btn-yellow">JS</div>
-                     <div class="btn btn-grey">other</div>
-          </div>
-        </div>
-      </div>
+    </div>  <!-- ./container -->
 
 
-      <div class="footer"></div>
+    <div class="footer"></div>
     </div>
 
     <!-- don't remove these build comments! -->
