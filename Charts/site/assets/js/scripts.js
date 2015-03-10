@@ -176,7 +176,7 @@ var dataRequestsNew = [
         label: "CSS"
     },
     {
-        value: 5,
+        value: 4,
         color: "#eeb302",
         highlight: "#fac62b",
         label: "JS"
@@ -230,7 +230,7 @@ var dataRequestsMobileNew = [
         label: "CSS"
     },
     {
-        value: 5,
+        value: 4,
         color: "#eeb302",
         highlight: "#fac62b",
         label: "JS"

@@ -1,34 +1,100 @@
 \section{Entwicklung} % (fold)
 \label{sec:entwicklung}
+	Dieses Kapitel soll den Entwicklungsprozess konkretisieren und den Optimierungsprozess einer Webanwendung aufzeigen. Es soll erläutern, welche Fragen sich stellten und welche Antworten darauf gefunden wurden. Wie bestimmte Probleme gelöst wurden. Welche Tools und Hilfsmittel zur verwendung kamen. Dies soll ein Bewusstsein dafür schaffen, was möglich ist und wie eine technische Umsetzung aussehen kann. 
 	
-
 	\subsection{Tools}
 	\label{sub:tools}
-		% so in etwa: Einige Tools fanden bereits verwendung im verlaufe der Arbeit, eine Vollständige liste gibt es nun hier
+		Dies ist eine Auflistung an Tools und nützlichen Seiten, die entweder im Projekt verwendung fanden, oder die für Wertvoll befunden wurden und deshalb hier ihren Platz finden, damit jeder für sich entscheiden kann, ob der Einsatz davon sinnvoll sein könnte.
 
 		\subsubsection{Google Chrome Developer Tool} % (fold)
 		\label{ssub:google_chrome_developertool}
-			Stalled / Waiting
-			DNS Lookup
-			TTFB
-			Start render
-			Document Complete
-			Document Loaded
-			Audits
-			Timeline
+			Dieses Tool ist über die Taste F12 im Chrome Browser zu finden. Nützliche Features sind: 
+
+			\begin{itemize}
+				\item \texttt{Device Emulation} \footnote{Bei geöffnetem Tool (F12): strg + shift + M oder klick auf das Smartphone Symbol}: Damit lassen sich verschiedene Devices wie Smartphones, Ipad oder verschiedene Desktopauflösungen simulieren. Auch das Touch verhalten wird Simuliert.
+				\item In der Device Emulation lässt sich auch die Netzwerkgeschwindigkeit simulieren. Dies ist allerdings nur eine Simulation und kann unter wahren Bedingungen stark abweichen.
+				\item Netzwerk: Hier lässt sich das Wasserfallmodell nachvollziehen. Auch lässt sich hier das Caching des Browsers abschalten, wärend das Developer Tool geöffnet ist.
+				\item Audits: Unter diesem Reiter bekommt man erste Informationen, welche Verbesserungen es für diese Seite aus dem Gesichtspunkt der Performance ergeben. So wird zum Beispiel aufgezeigt, wie viele CSS Selektoren auf dieser Seite gar keine verwendung finden (gerade bei CSS-Frameworks wie Bootstrap kann es sein, dass rund 90\% der Selektoren keine Verwendung haben)
+			\end{itemize}
 		% subsubsection google_chrome_developertool (end)
+
+		\subsubsection{Google Pagespeed Insight} % (fold)
+		\label{ssub:google_pagespeed_insight}
+			\url{https://developers.google.com/speed/pagespeed/insights/?url=andreaslorer.de%2Fold%2F}
+		
+		% subsubsection google_pagespeed_insight (end)
+
+		\subsubsection{Google Closure Compiler} % (fold)
+		\label{ssub:closure_compiler}
+		
+		% subsubsection closure_compiler (end)
 
 		\subsubsection{Webpagetest} % (fold)
 		\label{ssub:webpagetest}
 			Was ist Webpagetest
 			Speedindex
 			Features
+			  Filmstrip
+			  Video
+			  Tests vergleichen
+			  Test History
+			  Forum
 		% subsubsection webpagetest (end)	
+
+		\subsubsection{Pingdom} % (fold)
+		\label{ssub:pingdom}
+			Tests wie Webpagtest nur ungenauer :D
+			Monitoring feature
+
+		
+		% subsubsection pingdom (end)
+
+		\subsubsection{Speedcurve} % (fold)
+		\label{ssub:speedcurve}
+			frontend monitoring
+			Vergleicht zur Konkurrenz
+		% subsubsection speedcurve (end)
 
 		\subsubsection{Google Spreadsheet} % (fold)
 		\label{ssub:google_spreadsheet}
+			Script Schnittstelle
+			Bulk Webpagetest
+			Link zu Daten geben
 		
 		% subsubsection google_spreadsheet (end)
+
+		\subsubsection{Feed the Bot} % (fold)
+		\label{ssub:feed_the_bot}
+			Best practices
+				
+		% subsubsection feed_the_bot (end)
+
+		\subsubsection{Critical Path CSS Generator} % (fold)
+		\label{ssub:critical_path_css_generator}
+		
+		% subsubsection critical_path_css_generator (end)
+
+		\subsubsection{moz Jpeg} % (fold)
+		\label{ssub:moz_jpeg}
+		
+		% subsubsection moz_jpeg (end)
+
+		\subsubsection{Http Archive \& bigqueri.es} % (fold)
+		\label{ssub:http_archive_bigqueri_es}
+			
+		% subsubsection http_archive_bigqueri_es (end)
+
+		\subsubsection{Perf Tooling Today} % (fold)
+		\label{ssub:perf_tooling_today}
+		
+		% subsubsection perf_tooling_today (end)
+
+		\subsubsection{Twitter} % (fold)
+		\label{ssub:twitter}
+		
+		% subsubsection twitter (end)
+
+
 
 	% subsection tools (end)
 
@@ -37,12 +103,6 @@
 	\label{sub:ausgangspunkt}
 	
 	% subsection ausgangspunkt (end)
-
-	\subsection{Prozess der Suche}
-	\label{sub:prozess_der_suche}
-	
-	% subsection prozess_der_suche (end)
-
 
 	\subsection{Prozess der Validierung}
 	\label{sub:prozess_der_validierung}
