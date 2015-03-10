@@ -20,12 +20,42 @@
 
 		\subsubsection{Google Pagespeed Insight} % (fold)
 		\label{ssub:google_pagespeed_insight}
-			\url{https://developers.google.com/speed/pagespeed/insights/?url=andreaslorer.de%2Fold%2F}
+			Pagespeed Insight ist ein Analysetool für Webanwendungen. Per URL Eingabe wird die Anwendung Aufgerufen und gegen die "`Best Practices"' von Google getestet: \footnote{ \url{http://tinyurl.com/nvxksks} }. Dabei wird ein Rating von 1 (schlecht) bis 100 (gut) vergeben. Mobile und Desktop Version werden voneinander unabhängig bewertet. Findet das Tool verstöße gegen die \texttt{best practices}, so gibt es Hilfestellungen wie zum Beispiel weiterführende Links oder Hinweise zur Behebung des Problems. Für die Verbesserung der Perfomance ist dieses Tool eines der besten Anlaufziele, um einen Überblick zu bekommen wo sich die Probleme befinden. Pagespeed Insight gibt es auch als Plugin für das Google Chrome Developer Tool.\footnote{Plugin - Pagespeed Insight: \url{http://tinyurl.com/mv8fcx8}}
 		
 		% subsubsection google_pagespeed_insight (end)
 
 		\subsubsection{Google Closure Compiler} % (fold)
 		\label{ssub:closure_compiler}
+			Ein simples Tool von Google\footnote{\url{http://closure-compiler.appspot.com/}}, mit der Aufgabe Javascript zu verkleinern. Dieser Vorgang nennt sich auch "`minify"' und ist auch für HTML und CSS möglich. Ein Beispiel:
+
+			\begin{lstlisting}[captionpos=t, caption=Input, label=lst:minifyInput]
+			/**
+			 * urlEncodes an object to send it via post
+			 * @param  {Object} object Object with key value pairs
+			 * @return {String}        string in format key=value&foo=bar
+			 */
+			var urlEncode = function (object) {
+			  var encodedString = '';
+			  for (var prop in object) {
+			    if (object.hasOwnProperty(prop)) {
+			      if (encodedString.length > 0) {
+			          encodedString += '&';
+			      }
+			      encodedString += encodeURI(prop + '=' + object[prop]);
+			    }
+			  }
+			  return encodedString;
+			};
+			\end{lstlisting}
+
+			Wird zu:
+
+			\begin{lstlisting}[captionpos=t, caption=Output, label=lst:minifyOutput, breaklines=false]
+			var urlEncode=function(c){var a="",b;for(b in c)c.hasOwnProperty(b)&&
+			(0<a.length&&(a+="&"),a+=encodeURI(b+"="+c[b]));return a};
+			\end{lstlisting}
+
+
 		
 		% subsubsection closure_compiler (end)
 
