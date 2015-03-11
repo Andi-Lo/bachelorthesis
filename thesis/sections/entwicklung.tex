@@ -54,21 +54,45 @@
 			var urlEncode=function(c){var a="",b;for(b in c)c.hasOwnProperty(b)&&
 			(0<a.length&&(a+="&"),a+=encodeURI(b+"="+c[b]));return a};
 			\end{lstlisting}
-
-
 		
 		% subsubsection closure_compiler (end)
 
 		\subsubsection{Webpagetest} % (fold)
 		\label{ssub:webpagetest}
-			Was ist Webpagetest
-			Speedindex
-			Features
-			  Filmstrip
-			  Video
-			  Tests vergleichen
-			  Test History
-			  Forum
+			\url{Webpagetest.org} ist das wohl umfangreichst und beste Website-Analysetool welches im Internet zu finden ist. Es ist ein kostenloser Service der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen aber schwer zu beherschen ("`easy to use, hard to master"') und es gibt zahllose Einstellungen und undokumentierte Funktionen auf die man nur in Vorträgen oder Foren stoßt. Es gibt auch ein Buch, welches sich nur mit diesem Tool beschäftigt, beim Verlag \texttt{O'Reilly}.\footnote{Buch \url{http://shop.oreilly.com/product/0636920033592.do}}.	Die Features für Webpagetest sind vielseitig:
+
+			\begin{itemize}
+				\item Es lassen sich Webanwendungen mittels eines in der realität existierenden Geräts testen. So kann vom Standort Dulles VA ein MOTOG zum Testen einer Seite verwendet werden. Dieses Gerät ruft dann auch wirklich die eingegebene URL auf und die darunterliegende Schicht misst die Zeit. Abbildung \ref{fig:wpt-android} zeigt den Teststandort Dulles VA.\footnote{Einen detailierten einblick vom Gründervater und Entwickler Patrick Meenan gibt es hier: \url{http://tinyurl.com/o4b3rxh}}
+
+				\begin{figure}[htbp]
+					\begin{center}
+						\includegraphics[width=0.5\textwidth]{wpt-android.jpg}
+						\caption{Webpagtest Android device farm (Abbildung von \autocite{meenan15})}
+						\label{fig:wpt-android}
+					\end{center}
+				\end{figure}
+				\item Webpagetest hat die wohl genauste Erfassung von Netzwerkzeiten und spiegelt damit realitätsgetreu die Ladezeiten einer Seite wieder.
+
+				\item Webpagtest liefer eine enormes Spektrum an Daten und Diagrammen, was ausführliche Analysen zulässt.
+
+				\item Speed Index: Dies ist eine von diesem Tool eigene Maßeinheit zum bestimmen der \texttt{Perceived Performance} einer Seite.
+
+				\begin{quote}
+					\textit{"`'The Speed Index metric was added to WebPagetest in April, 2012 and measures how quickly the page contents are visually populated (where lower numbers are better).  It is particularly useful for comparing experiences of pages against each other (before/after optimizing, my site vs competitor, etc) and should be used in combination with the other metrics (load time, start render, etc) to better understand a site's performance."'}\autocite{wegpagetestDocs}
+				\end{quote}
+
+				\item Man kann Tests direkt miteinander vergleichen. Das ist möglich, indem diese URL eingegeben wird: \url{www.webpagetest.org/video/compare.php?tests=} und nach dem "`="' Zeichen die Test ID eingibt, beispielsweise "`150310\_8E\_GRH"'.
+				Mit einem Komma getrennt wird eine 2. oder 3. ID angefügt. Die Tests werden dann in einer Vergleichsansicht dargestellt.
+
+				\item Filmstrip Ansicht: Damit lässt sich visuell erkennen, wann welches Element gerendet wird.
+
+				\item Video erstellung: Aus der Filmstrip Ansicht lässt sich ein Video erstellen. Das ist vor allem interessant, wenn mit der Vergleichsmethode mehrere Tests geladen sind. Der Ladevorgang der Testläufe wird dann in einem Video Parallel abgespielt. Vor allem für Präsentationen oder vorher / nachher Vergleiche ist dies nützlich.
+
+				\item Test History: Durch eine Registrierung auf der Seite wird ein eigenes Testprofil angelegt in dem alle Test-ID's gespeichert werden.
+
+				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{..} ?. %todo
+
+			\end{itemize}
 		% subsubsection webpagetest (end)	
 
 		\subsubsection{Pingdom} % (fold)
