@@ -4,7 +4,7 @@
 	
 	\subsection{Tools}
 	\label{sub:tools}
-		Dies ist eine Auflistung an Tools und nützlichen Seiten, die entweder im Projekt verwendung fanden, oder die für Wertvoll befunden wurden und deshalb hier ihren Platz finden, damit jeder für sich entscheiden kann, ob der Einsatz davon sinnvoll sein könnte.
+		Dies ist eine Auflistung an Tools und nützlichen Seiten, die entweder im Projekt verwendet, oder die für Wertvoll befunden wurden und deshalb hier ihren Platz finden, damit jeder für sich entscheiden kann, ob der Einsatz davon sinnvoll sein könnte.
 
 		\subsubsection{Google Chrome Developer Tool} % (fold)
 		\label{ssub:google_chrome_developertool}
@@ -54,12 +54,14 @@
 			var urlEncode=function(c){var a="",b;for(b in c)c.hasOwnProperty(b)&&
 			(0<a.length&&(a+="&"),a+=encodeURI(b+"="+c[b]));return a};
 			\end{lstlisting}
+
+			Wie zu sehen ist, werden nicht nur alle Kommentare, Leerzeichen und Zeilenumbrüche entfernt, sondern auch Variablennamen werden auf 1 Zeichen reduziert um weitere bytes zu sparen. Die Funktionalität bleibt dabei gewährleistet.
 		
 		% subsubsection closure_compiler (end)
 
 		\subsubsection{Webpagetest} % (fold)
 		\label{ssub:webpagetest}
-			\url{Webpagetest.org} ist das wohl umfangreichst und beste Website-Analysetool welches im Internet zu finden ist. Es ist ein kostenloser Service der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen aber schwer zu beherschen ("`easy to use, hard to master"') und es gibt zahllose Einstellungen und undokumentierte Funktionen auf die man nur in Vorträgen oder Foren stoßt. Es gibt auch ein Buch, welches sich nur mit diesem Tool beschäftigt, beim Verlag \texttt{O'Reilly}.\footnote{Buch \url{http://shop.oreilly.com/product/0636920033592.do}}.	Die Features für Webpagetest sind vielseitig:
+			\url{Webpagetest.org} ist das wohl umfangreichst und beste Website-Analysetool das im Internet zu finden ist. Es ist ein kostenloser Service der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen aber schwer zu beherschen ("`easy to use, hard to master"') und es gibt zahllose Einstellungen und undokumentierte Funktionen auf die man nur in Vorträgen oder Foren stoßt. Es gibt auch ein Buch, dass sich nur mit diesem Tool beschäftigt, beim Verlag \texttt{O'Reilly}.\footnote{Buch - Using WebPagetest: \url{http://shop.oreilly.com/product/0636920033592.do}}.	Die Features für Webpagetest sind vielseitig:
 
 			\begin{itemize}
 				\item Es lassen sich Webanwendungen mittels eines in der realität existierenden Geräts testen. So kann vom Standort Dulles VA ein MOTOG zum Testen einer Seite verwendet werden. Dieses Gerät ruft dann auch wirklich die eingegebene URL auf und die darunterliegende Schicht misst die Zeit. Abbildung \ref{fig:wpt-android} zeigt den Teststandort Dulles VA.\footnote{Einen detailierten einblick vom Gründervater und Entwickler Patrick Meenan gibt es hier: \url{http://tinyurl.com/o4b3rxh}}
@@ -90,72 +92,226 @@
 
 				\item Test History: Durch eine Registrierung auf der Seite wird ein eigenes Testprofil angelegt in dem alle Test-ID's gespeichert werden.
 
-				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{..} ?. %todo
+				\item Testen von verschiedenen Standpunkten: Webpagetest ermöglicht es die eigene Seite von ganz verschiedenen Geographischen Standpunkten aus aufzurufen. Dadurch lässt sich ein Eindruck gewinnen, wie schnell die Seite aus dem Ausland aufrufbar ist und wie stark die Abweichung sein kann.
+
+				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{..} ?. Diese Schnittstelle Limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene Private Instanz erstellen. 
+				%todo ref
+
+				\item Private Instanz: Da webpagetest Open Source ist, gibt es die möglichkeit eine eigene Private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann soviele Tests ausführen, wie die Leistungs des Servers bietet.
 
 			\end{itemize}
 		% subsubsection webpagetest (end)	
 
 		\subsubsection{Pingdom} % (fold)
 		\label{ssub:pingdom}
-			Tests wie Webpagtest nur ungenauer :D
-			Monitoring feature
+			\url{http://tools.pingdom.com/fpt/} ist eine Alternative zu Webpagetest. Auch damit lässt sich eine URL nach Performanceproblemen analyisieren. Die Ergebnisse sind nicht so genau wie mit Webpagetest und auch ein Testen mit Smartphones fehlt. Bei einer kostenlosen Anmeldung erhält man allerdings ein System zur Überwachung der eigenen Webanwendung. Bei Ausfall oder zu hoher Last kann eine SMS versendet werden um den Admin auf diesen Umstand hinzuweisen. Durch einbetten eines Scripts auf der eigenen Seite lässt sich die Response zeit aufzeichnen (siehe Abbildung \ref{fig:choose_a_good_host}). Dieses tracking nennt man auch "`real user monitoring"' und ist zum Beispiel auch durch Google Analytics in solch einer Form abrufbar.
 
 		
 		% subsubsection pingdom (end)
 
 		\subsubsection{Speedcurve} % (fold)
 		\label{ssub:speedcurve}
-			frontend monitoring
-			Vergleicht zur Konkurrenz
+			Ist ein kommerzielles Tool basierend auf Webpagetest. Es liefert einen "`life monitoring"' Service mit dem sich Webanwendungen vergleichen lassen. So kann man zum Beispiel die eigene Webanwendung dauerhaft und über einen längeren Zeitraum mit denen der Konkurenz vergleichen. 
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.7\textwidth]{speedcurve.jpg}
+					\caption{Speedcurve Life Monitoring (Abbildung von \url{http://speedcurve.com/})}
+					\label{fig:speedcurve}
+				\end{center}
+			\end{figure}
+
 		% subsubsection speedcurve (end)
 
 		\subsubsection{Google Spreadsheet} % (fold)
 		\label{ssub:google_spreadsheet}
-			Script Schnittstelle
-			Bulk Webpagetest
-			Link zu Daten geben
-		
+			Ist im Grunde wie Microsofts Excel. In Tabellen können Werte eingetragen und Berechnungen ausgeführt werden.
+			Der große Vorteil an Google Spreadhseet besteht in der Möglichkeit, dass es einen Skript Editor gibt, mit dem sich kleine Programme schreiben lassen. So sind zum Beispiel API Abfragen möglich, dessen Ergebnis dann direkt in die Tabelle geschrieben werden kann.		
 		% subsubsection google_spreadsheet (end)
 
 		\subsubsection{Feed the Bot} % (fold)
 		\label{ssub:feed_the_bot}
-			Best practices
-				
+			\url{http://www.feedthebot.com/pagespeed/} bietet umfassende Artikel zu SEO und web performance. Wenn man sich mit dem Thema web performance beschäftigen möchte, ist dies eine erstklassige Anlaufstelle.
 		% subsubsection feed_the_bot (end)
+
+
+		\subsubsection{What Does My Site Cost?} % (fold)
+		\label{ssub:what_does_my_site_cost}
+			"`Was kostet es eigentlich meinene Seitenbesucher, wenn sein Datenvolumen für diesen Monat aufgebraucht ist und er pro verbrauchtes MB zur Kasse gebeten wird?"' Diese Frage versucht diese Webanwendung zu klären und visuell darzustellen.\\
+			\url{http://whatdoesmysitecost.com/} benutzt die webpagetest Schnittstelle um eine eingegebene URL zu Analyisieren und berechnet aus den billigsten Anbieteren pro Land einen Preis für den Aufruf der Seite mittels Smartphone:
+
+			\begin{quote}
+				\textit{"`Prices were collected from the operator with the largest marketshare in the country and the for the least expensive plan with a (minimum) data allowance of 500 MB over (a minimum of) 30 days. Prices include taxes. Because these numbers are based on the least expensive plan, they are \textbf{best case} scenarios."'}\autocite{siteCosts}
+			\end{quote}
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{what_does_my_site_cost.jpg}
+				\caption{Find out how much it costs for someone to use your site on mobile networks around the world.\autocite{siteCosts}}
+				\label{fig:what_does_my_site_cost}
+			\end{center}
+		\end{figure}
+
+		In Deutschland kostet also der Seitenaufruf von hs-weingarten.de rund 20 Cent. Dieses Tool stellt auf sehr schöne Art und Weise dar, dass schlechte web performance nicht nur den Anwender verägert, sondern zusätzlich zum Ärger auch noch bares Geld kosten kann.
+		% subsubsection what_does_my_site_cost (end)
 
 		\subsubsection{Critical Path CSS Generator} % (fold)
 		\label{ssub:critical_path_css_generator}
-		
+			Im Kapitel "`Brechen der 1000 ms Barriere"'\ref{sec:die_1000_ms_barriere} wurde gesagt, man solle das CSS des above the folds direkt in das HTML als \texttt{inline CSS} schreiben. \url{http://jonassebastianohlsson.com/criticalpathcssgenerator/} erstellt aus einer gegebener URL und dem dazugehörigen CSS genau den CSS-Code, der für den above the fold Bereich nötig ist. Das Ergebnis lässt sich dann bequem in das eigene HTML einfügen.\\
+
+			Dieser Generator funktioniert allerdings nur dann gut, wenn sowohl die Smartphone, als auch Desktop Darstellung identisches CSS haben. Bootstrap zum Beispiel manipuliert die Navigation auf der Smartphone Ansicht per Javascript und fügt dabei Elemente ein. Diese Elemente kennt dieser Generator natürlich nicht und kann sie folglich auch nicht beachten. Eine alternative Methode wird in Kapitel ... \ref{..} ? vorgestellt.
+
 		% subsubsection critical_path_css_generator (end)
 
-		\subsubsection{moz Jpeg} % (fold)
+		\subsubsection{Mozilla JPEG (alias moz jpeg)} % (fold)
 		\label{ssub:moz_jpeg}
+			Ist ein von Mozilla entwickelter JPEG Bild Encoder um die Bildgröße, nicht aber die Bildqualität zu verringern.
+
+			\begin{quote}
+				\textit{"`For the short term Mozilla has developed MozJPEG — a modernized JPEG encoder that offers better compression while remaining fully standard-compliant, so it’s compatible with all browsers, operating systems and native apps, and you can use it today without waiting for the whole world to upgrade"'\autocite{mozJPEG}}
+			\end{quote}
+
+			Allerdings ist die Verwendung nicht ganz so einfach wie in diesem Zitat dargestellt und es ist das eigenständige Compilieren von \texttt{C}-Code\footnote{Das Repository ist hier zu finden: \url{https://github.com/mozilla/mozjpeg} und eine Anleitung gibt es hier: \url{http://calendar.perfplanet.com/2014/mozjpeg-3-0/}} nötig, um dies auf dem eigenen Betriebssystem zu verwenden.\\
+			Glücklicherweise es gibt eine Webanwendung\footnote{Webanwendung zur Verwendung von moz jpeg: \url{https://imageoptim.com/mozjpeg}} mit der ganz einfach per "`drag and drop"' Bilder mittels diesem Encoder komprimiert werden können. Je nach Bild lassen sich so mehrere Hundert Kilobyte einsparen (abhängig von der Qualitätseinstellung und größe des Bildes).
 		
 		% subsubsection moz_jpeg (end)
 
-		\subsubsection{Http Archive \& bigqueri.es} % (fold)
+		\subsubsection{Http Archive} % (fold)
 		\label{ssub:http_archive_bigqueri_es}
+			\url{http://httparchive.org/} ist ein Archiv der populärsten Seiten des Internets und bietet eine Vielzahl an statistischen Auswertungen, Trends und Daten.
+			\begin{quote}
+				\textit{"`[HTTP Archive] is a permanent repository of web performance information such as size of pages, failed requests, and technologies utilized. This performance information allows us to see trends in how the Web is built and provides a common data set from which to conduct web performance research."' \autocite{httpArchive}}
+			\end{quote}
 			
 		% subsubsection http_archive_bigqueri_es (end)
 
 		\subsubsection{Perf Tooling Today} % (fold)
 		\label{ssub:perf_tooling_today}
+			\url{http://perf-tooling.today/} ist wohl die Umfassendste Sammlung an web performance Tools und Material im Internet. Es hat eine Liste von 105 Tools, 51 Artikel, 27 Videos und 14 Slidedecks (Stand: 12.03.15).
 		
 		% subsubsection perf_tooling_today (end)
 
 		\subsubsection{Twitter} % (fold)
 		\label{ssub:twitter}
+			Twitter bietet die Möglichkeit am Puls der Zeit zu sein und unter dem Hashtag \#webperf und \#perfmatters erhält man neuste Erkentnisse, Tools oder Links, die sonst unentdeckt bleiben.
 		
 		% subsubsection twitter (end)
-
-
-
+	\pagebreak
 	% subsection tools (end)
 
 
 	\subsection{Ausgangspunkt}
 	\label{sub:ausgangspunkt}
-	
+		Im folgenden Abschnitt soll beschrieben werden, wie der Prozess ausgesehen hat, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von beginn an war es wichtig, den Verbesserungsablauf zu Dokumentieren und in konkrete Daten zu fassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die möglichkeit Scripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), dass es ermöglicht Webpagtestest innerhalb einer Google Tabelle\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurde während der Entwicklungsphase täglich tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Daten erfolgt in Punkt \ref{..} ?\\
+		%todo ref
+
+		Da nur in Dulles VA eine Testinstanz mit richtigen Smartphones zur Verfügung steht, wurde mittels der \texttt{Microsoft Azure Cloud} die selbe Seite auch in den USA gehostet, um die Latenz zwischen USA und Europa zu eliminieren. Dadurch lässt sich exakter bestimmen, wie schnell ein Smartphone mit 3G Netz die Seite aufrufen kann. Leider steht keine Testinstanz mit 4G Netz zur Verfügung.\\
+
+		Als Ausgangspunkt dient die Seite \url{http://andreaslorer.de/old/}. Zu beginn des Optimierungsprozesses gab es folgenden Ausgangspunkt (Daten via Developer Tool \& webpagetest):\\
+
+		Desktop: \footnote{Webpagtest: \url{http://www.webpagetest.org/result/150312_Z1_18QD/}}
+		\begin{itemize}
+			\item 42 requests: 30 Images, 5 JS, 3 CSS, 4 other
+			\item 1000 kb Seitengröße
+			\item Speed Index: \textbf{3584}
+			\item Start Render: \textbf{1399}  ms
+			\item Load Time: 1926 ms
+			\item TTFB: 690 ms
+		\end{itemize}
+
+		Mobile: \footnote{Webpagtest: \url{http://www.webpagetest.org/result/150308_A1_2W4/}}
+		\begin{itemize}
+			\item 17 requests: 4 Images, 5 JS, 3 CSS, 4 other
+			\item 363 kb Seitengröße
+			\item Speed Index: \textbf{10642}
+			\item Start Render \textbf{6968} ms
+			\item Load Time: 5587 ms
+			\item TTFB: 1292 ms
+		\end{itemize}
+
+		Zuerst wird die Webanwendung mittels \texttt{Pagespeed Insight}\ref{ssub:google_pagespeed_insight} Analyisert. Das Ergebnis liefert dann Anhaltspunkte, was alles zu tun ist um eine schnellere Ladezeit zu bekommen.
+
+		Für meine Seite ergaben sich folgende Probleme die Gelöst werden sollen:
+		\begin{itemize}
+			\item list 1 
+			\item bla
+			\item bla
+		\end{itemize}
+
+		% restrukturierung der Seite 
+		% kein bootstrap overhead
+		% bytes einsparen
+		% best practices anwenden
+		% server konfigurieren
+
+		% zusammenfügen mit best practices?
+
+		Hier soll nun Ausführlich noch beschrieben werden welche Verbesserungen es außerdem noch gibt.
+
+		\subsubsection{JavaScript- und CSS-Ressourcen, die das Rendering blockieren beseitigen} % (fold)
+		\label{ssub:javascript_und_css_ressourcen_die_das_rendering_blockieren_beseitigen}
+			headjs oder andere scripts zeigen
+		% subsubsection javascript_und_css_ressourcen_die_das_rendering_blockieren_beseitigen (end)
+
+		\subsubsection{JavaScript reduzieren} % (fold)
+		\label{ssub:javascript_reduzieren}
+			concat, uglify, minifizieren
+		% subsubsection javascript_reduzieren (end)
+
+		\subsubsection{Asynchrone Skripts verwenden} % (fold)
+		\label{ssub:asynchrone_skripts_verwenden}
+			defer / async tag vor / nachteil -> deshalb eigenes script nutzen
+		% subsubsection asynchrone_skripts_verwenden (end)
+
+		\subsubsection{Inline small JS} % (fold)
+		\label{ssub:inline_small_js}
+		
+		% subsubsection inline_small_js (end)
+
+		\subsubsection{Ressourcen reduzieren} % (fold)
+		\label{ssub:ressourcen_reduzieren}
+			Durch das Reduzieren von Ressourcen werden unnötige Byte entfernt, die z. B. aus zusätzlichen Leerzeichen, Zeilenumbrüchen und Einzügen resultieren. Bei Verkürzung der HTML-, CSS- und JavaScript-Codes können diese schneller heruntergeladen, geparst und ausgeführt werden. Außerdem kann für CSS- und JavaScript-Code die Dateigröße durch das Umbenennen von Variablen verringert werden, sofern der HTML-Code so aktualisiert wird, dass die Selektoren weiterhin funktionieren.\\
+
+			Beim Reduzieren des HTML-Codes können Sie mithilfe der Chrome-Erweiterung von PageSpeed Insights eine optimierte Version Ihres HTML-Codes erzeugen. Führen Sie eine Analyse Ihrer HTML-Seite durch und navigieren Sie zur Regel HTML reduzieren. Klicken Sie auf Optimierte Inhalte ansehen, um den optimierten HTML-Code abzurufen.
+		% subsubsection ressourcen_reduzieren (end)
+
+		\subsubsection{CSS-Bereitstellung optimieren} % (fold)
+		\label{ssub:css_bereitstellung_optimieren}
+			kein kritisches css via cdn liefern ! Achtung bei frameworks !
+		% subsubsection css_bereitstellung_optimieren (end)
+
+		\subsubsection{Inhalte an Darstellungsbereich anpassen} % (fold)
+		\label{ssub:inhalte_an_darstellungsbereich_anpassen}
+			disable pinch zoom ect, responsive webdesign
+		% subsubsection inhalte_an_darstellungsbereich_anpassen (end)
+
+		\subsubsection{Bilder optimieren} % (fold)
+		\label{ssub:bilder_optimieren}
+			eigene Sektion weil so wichtig? Vielleicht auch hier schreiben
+		% subsubsection bilder_optimieren (end)
+
+		\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
+		\label{ssub:antwortzeit_des_servers_reduzieren}
+			choose a good host / backend ect
+		% subsubsection antwortzeit_des_servers_reduzieren (end)
+
+		\subsubsection{Browser-Caching nutzen} % (fold)
+		\label{ssub:browser_caching_nutzen}
+			.htaccess option
+		% subsubsection browser_caching_nutzen (end)
+
+		\subsubsection{Komprimierung aktivieren} % (fold)
+		\label{ssub:komprimierung_aktivieren}
+			.htaccess option
+		% subsubsection komprimierung_aktivieren (end)
+
+		\subsubsection{Keep Alive ermöglichen} % (fold)
+		\label{ssub:keep_alive_ermöglichen}
+			.htaccess option
+		% subsubsection keep_alive_ermöglichen (end)
+
+
+
 	% subsection ausgangspunkt (end)
 
 	\subsection{Prozess der Validierung}
