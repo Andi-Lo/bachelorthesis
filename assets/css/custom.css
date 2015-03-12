@@ -1,10 +1,30 @@
+h1 {
+  font-size: 24px; }
+
+.header {
+  margin-bottom: 30px; }
+
+.nav-tabs.nav-justified .active, .nav-tabs.nav-justified > .active > a {
+  border-bottom: 1px solid #eee;
+  border-radius: 4px 4px 0 0;
+  background-color: #eee; }
+  .nav-tabs.nav-justified .active:hover, .nav-tabs.nav-justified > .active > a:hover {
+    background-color: #eee;
+    border-bottom: 1px solid #eee; }
+
+.container .jumbotron {
+  border: 1px solid #ddd; }
+
+.container .jumbotron.first {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 1px solid #ddd;
+  border-width: 0 1px 1px 1px; }
+
 .container .jumbotron, .container-fluid .jumbotron {
   padding-right: 30px;
   padding-left: 30px;
   padding-top: 10px; }
-
-h1 {
-  font-size: 24px; }
 
 .legende {
   text-align: center;
