@@ -202,7 +202,7 @@
 
 	\subsection{Ausgangspunkt}
 	\label{sub:ausgangspunkt}
-		Im folgenden Abschnitt soll beschrieben werden, wie der Prozess ausgesehen hat, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von beginn an war es wichtig, den Verbesserungsablauf zu Dokumentieren und in konkrete Daten zu fassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die möglichkeit Scripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), dass es ermöglicht Webpagtestest innerhalb einer Google Tabelle\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurde während der Entwicklungsphase täglich tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Daten erfolgt in Punkt \ref{..} ?\\
+		Im folgenden Abschnitt soll beschrieben werden, wie der Prozess ausgesehen hat, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von beginn an war es wichtig, den Verbesserungsablauf zu Dokumentieren und in konkrete Daten zu fassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die möglichkeit Skripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), dass es ermöglicht Webpagtestest innerhalb einer Google Tabelle\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurde während der Entwicklungsphase täglich tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Daten erfolgt in Punkt \ref{..} ?\\
 		%todo ref
 
 		Da nur in Dulles VA eine Testinstanz mit richtigen Smartphones zur Verfügung steht, wurde mittels der \texttt{Microsoft Azure Cloud} die selbe Seite auch in den USA gehostet, um die Latenz zwischen USA und Europa zu eliminieren. Dadurch lässt sich exakter bestimmen, wie schnell ein Smartphone mit 3G Netz die Seite aufrufen kann. Leider steht keine Testinstanz mit 4G Netz zur Verfügung.\\
@@ -229,29 +229,87 @@
 			\item TTFB: 1292 ms
 		\end{itemize}
 
-		Zuerst wird die Webanwendung mittels \texttt{Pagespeed Insight}\ref{ssub:google_pagespeed_insight} Analyisert. Das Ergebnis liefert dann Anhaltspunkte, was alles zu tun ist um eine schnellere Ladezeit zu bekommen.
+		Diese Werte sind nicht gut und für dieses Projekt wurden eine Start Render Zeit von weniger als eine Sekunde und ein Speed Index von unter 1000 für sowohl Mobile als auch Desktop Geräte angestrebt.\\
+		Basierend auf der Anzahl an Requests, lässt sich bereits sagen, dass auch hier noch weniger einzelne Javascript und CSS Dateien möglich sind.\\
 
-		Für meine Seite ergaben sich folgende Probleme die Gelöst werden sollen:
-		\begin{itemize}
-			\item list 1 
-			\item bla
-			\item bla
-		\end{itemize}
+		Der erste Schritt war es, die Seitengröße zu verringert werden. Aus diesem Grund wurde das Framework gewechselt und die Seite neu Aufgebaut. Bootstrap ist zwar ein sehr populäres Framework, hat aber gerade für kleine Seiten sehr viele Komponenten, die keine Verwendung finden (oft auch als Overhead bezeichnet). Bootstrap lässt sich zwar per "`Customize"' Funktion so zusammenstellen, dass nur die Komponenten zur Verfügung gestellt werden, die für das eigene Projekt von Nöten sind, es ist aber dennoch ein Framework mit relativ großem Volumen (~30 bis 90 kb). Die Alternativen zu Bootstrap sind vielzählig. Die Entscheidung für dieses Projekt fiel auf \url{http://purecss.io/}. Dieses Framework von Yahoo ist Komprimiert gerade einmal \textbf{4 kb} groß, vollkommen responsive und kommt mit den wichtigsten Komponenten wie einer Navigations Bar, Buttons, Tabellen, Menüs und Form Elementen. Zudem benötigt es ja nach zusammenstellung der Komponenten, kein Javascript und kein JQuery. Dadurch lassen sich weiter Kilobytes als auch Requests einsparen.\\
+		Da Bootstrap seine eigene Icon-Font liefert, musste hier eine Alternative gefunden werden. "`Font Awesome"'\footnote{Font-Awesome: \url{http://fortawesome.github.io/Font-Awesome/}} bietet dabei eine der umfangreichsten Icon Sammlungen im Web an und ist unter der \texttt{Open Font License} komplett frei benutzbar (auch kommerziell). Font Awesome ist mit seinen 519 Icons allerdings nicht gerade ein Leichtgewicht und kann bis zu 100 kb groß sein. Da auf der Seite \url{http://andreaslorer.de} weniger als 20 Icons zum Einsatz kommen ist der Überschuss an Bytes die keine Verwendung haben folglich enorm. Deshalb gibt es eine Webanwendung namens \url{http://fontello.com}. Damit lassen sich aus einer Vielzahl an Icons genau die wählen, die für die eigene Seite benötigt werden. Auch die Wahl aus verschiedenen Icon-Sammlungen ist möglich. Heruntergeladen wird anschließend eine ZIP-Datei. Dies folgte dazu, dass die neue Version der Seite nur noch rund 5.3 kb (plus 0.3 kb CSS) für die Icons-Fonts benötigt.\\
 
-		% restrukturierung der Seite 
-		% kein bootstrap overhead
-		% bytes einsparen
+		Als nächstes wird die Webanwendung mittels \texttt{Pagespeed Insight}\ref{ssub:google_pagespeed_insight} Analyisert. Das Ergebnis liefert dann Anhaltspunkte, was alles zu tun ist um eine schnellere Ladezeit zu bekommen.Im folgenden soll erläutert werden, was es alles an Verbesserungen zu tun gibt und wie dies in der Praxis umgesetzt werden kann.
+
 		% best practices anwenden
 		% server konfigurieren
 
 		% zusammenfügen mit best practices?
 
-		Hier soll nun Ausführlich noch beschrieben werden welche Verbesserungen es außerdem noch gibt.
+		\subsubsection{Render Blocking Javascript} % (fold)
+		\label{ssub:render_blocking_javascript}
+			Bereits unter Punkt \ref{ssub:rendering_pfad} ist das Blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische und für das Rendern unkritische Teile zerlegt wurde. Kleinere Scripts lassen sich auch direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst per Request angefordert und heruntergeladen werden.\\
 
-		\subsubsection{JavaScript- und CSS-Ressourcen, die das Rendering blockieren beseitigen} % (fold)
-		\label{ssub:javascript_und_css_ressourcen_die_das_rendering_blockieren_beseitigen}
-			headjs oder andere scripts zeigen
-		% subsubsection javascript_und_css_ressourcen_die_das_rendering_blockieren_beseitigen (end)
+			Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und dafür muss das Parsen pausiert werden. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie die Reihenfolge der Skripte im HTML Dokuments vorliegen.
+			
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{defer_scripts.jpg}
+					\caption{Script-Tags mit verschiedenen Attributen (Abbildung nach \autocite{growing})}
+					\label{fig:defer_scripts}
+				\end{center}
+			\end{figure}
+
+			Diese Methode erlaubt es, Skripte parallel herunterzuladen, ohne dass der Renderprozess warten muss. Was damit nicht erreicht werden kann ist, dass der Download so lange verzögert wird, bis die für die Seiten primär wichtigen Ressourcen zuerst heruntergeladen wurden.\\
+
+			Mit Hilfe des Javascripts in Listing \ref{lst:deferJs}, kann die Datei "`defer.js"' komplett mit dem Laden verzögert werden, bis der Ladeprozess der Seite abgeschlossen ist.\\
+	
+			\begin{lstlisting}[captionpos=b, caption=Javascript nach \autocite{deferJsScript}, label=lst:deferJs]
+			<script type="text/javascript">
+				function downloadJSAtOnload() {
+					var element = document.createElement("script");
+					element.src = "defer.js";
+					document.body.appendChild(element);
+				}
+				if (window.addEventListener)
+					window.addEventListener("load", downloadJSAtOnload, false);
+				else if (window.attachEvent)
+					window.attachEvent("onload", downloadJSAtOnload);
+				else window.onload = downloadJSAtOnload;
+			</script>
+			\end{lstlisting}
+
+			Dieses Skript hat einen Nachteil: Es kann nicht mehrere Skripte laden, die voneinander Abhängen und deren Reihenfolge wichtig ist, um die Funktionalität zu gewährleisten. So gibt es Skripte (Skript A) die von anderen Frameworks wie zum Beispiel JQuery (Skript B) abhängen. Das Bedeutet, wenn Skript A schneller heruntergeladen und ausgeführt wird als Skript B, Skript A bereits Funktionen von Skript B aufruft, die noch nicht zur Verfügung stehen. Daraus resultiert, dass das Skript fehlschlägt und somit teile der Webanwendung nicht mehr Funktionieren.\\
+
+			Deshalb gibt es Skripte die genau diese Funktionalität bereistellen können. Skript A und B werden gleichzeitig heruntergeladen, Skript A wird aber erst genau dann Ausgeführt, wenn Skript B zu Verfügung steht.\\
+
+			\url{http://headjs.com/} kann das erreichen. Durch herunterladen und einfügen in das HTML Dokument, kann per Funktionsaufruf die Abhängigkeit festgelegt werden:
+
+			\begin{lstlisting}[captionpos=b, caption=Headjs dependency loading (Listing nach http://headjs.com/), label=lst:headjs]
+				// Load up some script A and then script B
+				head.load("jQuery.js", function() {
+				    // Call a function when done
+				    console.log("Done loading jQuery");
+				    head.load('defer.js')
+				});
+			\end{lstlisting}
+
+			Headjs hat den Nachteil, dass es auch noch andere Funktionalitäten außer dem Laden von Javascript ermöglicht. Dies wird aber nicht benötigt und deshalb ist Headjs mit 2.1 kb doch zu groß, um es \texttt{Inline} in das HTML Dokument zu schreiben. Eine bessere Alternative ist \texttt{jQl}. \footnote{jQl an asynchronous jQuery Loader: \url{http://www.yterium.net/jQl-an-asynchronous-jQuery-Loader}}
+			Die Verwendung ist sehr Simpel:
+
+			\begin{lstlisting}[captionpos=b, caption=jQl asynchronous jQuery-Loader, label=lst:jQl]
+				<script type="text/javascript">
+				  jQl.loadjQ('jquery.js');
+				  jQl.loadjQdep('defer.js');
+				</script>
+			\end{lstlisting}
+
+			Dieses Skript sagt im Grunde: Lade beide Dateien gleichzeitig herunter, beachte aber die Abhängigkeit (dependency) von deferJs.min.js gegenüber jquery. Ist defer.js früher heruntergeladen als jquery, so wartet das Skript und führt danach die Skripte in der richtigen Reihenfolge aus.\\
+
+			Für die Webseite \url{http://andreaslorer.de} wurde sowohl die Methode "`<script defer>"', als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits frühst möglich beginnen kann und das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
+
+		% subsubsection render_blocking_javascript (end)
+
+		\subsubsection{Render Blocking CSS} % (fold)
+		\label{ssub:render_blocking_css}
+		
+		% subsubsection render_blocking_css (end)
 
 		\subsubsection{JavaScript reduzieren} % (fold)
 		\label{ssub:javascript_reduzieren}
