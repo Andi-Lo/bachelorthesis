@@ -4,6 +4,8 @@
  */
 'use strict';
 
+if(!(document.URL.indexOf('httpArchive') > -1 )){
+
 var dataTTFB = {
     labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
     datasets: [
@@ -273,7 +275,6 @@ var dataSiteSizeDesktop = [
     }
 ];
 
-
 // Get the context of the canvas element we want to select
 var tmpTTFB = document.getElementById("ttfb").getContext("2d");
 var tmpRender = document.getElementById("renderStart").getContext("2d");
@@ -310,3 +311,53 @@ new Chart(tmpRequestsMobileNew).Doughnut(dataRequestsMobileNew, {scaleOverride: 
 // pie charts
 new Chart(tmpSiteSizeDesktop).Pie(dataSiteSizeDesktop, {scaleOverride: false});
 new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
+
+} else{
+
+    // http Archive //
+    // site weight
+
+    var dataSiteWeight = [
+        {
+            value: 56,
+            color: "#009f5d",
+            highlight: "#10b06e",
+            label: "kb HTML"
+        },
+        {
+            value: 95,
+            color:"#7B1FA2",
+            highlight: "#892cb0",
+            label: "kb Flash"
+        },
+        {
+            value: 61,
+            color: "#3e86ed",
+            highlight: "#5296f8",
+            label: "kb Stylsheets"
+        },
+        {
+            value: 334,
+            color: "#eeb302",
+            highlight: "#fac62b",
+            label: "kb Scripts"
+        },
+        {
+            value: 185,
+            color: "#949FB1",
+            highlight: "#A8B3C5",
+            label: "kb Other"
+        },
+        {
+            value: 1000,
+            color:"#dc4437",
+            highlight: "#eb6156",
+            label: "kb Images"
+        }
+    ];
+
+    var tmpSiteWeight = document.getElementById("siteWeight").getContext("2d");
+
+    new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
+
+}

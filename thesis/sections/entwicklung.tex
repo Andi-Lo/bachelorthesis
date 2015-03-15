@@ -55,7 +55,7 @@
 			(0<a.length&&(a+="&"),a+=encodeURI(b+"="+c[b]));return a};
 			\end{lstlisting}
 
-			Wie zu sehen ist, werden nicht nur alle Kommentare, Leerzeichen und Zeilenumbrüche entfernt, sondern auch Variablennamen werden auf 1 Zeichen reduziert um weitere bytes zu sparen. Die Funktionalität bleibt dabei gewährleistet.
+			Wie zu sehen ist, werden nicht nur alle Kommentare, Leerzeichen und Zeilenumbrüche entfernt, sondern auch Variablennamen werden auf 1 Zeichen reduziert um weitere bytes zu sparen. Die Funktionalität bleibt dabei gewährleistet. Dieser Vorgang ist auch unter dem Namen "`uglify"' bekannt.
 		
 		% subsubsection closure_compiler (end)
 
@@ -244,7 +244,7 @@
 
 		\subsubsection{Render Blocking Javascript} % (fold)
 		\label{ssub:render_blocking_javascript}
-			Bereits unter Punkt \ref{ssub:rendering_pfad} ist das Blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische und für das Rendern unkritische Teile zerlegt wurde. Kleinere Scripts lassen sich auch direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst per Request angefordert und heruntergeladen werden.\\
+			Bereits unter Punkt \ref{ssub:rendering_pfad} ist das Blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische und für das Rendern unkritische Teile zerlegt wurde. 
 
 			Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und dafür muss das Parsen pausiert werden. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie die Reihenfolge der Skripte im HTML Dokuments vorliegen.
 			
@@ -312,88 +312,128 @@
 
 			Dieses Skript sagt im Grunde: Lade beide Dateien gleichzeitig herunter, beachte aber die Abhängigkeit (loadjQdep steht für: load dependency) von defer.js gegenüber jquery. Ist defer.js früher heruntergeladen als jquery, so wird gewartet und danach werden die Skripte in der richtigen Reihenfolge ausgeführt.\\
 
-			Für die Webseite \url{http://andreaslorer.de} wurde sowohl die Methode "`<script defer>"', als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann und das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
+			Für die Webseite \url{http://andreaslorer.de} wurde sowohl defer, als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann und das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
 
 		% subsubsection render_blocking_javascript (end)
 
 		\subsubsection{Render Blocking CSS} % (fold)
 		\label{ssub:render_blocking_css}
-			Wie Javascript blockiert auch CSS das Rendern der Seite. Deshalb muss auch hier ein wenig Javascript nachhelfen.
+			Wie Javascript blockiert auch CSS das Rendern der Seite. In Listing \ref{deferCSS} ist ein Skript der Filament Group uzu sehen. Dieses Skript ermöglicht es CSS Verzögert zu laden. 
 
-			\begin{lstlisting}[captionpos=b, caption=load a CSS file asynchronously, label=lst:deferCSS]
+			\begin{lstlisting}[captionpos=b, caption=load a CSS file asynchronously, label=lst:deferCSS, breaklines=false]
 			<script>
-			// minified script after: https://github.com/filamentgroup/loadCSS/blob/master/loadCSS.js
-			// [c]2014 @scottjehl, Filament Group, Inc.
-			// Licensed MIT
- 			function loadCSS(e,a,g,h){function f(){for(var a,c=0;c<d.length;c++)d[c].href&&-1<d[c].href.indexOf(e)&&(a=!0);a?b.media=g||"all":setTimeout(f)}var b=window.document.createElement("link");a=a||window.document.getElementsByTagName("script")[0];var d=window.document.styleSheets;b.rel="stylesheet";b.href=e;b.media="only x";b.onload=h||function(){};a.parentNode.insertBefore(b,a);f();return b};
+				// minified script after: 
+				// https://github.com/filamentgroup/loadCSS/blob/master/loadCSS.js
+				// [c]2014 @scottjehl, Filament Group, Inc.
+				// Licensed MIT
+	 			function loadCSS(e,a,g,h){function f(){for(var a,c=0;c<d.length;c++)d[c].href&&
+	 				-1<d[c].href.indexOf(e)&&(a=!0);a?b.media=g||"all":setTimeout(f)}
+	 				var b=window.document.createElement("link");a=a||
+	 				window.document.getElementsByTagName("script")[0];
+	 				var d=window.document.styleSheets;b.rel="stylesheet";b.href=e;b.media="only x";
+	 				b.onload=h||function(){};a.parentNode.insertBefore(b,a);f();return b
+	 			};
 
-  		loadCSS( "path/to/css" );
-		</script>
-		
-		<!-- fallback if javascript is disabled in browser -->
-		<noscript><link href="path/to/css"></noscript>
-		\end{lstlisting}
+	  		loadCSS( "path/to/css" );
+			</script>
+
+			<!-- fallback if javascript is disabled in browser -->
+			<noscript><link href="path/to/css"></noscript>
+			\end{lstlisting}
+
+			Mehr als dieses Skript ist nicht notwendig.
 				
 		% subsubsection render_blocking_css (end)
 
-		\subsubsection{JavaScript reduzieren} % (fold)
-		\label{ssub:javascript_reduzieren}
-			concat, uglify, minifizieren
-		% subsubsection javascript_reduzieren (end)
-
-		\subsubsection{Asynchrone Skripts verwenden} % (fold)
-		\label{ssub:asynchrone_skripts_verwenden}
-			defer / async tag vor / nachteil -> deshalb eigenes script nutzen
-		% subsubsection asynchrone_skripts_verwenden (end)
-
 		\subsubsection{Inline small JS} % (fold)
 		\label{ssub:inline_small_js}
-		
+			Kleinere Scripts lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.		
 		% subsubsection inline_small_js (end)
 
 		\subsubsection{Ressourcen reduzieren} % (fold)
 		\label{ssub:ressourcen_reduzieren}
-			Durch das Reduzieren von Ressourcen werden unnötige Byte entfernt, die z. B. aus zusätzlichen Leerzeichen, Zeilenumbrüchen und Einzügen resultieren. Bei Verkürzung der HTML-, CSS- und JavaScript-Codes können diese schneller heruntergeladen, geparst und ausgeführt werden. Außerdem kann für CSS- und JavaScript-Code die Dateigröße durch das Umbenennen von Variablen verringert werden, sofern der HTML-Code so aktualisiert wird, dass die Selektoren weiterhin funktionieren.\\
+			Durch das Reduzieren von Ressourcen werden unnötige Bytes entfernt. Kommentare, Leerzeichen oder Zeilenumbrüche sind für die Funktionalität nicht notwendig. Bei der Verkleinerung des HTML- CSS oder Javascript Codes werden diese entfern und dadurch die Dateigröße verkleinert.\\
 
-			Beim Reduzieren des HTML-Codes können Sie mithilfe der Chrome-Erweiterung von PageSpeed Insights eine optimierte Version Ihres HTML-Codes erzeugen. Führen Sie eine Analyse Ihrer HTML-Seite durch und navigieren Sie zur Regel HTML reduzieren. Klicken Sie auf Optimierte Inhalte ansehen, um den optimierten HTML-Code abzurufen.
+			Wie unter Punkt \ref{ssub:google_pagespeed_insight} angesprochen, gibt es Pagespeed Insight auch als Chrome-Erweiterung. Damit ist es möglich, eine reduzierte Version des HTML Dokuments zu erzeugen. Für Javascript ist der Closure Compiler \ref{ssub:closure_compiler} das richtige Werkzeug. CSS lässt sich per \url{http://cssminifier.com/} verkleinern.
 		% subsubsection ressourcen_reduzieren (end)
 
 		\subsubsection{CSS-Bereitstellung optimieren} % (fold)
 		\label{ssub:css_bereitstellung_optimieren}
-			kein kritisches css via cdn liefern ! Achtung bei frameworks !
+			Wenn externe Ressourcen klein sind können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Dabei sollte darauf geachtet werden, dass das HTML Dokument Komprimiert nicht die 14 kb Marke überschreitet um es in dem ersten round trip liefern zu können. CSS Dateien die groß sind sollten sollten per \texttt{Link-Tag} eingebunden werden und mittels Skript Verzögert geladen werden.	Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
 		% subsubsection css_bereitstellung_optimieren (end)
-
-		\subsubsection{Inhalte an Darstellungsbereich anpassen} % (fold)
-		\label{ssub:inhalte_an_darstellungsbereich_anpassen}
-			disable pinch zoom ect, responsive webdesign
-		% subsubsection inhalte_an_darstellungsbereich_anpassen (end)
 
 		\subsubsection{Bilder optimieren} % (fold)
 		\label{ssub:bilder_optimieren}
-			eigene Sektion weil so wichtig? Vielleicht auch hier schreiben
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=\textwidth]{site_weight.jpg}
+				\caption{Average Bytes per Page by Content Type \autocite{httpArchive}}
+				\label{fig:site_weight}
+			\end{center}
+		\end{figure}
+		
 		% subsubsection bilder_optimieren (end)
 
 		\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
 		\label{ssub:antwortzeit_des_servers_reduzieren}
-			choose a good host / backend ect
+			Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit webpagteste herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}
 		% subsubsection antwortzeit_des_servers_reduzieren (end)
 
 		\subsubsection{Browser-Caching nutzen} % (fold)
 		\label{ssub:browser_caching_nutzen}
-			.htaccess option
+			Dies wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
+			Durch das Cachen von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden. 
+
+		  \begin{lstlisting}[captionpos=b, caption=caching, label=lst:caching]
+		  	## EXPIRES CACHING ##
+		  	<IfModule mod_expires.c>
+		  	ExpiresActive On
+		  	ExpiresByType image/jpg "access 1 year"
+		  	ExpiresByType image/jpeg "access 1 year"
+		  	ExpiresByType image/gif "access 1 year"
+		  	ExpiresByType image/png "access 1 year"
+		  	ExpiresByType text/css "access 1 year"
+		  	ExpiresByType text/woff "access 1 year"
+		  	ExpiresByType application/pdf "access 1 year"
+		  	ExpiresByType text/x-javascript "access 1 year"
+		  	ExpiresByType application/x-shockwave-flash "access 1 year"
+		  	ExpiresByType image/x-icon "access 1 year"
+		  	ExpiresDefault "access 1 month"
+		  	</IfModule>
+		  	\#\# EXPIRES CACHING \#\#
+		  \end{lstlisting}
+		  	
 		% subsubsection browser_caching_nutzen (end)
 
 		\subsubsection{Komprimierung aktivieren} % (fold)
 		\label{ssub:komprimierung_aktivieren}
-			.htaccess option
+		\begin{lstlisting}[captionpos=b, caption=gzip, label=lst:gzip]
+			## gzip Compression if availiable
+			<ifModule mod_gzip.c>
+			mod_gzip_on Yes
+			mod_gzip_dechunk Yes
+			mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
+			mod_gzip_item_include handler ^cgi-script$
+			mod_gzip_item_include mime ^text/.*
+			mod_gzip_item_include mime ^application/x-javascript.*
+			mod_gzip_item_exclude mime ^image/.*
+			mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+			</ifModule>
+		\end{lstlisting}
+			
 		% subsubsection komprimierung_aktivieren (end)
 
 		\subsubsection{Keep Alive ermöglichen} % (fold)
 		\label{ssub:keep_alive_ermöglichen}
-			.htaccess option
+		\begin{lstlisting}[captionpos=b, caption=keep alive, label=lst:keepAlive]
+			# keep-alive
+			<ifModule mod_headers.c> 
+			Header set Connection keep-alive
+			</ifModule>
+		\end{lstlisting}
+			
 		% subsubsection keep_alive_ermöglichen (end)
-
-
 
 	% subsection ausgangspunkt (end)
 
