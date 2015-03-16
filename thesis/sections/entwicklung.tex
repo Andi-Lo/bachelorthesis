@@ -345,10 +345,10 @@
 				
 		% subsubsection render_blocking_css (end)
 
-		\subsubsection{Inline small JS} % (fold)
-		\label{ssub:inline_small_js}
-			Kleinere Scripts lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.		
-		% subsubsection inline_small_js (end)
+		\subsubsection{Inline von CSS} % (fold)
+		\label{ssub:inline_von_css}
+			Kleinere Mengen an CSS lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.
+		% subsubsection inline_von_css (end)
 
 		\subsubsection{Ressourcen reduzieren} % (fold)
 		\label{ssub:ressourcen_reduzieren}
@@ -382,10 +382,12 @@
 
 		\subsubsection{Browser-Caching nutzen} % (fold)
 		\label{ssub:browser_caching_nutzen}
-			Dies wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
-			Durch das Cachen von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden. 
+			Fehlendes Browser-Caching (das lokale Speichern von Daten) wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
+			Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden.\\
 
-		  \begin{lstlisting}[captionpos=b, caption=caching, label=lst:caching]
+			Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{.htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
+
+		  \begin{lstlisting}[captionpos=b, caption=Aktivieren von Browser Caching in Apache (Listing nach: \autocite{sextonCaching}), label=lst:caching]
 		  	## EXPIRES CACHING ##
 		  	<IfModule mod_expires.c>
 		  	ExpiresActive On
@@ -403,7 +405,57 @@
 		  	</IfModule>
 		  	\#\# EXPIRES CACHING \#\#
 		  \end{lstlisting}
-		  	
+
+		  Listing \ref{lst:caching} hat 2 Aufgaben. Erstens: Es setzt die Ablaufzeit für alle statischen Ressourcen auf 1 Jahr und erfüllt damit den von Google empfohlenen Wert. Längere Speicherzeiten sind dagegen nicht Empfohlen, da dies gegen die RFC-Richtlinien verstoßen würde \autocite{google14Caching}. Zweitens: Es wird mit dem HTTP Request ein Header mit gesendet. Dieser ermöglicht es dem Browser seine lokal gespeicherten Ressourcen zu managen. Er besteht aus folgenden Teilen und es ist jeweils nur \textbf{eine} der Optionen nötig.
+
+		  \begin{itemize}
+		  	\item Last-Modified: date
+		  	\item ETag: ID
+		  \end{itemize}
+
+		  Diese beiden Header ermöglichen es dem Browser zu überprüfen, ob sich die gecachten Ressourcen geändert haben oder noch identisch sind. Last-Modified ist dabei das Datum der letzten Änderung und beim ETag-Header handelt es sich um einen automatisch generierten Wert der die Datei eindeutig Identifiziert.\\
+		  Beim erneuten Laden einer Seite werden diese Header zurück an den Server gesendet und verglichen. Wenn die Datei auf dem Server geändert wurde stimmen die Werte nicht überein und der Server schickt eine entsprechende Antwort zurück.
+
+		  \begin{itemize}
+		  	\item Cache-Control: max-age=value
+		  	\item Expires: date
+		  \end{itemize}
+
+		  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. Das bedeutet, dass die Latenz bei Smartphones komplett negiert werden kann, indem Requests an den Server erst gar nicht stattfinden müssen. "`Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden."'\autocite{grigorikCaching} Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header, muss der Browser für jede in seinem Cache befindliche Ressource, den Server anfragen. Dafür sind jedes mal ein round trip nötig (3G = 300ms).\\
+
+		  \begin{figure}[htbp]
+		  	\begin{center}
+		  		\includegraphics[width=\textwidth]{caching_enabled.jpg}
+		  		\caption{Gecachte Ressourcen müssen nicht mehr abgefragt werden}
+		  		\label{fig:caching_enabled}
+		  	\end{center}
+		  \end{figure}
+		  
+		  Das rot unterstrichene zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`Not-Modified"'. Grün zeigt, dass keinerlei Kommunikation mit dem Server nötig ist sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
+		 
+		  Was aber wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
+
+		  \begin{enumerate}
+		  	\item Die HTML Datei sollte nicht gecached werden da sonst Änderungen nicht mehr den Anwender können.
+		  	\item Eine für die Datei angemessene max-age: Dateien die sich oft ändern dürfen auch entsprechend niedrige max-age Werte haben. Dadurch wird die Datei Zeitnah für alle Anwender neu Angefordert.
+		  	\item Ressourcen können mit einer ID versehen werden: \texttt{styles.css} wird in \texttt{styles.v1.0.1.css} umbenannt.
+		  	\item Alternativ zur ID ist auch in \texttt{Fingerprint} möglich. Dabei wird eine ID aus der Datei generiert. Ändert sich die Datei so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
+		  \end{enumerate}
+
+		  Browser-Caching ist eine mächtige Funktionalität die sich jeder zu nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{.htaccess}-Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
+			\begin{quote}
+				\textit{"`[...] I don't know about you, but these results came to us as a big surprise. It says that even if your assets are optimized for maximum caching, there are a significant number of users that will always have an empty cache."'\autocite{yahoo07}}
+			\end{quote}
+
+			Folglich macht es Sinn, die Geschwindigkeit der Seite für die sogenannten "`first users"' zu optimieren und nicht von einer gecachten Version der Seite auszugehen.\\
+			Mittels dem Tool: \url{http://www.feedthebot.com/tools/if-modified/} lässt sich überprüfen, ob die eigene Webseite "`Browser-Caching"' richtig einsetzt. 
+		  \begin{figure}[htbp]
+		  	\begin{center}
+		  		\includegraphics[width=\textwidth]{expires_header.jpg}
+		  		\caption{Beispiel: Eine Webseite mit und ohne "`Cache Control"'. (Eigene Abbildung nach \url{http://www.feedthebot.com/tools/if-modified/})}
+		  		\label{fig:expires_header}
+		  	\end{center}
+		  \end{figure}
 		% subsubsection browser_caching_nutzen (end)
 
 		\subsubsection{Komprimierung aktivieren} % (fold)
