@@ -7,8 +7,65 @@
 
 if(!(document.URL.indexOf('httpArchive') > -1 )){
 
+var dataAll = {
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
+    datasets: [
+        {
+            label: "Visually Complete",
+            fillColor: "rgba(0,159,93,0.2)",
+            strokeColor: "rgba(0,159,93,0.6)",
+            pointColor: "rgba(0,159,93,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [7190,4992,6089,7571,5555,6122,7600,7316,5665,4325,2450,2500,1450,2319,1697,1577,1571,1165]
+        },
+        {
+            label: "Load Time",
+            fillColor: "rgba(238,179,2,0.2)",
+            strokeColor: "rgba(238,179,2,0.6)",
+            pointColor: "rgba(238,179,2,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [4324,3146,4133,3313,3331,6850,4965,4149,2691,2926,2610,2596,1590,1962,1744,1482,1663,1272]
+        },
+        {
+            label: "Speed Index",
+            fillColor: "rgba(62,134,237,0.2)",
+            strokeColor: "rgba(62,134,237,0.6)",
+            pointColor: "rgba(62,134,237,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [5935,3964,4957,6063,4682,4292,2728,2733,2231,1985,1709,1771,1000,1468,1266,1227,1222,1028]
+        },
+        {
+            label: "Render Start",
+            fillColor: "rgba(220,68,55,0.2)",
+            strokeColor: "rgba(220,68,55,0.6)",
+            pointColor: "rgba(220,68,55,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [3486,1915,2961,2456,1483,2567,2458,2621,1106,1237,1233, 1179, 496,1076,1001,981,907,855]
+        },
+        {
+            label: "TTFB",
+            fillColor: "rgba(137,44,176,0.2)",
+            strokeColor: "rgba(137,44,176,0.6)",
+            pointColor: "rgba(137,44,176,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [386,986,688,773,1096,964,1307,1239,1141,729,681,417, 400, 187,519,412,357,454]
+        }
+        
+    ]
+};
+
 var dataTTFB = {
-    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
     datasets: [
         {
             label: "Repeat View",
@@ -18,7 +75,7 @@ var dataTTFB = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [405,1165,743,876,835,744,1174,1213,1041,799,890,579, 592, 444]
+            data: [405,1165,743,876,835,744,1174,1213,1041,799,890,579, 592, 444,939,561,518,577,698]
         },
         {
             label: "First View",
@@ -28,13 +85,13 @@ var dataTTFB = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [386,986,688,773,1096,964,1307,1239,1141,729,681,417, 400, 187]
+            data: [386,986,688,773,1096,964,1307,1239,1141,729,681,417, 400, 187,519,412,357,454,382]
         }
     ]
 };
 
 var dataRenderStart = {
-    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
     datasets: [
         {
             label: "Repeat View",
@@ -44,7 +101,7 @@ var dataRenderStart = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [1774,925,1312,1190,418,784,908,595,614,592,510, 578, 432]
+            data: [1774,925,1312,1190,418,784,908,595,614,592,510, 578, 432,501,493,415,516,529]
         },
         {
             label: "First View",
@@ -54,13 +111,13 @@ var dataRenderStart = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [3486,1915,2961,2456,1483,2567,2458,2621,1106,1237,1233, 1179, 496]
+            data: [3486,1915,2961,2456,1483,2567,2458,2621,1106,1237,1233, 1179, 496,1076,1001,981,907,855]
         }
     ]
 };
 
 var dataVisuallyComplete = {
-    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
     datasets: [
         {
             label: "Repeat View",
@@ -70,7 +127,7 @@ var dataVisuallyComplete = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [2611,1741,2171,2358,2228,1705,3852,3683,2972,2330,667,683,821]
+            data: [2611,1741,2171,2358,2228,1705,3852,3683,2972,2330,667,683,821,1536,771,884,751,901]
         },
         {
             label: "First View",
@@ -80,13 +137,13 @@ var dataVisuallyComplete = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [7190,4992,6089,7571,5555,6122,7600,7316,5665,4325,2450,2500,1450]
+            data: [7190,4992,6089,7571,5555,6122,7600,7316,5665,4325,2450,2500,1450,2319,1697,1577,1571,1165]
         }
     ]
 };
 
 var dataLoadTime = {
-    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
     datasets: [
         {
             label: "Repeat View",
@@ -96,7 +153,7 @@ var dataLoadTime = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [1078,805,970,875,773,1250,1319,1325,856,943,753,708,838]
+            data: [1078,805,970,875,773,1250,1319,1325,856,943,753,708,838,1036,900,806,878,888]
         },
         {
             label: "First View",
@@ -106,14 +163,13 @@ var dataLoadTime = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [4324,3146,4133,3313,3331,6850,4965,4149,2691,2926,2610,2596,1590]
+            data: [4324,3146,4133,3313,3331,6850,4965,4149,2691,2926,2610,2596,1590,1962,1744,1482,1663,1272]
         }
     ]
 };
 
-
 var dataSpeedIndex = {
-    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03"],
+    labels: ["06.02.","09.02.","10.02.","12.02.","13.02.","17.02.","18.02.","19.02.","20.02.","23.02.","05.03.","06.03", "07.03", "08.03", "09.03", "10.03", "11.03", "12.03"],
     datasets: [
         {
             label: "Repeat View",
@@ -123,7 +179,7 @@ var dataSpeedIndex = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [2392,1519,1867,2092,1865,1508,975,664,742,689,642,669,827]
+            data: [2392,1519,1867,2092,1865,1508,975,664,742,689,642,669,827,756,685,603,687,644]
         },
         {
             label: "First View",
@@ -133,7 +189,7 @@ var dataSpeedIndex = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [5935,3964,4957,6063,4682,4292,2728,2733,2231,1985,1709,1771,1000]
+            data: [5935,3964,4957,6063,4682,4292,2728,2733,2231,1985,1709,1771,1000,1468,1266,1227,1222,1028]
         }
     ]
 };
@@ -284,10 +340,14 @@ var tmpLoadTime = document.getElementById("loadTime").getContext("2d");
 var tmpSpeedIndex = document.getElementById("speedIndex").getContext("2d");
 var tmpRerquestsOld = document.getElementById("requestsOld").getContext("2d");
 var tmpRequestsNew = document.getElementById("requestsNew").getContext("2d");
+
 var tmpRerquestsMobileOld = document.getElementById("requestsMobileOld").getContext("2d");
 var tmpRequestsMobileNew = document.getElementById("requestsMobileNew").getContext("2d");
 var tmpSiteSizeDesktop = document.getElementById("siteSizeDesktop").getContext("2d");
 var tmpSiteSizeMobile = document.getElementById("siteSizeMobile").getContext("2d");
+
+var tmpAllData = document.getElementById("all").getContext("2d");
+
 
 Chart.defaults.global.responsive = true;
 Chart.defaults.global.animation = true;
@@ -302,6 +362,7 @@ new Chart(tmpRender).Line(dataRenderStart, {});
 new Chart(tmpVisuallyComplete).Line(dataVisuallyComplete, {});
 new Chart(tmpLoadTime).Line(dataLoadTime, {});
 new Chart(tmpSpeedIndex).Line(dataSpeedIndex, {});
+new Chart(tmpAllData).Line(dataAll, {});
 
 // polar chart
 new Chart(tmpRerquestsOld).Doughnut(dataRequestsOld, {scaleOverride: false});
@@ -313,9 +374,10 @@ new Chart(tmpRequestsMobileNew).Doughnut(dataRequestsMobileNew, {scaleOverride: 
 new Chart(tmpSiteSizeDesktop).Pie(dataSiteSizeDesktop, {scaleOverride: false});
 new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
 
-} else{
 
-    // http Archive //
+// http Archive
+} else if (document.URL.indexOf('httpArchive') > -1 ){
+
     // site weight
 
     var dataSiteWeight = [
@@ -358,8 +420,9 @@ new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
     ];
 
     var tmpSiteWeight = document.getElementById("siteWeight").getContext("2d");
-
     new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
+
+} else if(document.URL.indexOf('comparison') > -1 ) {
 
 }
 },{}]},{},["./site/assets/js/scripts.js"]);

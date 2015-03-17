@@ -31,9 +31,9 @@
       </div>
 
       <ul class="nav nav-tabs nav-justified">
-        <li role="presentation" class="active"><a href="index.html">All</a></li>
-        <li role="presentation"><a href="#">Old</a></li>
-        <li role="presentation"><a href="#">New</a></li>
+        <li role="presentation" class="active"><a href="index.html">Overview</a></li>
+        <li role="presentation"><a href="#">Comparison</a></li>
+        <li role="presentation"><a href="#">Detailed View</a></li>
       </ul>
 
       <div class="jumbotron first">
@@ -129,6 +129,21 @@
       <!-- ./jumbotron comparison -->
 
       <div class="jumbotron">
+        <h4>Overview: First View</h4>
+        <div class="chart-wrapper">
+          <canvas id="all"></canvas>
+          <div class="legende">
+            Legende: <div class="btn btn-blue">Speed Index</div>
+                     <div class="btn btn-red">Render Start</div>
+                     <div class="btn btn-yellow">Load Time</div>
+                     <div class="btn btn-green">Visually Complete</div>
+                     <div class="btn btn-teal">TTFB</div>
+          </div>
+        </div>
+      </div>
+      <!-- ./jumbotron all in one -->
+
+      <div class="jumbotron">
         <h4>Speed Index</h4>
         <div class="chart-wrapper">
           <canvas id="speedIndex"></canvas>
@@ -138,6 +153,7 @@
           </div>
         </div>
       </div>
+      <!-- ./jumbotron speed index -->
 
       <div class="jumbotron">
         <h4>Time to first byte (ms)</h4>
@@ -149,6 +165,7 @@
           </div>
         </div>
       </div>
+      <!-- ./jumbotron TTFB -->
 
       <div class="jumbotron">
         <h4>Time to first render (ms)</h4>
@@ -171,9 +188,10 @@
           </div>
         </div>
       </div>
+      <!-- ./jumbotron visually complete -->
 
       <div class="jumbotron">
-        <h4>Time to visually complete (ms)</h4>
+        <h4>Site to fully load (ms)</h4>
         <div class="chart-wrapper">
           <canvas id="loadTime"></canvas>
           <div class="legende">
