@@ -421,7 +421,7 @@
 		  	\item Expires: date
 		  \end{itemize}
 
-		  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. Das bedeutet, dass die Latenz bei Smartphones komplett negiert werden kann, indem Requests an den Server erst gar nicht stattfinden müssen. "`Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden."'\autocite{grigorikCaching} Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header, muss der Browser für jede in seinem Cache befindliche Ressource, den Server anfragen. Dafür sind jedes mal ein round trip nötig (3G = 300ms).\\
+		  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. "`Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden."'\autocite{grigorikCaching} Das bedeutet, dass die Latenz bei Smartphones für gecachte Dateien komplett negiert werden kann. Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header, muss der Browser für jede in seinem Cache befindliche Ressource, den Server anfragen. Dafür sind jedes mal ein round trip nötig.\\
 
 		  \begin{figure}[htbp]
 		  	\begin{center}
@@ -433,7 +433,7 @@
 		  
 		  Das rot unterstrichene zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`Not-Modified"'. Grün zeigt, dass keinerlei Kommunikation mit dem Server nötig ist sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
 		 
-		  Was aber wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
+		  Was aber wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten, wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
 
 		  \begin{enumerate}
 		  	\item Die HTML Datei sollte nicht gecached werden da sonst Änderungen nicht mehr den Anwender können.
