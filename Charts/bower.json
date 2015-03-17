@@ -3,5 +3,8 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.2"
+  },
+  "devDependencies": {
+    "bootstrap-toggle": "~2.2.0"
   }
 }

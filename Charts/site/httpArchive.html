@@ -22,7 +22,6 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="httpArchive.html">Http Archive Stats</a></li>
           <li><a href="https://twitter.com/AndreasLorer" target="_blank">Twitter</a></li>
           <li><a href="mailto:contact@andreaslorer.de?subject=Web performance" "write some">Contact</a></li>
         </ul>
@@ -30,14 +29,20 @@
         <br />
       </div>
 
+      <ul class="nav nav-tabs nav-justified">
+        <li role="presentation"><a href="index.html">Overview</a></li>
+        <li role="presentation"><a href="comparison.html">Comparison</a></li>
+        <li role="presentation" class="active"><a href="httpArchive.html">Http-Archive stats</a></li>
+      </ul>
+
       <div class="jumbotron first">
         <h3>Average site weight via httpArchive</h3>
         <h3>Mar 1 - 2015: Top 1000 Sites</h3>
          <div class="row">
            
-           <div class="col-sm-6 col-sm-offset-4">
+           <div class="col-sm-6 col-sm-offset-3">
              <div class="chart-wrapper">
-               <canvas id="siteWeight" height="250px"></canvas>
+               <canvas id="siteWeight"></canvas>
                
              </div>     
            </div>  <!-- ./col-sm-6 -->

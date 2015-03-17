@@ -9,6 +9,7 @@
     <!-- don't remove these build comments! -->
     <!-- build:css assets/css/all.min.css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <!-- endbuild -->
     
@@ -22,7 +23,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="httpArchive.html">Http Archive Stats</a></li>
+          <!-- <li><a href="httpArchive.html">Http Archive Stats</a></li> -->
           <li><a href="https://twitter.com/AndreasLorer" target="_blank">Twitter</a></li>
           <li><a href="mailto:contact@andreaslorer.de?subject=Web performance" "write some">Contact</a></li>
         </ul>
@@ -32,104 +33,13 @@
 
       <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="active"><a href="index.html">Overview</a></li>
-        <li role="presentation"><a href="#">Comparison</a></li>
-        <li role="presentation"><a href="#">Detailed View</a></li>
+        <li role="presentation"><a href="comparison.html">Comparison</a></li>
+        <li role="presentation"><a href="httpArchive.html">Http-Archive stats</a></li>
       </ul>
 
       <div class="jumbotron first">
-        <h3>Direct comparison Desktop version:</h3>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
-              <h3>42 requests</h3>
-              <canvas id="requestsOld"></canvas>
-            </div>
-          </div>  <!-- ./col-sm-6 -->
-          
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
-              <h3>23 requests</h3>
-              <canvas id="requestsNew"></canvas>
-              
-            </div>     
-          </div>  <!-- ./col-sm-6 -->
-        </div> <!-- ./row -->
-        <div class="legende">
-          Legende: <div class="btn btn-blue">CSS</div>
-                   <div class="btn btn-red">Images</div>
-                   <div class="btn btn-yellow">JS</div>
-                   <div class="btn btn-grey">other</div>
-        </div>
-
-
-        <h3>Site size in kilobyte</h3>
-        <div class="row">
-          
-          <div class="col-sm-offset-3 col-sm-6">
-            <div class="chart-wrapper">
-              <canvas id="siteSizeDesktop"></canvas>
-              
-            </div>     
-          </div>  <!-- ./col-sm-6 -->
-        </div>  <!-- ./row -->
-        <div class="legende">
-          Legende: 
-                  <div class="btn btn-teal">andreaslorer.de/old/</div>
-                  <div class="btn btn-green">andreaslorer.de</div>
-        </div>
-
-        <hr>
-
-        <h3>Direct comparison Mobile version:</h3>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de/old/" title="">http://andreaslorer.de/old/</a></h4>
-              <h3>17 requests</h3>
-              <canvas id="requestsMobileOld"></canvas>
-            </div>
-          </div>  <!-- ./col-sm-6 -->
-          
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <h4><a href="http://andreaslorer.de" title="">http://andreaslorer.de</a></h4>
-              <h3>17 requests</h3>
-              <canvas id="requestsMobileNew"></canvas>
-              
-            </div>     
-          </div>  <!-- ./col-sm-6 -->
-          
-        </div> <!-- ./row -->
-        <div class="legende">
-          Legende: <div class="btn btn-blue">CSS</div>
-                   <div class="btn btn-red">Images</div>
-                   <div class="btn btn-yellow">JS</div>
-                   <div class="btn btn-grey">other</div>
-        </div>
-
-        <h3>Site size in kilobyte</h3>
-        <div class="row">
-          
-          <div class="col-sm-offset-3 col-sm-6">
-            <div class="chart-wrapper">
-              <canvas id="siteSizeMobile"></canvas>
-              
-            </div>     
-          </div>  <!-- ./col-sm-6 -->
-        </div>  <!-- ./row -->
-        <div class="legende">
-          Legende: 
-                  <div class="btn btn-teal">andreaslorer.de/old/</div>
-                  <div class="btn btn-green">andreaslorer.de</div>
-        </div>
-          
-      </div>
-      <!-- ./jumbotron comparison -->
-
-      <div class="jumbotron">
         <h4>Overview: First View</h4>
+        <!-- <input type="checkbox" checked data-toggle="toggle"> -->
         <div class="chart-wrapper">
           <canvas id="all"></canvas>
           <div class="legende">
@@ -212,6 +122,7 @@
     <!-- build:js assets/js/bundle.min.js -->    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
     <script src="bower_components/chartjs/Chart.min.js"></script>
     <script src="assets/js/bundle.js"></script>
     <!-- endbuild -->
