@@ -11,7 +11,7 @@ Chart.defaults.global.scaleSteps = 8;
 Chart.defaults.global.scaleStepWidth = 1000;
 Chart.defaults.global.scaleStartValue = 0;
 
-if((!(document.URL.indexOf('') > -1 )) || document.URL.indexOf('index') > -1 ){
+if((!(document.URL.indexOf(' ') > -1 )) || document.URL.indexOf('index') > -1 ){
     console.log('index.html');
 
     var dataAll = {
