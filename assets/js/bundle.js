@@ -11,8 +11,216 @@ Chart.defaults.global.scaleOverride = true;
 Chart.defaults.global.scaleSteps = 8;
 Chart.defaults.global.scaleStepWidth = 1000;
 Chart.defaults.global.scaleStartValue = 0;
+    
+// http Archive
+if (document.URL.indexOf('httpArchive') > -1 ){
+    console.log('archive.html');
 
-if((!(document.URL.indexOf(' ') > -1 )) || document.URL.indexOf('index') > -1 ){
+    // site weight
+    var dataSiteWeight = [
+        {
+            value: 56,
+            color: '#009f5d',
+            highlight: '#10b06e',
+            label: 'kb HTML'
+        },
+        {
+            value: 95,
+            color:'#7B1FA2',
+            highlight: '#892cb0',
+            label: 'kb Flash'
+        },
+        {
+            value: 61,
+            color: '#3e86ed',
+            highlight: '#5296f8',
+            label: 'kb Stylsheets'
+        },
+        {
+            value: 334,
+            color: '#eeb302',
+            highlight: '#fac62b',
+            label: 'kb Scripts'
+        },
+        {
+            value: 185,
+            color: '#949FB1',
+            highlight: '#A8B3C5',
+            label: 'kb Other'
+        },
+        {
+            value: 1000,
+            color:'#dc4437',
+            highlight: '#eb6156',
+            label: 'kb Images'
+        }
+    ];
+
+    var tmpSiteWeight = document.getElementById('siteWeight').getContext('2d');
+    new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
+
+} else if(document.URL.indexOf('comparison') > -1 ) {
+    console.log('comparison.html');
+
+    var dataRequestsOld = [
+        {
+            value: 30,
+            color:'#dc4437',
+            highlight: '#eb6156',
+            label: 'Images'
+        },
+        {
+            value: 3,
+            color: '#3e86ed',
+            highlight: '#5296f8',
+            label: 'CSS'
+        },
+        {
+            value: 5,
+            color: '#eeb302',
+            highlight: '#fac62b',
+            label: 'JS'
+        },
+        {
+            value: 4,
+            color: '#949FB1',
+            highlight: '#A8B3C5',
+            label: 'Other'
+        }
+    ];
+
+    var dataRequestsNew = [
+        {
+            value: 9,
+            color:'#dc4437',
+            highlight: '#eb6156',
+            label: 'Images'
+        },
+        {
+            value: 1,
+            color: '#3e86ed',
+            highlight: '#5296f8',
+            label: 'CSS'
+        },
+        {
+            value: 4,
+            color: '#eeb302',
+            highlight: '#fac62b',
+            label: 'JS'
+        },
+        {
+            value: 2,
+            color: '#949FB1',
+            highlight: '#A8B3C5',
+            label: 'Other'
+        }
+    ];
+
+    var dataRequestsMobileOld = [
+        {
+            value: 4,
+            color:'#dc4437',
+            highlight: '#eb6156',
+            label: 'Images'
+        },
+        {
+            value: 3,
+            color: '#3e86ed',
+            highlight: '#5296f8',
+            label: 'CSS'
+        },
+        {
+            value: 5,
+            color: '#eeb302',
+            highlight: '#fac62b',
+            label: 'JS'
+        },
+        {
+            value: 4,
+            color: '#949FB1',
+            highlight: '#A8B3C5',
+            label: 'Other'
+        }
+    ];
+
+    var dataRequestsMobileNew = [
+        {
+            value: 2,
+            color:'#dc4437',
+            highlight: '#eb6156',
+            label: 'Images'
+        },
+        {
+            value: 1,
+            color: '#3e86ed',
+            highlight: '#5296f8',
+            label: 'CSS'
+        },
+        {
+            value: 4,
+            color: '#eeb302',
+            highlight: '#fac62b',
+            label: 'JS'
+        },
+        {
+            value: 2,
+            color: '#949FB1',
+            highlight: '#A8B3C5',
+            label: 'Other'
+        }
+    ];
+
+    var dataSiteSizeMobile = [
+        {
+            value: 145,
+            color: '#009f5d',
+            highlight: '#10b06e',
+            label: 'KB'
+        },
+        {
+            value: 363,
+            color:'#7B1FA2',
+            highlight: '#892cb0',
+            label: 'KB'
+        }
+    ];
+
+    var dataSiteSizeDesktop = [
+        {
+            value: 517,
+            color: '#009f5d',
+            highlight: '#10b06e',
+            label: 'KB'
+        },
+        {
+            value: 1000,
+            color:'#7B1FA2',
+            highlight: '#892cb0',
+            label: 'KB'
+        }
+    ];
+
+    var tmpRerquestsOld = document.getElementById('requestsOld').getContext('2d');
+    var tmpRequestsNew = document.getElementById('requestsNew').getContext('2d');
+    var tmpRerquestsMobileOld = document.getElementById('requestsMobileOld').getContext('2d');
+    var tmpRequestsMobileNew = document.getElementById('requestsMobileNew').getContext('2d');
+
+    var tmpSiteSizeDesktop = document.getElementById('siteSizeDesktop').getContext('2d');
+    var tmpSiteSizeMobile = document.getElementById('siteSizeMobile').getContext('2d');
+
+    // polar chart
+    new Chart(tmpRerquestsOld).Doughnut(dataRequestsOld, {scaleOverride: false});
+    new Chart(tmpRequestsNew).Doughnut(dataRequestsNew, {scaleOverride: false});
+    new Chart(tmpRerquestsMobileOld).Doughnut(dataRequestsMobileOld, {scaleOverride: false});
+    new Chart(tmpRequestsMobileNew).Doughnut(dataRequestsMobileNew, {scaleOverride: false});
+
+    // pie charts
+    new Chart(tmpSiteSizeDesktop).Pie(dataSiteSizeDesktop, {scaleOverride: false});
+    new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
+
+} else if(document.URL.indexOf('detail') > -1 ){
+    console.log('detail.html');
+} else {
     console.log('index.html');
 
     var dataAll = {
@@ -220,214 +428,6 @@ if((!(document.URL.indexOf(' ') > -1 )) || document.URL.indexOf('index') > -1 ){
     new Chart(tmpSpeedIndex).Line(dataSpeedIndex, {});
     new Chart(tmpAllData).Line(dataAll, {});
 
-// http Archive
-} else if (document.URL.indexOf('httpArchive') > -1 ){
-    console.log('archive.html');
-
-    // site weight
-    var dataSiteWeight = [
-        {
-            value: 56,
-            color: '#009f5d',
-            highlight: '#10b06e',
-            label: 'kb HTML'
-        },
-        {
-            value: 95,
-            color:'#7B1FA2',
-            highlight: '#892cb0',
-            label: 'kb Flash'
-        },
-        {
-            value: 61,
-            color: '#3e86ed',
-            highlight: '#5296f8',
-            label: 'kb Stylsheets'
-        },
-        {
-            value: 334,
-            color: '#eeb302',
-            highlight: '#fac62b',
-            label: 'kb Scripts'
-        },
-        {
-            value: 185,
-            color: '#949FB1',
-            highlight: '#A8B3C5',
-            label: 'kb Other'
-        },
-        {
-            value: 1000,
-            color:'#dc4437',
-            highlight: '#eb6156',
-            label: 'kb Images'
-        }
-    ];
-
-    var tmpSiteWeight = document.getElementById('siteWeight').getContext('2d');
-    new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
-
-} else if(document.URL.indexOf('comparison') > -1 ) {
-    console.log('comparison.html');
-
-    var dataRequestsOld = [
-        {
-            value: 30,
-            color:'#dc4437',
-            highlight: '#eb6156',
-            label: 'Images'
-        },
-        {
-            value: 3,
-            color: '#3e86ed',
-            highlight: '#5296f8',
-            label: 'CSS'
-        },
-        {
-            value: 5,
-            color: '#eeb302',
-            highlight: '#fac62b',
-            label: 'JS'
-        },
-        {
-            value: 4,
-            color: '#949FB1',
-            highlight: '#A8B3C5',
-            label: 'Other'
-        }
-    ];
-
-    var dataRequestsNew = [
-        {
-            value: 9,
-            color:'#dc4437',
-            highlight: '#eb6156',
-            label: 'Images'
-        },
-        {
-            value: 1,
-            color: '#3e86ed',
-            highlight: '#5296f8',
-            label: 'CSS'
-        },
-        {
-            value: 4,
-            color: '#eeb302',
-            highlight: '#fac62b',
-            label: 'JS'
-        },
-        {
-            value: 2,
-            color: '#949FB1',
-            highlight: '#A8B3C5',
-            label: 'Other'
-        }
-    ];
-
-    var dataRequestsMobileOld = [
-        {
-            value: 4,
-            color:'#dc4437',
-            highlight: '#eb6156',
-            label: 'Images'
-        },
-        {
-            value: 3,
-            color: '#3e86ed',
-            highlight: '#5296f8',
-            label: 'CSS'
-        },
-        {
-            value: 5,
-            color: '#eeb302',
-            highlight: '#fac62b',
-            label: 'JS'
-        },
-        {
-            value: 4,
-            color: '#949FB1',
-            highlight: '#A8B3C5',
-            label: 'Other'
-        }
-    ];
-
-    var dataRequestsMobileNew = [
-        {
-            value: 2,
-            color:'#dc4437',
-            highlight: '#eb6156',
-            label: 'Images'
-        },
-        {
-            value: 1,
-            color: '#3e86ed',
-            highlight: '#5296f8',
-            label: 'CSS'
-        },
-        {
-            value: 4,
-            color: '#eeb302',
-            highlight: '#fac62b',
-            label: 'JS'
-        },
-        {
-            value: 2,
-            color: '#949FB1',
-            highlight: '#A8B3C5',
-            label: 'Other'
-        }
-    ];
-
-    var dataSiteSizeMobile = [
-        {
-            value: 145,
-            color: '#009f5d',
-            highlight: '#10b06e',
-            label: 'KB'
-        },
-        {
-            value: 363,
-            color:'#7B1FA2',
-            highlight: '#892cb0',
-            label: 'KB'
-        }
-    ];
-
-    var dataSiteSizeDesktop = [
-        {
-            value: 517,
-            color: '#009f5d',
-            highlight: '#10b06e',
-            label: 'KB'
-        },
-        {
-            value: 1000,
-            color:'#7B1FA2',
-            highlight: '#892cb0',
-            label: 'KB'
-        }
-    ];
-
-    var tmpRerquestsOld = document.getElementById('requestsOld').getContext('2d');
-    var tmpRequestsNew = document.getElementById('requestsNew').getContext('2d');
-    var tmpRerquestsMobileOld = document.getElementById('requestsMobileOld').getContext('2d');
-    var tmpRequestsMobileNew = document.getElementById('requestsMobileNew').getContext('2d');
-
-    var tmpSiteSizeDesktop = document.getElementById('siteSizeDesktop').getContext('2d');
-    var tmpSiteSizeMobile = document.getElementById('siteSizeMobile').getContext('2d');
-
-    // polar chart
-    new Chart(tmpRerquestsOld).Doughnut(dataRequestsOld, {scaleOverride: false});
-    new Chart(tmpRequestsNew).Doughnut(dataRequestsNew, {scaleOverride: false});
-    new Chart(tmpRerquestsMobileOld).Doughnut(dataRequestsMobileOld, {scaleOverride: false});
-    new Chart(tmpRequestsMobileNew).Doughnut(dataRequestsMobileNew, {scaleOverride: false});
-
-    // pie charts
-    new Chart(tmpSiteSizeDesktop).Pie(dataSiteSizeDesktop, {scaleOverride: false});
-    new Chart(tmpSiteSizeMobile).Pie(dataSiteSizeMobile, {scaleOverride: false});
-
-} else if(document.URL.indexOf('detail') > -1 ){
-    console.log('detail.html');
 }
 },{}]},{},["./site/assets/js/scripts.js"]);
 
