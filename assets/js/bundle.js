@@ -56,8 +56,49 @@ if (document.URL.indexOf('httpArchive') > -1 ){
         }
     ];
 
+    // total bytes 
+    var dataTotalBytes = {
+        labels: ['01.14','02.14','03.14','04.14','05.14','06.14','07.14','08.14','09.14','10.14','11.14','12.14','01.15'],
+        datasets: [
+            {
+                label: '90 percent',
+                fillColor: 'rgba(137,44,176,0.2)',
+                strokeColor: 'rgba(137,44,176,0.6)',
+                pointColor: 'rgba(137,44,176,1)',
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(151,187,205,1)',
+                data: [3316,3334,3368,3415,3509,3531,3614,3619,3675,3747,3768,3824,3895]
+            },
+            {
+                label: 'Median',
+                fillColor: 'rgba(238,179,2,0.2)',
+                strokeColor: 'rgba(238,179,2,0.6)',
+                pointColor: 'rgba(238,179,2,1)',
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(151,187,205,1)',
+                data: [1042,1040,1054,1077,1103,1114,1140,1154,1155,1173,1192,1197,1210]
+            },
+            {
+                label: '10 percent',
+                fillColor: 'rgba(0,159,93,0.2)',
+                strokeColor: 'rgba(0,159,93,0.6)',
+                pointColor: 'rgba(0,159,93,1)',
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(151,187,205,1)',
+                data: [170,172,171,176,180,181,186,193,192,195,193,195,194]
+            }
+        ]
+    };
+
     var tmpSiteWeight = document.getElementById('siteWeight').getContext('2d');
+    var tmpTotalBytes = document.getElementById('totalBytes').getContext('2d');
+
     new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
+
+    new Chart(tmpTotalBytes).Line(dataTotalBytes, {responsive: false, scaleOverride: true, scaleSteps: 8, scaleStepWidth: 500, scaleStartValue: 0, scaleFontSize: 16});
 
 } else if(document.URL.indexOf('comparison') > -1 ) {
     console.log('comparison.html');
