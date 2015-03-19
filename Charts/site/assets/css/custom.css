@@ -35,7 +35,8 @@ h1 {
   cursor: default;
   border-radius: 0;
   padding: 6px 24px;
-  margin: 0 15px; }
+  margin: 0 15px;
+  font-weight: bold; }
   .btn:hover {
     color: white; }
 

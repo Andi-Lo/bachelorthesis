@@ -163,19 +163,6 @@
 
 		% subsubsection critical_path_css_generator (end)
 
-		\subsubsection{Mozilla JPEG (alias moz jpeg)} % (fold)
-		\label{ssub:moz_jpeg}
-			Ist ein von Mozilla entwickelter JPEG Bild Encoder um die Bildgröße, nicht aber die Bildqualität zu verringern.
-
-			\begin{quote}
-				\textit{"`For the short term Mozilla has developed MozJPEG — a modernized JPEG encoder that offers better compression while remaining fully standard-compliant, so it’s compatible with all browsers, operating systems and native apps, and you can use it today without waiting for the whole world to upgrade"'\autocite{mozJPEG}}
-			\end{quote}
-
-			Allerdings ist die Verwendung nicht ganz so einfach wie in diesem Zitat dargestellt und es ist das eigenständige Compilieren von \texttt{C}-Code\footnote{Das Repository ist hier zu finden: \url{https://github.com/mozilla/mozjpeg} und eine Anleitung gibt es hier: \url{http://calendar.perfplanet.com/2014/mozjpeg-3-0/}} nötig, um dies auf dem eigenen Betriebssystem zu verwenden.\\
-			Glücklicherweise es gibt eine Webanwendung\footnote{Webanwendung zur Verwendung von moz jpeg: \url{https://imageoptim.com/mozjpeg}} mit der ganz einfach per "`drag and drop"' Bilder mittels diesem Encoder komprimiert werden können. Je nach Bild lassen sich so mehrere Hundert Kilobyte einsparen (abhängig von der Qualitätseinstellung und größe des Bildes).
-		
-		% subsubsection moz_jpeg (end)
-
 		\subsubsection{Http Archive} % (fold)
 		\label{ssub:http_archive_bigqueri_es}
 			\url{http://httparchive.org/} ist ein Archiv der populärsten Seiten des Internets und bietet eine Vielzahl an statistischen Auswertungen, Trends und Daten.
@@ -381,19 +368,6 @@
 			Wenn externe Ressourcen klein sind, können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Dabei sollte darauf geachtet werden, dass das HTML Dokument Komprimiert nicht die 14 kb Marke überschreitet. Dadurch kann es im ersten round trip geliefern werden. CSS Dateien die groß sind sollten per \texttt{Link-Tag} eingebunden werden und mittels Skript Verzögert geladen werden. Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
 		% subsubsection css_bereitstellung_optimieren (end)
 
-		\subsubsection{Bilder optimieren} % (fold)
-		\label{ssub:bilder_optimieren}
-
-		\begin{figure}[htbp]
-			\begin{center}
-				\includegraphics[width=\textwidth]{site_weight.jpg}
-				\caption{Average Bytes per Page by Content Type \autocite{httpArchive}}
-				\label{fig:site_weight}
-			\end{center}
-		\end{figure}
-		
-		% subsubsection bilder_optimieren (end)
-
 		\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
 		\label{ssub:antwortzeit_des_servers_reduzieren}
 			Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit Webpagtest herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}. Bereits unter Punkt: \ref{sub:zusammengefasst} wurde es nahegelegt ein gutes Hosting zu wählen. Besser Sie wechseln ihr Hosting als ihre Kunden den Service.
@@ -527,11 +501,147 @@
 			
 		Dieser Eintrag in der .htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep alive zu aktivieren.}
 		% subsubsection keep_alive_ermöglichen (end)
+		\pagebreak
 
 	% subsection ausgangspunkt (end)
 
+	\subsection{Bilder optimieren} % (fold)
+	\label{sub:bilder_optimieren}
+
+
+		"`Ein Bild sagt mehr als Tausend Worte."' Diesen Spruch gibt es nicht umsonst und auch im modernen Web haben immer mehr und immer größere Bilder Einzug gehalten. Sie werden eingesetzt um eine Botschaft zu übermitteln, Emotionen zu erzeugen oder als \texttt{Eyecatcher}. In Abbildung \ref{fig:site_weight} ist die durchschnittliche Seitengröße der Top 1000 Seiten\footnote{Top 1000 Seiten nach dem Ranking von Alexa: (Alexa gehört zu Amazon und liefert umfassende Analysen über das Web \url{http://www.alexa.com/}) } des Webs abgebildet. So beträgt durchschnittliche die Seitengröße (rechts) zum Zeitpunkt März 2015 rund 1843 kb. Davon sind 65\% (1112 kb) Bildmaterial. Das linke Diagramm zeigt einen Aufwärtstrend der Seitengröße in Kilobyte über die Zeitspanne von einem Jahr. Dabei repräsentiert der Graph in Lila die schlechtesten 90\% der Internetseiten, Grün die 10\% der besten Seiten und Gelb stellt den Median (Mittelwert) dar. Wie zu sehen ist werden die schlechtesten Seiten weiterhin schlechter, indem sie weiter an Kilobytes zulegen, auch der Median und die besten 10\% sind über das Jahr hinweg leicht angestiegen. Mit dem optimieren von Bildern können sehr viele Kilobytes gespart werden.
+
+		\begin{quote}
+			\textit{"`Most sites fail to leverage best practices for optimizing images.\\
+			Despite the fact that images represent one of the single greatest performance challenges (and opportunities),		34\% of pages failed to properly implement image compression, and 76\% failed to take advantage of progressive	image rendering."'} \autocite[p. 4]{radware14}
+		\end{quote}
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=\textwidth]{site_weight2.jpg}
+				\caption{Seitenanalyse der populärsten Seiten des Webs (Eigene Abbildung - Daten via \url{bigqueri.es}: Gesamte Auswertung \url{http://tinyurl.com/o8vawxd} )}
+				\label{fig:site_weight}
+			\end{center}
+		\end{figure}
+
+		\subsubsection{Progressive Image Rendering} % (fold)
+		\label{ssub:progressive_image_rendering}
+			Eigentlich eine sehr alte Technik ist das "`Progressive Image Rendering"'. Es kam längere Zeit außer Mode Bilder als Progressive zu speichern. Der Trend hat sich nun aber wieder geändert und Progressive Images gilt als "`Best Practice"' im Web. Sowohl Webpagetest als auch Google schlagen vor, Bilder Progressive an den Anwender auszuliefern. Testet man eine Seite via Webpagetest.org, so bekommt man unter dem Reiter "`Compress Images"' beispielsweise solch eine Auswertung:
+			\begin{quote}
+				Use Progressive JPEGs: 100/100\\
+				124.8 KB of a possible 124.8 KB (100\%) were from progressive JPEG images
+			\end{quote}
+
+			Abbildung \ref{fig:progressive_images} zeigt einmal den normalen Ladevorgang eines Bildes (unten) gegenüber dem "`Progressive Rendering"' (oben).
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.7\textwidth]{progressive_images.jpg}
+					\caption{Progressives Bilder laden}
+					\label{fig:progressive_images}
+				\end{center}
+			\end{figure}
+
+			Nicht nur sind Progressive Images fast immer ein paar Kilobyte kleiner, sie erhöhen auch die \texttt{Perceived Performance} für den Anwender. Wo bei normalen Bildern lange Zeit eine weiße Lücke klafft, ist bei Progressive Images bereits sehr viel früher das volle Bild zu sehen. Das PNG Äquivalent für Progressive-Jpeg's ist "`Interlaced"'. Bilder sollten zum Beispiel in Photoshop über den Reiter: Datei -> für Web speichern... entweder Progressive oder als Interlaced gespeichert werden.
+		% subsubsection progressive_image_rendering (end)
+
+		\subsubsection{Image Spriting} % (fold)
+		\label{ssub:image_spriting}
+			"`Image Spriting"' bezeichnet das Kombinieren von vielen kleinen Bilddateien zu einer einzigen großen Datei.  Mittels CSS lässt sich aus dem Bild dann das Gewünschte Icon auswählen.
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.6\textwidth]{image_sprites.jpg}
+					\caption{Image Sprite von verschiedenen Icons}
+					\label{fig:image_sprites}
+				\end{center}
+			\end{figure}
+			
+			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird um alle Icons, die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die Größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung, muss die ganze Datei (die im besten Fall bereits gecached wurde) neu angefragt und ausgetauscht werden.
+			
+		% subsubsection image_spriting (end)
+
+
+		\subsubsection{Bild Komprimierung} % (fold)
+		\label{ssub:bild_komprimierung}
+			Bei der Komprimierung von Bildern unterscheidet man zwischen zwei Arten: "`Lossless"' und "`Lossly"'.
+			\begin{itemize}
+				\item Lossless bezeichnet die Komprimierung eines Bildes, ohne dabei die Qualität des Bildes zu verändern. So werden bei Lossless zum Beispiel die Metadaten eines Bildes entfernt, die von einer Kamera bei der Aufnahme hinzugefügt werden.
+				\item Lossly ist die reduzierung der Bildgröße auf kosten von Qualität. Für die meisten Bilder ist diese Reduzierung aber durchaus Legetim und oftmals sind die Einbußen mit bloßem Auge nicht zu erkennen. Lossly Komprimierung kann aber durchaus bis zu rund 40\% der Bildgröße reduzieren.
+			\end{itemize}
+
+			Google hat ein eigenes Bildformat namens "`Webp"' entwickelt und soll bis zu 30\% der Bildgröße bei gleichbleibender Qualität einsparen. Allerdings ist dieses Format nur im Chrome Browser und Opera (der auf Chrome basiert) unterstützt.\autocite{canIuse}
+
+			Eine bessere Alternative ist moz-jpeg. Das ist ein von Mozilla entwickelter JPEG Bild Encoder um die Bildgröße ohne Qualitätseinbußen zu verringern. Dabei bleibt das .jpg Format erhalten und ist somit überall einsetzbar.
+
+			\begin{quote}
+				\textit{"`For the short term Mozilla has developed MozJPEG — a modernized JPEG encoder that offers better compression while remaining fully standard-compliant, so it’s compatible with all browsers, operating systems and native apps, and you can use it today without waiting for the whole world to upgrade"'\autocite{mozJPEG}}
+			\end{quote}
+
+			Allerdings ist die Verwendung nicht ganz so einfach wie in diesem Zitat dargestellt und es ist das eigenständige Compilieren von \texttt{C}-Code\footnote{Das Repository ist hier zu finden: \url{https://github.com/mozilla/mozjpeg} und eine Anleitung gibt es hier: \url{http://calendar.perfplanet.com/2014/mozjpeg-3-0/}} nötig, um dies auf dem eigenen Betriebssystem zu verwenden.\\
+			Glücklicherweise es gibt eine Webanwendung\footnote{Webanwendung zur Verwendung von moz jpeg: \url{https://imageoptim.com/mozjpeg}} mit der ganz einfach per "`drag and drop"' Bilder mittels diesem Encoder komprimiert werden können. Je nach Bild lassen sich so mehrere Hundert Kilobyte einsparen (abhängig von der Qualitätseinstellung und größe des Bildes).\\
+
+			Natürlich bietet auch Photoshop oder IrfanView (Kostenlos) umfangreiche möglichkeiten die Größe von Bildern zu verringern. Moz-jpeg schafft dies allerdings mit einem qualitativ besseren Ergebnis bei zudem kleinerer Bildgröße. Eine Verwendung sollte auf jedenfall in betracht gezogen werden.
+
+		% subsubsection bild_komprimierung (end)
+
+		\subsubsection{Responsive Images} % (fold)
+		\label{ssub:responsive_images}
+			Bei Bootstrap gibt es die Möglichkeit dem Bild eine Klasse zuzuweisen und das Bild wird dann abhängig von der Fenstergröße skaliert. Genau das steckt aber nicht hinter diesem Begriff. "`Responsive Images"' ist eine auf das Gerät des Endanwenders angepasste Auslieferung von Bildern.\\
+			Auf vielen Webanwendungen sieht man folgendes:
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{downsampling.jpg}
+					\caption{Downsampling auf GitHub (Eigene Abbildung via Chrome Developer Tool)}
+					\label{fig:downsampling}
+				\end{center}
+			\end{figure}
+
+			Das Bild wurde nicht nur viel zu Groß gewählt, es wird auch auf jedem Gerät, egal ob Tablet, Smartphone oder Desktop die selbe Anzahl an Bytes über die Leitung gesendet. Diese Methode nennt man Downsampling. Das bedeutet, dass nicht das Bild selbst verkleinert wird, sondern der Browser das Bild herunterläd und dann auf die entsprechende Größe skaliert. Das kostet nicht nur Rechenleistung sondern vor allem sehr viel unnötige Bandbreite und sollte unter allen Umständen vermieden werden.\\
+
+			Seit HTML 5 gibt es ein neues HTML Attribut namens \texttt{srcset}. Dieses Attribut ist leider noch nicht in allen Browsern implementiert, hat aber immerhin bereits eine Globale Abdeckung von rund 50\% \autocite{canIuse}. Für dieses Problem gibt es allerdings abhilfe. Es gibt ein Polyfill \footnote{\textit{"`Ein Polyfill [...] ist ein - meist in Javascript geschriebender - Code-Baustein, der in älteren Browsern eine neuere, von diesen nicht unterstützte Funktion mittels eines Workarounds nachrüsten soll. Beispielsweise sind Features von HTML5 in älteren Browsern nicht verfügbar. Webseiten können diese Funktionen trotzdem verwenden, wenn sie ein entsprechendes Polyfill mitliefern."'}\autocite{wikipediaPolyfill}} namens "`Picturefill"'\footnote{Das offizielle Picturefill Projekt ist hier zu finden: \url{http://scottjehl.github.io/picturefill/}}, dass genau diese Funktionalität für alle Browser zur Verfügung stellen kann. Nötig ist dazu nur das herunterladen und Einbinden des Skripts in das HTML Dokument. Dadurch wird folgendes Listing möglich: 
+
+			\begin{lstlisting}[captionpos=b, caption=Srcset in Verwendung, label=lst:srcset]
+			<picture id="hero-image">
+		    <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
+		    <source srcset="someImg_md.jpg" media="(min-width: 768px)">
+		    <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
+		    <img srcset="fallback_md.jpg" alt="Some alt text">
+			</picture>
+			\end{lstlisting}
+
+			Das bedeutet, dass Smartphones mit einer Breite von > 300px < 768px das Bild "`someImg\_xs"' bekommen. Tablets mit 768px < 1367px bekommen das mittlere Bild und alles was über 1367px ist bekommen die größte Version zu Verfügung gestellt. Falls der Anwender Javascript im Browser deaktiviert, ist es möglich ein \texttt{fallback}-Bild zu setzen (Listing: Zeile 8). Man kann sogar einen Schritt weiter gehen und auch das Bildformat auf entsprechend dem Aufrufenden Gerät anpassen:
+
+			\begin{lstlisting}[captionpos=b, caption=Srcset mit webp, label=lst:srcsetWebp]
+			<picture id="hero-image">
+		    <source srcset="someImg_lg.webp" type="image/webp" media="(min-width: 1367px)">
+		    <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
+		    <source srcset="someImg_md.webp" type="image/webp" media="(min-width: 768px)">
+		    <source srcset="someImg_md.jpg" media="(min-width: 768px)">
+		    <source srcset="someImg_xs.webp" type="image/webp" media="(min-width: 300px)">
+		    <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
+		    <img srcset="fallback_md.jpg" alt="Some alt text">
+			</picture>
+			\end{lstlisting}
+
+			Wie zu sehen ist wurden 3 Zeilen eingefügt, die sich lediglich im Typ unterscheiden. Das bedeutet, dass Anwender mit Chrome Browser das Chrome eigene Bildformat .webp bekommen und alle anderen das normale .jpg Format. Voraussetzung ist natürlich, all diese Bilder in ihren verschiedenen Auflösungen und Formaten anzulegen und bereit zu stellen, was einen Mehraufwand bedeutet.
+			Picturefill ermöglicht es, Downsampling zu vermeiden und einen auf das Gerät angepasste Version des Bildes auszuliefern. Dadurch sinkt die Anzahl von Bytes die Übertragen werden müssen enorm.
+
+
+		% subsubsection responsive_images (end)
+
+		\subsubsection{Adaptive Images} % (fold)
+		\label{ssub:adaptive_images}
+			Adaptive Images ist ein Skript, das mit Hilfe eines PHP-Skripts und einer .htaccess Datei Bilder auf dem Server automatisch auf die verschiedenen Gerätegrößen zuschneidet. Ruft ein Anwender die Seite auf, Prüft das Skript die Größe des Bildschirms und liefer anschlißend das für ihn passende Bild aus. \footnote{Mehr über dieses Skript ist hier zu finden: \url{http://adaptive-images.com/}}
+
+		% subsubsection adaptive_images (end)
+		
+	% subsection bilder_optimieren (end)
+
 	\subsection{Prozess der Validierung}
 	\label{sub:prozess_der_validierung}
+		Bereits zu Beginn des Projekts war es wichtig es messbar zu machen. Dafür wurde zu Beginn eine Testumgebung aufgebaut, mit deren Hilfe die Seite nach ihrer Geschwindigkeit getestet werden kann.
 
 	1089 Testläufe über Webpagtest: Zeiraum: 1 Monat
 

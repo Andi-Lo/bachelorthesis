@@ -7,7 +7,7 @@
     <title>Web Performance for mobile users</title>
 
     <!-- don't remove these build comments! -->
-    <!-- build:css assets/css/all.min.css -->
+    <!-- build:css assets/css/all.min.css?v0.1 -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <!-- endbuild -->
@@ -36,8 +36,8 @@
       </ul>
 
       <div class="jumbotron first">
-        <h3>Average site weight via httpArchive</h3>
-        <h3>Mar 1 - 2015: Top 1000 Sites</h3>
+        <h4>Average site weight: Data from <a href="http://httparchive.org/interesting.php" title="">httpArchive</a></h4>
+        <h4>Mar 1 - 2015: Top 1000 Sites</h4>
          <div class="row">
            
            <div class="col-sm-6 col-sm-offset-3">
@@ -59,13 +59,26 @@
       </div>
       <!-- ./jumbotron first comparison -->
 
+      <div class="jumbotron">
+        <h4>Total Site Size in Kilobytes: Data from <a href="https://bigquery.cloud.google.com" title="">Bigquery</a></h4>
+        <div class="chart-wrapper">
+          <canvas id="totalBytes" width="600" height="300"></canvas>
+          <div class="legende">
+            Legende: <div class="btn btn-green">10th</div>
+                     <div class="btn btn-yellow">Median</div>
+                     <div class="btn btn-teal">90th</div>
+          </div>
+        </div>
+      </div>
+      <!-- ./jumbotron visually complete -->
+
  
     <div class="footer"></div>
     </div>
 
     <!-- don't remove these build comments! -->
     
-    <!-- build:js assets/js/bundle.min.js -->    
+    <!-- build:js assets/js/bundle.min.js?v0.1 -->    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/chartjs/Chart.min.js"></script>
