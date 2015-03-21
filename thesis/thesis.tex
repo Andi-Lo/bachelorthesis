@@ -29,7 +29,7 @@
 \definecolor{materialGrey}{rgb}{0.27,0.27,0.27}
 \definecolor{materialGreen}{rgb}{0.0, 0.8, 0.6}
 \definecolor{materialRed}{rgb}{0.82, 0.1, 0.26}
-\definecolor{materialYellow}{rgb}{1.0, 0.75, 0.0}
+\definecolor{materialYellow}{rgb}{1.0, 0.5, 0.0}
 \definecolor{materialBlue}{rgb}{0.0, 0.5, 1.0}
 
 \definecolor{lightgray}{rgb}{.9,.9,.9}
@@ -95,7 +95,18 @@
    showtabs=false,
    captionpos=b
 }
-
+\lstset{literate=%
+   *{0}{{{\color{materialYellow}0}}}1
+    {1}{{{\color{materialYellow}1}}}1
+    {2}{{{\color{materialYellow}2}}}1
+    {3}{{{\color{materialYellow}3}}}1
+    {4}{{{\color{materialYellow}4}}}1
+    {5}{{{\color{materialYellow}5}}}1
+    {6}{{{\color{materialYellow}6}}}1
+    {7}{{{\color{materialYellow}7}}}1
+    {8}{{{\color{materialYellow}8}}}1
+    {9}{{{\color{materialYellow}9}}}1
+}
 	%Deckblatt
     \newcommand{\headline}{Bachelor-Thesis}
     \newcommand{\subheadline}{Web Performance für den mobilen}

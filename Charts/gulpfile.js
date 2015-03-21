@@ -94,7 +94,6 @@ gulp.task('styles', ['sass'], function() {
     .pipe(gulp.dest('dist/assets/css'));
 });
 
-
 // sass task: compiles your sass files
 gulp.task('sass', function () {
   return gulp.src('site/assets/css/**/*.scss')
@@ -208,7 +207,7 @@ gulp.task('serve', function () {
 // resize task: resize your images to a given size. 
 // especially handy for creating thumbnails on the fly
 gulp.task('resize', function () {
-  gulp.src('site/assets/images/**/*')
+  return gulp.src('site/assets/images/**/*')
     .pipe(imageResize({ 
       width : 200,
       crop : false,
@@ -232,7 +231,7 @@ gulp.task('images', function () {
 
 // webp task: creates webp image formats out of a given directory
 gulp.task('webp', function(){
-  gulp.src('./site/assets/images/**/*')
+  return gulp.src('./site/assets/images/**/*')
     .pipe(webp({
       quality: 100,
       lossless: false
