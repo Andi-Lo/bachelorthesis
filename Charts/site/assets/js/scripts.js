@@ -97,7 +97,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     new Chart(tmpSiteWeight).Pie(dataSiteWeight, {scaleOverride: false});
 
-    new Chart(tmpTotalBytes).Line(dataTotalBytes, {responsive: false, scaleOverride: true, scaleSteps: 8, scaleStepWidth: 500, scaleStartValue: 0, scaleFontSize: 16});
+    new Chart(tmpTotalBytes).Line(dataTotalBytes, {responsive: true, scaleOverride: true, scaleSteps: 8, scaleStepWidth: 500, scaleStartValue: 0, scaleFontSize: 16});
 
 } else if(document.URL.indexOf('comparison') > -1 ) {
     console.log('comparison.html');

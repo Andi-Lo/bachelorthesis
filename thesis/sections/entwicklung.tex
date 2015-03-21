@@ -378,7 +378,7 @@
 			Fehlendes Browser-Caching (das lokale Speichern von Daten) wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
 			Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden.\\
 
-			Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{.htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
+			Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
 
 		  \begin{lstlisting}[captionpos=b, caption=Aktivieren von Browser Caching in Apache (Listing nach: \autocite{sextonCaching}), label=lst:caching, language=bash]
 		  	## EXPIRES CACHING ##
@@ -436,7 +436,7 @@
 		  	\item Alternativ zur ID ist auch in \texttt{Fingerprint} möglich. Dabei wird eine ID aus der Datei generiert. Ändert sich die Datei so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
 		  \end{enumerate}
 
-		  Browser-Caching ist eine mächtige Funktionalität die sich jeder zu nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{.htaccess}-Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
+		  Browser-Caching ist eine mächtige Funktionalität die sich jeder zu nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{htaccess}-Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
 			\begin{quote}
 				\textit{"`[...] I don't know about you, but these results came to us as a big surprise. It says that even if your assets are optimized for maximum caching, there are a significant number of users that will always have an empty cache."'\autocite{yahoo07}}
 			\end{quote}
@@ -455,7 +455,28 @@
 
 		\subsubsection{Komprimierung aktivieren} % (fold)
 		\label{ssub:komprimierung_aktivieren}
-			Nachdem durch das in Punkt \ref{ssub:ressourcen_reduzieren} beschriebene Verfahren die Ressourcen soweit wie möglich verkleinert wurden, können diese vor dem Versenden komprimiert werden.\footnote{Eine ausführlichere Beschreibung über den GZIP Algorithmus und der textbasierter Dokumentkomprimierung ist hier zu finden: \url{http://www.infinitepartitions.com/art001.html}. Für das tiefere Verständnis bietet auch dieses Video von Google: \url{http://tinyurl.com/mfxt5zt}} Das gängigste Komprimierungsprogramm ist GZIP und wird von allen modernen Browsern unterstützt. Je nach Dateigröße können so die zu übertragenden Datenmenge drastisch Reduziert werden. GZIP kann mittels \texttt{.htaccess} Eintrag von Listing \ref{lst:gzip} in Apache aktiviert werden.\footnote{Für andere Server wie zum Beispiel Nginx oder Node.js gibt es auf GitHub fertige Konfigurationen \url{https://github.com/h5bp/server-configs}}. Einträge in die \texttt{.htaccess} Datei sollten nur dann eingesetzt werden, wenn man zum Beispiel ein Shared Hosting verwendet und dadurch keinen direkten Zugang zur Serverkonfiguration hat. Grund dafür ist, dass die Konfiguration von Apache mittels .htaccess den Server verlangsamt.\autocite{apache}
+			Nachdem durch das in Punkt \ref{ssub:ressourcen_reduzieren} beschriebene Verfahren die Ressourcen soweit wie möglich verkleinert wurden, können diese vor dem Versenden komprimiert werden. Dies nennt man auch Datenkomprimierung und stellt ein ganz eigenes Forschungsgebiet dar. Deshalb soll nur der Grundgedanke erklärt werden.
+
+			Gegeben sei folgende Textnachricht:
+			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
+# Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis temporibus incidunt id.
+# Cumque molestiae est praesentium magnam, fugit ipsa.
+format: text/plain
+date: 21.03.15
+AAAZZBBBBEEEMMM EEETTTAAAA
+			\end{lstlisting}
+
+			Diese Nachricht ist 200 Zeichen lang und kann durch einfache Regeln verkürzt werden. Zuerst werden die Kommentare, die mit \# gekennzeichnet sind entfernt, denn sie sind für die Bedeutung der Nachricht nicht relevant. Das Datum könnte in eine ID konvertiert werden: 210315. Die Nutzdaten der Nachricht wird nach Wiederholungen durchsucht. Daraus ergibt sich dann: 3A2Z4B3E3M 3E3T4A \autocite{grigorikGzip}. Die Neue Nachricht:
+
+			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
+format: text/plain
+date: 210315
+3A2Z4B3E3M 3E3T4A
+			\end{lstlisting}
+
+			Die Zeichenanzahl wurde von 200 Zeichen auf 47 Zeichen reduziert. Das ist eine Reduktion von 76,5\%!			
+
+			Das gängigste Komprimierungsprogramm im Web ist GZIP und wird von allen modernen Browsern unterstützt. Es arbeitet nach dem "`Deflate"'-Algorithmus und Komprimiert Daten verlustlos.\footnote{Eine ausführlichere Beschreibung über den GZIP Algorithmus und der textbasierter Dokumentkomprimierung ist hier zu finden: \url{http://www.infinitepartitions.com/art001.html}. Für ein tiefere Verständnis bietet sich dieses Video von Google an: \url{http://tinyurl.com/mfxt5zt}} Je länger eine Textdatei ist, umso drastischer kann sich die Komprimierung auswirken. GZIP ist meistens Standardmäßig aktiviert. Falls nicht kann GZIP mittels \texttt{htaccess} Eintrag von Listing \ref{lst:gzip} in Apache aktiviert werden.\footnote{Für andere Server wie zum Beispiel Nginx oder Node.js gibt es auf GitHub fertige Konfigurationen \url{https://github.com/h5bp/server-configs}} Einträge in die \texttt{htaccess}-Datei sollten nur dann eingesetzt werden, wenn man zum Beispiel ein Shared Hosting verwendet und dadurch keinen direkten Zugang zur Serverkonfiguration hat. Grund dafür ist, dass die Konfiguration von Apache mittels htaccess den Server verlangsamt.\autocite{apache}
 
 			\begin{lstlisting}[captionpos=b, caption=gzip, label=lst:gzip, language=bash]
 				## gzip Compression if availiable
@@ -476,30 +497,49 @@
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.5\textwidth]{gzip_compression.jpg}
-					\caption{Testen von GZIP anhand von hs-weingarten.de (Eigene Abbildung nach: feedTheBot.com)}
+					\caption{Testen von GZIP anhand von andreaslorer.de (Eigene Abbildung nach: feedTheBot.com)}
 					\label{fig:gzip_compression}
 				\end{center}
 			\end{figure}
+
+			Diesem Tool sollte aber nicht einfach nur blind vertraut werden. Es gibt Ressourcen die müssen explizit als Komprimierbar gekennzeichnet werden. So sollte mittels dem "`Chrome Developer Tool"' (oder vergleichbare Tools wie z.B. Firebug in Firefox) nachgesehen werden, ob alle Ressourcen auch tatsächlich mittels GZIP komprimiert werden. Abbildung \ref{fig:gzip_json} zeigt, dass die Datei: "`Gallery.php"' trotz aktiviertem GZIP keine Komprimierung verwendete.
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{gzip_json.jpg}
+					\caption{Die Serverantwort im JSON-Format ohne und mit GZIP}
+					\label{fig:gzip_json}
+				\end{center}
+			\end{figure}
+
+			Der unterstrichene Wert ist dabei die Datengröße vor GZIP und der farblich hinterlegte Wert nach GZIP. Wie zu sehen ist konnte die zu übertragende Datengröße um fast das 20-Fache verringert werden! Entsprechend drastisch sank auch die Zeit für das herunterladen der Datei. Wie konnte das erreicht werden? Um GZIP für json-Dateiformate zu ermöglichen ist nur dieser Eintrag in der PHP-Datei (hier in "`Gallery.php"') nötig:
+
+			\begin{lstlisting}[captionpos=b, caption=, label=lst:encodeJson]
+				header('Content-Type: text/javascript');
+				header('Accept-Encoding: gzip');
+				ob_start('ob_gzhandler');
+			\end{lstlisting}
+
+			Manchmal sind es sehr kleine Dinge die eine überaus große Wirkung haben können und die oftmals übersehen werden.
 			
-			\pagebreak
 		% subsubsection komprimierung_aktivieren (end)
 
-		\subsubsection{"`Keep Alive"' ermöglichen} % (fold)
+		\subsubsection{"`Keep-alive"' ermöglichen} % (fold)
 		\label{ssub:keep_alive_ermöglichen}
-			Eine weitere Einstellung die in Apache vorgenommen werden kann ist "`Keep Alive"' und hat folgende Bedeutung:
+			Eine weitere Einstellung die in Apache vorgenommen werden kann ist "`keep-live"' und hat folgende Bedeutung:
 			\begin{quote}
 				\textit{"`Webpages are often a collection of many files and if a new connection (the brief communication) has to be opened for each and everyone of those files it could take significantly longer to display that webpage.\\
 				More officially the definition of HTTP keep-alive would be something like: a method to allow the same tcp connection for HTTP conversation instead of opening new one with each new request."'}\autocite{sextonAlive}
 			\end{quote}
 
-		\begin{lstlisting}[captionpos=b, caption=.htaccess Eintrag nach \autocite{sextonAlive}, label=lst:keepAlive, language=bash]
+		\begin{lstlisting}[captionpos=b, caption=htaccess Eintrag nach \autocite{sextonAlive}, label=lst:keepAlive, language=bash]
 			## keep-alive
 			<ifModule mod_headers.c> 
-			Header set Connection keep-alive
+			Header set Connection keep alive
 			</ifModule>
 		\end{lstlisting}
 			
-		Dieser Eintrag in der .htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep alive zu aktivieren.}
+		Dieser Eintrag in der htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep-alive zu aktivieren.} Mittels Webpagetest kann überprüft werden, ob keep-alive auf dem Server aktiviert ist.
 		% subsubsection keep_alive_ermöglichen (end)
 		\pagebreak
 
@@ -557,7 +597,7 @@
 				\end{center}
 			\end{figure}
 			
-			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird um alle Icons, die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die Größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung, muss die ganze Datei (die im besten Fall bereits gecached wurde) neu angefragt und ausgetauscht werden.
+			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird um alle Icons, die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung, muss die ganze Datei (die im besten Fall bereits gecached wurde) neu heruntergeladen werden.
 			
 		% subsubsection image_spriting (end)
 
@@ -587,8 +627,7 @@
 
 		\subsubsection{Responsive Images} % (fold)
 		\label{ssub:responsive_images}
-			Bei Bootstrap gibt es die Möglichkeit dem Bild eine Klasse zuzuweisen und das Bild wird dann abhängig von der Fenstergröße skaliert. Genau das steckt aber nicht hinter diesem Begriff. "`Responsive Images"' ist eine auf das Gerät des Endanwenders angepasste Auslieferung von Bildern.\\
-			Auf vielen Webanwendungen sieht man folgendes:
+			"`Responsive Images"' ist eine auf das Gerät des Endanwenders angepasste Auslieferung von Bildern. Auf vielen Webanwendungen sieht man folgendes:
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -628,19 +667,18 @@
 			Wie zu sehen ist wurden 3 Zeilen eingefügt, die sich lediglich im Typ unterscheiden. Das bedeutet, dass Anwender mit Chrome Browser das Chrome eigene Bildformat .webp bekommen und alle anderen das normale .jpg Format. Voraussetzung ist natürlich, all diese Bilder in ihren verschiedenen Auflösungen und Formaten anzulegen und bereit zu stellen, was einen Mehraufwand bedeutet.
 			Picturefill ermöglicht es, Downsampling zu vermeiden und einen auf das Gerät angepasste Version des Bildes auszuliefern. Dadurch sinkt die Anzahl von Bytes die Übertragen werden müssen enorm.
 
-
 		% subsubsection responsive_images (end)
 
 		\subsubsection{Adaptive Images} % (fold)
 		\label{ssub:adaptive_images}
-			Adaptive Images ist ein Skript, das mit Hilfe eines PHP-Skripts und einer .htaccess Datei Bilder auf dem Server automatisch auf die verschiedenen Gerätegrößen zuschneidet. Ruft ein Anwender die Seite auf, Prüft das Skript die Größe des Bildschirms und liefer anschlißend das für ihn passende Bild aus. \footnote{Mehr über dieses Skript ist hier zu finden: \url{http://adaptive-images.com/}}
+			Adaptive Images ist ein PHP-Skript\footnote{Mehr über dieses Skript ist hier zu finden: \url{http://adaptive-images.com/}}, das mit Hilfe einer htaccess Datei Bilder auf dem Server automatisch auf die verschiedenen Gerätegrößen zuschneidet. Ruft ein Anwender die Seite auf, prüft das Skript die Größe des Bildschirms und liefer anschlißend das für ihn passende Bild aus. 
 
 		% subsubsection adaptive_images (end)
 
-		\subsubsection{Lazy Loading} % (fold)
-		\label{ssub:lazy_loading}
-		
-		% subsubsection lazy_loading (end)
+		\subsubsection{Verzögertes Laden von Bildern} % (fold)
+		\label{ssub:verzögertes_laden_von_bildern}
+			
+		% subsubsection verzögertes_laden_von_bildern (end)
 
 	% subsection bilder_optimieren (end)
 

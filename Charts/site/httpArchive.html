@@ -7,7 +7,7 @@
     <title>Web Performance for mobile users</title>
 
     <!-- don't remove these build comments! -->
-    <!-- build:css assets/css/all.min.css?v0.1 -->
+    <!-- build:css assets/css/all.min.css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <!-- endbuild -->
@@ -62,7 +62,7 @@
       <div class="jumbotron">
         <h4>Total Site Size in Kilobytes: Data from <a href="https://bigquery.cloud.google.com" title="">Bigquery</a></h4>
         <div class="chart-wrapper">
-          <canvas id="totalBytes" width="600" height="300"></canvas>
+          <canvas id="totalBytes"></canvas>
           <div class="legende">
             Legende: <div class="btn btn-green">10th</div>
                      <div class="btn btn-yellow">Median</div>
@@ -78,7 +78,7 @@
 
     <!-- don't remove these build comments! -->
     
-    <!-- build:js assets/js/bundle.min.js?v0.1 -->    
+    <!-- build:js assets/js/bundle.min.js -->    
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/chartjs/Chart.min.js"></script>

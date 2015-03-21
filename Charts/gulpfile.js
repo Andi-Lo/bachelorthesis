@@ -37,7 +37,7 @@ module.exports = gulp;
 // browserify task: builds a bundle out of your scripts
 gulp.task('buildBundle', function() {
   // Single entry point to browserify
-  gulp.src('./site/assets/js/scripts.js')
+  return gulp.src('./site/assets/js/scripts.js')
     .pipe(gulpBrowserify({
       insertGlobals : false
     }))
