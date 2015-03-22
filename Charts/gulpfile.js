@@ -66,7 +66,6 @@ function bundle() {
     .pipe(gulp.dest('./site/assets/js/'));
 }
 
-
 // uncss: optional task - removes all unused css selectors from a file (does not overwrite)
 gulp.task('uncss', function() {
   return gulp.src(['./site/assets/css/**/*.css'])
@@ -109,7 +108,6 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('site/assets/css/'))
     .pipe(gulp.dest('dist/assets/css/'));
 });
-
 
 // jshint task: lints javascript errors
 gulp.task('jshint', function () {
