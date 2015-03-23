@@ -64,8 +64,8 @@
 
 	% subsection node_package_manager (end)
 
-	\subsection{Task Manager - Gulp} % (fold)
-	\label{sub:task_manager_gulp}
+	\subsection{Gulp Task Manager} % (fold)
+	\label{sub:gulp_task_manager}
 		Warum und für was braucht es überhaupt einen Task Manager?
 		\begin{quote}
 			\textit{If you aren't using productivity tools or task automation, you are working \textbf{too hard.} [...] Automation isn't about being lazy. It's about being \textbf{efficient}.}\autocite[p. 18,78]{addyOsmani14}
@@ -81,12 +81,12 @@
 			\end{center}
 		\end{figure}
 
-		Gulp besteht nur aus 4 Kommandos:
+		Gulp besteht aus nur 4 Kommandos:
 		\begin{enumerate}
 			\item gulp.task: Definiert einen Namen für einen Gulp Task. Dadurch wird dieser Task über die Kommandozeile benutzbar. Für Anwender die wenig mit der Kommandozeile arbeiten wollen gibt es auch eine Google Chrome Browsererweiterung namens Gulp-devtools. Damit lassen sich die verschiedenen Tasks ganz einfach über eine Benutzeroberfläche verwenden.
 			\item gulp.src: Greift auf eine oder mehrere Dateien zu. Auch Ordner können angegeben werden.
 			\item gulp.dest: Schreibt die Datei in den angegebenen Ort.
-			\item pipe: Mittels "`pipe"' lassen sich die Dateien (auch file streams genannt) modifizieren. Dabei lässt sich pipe beliebig oft aufrufen. Die Aufgabe: "`minify, uglify und concatenating"' könnte dabei so erfolgen:
+			\item pipe: Mittels "`pipe"' lassen sich die Dateien (auch "`file streams"'  genannt) modifizieren. Dabei lässt sich pipe beliebig oft aufrufen. Die Aufgabe: "`minify, uglify und concatenating"' könnte dabei so erfolgen:
 			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
 // require the gulp modules needed:
 var gulp = require('gulp');
@@ -101,24 +101,131 @@ gulp.task('javascript', function () {
       .pipe(gulp.dest('dist/assets/js/'));
 });
 			\end{lstlisting}
-			Dieser Task mit dem namen "`javascript"' holt nun alle Javascript Dateien aus dem Ordner "`libs"' und "`js"', fügt diese zu einer einzigen Datei zusammen und bennent sie "`bundle.min.js"'. Danach erfolgt das "`uglify"' (beinhaltet das "`minify"'). Zum Schluss wird die Datei in den Ordner "`dist/assets/js"' geschrieben. Die original Dateien werden dabei nicht modifiziert. Es sind auch so genannte "`watch"' Tasks möglich, die bei einer Dateiänderung ausgeführt werden können. So kann zum Beispiel der Browser immer dann neu geladen werden, wenn sich eine CSS Datei geändert hat. Dadurch wird ein manuelles neu Laden, um die Änderungen zu betrachten, hinfällig.
-				
+			Dieser Task mit dem namen "`javascript"' holt nun alle Javascript Dateien aus dem Ordner "`libs"' und "`js"', fügt diese zu einer einzigen Datei zusammen und bennent sie "`bundle.min.js"'. Danach erfolgt das "`uglify"' (beinhaltet das "`minify"'). Zum Schluss wird die Datei in den Ordner "`dist/assets/js"' geschrieben. Die original Dateien werden dabei nicht modifiziert. Es sind auch so genannte "`watch"' Tasks möglich, die bei einer Dateiänderung ausgeführt werden können. So kann der Browser immer dann neu geladen werden, wenn sich eine CSS Datei geändert hat. Dadurch wird ein manuelles neu Laden, um die Änderungen zu betrachten, hinfällig.	
 		\end{enumerate}
 
-		Grunt hat gegenüber Gulp den Vorteil, dass es älter ist als sein Konkurrent. Dadurch gibt es viele Pakete, die nur mittels Grunt zur Verfügung stehen. Beispielsweise das Paket "`grunt-responsive-images"'. Damit lassen sich aus einem gegebenen Bild, automatisch verschiedenste Bildgrößen herausrechnen und abspeichern. Dies ist besonders hilfreich, wenn man "`responsive images"' wie in Punkt: \ref{ssub:responsive_images} beschrieben, verwenden möchte. Einen Blick auf Grunt kann sich also druchaus lohnen.
+		Grunt hat gegenüber Gulp den Vorteil, dass es älter ist als sein Konkurrent. Dadurch gibt es viele Pakete, die nur mittels Grunt zur Verfügung stehen. Beispielsweise das Paket "`grunt-responsive-images"'. Damit lassen sich aus einem gegebenen Bild, automatisch verschiedenste Bildgrößen herausrechnen und abspeichern. Dies ist besonders hilfreich, wenn man "`responsive images"' wie in Punkt: \ref{ssub:responsive_images} beschrieben, verwenden möchte. Einen Blick auf Grunt kann sich also druchaus lohnen.\\
+		\pagebreak
 		
-	% subsection task_manager_gulp (end)
+	% subsection gulp_task_manager (end)
 
 	\subsection{Yeoman} % (fold)
 	\label{sub:yeoman}
-		- What is yeoman?
-		- Now all comes together (npm, gulp, gulp tasks, vagrant?)
-		- Provides modern scaffolding for projects
-		- Uses best practices for webapps
-		- Customize it via prompting
-		- Create your own Generator
-		- Improves your workflow by providing a rapid start and tools
+		Ein Projekt wird oftmals Manuell oder mittels eines Programms, wie zum Beispiel Php-Storm oder Visual Studio erstellt. Es wird ein passender Projekttyp gewählt und das Programm erzeugt dann eine fertige Ordnerstruktur mit den wichtigsten Dateien.
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=\textwidth]{php_storm_scaffolding.jpg}
+				\caption{Projekt erstellen via Php-Storm (Eigene Abbildung)}
+				\label{fig:php_storm_scaffolding}
+			\end{center}
+		\end{figure}
+		
+		\url{http://yeoman.io/} ist ein Tool für das schnelle Erstellen eines Grundgerüsts für ein Projekt.
+
+		\begin{quote}
+			\textit{"`Yeoman helps you to kickstart new projects, prescribing best practices and tools to help you stay productive.\\
+			To do so, we provide a generator ecosystem. A generator is basically a plugin that can be run with the `yo` command to scaffold complete projects or useful parts.\\
+			Through our official Generators, we promote the "`Yeoman workflow"'. [...] We take care of providing everything needed to get started without any of the normal headaches associated with a manual setup."'} (\url{http://yeoman.io})
+		\end{quote}
+
+		Es stellt sogenannte "`Generators"' zur Verfügung, die genau diese Funktionalität der Projekterstellung abbildet. Dabei wird das Ziel verfolgt, "`Best Practices"' für das jeweilige Projekt umzusetzen.
+		Der Vorteil von Yeoman besteht darin, dass es eine enorme Vielzahl an Generatoren zur Verfügung stellt. So gibt es Generatoren für die Erstellung von Web-Apps, Chrome Browser Erweiterungen, Wordpress Blogs, Firefox OS Apps und noch 1538 \footnote{Eine volle Liste an verfügbaren Generatoren ist hier zu finden: \url{http://yeoman.io/generators/}} weitere (Stand 23.03.15). 
+		Es steht als \texttt{npm} Paket zur Verfügung und lässt sich mittels. "`npm install -g yo"' mit Hilfe der Kommandozeile installieren. Via "`nmp install -g generator-someName"' lassen sich dann beliebige Generatoren dazu installieren. Yeoman bringt dabei die zuvor vorgestellten Tools wie Gulp / Grunt und Bower zusammen. Durch das Ausführen wird das gesamte Projekt angelegt:
+		
+		\begin{itemize}
+			\item Es werden alle \texttt{npm} Pakete (Bower, Gulp usw.) die nötig sind automatisch installiert.
+			\item Die Ordnersturktur mit einer CSS und Javascript Datei wird angelegt und im HTML Dokument eingebunden.
+			\item Nach der Installation stehen die wichtigsten Gulp Tasks zur Verfügung, ohne dass man sie selber schreiben muss.
+			\item Durch Gulp besteht die Möglichkeit einen Webserver mittels Kommando "`gulp serve"' zu starten.
+			\item Es bestehen zusätzliche Funktionalitäten, wie das automatische Aktualisieren des Browsers nach einer Änderung, zur Verfügung.
+			\item Mittels Eingabeaufforderung lässt sich auswählen, welche Module (Sass, Bootstrap, Modernizr) enthalten sein sollen und welche nicht.
+		\end{itemize}
+
+		Das Ausführen von:
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=0.6\textwidth]{yeoman_generator.jpg}
+				\caption{Starten eines neuen Projekts mittels generator-gulp-webapp (Eigene Abbildung)}
+				\label{fig:yeoman_generator}
+			\end{center}
+		\end{figure}
+
+		würde innerhalb von wenigen Minuten ein Projekt anlegen, dass bereits fertig mit Bootstrap, JQuery und einem HTML Dokument konfiguriert ist. Mittels "`gulp serve"' kann das direkt im Browser betrachtet werden:
+
+		\begin{figure}[htbp]
+			\begin{center}
+				\includegraphics[width=\textwidth]{yeoman_project_start.jpg}
+				\caption{Ergebnis des Kommandos: "`yo gulp-webapp"' (Eigene Abbildung)}
+				\label{fig:yeoman_project_start}
+			\end{center}
+		\end{figure}
+				
+		\subsubsection{Eigene Generatoren erstellen} % (fold)
+		\label{ssub:eigene_generatoren_erstellen}
+			Yeoman bietet jedem die Möglichkeit einen eigenen Generator zu erstellen. Auch dafür gibt es wiederrum einen Generator, den "`generator-generator"'. Damit lässt sich eine persönliche Projektstruktur erstellen, die den eigenen Projekten gerecht wird. Dadurch lassen sich beispielsweise Skripte zum verzögerten Laden von Javascript, damit das Rendern nicht blockiert wird, von Beginn an in das eigene Projekt integrieren. Eigene Generatoren können ganz einfach Veröffentlicht werden. Es muss lediglich ein Benutzer mittels "`npm adduser"' angelegt werden und dann kann mittels "`npm publish"' der eigene Generator als \texttt{npm} Paket zur Verfügung gestellt werden. Auch Updates lassen sich mittels "`npm publish"' binnen Sekunden einspielen. Mein persönlicher Generator ist zum Beispiel unter: \url{https://www.npmjs.com/package/generator-4dev} zu finden und kann von jedem über "`npm install -g generator-4dev"' installiert und anschließend mittels "`yo 4dev"' aufgerufen werden.\\
+
+			Für ein Unternehmen könnte dies zum Beispiel bedeuten, mit einem eigenen Generator eine einheitliche Projektstruktur einzuführen, der die "`best practices"' des Unternehmens abbildet. Alternativ könnte auch ein Konsens gefunden werden, welcher der bereits existierenden Generatoren für die jeweils eigenen Projekte einsetzbar wäre.\\
+
+			Eine ausführliche Anleitung und Dokumentation zur Erstellung von Generatoren ist der offiziellen Seite: \url{http://yeoman.io/authoring/index.html} zu entnehmen.
+		
+		% subsubsection eigene_generatoren_erstellen (end)
+		
 	% subsection yeoman (end)
+
+	\subsection{Zusammengefasst}
+	\label{sub:zusammengefasst}
+		Gulp, Bower und Yeoman arbeiten perfekt zusammen und ermöglichen einen modernen Workflow mit den momentan gültigen "`best practices"'. Mittels \texttt{npm} und \texttt{Bower} lassen sich Pakete ganz einfach installieren, deinstallieren und updaten, während gleichzeitig eine einheitliche Entwicklungsumgebung bereitgestellt wird. Außerdem bieten viele Frameworks die Möglichkeit, mittels Bower nur einzelne Module zu installieren. Dadurch ist es möglich nur das Nötigste in die Seite einzubinden.\\ Gulp ermöglicht eine umfassende Automatisierung von Aufgaben, die gerade für die web performance sehr wichtig sind. Folgende Projektstruktur erweist sich als sinnvoll:
+
+		\lstset{
+		 morekeywords={dist,site, node_modules}
+		}
+		\begin{lstlisting}[captionpos=b, caption=Projektstruktur, label=lst:projectTree]
+		.
+		|_ site/
+		|	|_ bower_components/
+		|	|_ index.html
+		|	|_ assets/
+		|			|_ images/...
+		|			|_ js/
+		|			|		|_ script_A.js
+		|			|		|_ script_B.js
+		|			|		|_ script_C.js
+		|			|
+		|			|_ css/
+		|			|		|_ style_A.css
+		|			|		|_ style_B.css
+		|			|		|_ style_C.css
+		|			|_ ...
+		|
+		|_ dist/
+		|		|_ bower_components/
+		|		|_ index.html
+		|		|_ assets/
+		|		|_ images/...
+		|		|_ js/
+		|		|		|_ script_all.js
+		|		|
+		|		|_ css/
+		|		|		|_ style_all.css
+		|		|_ ...
+		|
+		|_ node_modules/
+		|  |_ Gulp
+		|  |_ Bower
+		|  |_ ..
+		|
+		|_ gulpfile.js
+		|_ package.json
+		|_ bower.json
+		|_ .gitignore
+		|_ ...
+		\end{lstlisting}
+
+		Der Ordner "`./site"' ist dabei der Ordner, in dem die Entwicklung stattfindet. Der Ordner "`./dist"' beinhaltet die für die Veröffentlichung angepasste Version von optimierten Bildern, verkleinertes und zusammengefügte CSS und Javascript Dateien und eine Kopie der restlichen, für die Webanwendung wichtigen Elemente. Diese werden automatisch mittels Gulp erzeugt (meistens durch einne sogenannten "`build Task"' ) und lassen sich selbst bei kleinsten Änderungen an der Seite mit nur einem Kommando neu erstellen. Durch diese Arbeitsweise ist es möglich, dass das Projekt von beginn an einen für die Veröffentlichung optimalen Stand hat. Gulp bietet für fast alle Aufgaben eine Automatisierung und es lohnt sich ein Blick in die zahllosen Pakete \footnote{Gulp Plugin Suchmaschiene: \url{http://gulpjs.com/plugins/}} die von einer immer weiter wachsenden Community bereitgestellt werden.\\
+		Durch beachten des Kritischen Rendering-Pfads (\ref{sub:critical_render_path}), das einsetzen der unter Punkt \ref{sub:tools} vorgestellten Tools und den in dieser Arbeit vorgestellten Optimierungsmaßnahmen lässt sich eine für den Endanwender akzeptable Ladezeit erreichen.
+
+	% subsection zusammengefasst (end)
 
 % section workflow (end)
 \pagebreak

@@ -266,7 +266,7 @@
 		Folgendes ergibt sich auf der Ebene des Netzwerks:
 		\begin{itemize}
 			\item Die Ladezeit wird für mobile Anwender durch die Latenz bestimmt. 4G kann hier bereits zeiten von <100 ms liefern, was das erreichen der 1000ms Barriere enorm erleichtert.
-			\item Bei Anwendern die mittels 3G Netzwerk im Internet surfen besteht wenig Möglichkeiten eine Seite in unter einer Sekunde zu übermitteln, denn die Zeit ab dem Touch Event und im Netzwerk kann bereits schon 900 ms betragen. Diese These deckt sich auch mit den Werten, die im Laufe des Projektes gesammelt wurden. Eine Auswertung davon findet unter Punkt \ref{..} bla statt.
+			\item Bei Anwendern die mittels 3G Netzwerk im Internet surfen besteht wenig Möglichkeiten eine Seite in unter einer Sekunde zu übermitteln, denn die Zeit ab dem Touch Event und im Netzwerk kann bereits schon 900 ms betragen. Diese These deckt sich auch mit den Werten, die im Laufe des Projektes gesammelt wurden. Eine Auswertung davon findet unter Punkt \ref{sec:ergebnis} statt.
 			\item Näheres Platzieren der Bits: Durch die benutzung eines CDN's lassen sich Bits und Bytes näher am Endanwender platzieren was die Netzwerkzeiten verringert.
 			\item Sage das Nutzerverhalten voraus: Wenn der Anwender in einer Einkaufs-App 3 Schritte zum vollenden des Kaufvorgangs benötigt, dann lässt sich bei Schritt 1 bereits vorhersagen was er für weitere Ressourcen im nächsten Schritt benötigt. Diese Ressourcen könnten bereits geladen werden. Nachteil: Wenn der Nutzer nie zu Schritt 2 oder 3 kommt, wurde das Internetvolumen des Anwenders (für die der Nutzer eventuell zahlt) umsonst belastet.
 			\item Wahl eines guten Hostings: Die RTT als auch die \texttt{Server Response Time} sind je nach Anbieter unterschiedlich. Ein gutes Hosting kann hier unter umständen bereits eine enorme Verbesserung bedeuten. Zur not sollte gewechselt werden!
@@ -441,9 +441,7 @@
 	  	\item Zeit fürs Parsen, Ausführen und Rendern: ca. 500 ms \footnote{Dies ist in der Abbildung mittels rotem Pfeil (<- ->) makiert}:  
 	  \end{itemize}
  
-	  Obwohl hier nur eine 6.3kb Datei heruntergeladen wurde und keine 40kb so wie in Beispiel \ref{fig:1000ms_budget}, ist es ohne eine geringere Latenz (4G) nicht möglich unter die 1000 ms Barriere zu kommen. Leider stellt der Serviceanbieter von \url{Webpagtest.org} keine Testumgebung mit 4G zu Verfügung. Ein Beweis für das erreichen eines "`first render"' mittels Smartphone in unter 1000 ms Sekunde steht folglich aus. Mittels Kabelverbindung sind Werte um die 300 ms zu erreichen, dies wird per Datenauswertung in Kapitel \ref{..} ? gezeigt.
-
-	  % evt hinzufügen von meinen Daten als Diagramm
+	  Obwohl hier nur eine 6.3kb Datei heruntergeladen wurde und keine 40kb so wie in Beispiel \ref{fig:1000ms_budget}, ist es ohne eine geringere Latenz (4G) nicht möglich unter die 1000 ms Barriere zu kommen. Leider stellt der Serviceanbieter von \url{Webpagtest.org} keine Testumgebung mit 4G zu Verfügung. Ein Beweis für das erreichen eines "`first render"' mittels Smartphone in unter 1000 ms Sekunde steht folglich aus. Mittels Kabelverbindung sind Werte um die 300 ms zu erreichen, dies wird per Datenauswertung in Kapitel \ref{sec:ergebnis} gezeigt.
 
 	% subsection analyse_des_wasserfalls (end)
 

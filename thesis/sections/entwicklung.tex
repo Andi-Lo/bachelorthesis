@@ -94,7 +94,7 @@
 
 				\item Testen von verschiedenen Standpunkten: Webpagetest ermöglicht es die eigene Seite von ganz verschiedenen Geographischen Standpunkten aus aufzurufen. Dadurch lässt sich ein Eindruck gewinnen, wie schnell die Seite aus dem Ausland aufrufbar ist und wie stark die Abweichung sein kann.
 
-				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{..} ?. Diese Schnittstelle Limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene Private Instanz erstellen. 
+				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{ssub:wie_wurde_getestet}. Diese Schnittstelle Limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene Private Instanz erstellen. 
 				%todo ref
 
 				\item Private Instanz: Da webpagetest Open Source ist, gibt es die möglichkeit eine eigene Private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann soviele Tests ausführen, wie die Leistungs des Servers bietet.
@@ -159,7 +159,7 @@
 		\label{ssub:critical_path_css_generator}
 			Im Kapitel "`Brechen der 1000 ms Barriere"'\ref{sec:die_1000_ms_barriere} wurde gesagt, man solle das CSS des above the folds direkt in das HTML als \texttt{inline CSS} schreiben. \url{http://jonassebastianohlsson.com/criticalpathcssgenerator/} erstellt aus einer gegebener URL und dem dazugehörigen CSS genau den CSS-Code, der für den above the fold Bereich nötig ist. Das Ergebnis lässt sich dann bequem in das eigene HTML einfügen.\\
 
-			Dieser Generator funktioniert allerdings nur dann gut, wenn sowohl die Smartphone, als auch Desktop Darstellung identisches CSS haben. Bootstrap zum Beispiel manipuliert die Navigation auf der Smartphone Ansicht per Javascript und fügt dabei Elemente ein. Diese Elemente kennt dieser Generator natürlich nicht und kann sie folglich auch nicht beachten. Eine alternative Methode wird in Kapitel ... \ref{..} ? vorgestellt.
+			Dieser Generator funktioniert allerdings nur dann gut, wenn sowohl die Smartphone, als auch Desktop Darstellung identisches CSS haben. Bootstrap zum Beispiel manipuliert die Navigation auf der Smartphone Ansicht per Javascript und fügt dabei Elemente ein. Diese Elemente kennt dieser Generator natürlich nicht und kann sie folglich auch nicht beachten.
 
 		% subsubsection critical_path_css_generator (end)
 
@@ -189,8 +189,7 @@
 
 	\subsection{Ausgangspunkt}
 	\label{sub:ausgangspunkt}
-		Im folgenden Abschnitt soll der Prozess beschrieben werden, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von Beginn an war es wichtig, den Verbesserungsablauf zu Dokumentieren und in konkrete Daten zu fassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die möglichkeit Skripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), dass es ermöglicht Webpagtestest innerhalb einer Google Tabelle\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurde während der Entwicklungsphase täglich tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Daten erfolgt in Punkt \ref{..} ?\\
-		%todo ref
+		Im folgenden Abschnitt soll der Prozess beschrieben werden, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von Beginn an war es wichtig, den Verbesserungsablauf zu Dokumentieren und in konkrete Daten zu fassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die möglichkeit Skripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), dass es ermöglicht Webpagtestest innerhalb einer Google Tabelle\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurde während der Entwicklungsphase täglich tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Daten erfolgt in Punkt \ref{sec:ergebnis}.\\
 
 		Da nur in Dulles VA eine Testinstanz mit richtigen Smartphones zur Verfügung steht, wurde mittels der \texttt{Microsoft Azure Cloud} die selbe Seite auch in den USA gehostet, um die Latenz zwischen USA und Europa zu eliminieren. Dadurch lässt sich exakter bestimmen, wie schnell ein Smartphone mit 3G Netz die Seite aufrufen kann. Leider steht keine Testinstanz mit 4G Netz zur Verfügung.\\
 
@@ -223,337 +222,355 @@
 
 		Als nächstes wird die Webanwendung mittels \texttt{Pagespeed Insight}\ref{ssub:google_pagespeed_insight} Analyisert. Das Ergebnis liefert Anhaltspunkte, was für schnellere Ladezeit alles umgesetzt werden sollte. Im folgenden soll erläutert werden, was es alles an Verbesserungen gibt und wie eine mögliche Umsetzung in der Praxis aussieht.
 
-		% zusammenfügen mit best practices?
+		%
+		% subsection ausgangspunkt (end)
+		%
+		
+		\subsection{Best Practices}
+		\label{sub:best_practices}
+		
+			\subsubsection{Render Blocking Javascript} % (fold)
+			\label{ssub:render_blocking_javascript}
+				Bereits unter Punkt \ref{ssub:rendering_pfad} ist das Blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische und für das Rendern unkritische Teile zerlegt wurde. 
 
-		\subsubsection{Render Blocking Javascript} % (fold)
-		\label{ssub:render_blocking_javascript}
-			Bereits unter Punkt \ref{ssub:rendering_pfad} ist das Blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische und für das Rendern unkritische Teile zerlegt wurde. 
-
-			Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und dafür muss das Parsen pausiert werden. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie die Reihenfolge der Skripte im HTML Dokuments vorliegen.
-			
-			\begin{figure}[htbp]
-				\begin{center}
-					\includegraphics[width=\textwidth]{defer_scripts.jpg}
-					\caption{Script-Tags mit verschiedenen Attributen (Abbildung nach \autocite{growing})}
-					\label{fig:defer_scripts}
-				\end{center}
-			\end{figure}
-
-			Diese Methode erlaubt es, Skripte parallel herunterzuladen, ohne dass der Renderprozess warten muss. Was damit nicht erreicht werden kann ist, dass der Download so lange verzögert wird, bis die für die Seiten primär wichtigen Ressourcen zuerst heruntergeladen wurden.\\
-
-			Mit Hilfe des Javascripts in Listing \ref{lst:deferJs}, kann die Datei "`defer.js"' komplett mit dem Laden verzögert werden, bis der Ladeprozess der Seite abgeschlossen ist.\\
-	
-			\begin{lstlisting}[captionpos=b, caption=Javascript nach \autocite{deferJS}, label=lst:deferJs]
-			// the function to asynchronous load js
-			function loadJS( src, cb ){
-				"use strict";
-				var ref = window.document.getElementsByTagName( "script" )[ 0 ];
-				var script = window.document.createElement( "script" );
-				script.src = src;
-				script.async = true;
-				ref.parentNode.insertBefore( script, ref );
-				if (cb && typeof(cb) === "function") {
-					script.onload = cb;
-				}
-				return script;
-			}
-
-			// the function call to load your script
-			loadJS( "path/to/script.js" );
-			\end{lstlisting}
-
-			Dieses Skript hat einen Nachteil: Es kann nicht mehrere Skripte laden, die voneinander Abhängen und deren Reihenfolge wichtig ist, um die Funktionalität zu gewährleisten. 
-
-			\begin{quote}
-				\textit{"`loadJS does nothing to manage execution order of requested scripts, so we do not advise using it to load multiple javascript files that depend on one another. It simply fetches a script and executes it as soon as possible. You can certainly use loadJS to load multiple scripts as long as those scripts are designed to execute independently of any other scripts being loaded by loadJS."'\autocite{deferJS}}
-			\end{quote}
-
-			So gibt es Skripte (Skript A) die von anderen Frameworks wie zum Beispiel JQuery (Skript B) abhängen. Das bedeutet, wenn Skript A schneller heruntergeladen und ausgeführt wird als Skript B, A bereits Funktionen von B aufruft, die noch nicht zur Verfügung stehen. Daraus resultiert ein Fehlschlagen des Skripts und somit können teile der Webanwendung nicht mehr wie beabsichtigt Funktionieren.\\
-
-			Darum gibt es Skripte die genau diese Funktionalität bereitstellen können. Skript A und B werden gleichzeitig heruntergeladen, A wird aber erst genau dann Ausgeführt, wenn B zur Verfügung steht.\\
-
-			\url{http://headjs.com/} kann das erreichen. Durch das Herunterladen und Einfügen in das HTML Dokument, kann per Funktionsaufruf die Abhängigkeit festgelegt werden:
-
-			\begin{lstlisting}[captionpos=b, caption=Headjs dependency loading (Listing nach http://headjs.com/), label=lst:headjs]
-				// Load up some script A and then script B
-				head.load("jQuery.js", function() {
-				    // Call a function when done
-				    console.log("Done loading jQuery");
-				    head.load('defer.js')
-				});
-			\end{lstlisting}
-
-			Headjs hat den Nachteil, dass es auch noch andere Funktionalitäten außer dem Laden von Javascript ermöglicht. Dies wird aber nicht benötigt und deshalb ist Headjs mit 2.1 kb doch zu groß, um es \texttt{Inline} in das HTML Dokument zu schreiben. Eine bessere Alternative ist \texttt{jQl}. \footnote{jQl an asynchronous jQuery Loader: \url{http://www.yterium.net/jQl-an-asynchronous-jQuery-Loader}}
-			Die Verwendung ist sehr Simpel:
-
-			\begin{lstlisting}[captionpos=b, caption=jQl asynchronous jQuery-Loader, label=lst:jQl]
-				<script type="text/javascript">
-					// first include jQl inline (missing here) then call these functions
-				  jQl.loadjQ('jquery.js');
-				  jQl.loadjQdep('defer.js');
-				</script>
-			\end{lstlisting}
-
-			Dieses Skript sagt im Grunde: Lade beide Dateien gleichzeitig herunter, beachte aber die Abhängigkeit (loadjQdep steht für: load dependency) von defer.js gegenüber JQuery. Ist defer.js früher heruntergeladen als JQuery, so wird gewartet und anschließend werden die Skripte in der richtigen Reihenfolge ausgeführt.\\
-
-			Für die Webseite \url{http://andreaslorer.de} wurde sowohl defer, als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann und das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
-
-			\pagebreak
-
-		% subsubsection render_blocking_javascript (end)
-
-		\subsubsection{Render Blocking CSS} % (fold)
-		\label{ssub:render_blocking_css}
-			Wie Javascript blockiert auch CSS das Rendern der Seite. In Listing \ref{deferCSS} ist ein Skript der Filament Group uzu sehen. Dieses Skript ermöglicht es CSS Verzögert zu laden. 
-
-			\begin{lstlisting}[captionpos=b, caption=load a CSS file asynchronously, label=lst:deferCSS, breaklines=false]
-			<script>
-				// minified script after: 
-				// https://github.com/filamentgroup/loadCSS/blob/master/loadCSS.js
-				// [c]2014 @scottjehl, Filament Group, Inc.
-				// Licensed MIT
-	 			function loadCSS(e,a,g,h){function f(){for(var a,c=0;c<d.length;c++)d[c].href&&
-	 				-1<d[c].href.indexOf(e)&&(a=!0);a?b.media=g||"all":setTimeout(f)}
-	 				var b=window.document.createElement("link");a=a||
-	 				window.document.getElementsByTagName("script")[0];
-	 				var d=window.document.styleSheets;b.rel="stylesheet";b.href=e;b.media="only x";
-	 				b.onload=h||function(){};a.parentNode.insertBefore(b,a);f();return b
-	 			};
-
-	  		loadCSS( "path/to/css" );
-			</script>
-
-			<!-- fallback if javascript is disabled in browser -->
-			<noscript><link href="path/to/css"></noscript>
-			\end{lstlisting}
-
-			Mehr als dieses Skript ist nicht notwendig.
+				Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und dafür muss das Parsen pausiert werden. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie die Reihenfolge der Skripte im HTML Dokuments vorliegen.
 				
-		% subsubsection render_blocking_css (end)
+				\begin{figure}[htbp]
+					\begin{center}
+						\includegraphics[width=\textwidth]{defer_scripts.jpg}
+						\caption{Script-Tags mit verschiedenen Attributen (Abbildung nach \autocite{growing})}
+						\label{fig:defer_scripts}
+					\end{center}
+				\end{figure}
 
-		\subsubsection{Inline von CSS} % (fold)
-		\label{ssub:inline_von_css}
-			Kleinere Mengen an CSS lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.
-		% subsubsection inline_von_css (end)
+				Diese Methode erlaubt es, Skripte parallel herunterzuladen, ohne dass der Renderprozess warten muss. Was damit nicht erreicht werden kann ist, dass der Download so lange verzögert wird, bis die für die Seiten primär wichtigen Ressourcen zuerst heruntergeladen wurden.\\
 
-		\subsubsection{Ressourcen reduzieren} % (fold)
-		\label{ssub:ressourcen_reduzieren}
-			Das schnellste Byte ist das, dass nicht gesendet wird und der schnellste Request ist der, der nicht gestellt wird. Deshalb gibt es drei Maßnahmen die für eine Webanwendung umgesetzt werden sollte:
-
-			\begin{itemize}
-				\item "`Minify"': Kommentare, Leerzeichen oder Zeilenumbrüche sind für die Funktionalität nicht notwendig. Bei der Verkleinerung des HTML- CSS oder Javascript Codes werden diese entfern und dadurch die Dateigröße verkleinert. Wie unter Punkt \ref{ssub:google_pagespeed_insight} angesprochen, gibt es Pagespeed Insight auch als Chrome-Erweiterung. Damit ist es möglich, eine reduzierte Version des HTML Dokuments zu erzeugen. Für Javascript ist der Closure Compiler (\ref{ssub:closure_compiler}) das richtige Werkzeug. CSS lässt sich per \url{http://cssminifier.com/} verkleinern.
-				\item "`Uglify"': Dabei werden Variablennamen, auf nur wenige Zeichen reduziert. Aber auch Code wird teilweise umgeschrieben, wenn für einen verwendeten Ausdruck beispielsweise eine kürzere Schreibweise existiert.
-
-				\begin{lstlisting}[captionpos=b, caption=Beispiel: Uglify eines Ausdrucks, label=lst:uglify]
-				// input:
-				if(foo){
-					bar();
+				Mit Hilfe des Javascripts in Listing \ref{lst:deferJs}, kann die Datei "`defer.js"' komplett mit dem Laden verzögert werden, bis der Ladeprozess der Seite abgeschlossen ist.\\
+		
+				\begin{lstlisting}[captionpos=b, caption=Javascript nach \autocite{deferJS}, label=lst:deferJs]
+				// the function to asynchronous load js
+				function loadJS( src, cb ){
+					"use strict";
+					var ref = window.document.getElementsByTagName( "script" )[ 0 ];
+					var script = window.document.createElement( "script" );
+					script.src = src;
+					script.async = true;
+					ref.parentNode.insertBefore( script, ref );
+					if (cb && typeof(cb) === "function") {
+						script.onload = cb;
+					}
+					return script;
 				}
-				else{
-					boo();
-				}
 
-				// output:
-				foo?bar():boo();
+				// the function call to load your script
+				loadJS( "path/to/script.js" );
 				\end{lstlisting}
 
-				Input und Output sind identisch in ihrem Ausdruck, die Zeichenanzahl wurde aber von 27 auf 16 verringert.
+				Dieses Skript hat einen Nachteil: Es kann nicht mehrere Skripte laden, die voneinander Abhängen und deren Reihenfolge wichtig ist, um die Funktionalität zu gewährleisten. 
 
-				\item "`Concatenate"': Damit ist das Zusammenfügen von einzelnen Dateien zu einer Einzigen gemeint. Dadurch lassen sich zusätzliche Requests einsparen. Dies hat den Vorteil, dass sowohl der TCP Slow start nur einmal eintritt als auch nur eine TCP Verbindung aufgebaut werden muss. Zusätzlich werden weniger TCP Verbindungen belegt, denn dafür gibt es, wie bereits erwähnt wurde (Punkt \ref{sub:http_1_1}), ein Limit.
-			\end{itemize}
-		% subsubsection ressourcen_reduzieren (end)
+				\begin{quote}
+					\textit{"`loadJS does nothing to manage execution order of requested scripts, so we do not advise using it to load multiple javascript files that depend on one another. It simply fetches a script and executes it as soon as possible. You can certainly use loadJS to load multiple scripts as long as those scripts are designed to execute independently of any other scripts being loaded by loadJS."'\autocite{deferJS}}
+				\end{quote}
 
-		\subsubsection{CSS-Bereitstellung optimieren} % (fold)
-		\label{ssub:css_bereitstellung_optimieren}
-			Wenn externe Ressourcen klein sind, können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Dabei sollte darauf geachtet werden, dass das HTML Dokument Komprimiert nicht die 14 kb Marke überschreitet. Dadurch kann es im ersten round trip geliefern werden. CSS Dateien die groß sind sollten per \texttt{Link-Tag} eingebunden werden und mittels Skript Verzögert geladen werden. Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
-		% subsubsection css_bereitstellung_optimieren (end)
+				So gibt es Skripte (Skript A) die von anderen Frameworks wie zum Beispiel JQuery (Skript B) abhängen. Das bedeutet, wenn Skript A schneller heruntergeladen und ausgeführt wird als Skript B, A bereits Funktionen von B aufruft, die noch nicht zur Verfügung stehen. Daraus resultiert ein Fehlschlagen des Skripts und somit können teile der Webanwendung nicht mehr wie beabsichtigt Funktionieren.\\
 
-		\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
-		\label{ssub:antwortzeit_des_servers_reduzieren}
-			Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit Webpagtest herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}. Bereits unter Punkt: \ref{sub:zusammengefasst} wurde es nahegelegt ein gutes Hosting zu wählen. Besser Sie wechseln ihr Hosting als ihre Kunden den Service.
-		% subsubsection antwortzeit_des_servers_reduzieren (end)
+				Darum gibt es Skripte die genau diese Funktionalität bereitstellen können. Skript A und B werden gleichzeitig heruntergeladen, A wird aber erst genau dann Ausgeführt, wenn B zur Verfügung steht.\\
 
-		\subsubsection{Browser-Caching nutzen} % (fold)
-		\label{ssub:browser_caching_nutzen}
-			Fehlendes Browser-Caching (das lokale Speichern von Daten) wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
-			Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden.\\
+				\url{http://headjs.com/} kann das erreichen. Durch das Herunterladen und Einfügen in das HTML Dokument, kann per Funktionsaufruf die Abhängigkeit festgelegt werden:
 
-			Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
+				\begin{lstlisting}[captionpos=b, caption=Headjs dependency loading (Listing nach http://headjs.com/), label=lst:headjs]
+					// Load up some script A and then script B
+					head.load("jQuery.js", function() {
+					    // Call a function when done
+					    console.log("Done loading jQuery");
+					    head.load('defer.js')
+					});
+				\end{lstlisting}
 
-		  \begin{lstlisting}[captionpos=b, caption=Aktivieren von Browser Caching in Apache (Listing nach: \autocite{sextonCaching}), label=lst:caching, language=bash]
-		  	## EXPIRES CACHING ##
-		  	<IfModule mod_expires.c>
-		  	ExpiresActive On
-		  	ExpiresByType image/jpg "access 1 year"
-		  	ExpiresByType image/jpeg "access 1 year"
-		  	ExpiresByType image/gif "access 1 year"
-		  	ExpiresByType image/png "access 1 year"
-		  	ExpiresByType text/css "access 1 year"
-		  	ExpiresByType text/woff "access 1 year"
-		  	ExpiresByType application/pdf "access 1 year"
-		  	ExpiresByType text/x-javascript "access 1 year"
-		  	ExpiresByType application/x-shockwave-flash "access 1 year"
-		  	ExpiresByType image/x-icon "access 1 year"
-		  	ExpiresDefault "access 1 month"
-		  	</IfModule>
-		  	\#\# EXPIRES CACHING \#\#
-		  \end{lstlisting}
+				Headjs hat den Nachteil, dass es auch noch andere Funktionalitäten außer dem Laden von Javascript ermöglicht. Dies wird aber nicht benötigt und deshalb ist Headjs mit 2.1 kb doch zu groß, um es \texttt{Inline} in das HTML Dokument zu schreiben. Eine bessere Alternative ist \texttt{jQl}. \footnote{jQl an asynchronous jQuery Loader: \url{http://www.yterium.net/jQl-an-asynchronous-jQuery-Loader}}
+				Die Verwendung ist sehr Simpel:
 
-		  Listing \ref{lst:caching} hat 2 Aufgaben. Erstens: Es setzt die Ablaufzeit für alle statischen Ressourcen auf 1 Jahr und erfüllt damit den von Google empfohlenen Wert. Längere Speicherzeiten sind dagegen nicht Empfohlen, da dies gegen die RFC-Richtlinien verstoßen würde \autocite{google14Caching}. Zweitens: Es wird mit dem HTTP Request ein Header mit gesendet. Dieser ermöglicht es dem Browser seine lokal gespeicherten Ressourcen zu managen. Er besteht aus folgenden Teilen und es ist jeweils nur \textbf{eine} der Optionen nötig.
+				\begin{lstlisting}[captionpos=b, caption=jQl asynchronous jQuery-Loader, label=lst:jQl]
+					<script type="text/javascript">
+						// first include jQl inline (missing here) then call these functions
+					  jQl.loadjQ('jquery.js');
+					  jQl.loadjQdep('defer.js');
+					</script>
+				\end{lstlisting}
 
-		  \begin{itemize}
-		  	\item Last-Modified: date
-		  	\item ETag: ID
-		  \end{itemize}
+				Dieses Skript sagt im Grunde: Lade beide Dateien gleichzeitig herunter, beachte aber die Abhängigkeit (loadjQdep steht für: load dependency) von defer.js gegenüber JQuery. Ist defer.js früher heruntergeladen als JQuery, so wird gewartet und anschließend werden die Skripte in der richtigen Reihenfolge ausgeführt.\\
 
-		  Diese beiden Header ermöglichen es dem Browser zu überprüfen, ob sich die gecachten Ressourcen geändert haben oder noch identisch sind. Last-Modified ist dabei das Datum der letzten Änderung und der ETag-Header ist ein automatisch generierter Wert, der die Datei eindeutig Identifiziert.\\
-		  Beim erneuten Laden einer Seite werden diese Header zurück an den Server gesendet und verglichen. Wenn die Datei auf dem Server geändert wurde stimmen die Werte nicht überein und der Server schickt eine entsprechende Antwort zurück.
+				Für die Webseite \url{http://andreaslorer.de} wurde sowohl defer, als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann und das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
 
-		  \begin{itemize}
-		  	\item Cache-Control: max-age=value
-		  	\item Expires: date
-		  \end{itemize}
+				\pagebreak
 
-		  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. "`Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden."'\autocite{grigorikCaching} Das bedeutet, dass die Latenz bei Smartphones für gecachte Dateien komplett negiert werden kann. Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header, muss der Browser für jede in seinem Cache befindliche Ressource, den Server anfragen. Dafür sind jedes mal ein round trip nötig.\\
+			% subsubsection render_blocking_javascript (end)
 
-		  \begin{figure}[htbp]
-		  	\begin{center}
-		  		\includegraphics[width=\textwidth]{caching_enabled.jpg}
-		  		\caption{Gecachte Ressourcen müssen nicht mehr abgefragt werden}
-		  		\label{fig:caching_enabled}
-		  	\end{center}
-		  \end{figure}
-		  
-		  Das rot unterstrichene zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`Not-Modified"'. Grün zeigt, dass keinerlei Kommunikation mit dem Server nötig ist sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
-		  Fazit: Ohne Cache-Control lässt sich durch die Browser eigene Caching Funktionalität das erneute Herunterladen der Datei vermeiden. Mit Cache-Control kann sowohl das Herunterladen als auch der gesamte Verbindungsaufbau zum Server vermieden werden.\\
-		 
-		  Was aber wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten, wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
+			\subsubsection{Render Blocking CSS} % (fold)
+			\label{ssub:render_blocking_css}
+				Wie Javascript blockiert auch CSS das Rendern der Seite. In Listing \ref{deferCSS} ist ein Skript der Filament Group uzu sehen. Dieses Skript ermöglicht es CSS Verzögert zu laden. 
 
-		  \begin{enumerate}
-		  	\item Die HTML Datei sollte nicht gecached werden da sonst Änderungen nicht mehr den Anwender können.
-		  	\item Eine für die Datei angemessene max-age: Dateien die sich oft ändern dürfen auch entsprechend niedrige max-age Werte haben. Dadurch wird die Datei Zeitnah für alle Anwender neu Angefordert.
-		  	\item Ressourcen können mit einer ID versehen werden: \texttt{styles.css} wird in \texttt{styles.v1.0.1.css} umbenannt.
-		  	\item Alternativ zur ID ist auch in \texttt{Fingerprint} möglich. Dabei wird eine ID aus der Datei generiert. Ändert sich die Datei so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
-		  \end{enumerate}
+				\begin{lstlisting}[captionpos=b, caption=load a CSS file asynchronously, label=lst:deferCSS, breaklines=false]
+				<script>
+					// minified script after: 
+					// https://github.com/filamentgroup/loadCSS/blob/master/loadCSS.js
+					// [c]2014 @scottjehl, Filament Group, Inc.
+					// Licensed MIT
+		 			function loadCSS(e,a,g,h){function f(){for(var a,c=0;c<d.length;c++)d[c].href&&
+		 				-1<d[c].href.indexOf(e)&&(a=!0);a?b.media=g||"all":setTimeout(f)}
+		 				var b=window.document.createElement("link");a=a||
+		 				window.document.getElementsByTagName("script")[0];
+		 				var d=window.document.styleSheets;b.rel="stylesheet";b.href=e;b.media="only x";
+		 				b.onload=h||function(){};a.parentNode.insertBefore(b,a);f();return b
+		 			};
 
-		  Browser-Caching ist eine mächtige Funktionalität die sich jeder zu nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{htaccess}-Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
-			\begin{quote}
-				\textit{"`[...] I don't know about you, but these results came to us as a big surprise. It says that even if your assets are optimized for maximum caching, there are a significant number of users that will always have an empty cache."'\autocite{yahoo07}}
-			\end{quote}
+		  		loadCSS( "path/to/css" );
+				</script>
 
-			Folglich macht es Sinn, die Geschwindigkeit der Seite für die sogenannten "`first users"' zu optimieren und nicht von einem gecachten Zustand der Seite auszugehen.\\
-			\texttt{Feed-The-Bot} stellt ein Tool\footnote{Tool: \url{http://www.feedthebot.com/tools/if-modified/}} zu Verfügung, mit dessen Hilfe sich überprüfen lässt, ob die eigene Webseite "`Browser-Caching"' richtig einsetzt. Abbildung Nummer \ref{fig:expires_header} zeigt Links eine Seite mit aktiviertem Browser-Caching und Rechts eine Seite ohne.
-		  \begin{figure}[htbp]
-		  	\begin{center}
-		  		\includegraphics[width=\textwidth]{expires_header.jpg}
-		  		\caption{Beispiel: Eine Webseite mit und ohne "`Cache Control"'. (Eigene Abbildung nach feedthebot.com)}
-		  		\label{fig:expires_header}
-		  	\end{center}
-		  \end{figure}
-		% subsubsection browser_caching_nutzen (end)
-		\pagebreak
+				<!-- fallback if javascript is disabled in browser -->
+				<noscript><link href="path/to/css"></noscript>
+				\end{lstlisting}
 
-		\subsubsection{Komprimierung aktivieren} % (fold)
-		\label{ssub:komprimierung_aktivieren}
-			Nachdem durch das in Punkt \ref{ssub:ressourcen_reduzieren} beschriebene Verfahren die Ressourcen soweit wie möglich verkleinert wurden, können diese vor dem Versenden komprimiert werden. Dies nennt man auch Datenkomprimierung und stellt ein ganz eigenes Forschungsgebiet dar. Deshalb soll nur der Grundgedanke erklärt werden.
+				Mehr als dieses Skript ist nicht notwendig.
+					
+			% subsubsection render_blocking_css (end)
 
-			Gegeben sei folgende Textnachricht:
-			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
-# Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis temporibus incidunt id.
-# Cumque molestiae est praesentium magnam, fugit ipsa.
-format: text/plain
-date: 21.03.15
-AAAZZBBBBEEEMMM EEETTTAAAA
-			\end{lstlisting}
+			\subsubsection{Inline CSS} % (fold)
+			\label{ssub:inline_css}
+				Kleinere Mengen an CSS lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.
+			% subsubsection inline_css (end)
 
-			Diese Nachricht ist 200 Zeichen lang und kann durch einfache Regeln verkürzt werden. Zuerst werden die Kommentare, die mit \# gekennzeichnet sind entfernt, denn sie sind für die Bedeutung der Nachricht nicht relevant. Das Datum könnte in eine ID konvertiert werden: 210315. Die Nutzdaten der Nachricht wird nach Wiederholungen durchsucht. Daraus ergibt sich dann: 3A2Z4B3E3M 3E3T4A \autocite{grigorikGzip}. Die Neue Nachricht:
+			\subsubsection{Ressourcen reduzieren} % (fold)
+			\label{ssub:ressourcen_reduzieren}
+				Das schnellste Byte ist das, dass nicht gesendet wird und der schnellste Request ist der, der nicht gestellt wird. Deshalb gibt es drei Maßnahmen die für eine Webanwendung umgesetzt werden sollte:
 
-			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
-format: text/plain
-date: 210315
-3A2Z4B3E3M 3E3T4A
-			\end{lstlisting}
+				\begin{itemize}
+					\item "`Minify"': Kommentare, Leerzeichen oder Zeilenumbrüche sind für die Funktionalität nicht notwendig. Bei der Verkleinerung des HTML- CSS oder Javascript Codes werden diese entfern und dadurch die Dateigröße verkleinert. Wie unter Punkt \ref{ssub:google_pagespeed_insight} angesprochen, gibt es Pagespeed Insight auch als Chrome-Erweiterung. Damit ist es möglich, eine reduzierte Version des HTML Dokuments zu erzeugen. Für Javascript ist der Closure Compiler (\ref{ssub:closure_compiler}) das richtige Werkzeug. CSS lässt sich per \url{http://cssminifier.com/} verkleinern.
+					\item "`Uglify"': Dabei werden Variablennamen, auf nur wenige Zeichen reduziert. Aber auch Code wird teilweise umgeschrieben, wenn für einen verwendeten Ausdruck beispielsweise eine kürzere Schreibweise existiert.
 
-			Die Zeichenanzahl wurde von 200 Zeichen auf 47 Zeichen reduziert. Das ist eine Reduktion von 76,5\%!			
+					\begin{lstlisting}[captionpos=b, caption=Beispiel: Uglify eines Ausdrucks, label=lst:uglify]
+					// input:
+					if(foo){
+						bar();
+					}
+					else{
+						boo();
+					}
 
-			Das gängigste Komprimierungsprogramm im Web ist GZIP und wird von allen modernen Browsern unterstützt. Es arbeitet nach dem "`Deflate"'-Algorithmus und Komprimiert Daten verlustlos.\footnote{Eine ausführlichere Beschreibung über den GZIP Algorithmus und der textbasierter Dokumentkomprimierung ist hier zu finden: \url{http://www.infinitepartitions.com/art001.html}. Für ein tiefere Verständnis bietet sich dieses Video von Google an: \url{http://tinyurl.com/mfxt5zt}} Je länger eine Textdatei ist, umso drastischer kann sich die Komprimierung auswirken. GZIP ist meistens Standardmäßig aktiviert. Falls nicht kann GZIP mittels \texttt{htaccess} Eintrag von Listing \ref{lst:gzip} in Apache aktiviert werden.\footnote{Für andere Server wie zum Beispiel Nginx oder Node.js gibt es auf GitHub fertige Konfigurationen \url{https://github.com/h5bp/server-configs}} Einträge in die \texttt{htaccess}-Datei sollten nur dann eingesetzt werden, wenn man zum Beispiel ein Shared Hosting verwendet und dadurch keinen direkten Zugang zur Serverkonfiguration hat. Grund dafür ist, dass die Konfiguration von Apache mittels htaccess den Server verlangsamt.\autocite{apache}
+					// output:
+					foo?bar():boo();
+					\end{lstlisting}
 
-			\begin{lstlisting}[captionpos=b, caption=gzip, label=lst:gzip, language=bash]
-				## gzip Compression if availiable
-				<ifModule mod_gzip.c>
-				mod_gzip_on Yes
-				mod_gzip_dechunk Yes
-				mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
-				mod_gzip_item_include handler ^cgi-script$
-				mod_gzip_item_include mime ^text/.*
-				mod_gzip_item_include mime ^application/x-javascript.*
-				mod_gzip_item_exclude mime ^image/.*
-				mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+					Input und Output sind identisch in ihrem Ausdruck, die Zeichenanzahl wurde aber von 27 auf 16 verringert.
+
+					\item "`Concatenate"': Damit ist das Zusammenfügen von einzelnen Dateien zu einer Einzigen gemeint. Dadurch lassen sich zusätzliche Requests einsparen. Dies hat den Vorteil, dass sowohl der TCP Slow start nur einmal eintritt als auch nur eine TCP Verbindung aufgebaut werden muss. Zusätzlich werden weniger TCP Verbindungen belegt, denn dafür gibt es, wie bereits erwähnt wurde (Punkt \ref{sub:http_1_1}), ein Limit.
+				\end{itemize}
+			% subsubsection ressourcen_reduzieren (end)
+
+			\subsubsection{CSS-Bereitstellung optimieren} % (fold)
+			\label{ssub:css_bereitstellung_optimieren}
+				Wenn externe Ressourcen klein sind, können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Dabei sollte darauf geachtet werden, dass das HTML Dokument Komprimiert nicht die 14 kb Marke überschreitet. Dadurch kann es im ersten round trip geliefern werden. CSS Dateien die groß sind sollten per \texttt{Link-Tag} eingebunden werden und mittels Skript Verzögert geladen werden. Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
+			% subsubsection css_bereitstellung_optimieren (end)
+
+			\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
+			\label{ssub:antwortzeit_des_servers_reduzieren}
+				Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit Webpagtest herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}. Bereits unter Punkt: \ref{sub:zusammengefasst} wurde es nahegelegt ein gutes Hosting zu wählen. Besser Sie wechseln ihr Hosting als ihre Kunden den Service.
+			% subsubsection antwortzeit_des_servers_reduzieren (end)
+
+			\subsubsection{Browser-Caching nutzen} % (fold)
+			\label{ssub:browser_caching_nutzen}
+				Fehlendes Browser-Caching (das lokale Speichern von Daten) wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
+				Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden.\\
+
+				Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
+
+			  \begin{lstlisting}[captionpos=b, caption=Aktivieren von Browser Caching in Apache (Listing nach: \autocite{sextonCaching}), label=lst:caching, language=bash]
+			  	## EXPIRES CACHING ##
+			  	<IfModule mod_expires.c>
+			  	ExpiresActive On
+			  	ExpiresByType image/jpg "access 1 year"
+			  	ExpiresByType image/jpeg "access 1 year"
+			  	ExpiresByType image/gif "access 1 year"
+			  	ExpiresByType image/png "access 1 year"
+			  	ExpiresByType text/css "access 1 year"
+			  	ExpiresByType text/woff "access 1 year"
+			  	ExpiresByType application/pdf "access 1 year"
+			  	ExpiresByType text/x-javascript "access 1 year"
+			  	ExpiresByType application/x-shockwave-flash "access 1 year"
+			  	ExpiresByType image/x-icon "access 1 year"
+			  	ExpiresDefault "access 1 month"
+			  	</IfModule>
+			  	\#\# EXPIRES CACHING \#\#
+			  \end{lstlisting}
+
+			  Listing \ref{lst:caching} hat 2 Aufgaben. Erstens: Es setzt die Ablaufzeit für alle statischen Ressourcen auf 1 Jahr und erfüllt damit den von Google empfohlenen Wert. Längere Speicherzeiten sind dagegen nicht Empfohlen, da dies gegen die RFC-Richtlinien verstoßen würde \autocite{google14Caching}. Zweitens: Es wird mit dem HTTP Request ein Header mit gesendet. Dieser ermöglicht es dem Browser seine lokal gespeicherten Ressourcen zu managen. Er besteht aus folgenden Teilen und es ist jeweils nur \textbf{eine} der Optionen nötig.
+
+			  \begin{itemize}
+			  	\item Last-Modified: date
+			  	\item ETag: ID
+			  \end{itemize}
+
+			  Diese beiden Header ermöglichen es dem Browser zu überprüfen, ob sich die gecachten Ressourcen geändert haben oder noch identisch sind. Last-Modified ist dabei das Datum der letzten Änderung und der ETag-Header ist ein automatisch generierter Wert, der die Datei eindeutig Identifiziert.\\
+			  Beim erneuten Laden einer Seite werden diese Header zurück an den Server gesendet und verglichen. Wenn die Datei auf dem Server geändert wurde stimmen die Werte nicht überein und der Server schickt eine entsprechende Antwort zurück.
+
+			  \begin{itemize}
+			  	\item Cache-Control: max-age=value
+			  	\item Expires: date
+			  \end{itemize}
+
+			  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. "`Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden."'\autocite{grigorikCaching} Das bedeutet, dass die Latenz bei Smartphones für gecachte Dateien komplett negiert werden kann. Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header, muss der Browser für jede in seinem Cache befindliche Ressource, den Server anfragen. Dafür sind jedes mal ein round trip nötig.\\
+
+			  \begin{figure}[htbp]
+			  	\begin{center}
+			  		\includegraphics[width=\textwidth]{caching_enabled.jpg}
+			  		\caption{Gecachte Ressourcen müssen nicht mehr abgefragt werden}
+			  		\label{fig:caching_enabled}
+			  	\end{center}
+			  \end{figure}
+			  
+			  Das rot unterstrichene zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`Not-Modified"'. Grün zeigt, dass keinerlei Kommunikation mit dem Server nötig ist sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
+			  Fazit: Ohne Cache-Control lässt sich durch die Browser eigene Caching Funktionalität das erneute Herunterladen der Datei vermeiden. Mit Cache-Control kann sowohl das Herunterladen als auch der gesamte Verbindungsaufbau zum Server vermieden werden.\\
+			 
+			  Was aber wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten, wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
+
+			  \begin{enumerate}
+			  	\item Die HTML Datei sollte nicht gecached werden da sonst Änderungen nicht mehr den Anwender erreichen können.
+			  	\item Eine für die Datei angemessene max-age: Dateien die sich oft ändern dürfen auch entsprechend niedrige max-age Werte haben. Dadurch wird die Datei Zeitnah für alle Anwender neu Angefordert.
+			  	\item Ressourcen können mit einer ID versehen werden: \texttt{styles.css} wird in \texttt{styles.v1.0.1.css} umbenannt.
+			  	\item Alternativ zur ID ist auch in \texttt{Fingerprint} möglich. Dabei wird eine Zahl aus der Datei generiert. Ändert sich die Datei so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
+			  \end{enumerate}
+
+			  Browser-Caching ist eine mächtige Funktionalität die sich jeder zu nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{htaccess}-Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
+				\begin{quote}
+					\textit{"`[...] I don't know about you, but these results came to us as a big surprise. It says that even if your assets are optimized for maximum caching, there are a significant number of users that will always have an empty cache."'\autocite{yahoo07}}
+				\end{quote}
+
+				Folglich macht es Sinn, die Geschwindigkeit der Seite für die sogenannten "`first users"' zu optimieren und nicht von einem gecachten Zustand der Seite auszugehen.\\
+				\texttt{Feed-The-Bot} stellt ein Tool\footnote{Tool: \url{http://www.feedthebot.com/tools/if-modified/}} zu Verfügung, mit dessen Hilfe sich überprüfen lässt, ob die eigene Webseite "`Browser-Caching"' richtig einsetzt. Abbildung Nummer \ref{fig:expires_header} zeigt Links eine Seite mit aktiviertem Browser-Caching und Rechts eine Seite ohne.
+			  \begin{figure}[htbp]
+			  	\begin{center}
+			  		\includegraphics[width=\textwidth]{expires_header.jpg}
+			  		\caption{Beispiel: Eine Webseite mit und ohne "`Cache Control"'. (Eigene Abbildung nach feedthebot.com)}
+			  		\label{fig:expires_header}
+			  	\end{center}
+			  \end{figure}
+			% subsubsection browser_caching_nutzen (end)
+			\pagebreak
+
+			\subsubsection{Komprimierung aktivieren} % (fold)
+			\label{ssub:komprimierung_aktivieren}
+				Nachdem durch das in Punkt \ref{ssub:ressourcen_reduzieren} beschriebene Verfahren die Ressourcen soweit wie möglich verkleinert wurden, können diese vor dem Versenden komprimiert werden. Dies nennt man auch Datenkomprimierung und stellt ein ganz eigenes Forschungsgebiet dar. Deshalb soll nur der Grundgedanke erklärt werden.
+
+				Gegeben sei folgende Textnachricht:
+				\begin{lstlisting}[captionpos=b, caption=, label=lst:uncompressed, language=bash]
+		# Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis temporibus incidunt id.
+		# Cumque molestiae est praesentium magnam, fugit ipsa.
+		format: text/plain
+		date: 21.03.15
+		AAAZZBBBBEEEMMM EEETTTAAAA
+				\end{lstlisting}
+
+				Diese Nachricht ist 200 Zeichen lang und kann durch einfache Regeln verkürzt werden. Zuerst werden die Kommentare, die mit \# gekennzeichnet sind entfernt, denn sie sind für die Bedeutung der Nachricht nicht relevant. Das Datum könnte in eine ID konvertiert werden: 210315. Die Nutzdaten der Nachricht wird nach Wiederholungen durchsucht. Daraus ergibt sich dann: 3A2Z4B3E3M 3E3T4A \autocite{grigorikGzip}. Die Neue Nachricht:
+
+				\begin{lstlisting}[captionpos=b, caption=, label=lst:compressed, language=bash]
+		format: text/plain
+		date: 210315
+		3A2Z4B3E3M 3E3T4A
+				\end{lstlisting}
+
+				Die Zeichenanzahl wurde von 200 Zeichen auf 47 Zeichen reduziert. Das ist eine Reduktion von 76,5\%!			
+
+				Das gängigste Komprimierungsprogramm im Web ist GZIP und wird von allen modernen Browsern unterstützt. Es arbeitet nach dem "`Deflate"'-Algorithmus und Komprimiert Daten verlustlos.\footnote{Eine ausführlichere Beschreibung über den GZIP Algorithmus und der textbasierter Dokumentkomprimierung ist hier zu finden: \url{http://www.infinitepartitions.com/art001.html}. Für ein tiefere Verständnis bietet sich dieses Video von Google an: \url{http://tinyurl.com/mfxt5zt}} Je länger eine Textdatei ist, umso drastischer kann sich die Komprimierung auswirken. GZIP ist meistens Standardmäßig aktiviert. Falls nicht kann GZIP mittels \texttt{htaccess} Eintrag von Listing \ref{lst:gzip} in Apache aktiviert werden.\footnote{Für andere Server wie zum Beispiel Nginx oder Node.js gibt es auf GitHub fertige Konfigurationen \url{https://github.com/h5bp/server-configs}} Einträge in die \texttt{htaccess}-Datei sollten nur dann eingesetzt werden, wenn man zum Beispiel ein Shared Hosting verwendet und dadurch keinen direkten Zugang zur Serverkonfiguration hat. Grund dafür ist, dass die Konfiguration von Apache mittels htaccess den Server verlangsamt.\autocite{apache}
+
+				\begin{lstlisting}[captionpos=b, caption=GZIP htaccess Eintrag, label=lst:gzip, language=bash]
+					## gzip Compression if availiable
+					<ifModule mod_gzip.c>
+					mod_gzip_on Yes
+					mod_gzip_dechunk Yes
+					mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
+					mod_gzip_item_include handler ^cgi-script$
+					mod_gzip_item_include mime ^text/.*
+					mod_gzip_item_include mime ^application/x-javascript.*
+					mod_gzip_item_exclude mime ^image/.*
+					mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+					</ifModule>
+				\end{lstlisting}
+
+				Mittels \url{http://www.feedthebot.com/tools/gzip/} lässt sich überprüfen, ob der eigene Server GZIP erlaubt.
+
+				\begin{figure}[htbp]
+					\begin{center}
+						\includegraphics[width=0.5\textwidth]{gzip_compression.jpg}
+						\caption{Testen von GZIP anhand von andreaslorer.de (Eigene Abbildung nach: feedTheBot.com)}
+						\label{fig:gzip_compression}
+					\end{center}
+				\end{figure}
+
+				Diesem Tool sollte aber nicht einfach nur blind vertraut werden. Es gibt Ressourcen die müssen explizit als Komprimierbar gekennzeichnet werden. So sollte mittels dem "`Chrome Developer Tool"' (oder vergleichbare Tools wie z.B. Firebug in Firefox) nachgesehen werden, ob alle Ressourcen auch tatsächlich mittels GZIP komprimiert werden. Abbildung \ref{fig:gzip_json} zeigt, dass die Datei: "`Gallery.php"' trotz aktiviertem GZIP keine Komprimierung verwendete.
+
+				\begin{figure}[htbp]
+					\begin{center}
+						\includegraphics[width=\textwidth]{gzip_json.jpg}
+						\caption{Die Serverantwort im JSON-Format ohne und mit GZIP}
+						\label{fig:gzip_json}
+					\end{center}
+				\end{figure}
+
+				Der unterstrichene Wert ist dabei die Datengröße vor GZIP und der farblich hinterlegte Wert nach GZIP. Wie zu sehen ist konnte die zu übertragende Datengröße um fast das 20-Fache verringert werden! Entsprechend drastisch sank auch die Zeit für das herunterladen der Datei. Wie konnte das erreicht werden? Um GZIP für json-Dateiformate zu ermöglichen ist nur dieser Eintrag in der PHP-Datei (hier in "`Gallery.php"') nötig:
+
+				\begin{lstlisting}[captionpos=b, caption=, label=lst:encodeJson]
+					header('Content-Type: text/javascript');
+					header('Accept-Encoding: gzip');
+					ob_start('ob_gzhandler');
+				\end{lstlisting}
+
+				Manchmal sind es sehr kleine Dinge die eine überaus große Wirkung haben können und die oftmals übersehen werden.
+				
+			% subsubsection komprimierung_aktivieren (end)
+
+			\subsubsection{"`Keep-alive"' ermöglichen} % (fold)
+			\label{ssub:keep_alive_ermöglichen}
+				Eine weitere Einstellung die in Apache vorgenommen werden kann ist "`keep-live"' und hat folgende Bedeutung:
+				\begin{quote}
+					\textit{"`Webpages are often a collection of many files and if a new connection (the brief communication) has to be opened for each and everyone of those files it could take significantly longer to display that webpage.\\
+					More officially the definition of HTTP keep-alive would be something like: a method to allow the same tcp connection for HTTP conversation instead of opening new one with each new request."'}\autocite{sextonAlive}
+				\end{quote}
+
+			\begin{lstlisting}[captionpos=b, caption=htaccess Eintrag nach \autocite{sextonAlive}, label=lst:keepAlive, language=bash]
+				## keep-alive
+				<ifModule mod_headers.c> 
+				Header set Connection keep alive
 				</ifModule>
 			\end{lstlisting}
+				
+			Dieser Eintrag in der htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep-alive zu aktivieren.} Mittels Webpagetest kann überprüft werden, ob keep-alive auf dem Server aktiviert ist.
+			% subsubsection keep_alive_ermöglichen (end)
 
-			Mittels \url{http://www.feedthebot.com/tools/gzip/} lässt sich überprüfen, ob der eigene Server GZIP erlaubt.
-
-			\begin{figure}[htbp]
-				\begin{center}
-					\includegraphics[width=0.5\textwidth]{gzip_compression.jpg}
-					\caption{Testen von GZIP anhand von andreaslorer.de (Eigene Abbildung nach: feedTheBot.com)}
-					\label{fig:gzip_compression}
-				\end{center}
-			\end{figure}
-
-			Diesem Tool sollte aber nicht einfach nur blind vertraut werden. Es gibt Ressourcen die müssen explizit als Komprimierbar gekennzeichnet werden. So sollte mittels dem "`Chrome Developer Tool"' (oder vergleichbare Tools wie z.B. Firebug in Firefox) nachgesehen werden, ob alle Ressourcen auch tatsächlich mittels GZIP komprimiert werden. Abbildung \ref{fig:gzip_json} zeigt, dass die Datei: "`Gallery.php"' trotz aktiviertem GZIP keine Komprimierung verwendete.
-
-			\begin{figure}[htbp]
-				\begin{center}
-					\includegraphics[width=\textwidth]{gzip_json.jpg}
-					\caption{Die Serverantwort im JSON-Format ohne und mit GZIP}
-					\label{fig:gzip_json}
-				\end{center}
-			\end{figure}
-
-			Der unterstrichene Wert ist dabei die Datengröße vor GZIP und der farblich hinterlegte Wert nach GZIP. Wie zu sehen ist konnte die zu übertragende Datengröße um fast das 20-Fache verringert werden! Entsprechend drastisch sank auch die Zeit für das herunterladen der Datei. Wie konnte das erreicht werden? Um GZIP für json-Dateiformate zu ermöglichen ist nur dieser Eintrag in der PHP-Datei (hier in "`Gallery.php"') nötig:
-
-			\begin{lstlisting}[captionpos=b, caption=, label=lst:encodeJson]
-				header('Content-Type: text/javascript');
-				header('Accept-Encoding: gzip');
-				ob_start('ob_gzhandler');
-			\end{lstlisting}
-
-			Manchmal sind es sehr kleine Dinge die eine überaus große Wirkung haben können und die oftmals übersehen werden.
+			\subsubsection{HTML5 Link Prefetching} % (fold)
+			\label{ssub:html5_link_prefetching}
+				Mit HTML5 gibt es ein neues Link-Attribut namens "`prefetch"'. Damit lassen sich Ressourcen herunterladen, die auf der aktuellen Seite noch nicht benötigt werden. Zum Beispiel in einem Bestellprozess lässt sich bereits bei Schritt 1 sagen, was auf der Seite von Schritt 2 benötigt wird. Dadurch lässt sich die Latenz und die Zeit zum herunterladen in den Hintergrund verlagern, ohne das der Anwender davon etwas mitbekommt. Natürlich ist dies mit bedacht einzusetzen und es macht wenig Sinn große Mengen an Daten zu laden, die der Anwender vielleicht gar nie verwendet. \texttt{Prefetch} ist ganz einfach über den \texttt{Link-Tag} zu verwenden:
+				\begin{lstlisting}[captionpos=b, caption=Prefetching via Link-Tag, label=lst:prefetch]
+					<!-- load a single ressource -->
+					<link rel="prefetch" href="http://your-ressource-comes-here.jpg" />
+					<!-- or a full page -->
+					<link rel="prefetch" href="http://your-site/your-sub-site" />
+				\end{lstlisting}
+				
 			
-		% subsubsection komprimierung_aktivieren (end)
+			% subsubsection html5_link_prefetching (end)
+			\pagebreak
 
-		\subsubsection{"`Keep-alive"' ermöglichen} % (fold)
-		\label{ssub:keep_alive_ermöglichen}
-			Eine weitere Einstellung die in Apache vorgenommen werden kann ist "`keep-live"' und hat folgende Bedeutung:
-			\begin{quote}
-				\textit{"`Webpages are often a collection of many files and if a new connection (the brief communication) has to be opened for each and everyone of those files it could take significantly longer to display that webpage.\\
-				More officially the definition of HTTP keep-alive would be something like: a method to allow the same tcp connection for HTTP conversation instead of opening new one with each new request."'}\autocite{sextonAlive}
-			\end{quote}
-
-		\begin{lstlisting}[captionpos=b, caption=htaccess Eintrag nach \autocite{sextonAlive}, label=lst:keepAlive, language=bash]
-			## keep-alive
-			<ifModule mod_headers.c> 
-			Header set Connection keep alive
-			</ifModule>
-		\end{lstlisting}
-			
-		Dieser Eintrag in der htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep-alive zu aktivieren.} Mittels Webpagetest kann überprüft werden, ob keep-alive auf dem Server aktiviert ist.
-		% subsubsection keep_alive_ermöglichen (end)
-		\pagebreak
-
-	% subsection ausgangspunkt (end)
+%
+% subsection best_practices (end) 
+%	
 
 	\subsection{Bilder optimieren} % (fold)
 	\label{sub:bilder_optimieren}
-
-
-		"`Ein Bild sagt mehr als Tausend Worte."' Diesen Spruch gibt es nicht umsonst und auch im modernen Web haben immer mehr und immer größere Bilder Einzug gehalten. Sie werden eingesetzt um eine Botschaft zu übermitteln, Emotionen zu erzeugen oder als \texttt{Eyecatcher}. In Abbildung \ref{fig:site_weight} ist die durchschnittliche Seitengröße der Top 1000 Seiten\footnote{Top 1000 Seiten nach dem Ranking von Alexa: (Alexa gehört zu Amazon und liefert umfassende Analysen über das Web \url{http://www.alexa.com/}) } des Webs abgebildet. So beträgt durchschnittliche die Seitengröße (rechts) zum Zeitpunkt März 2015 rund 1843 kb. Davon sind 65\% (1112 kb) Bildmaterial. Das linke Diagramm zeigt einen Aufwärtstrend der Seitengröße in Kilobyte über die Zeitspanne von einem Jahr. Dabei repräsentiert der Graph in Lila die schlechtesten 90\% der Internetseiten, Grün die 10\% der besten Seiten und Gelb stellt den Median (Mittelwert) dar. Wie zu sehen ist werden die schlechtesten Seiten weiterhin schlechter, indem sie weiter an Kilobytes zulegen, auch der Median und die besten 10\% sind über das Jahr hinweg leicht angestiegen. Mit dem optimieren von Bildern können sehr viele Kilobytes gespart werden.
+		"`Ein Bild sagt mehr als Tausend Worte."' Diesen Spruch gibt es nicht umsonst und auch im modernen Web haben immer mehr und immer größere Bilder Einzug gehalten. Sie werden eingesetzt um eine Botschaft zu übermitteln, Emotionen zu erzeugen oder als \texttt{Eyecatcher}. In Abbildung \ref{fig:site_weight} ist die durchschnittliche Seitengröße der Top 1000 Seiten\footnote{Top 1000 Seiten nach dem Ranking von Alexa: (Alexa gehört zu Amazon und liefert umfassende Analysen über das Web \url{http://www.alexa.com/}) } des Webs abgebildet. So beträgt die durchschnittliche Seitengröße (rechts) zum Zeitpunkt März 2015 rund 1843 kb. Davon sind 65\% (1112 kb) Bildmaterial. Das linke Diagramm zeigt einen Aufwärtstrend der Seitengröße in Kilobyte über die Zeitspanne von einem Jahr. Dabei repräsentiert der Graph in Lila die schlechtesten 90\% der Internetseiten, Grün die 10\% der besten Seiten und Gelb stellt den Median (Mittelwert) dar. Wie zu sehen ist werden die schlechtesten Seiten weiterhin schlechter, indem sie weiter an Kilobytes zulegen, auch der Median und die besten 10\% sind über das Jahr hinweg leicht angestiegen. Mit dem optimieren von Bildern können sehr viele Kilobytes gespart werden.
 
 		\begin{quote}
 			\textit{"`Most sites fail to leverage best practices for optimizing images.\\
-			Despite the fact that images represent one of the single greatest performance challenges (and opportunities),		34\% of pages failed to properly implement image compression, and 76\% failed to take advantage of progressive	image rendering."'} \autocite[p. 4]{radware14}
+			Despite the fact that images represent one of the single greatest performance challenges (and opportunities), 34\% of pages failed to properly implement image compression, and 76\% failed to take advantage of progressive image rendering."'} \autocite[p. 4]{radware14}
 		\end{quote}
 
 		\begin{figure}[htbp]
@@ -566,7 +583,7 @@ date: 210315
 
 		\subsubsection{Progressive Image Rendering} % (fold)
 		\label{ssub:progressive_image_rendering}
-			Eigentlich eine sehr alte Technik ist das "`Progressive Image Rendering"'. Es kam längere Zeit außer Mode Bilder als Progressive zu speichern. Der Trend hat sich nun aber wieder geändert und Progressive Images gilt als "`Best Practice"' im Web. Sowohl Webpagetest als auch Google schlagen vor, Bilder Progressive an den Anwender auszuliefern. Testet man eine Seite via Webpagetest.org, so bekommt man unter dem Reiter "`Compress Images"' beispielsweise solch eine Auswertung:
+			Eigentlich eine sehr alte Technik ist das "`Progressive Image Rendering"'. Es kam längere Zeit außer Mode Bilder als Progressive zu speichern. Der Trend hat sich aber wieder geändert und Progressive Images gilt als "`Best Practice"' im Web. Sowohl Webpagetest als auch Google schlagen vor, Bilder Progressive an den Anwender auszuliefern. Testet man eine Seite via Webpagetest.org, so bekommt man unter dem Reiter "`Compress Images"' beispielsweise solch eine Auswertung:
 			\begin{quote}
 				Use Progressive JPEGs: 100/100\\
 				124.8 KB of a possible 124.8 KB (100\%) were from progressive JPEG images
@@ -587,7 +604,7 @@ date: 210315
 
 		\subsubsection{Image Spriting} % (fold)
 		\label{ssub:image_spriting}
-			"`Image Spriting"' bezeichnet das Kombinieren von vielen kleinen Bilddateien zu einer einzigen großen Datei.  Mittels CSS lässt sich aus dem Bild dann das Gewünschte Icon auswählen.
+			"`Image Spriting"' bezeichnet das Kombinieren von vielen kleinen Bilddateien zu einer einzigen großen Datei. Mittels CSS lässt sich aus dem Bild dann das gewünschte Icon auswählen.
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -600,7 +617,6 @@ date: 210315
 			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird um alle Icons, die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung, muss die ganze Datei (die im besten Fall bereits gecached wurde) neu heruntergeladen werden.
 			
 		% subsubsection image_spriting (end)
-
 
 		\subsubsection{Bild Komprimierung} % (fold)
 		\label{ssub:bild_komprimierung}
@@ -680,26 +696,11 @@ date: 210315
 			
 		% subsubsection verzögertes_laden_von_bildern (end)
 
-	% subsection bilder_optimieren (end)
+		\subsection{Zusammengefasst} % (fold)
+		\label{sub:zusammengefasst}
+		
+		% subsection zusammengefasst (end)
 
-	\subsection{Prozess der Validierung}
-	\label{sub:prozess_der_validierung}
-		Bereits zu Beginn des Projekts war es wichtig es messbar zu machen. Dafür wurde eine Testumgebung aufgebaut, mit deren Hilfe die Seite nach ihrer Geschwindigkeit getestet werden kann. Ganz entscheidend war dabei die Webpagetest API in Verbindung mit Google Spreadsheets. Damit ließen sich die Tests automatisiert regelmäßig ausführen und die Daten wurden automatisch in einer Tabelle gespeichert. Die volle Sammlung der Daten über den Zeitraum der Arbeit hinweig ist hier zu finden: \url{http://tinyurl.com/l5usz79}. Diese Daten wurden in Diagrammen aufbereitet und sind unter: \url{http://bithugger.github.io/bachelorthesis/} zu finden.
-
-	1089 Testläufe über Webpagtest: Zeiraum: 1 Monat
-
-	\begin{figure}[htbp]
-		\begin{center}
-			\includegraphics[width=\textwidth]{data_all.jpg}
-			\caption{...}
-			\label{fig:data_all}
-		\end{center}
-	\end{figure}
-	
-	todo
-	
-	% subsection prozess_der_validierung (end)
-
-	
+	% subsection bilder_optimieren (end)	
 
 % section entwicklung (end)
