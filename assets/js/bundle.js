@@ -228,7 +228,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataSiteSizeDesktop = [
         {
-            value: 517,
+            value: 113,
             color: '#009f5d',
             highlight: '#10b06e',
             label: 'KB'
