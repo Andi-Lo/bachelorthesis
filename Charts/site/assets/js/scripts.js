@@ -131,7 +131,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataRequestsNew = [
         {
-            value: 9,
+            value: 14,
             color:'#dc4437',
             highlight: '#eb6156',
             label: 'Images'
@@ -143,13 +143,13 @@ if (document.URL.indexOf('httpArchive') > -1 ){
             label: 'CSS'
         },
         {
-            value: 4,
+            value: 3,
             color: '#eeb302',
             highlight: '#fac62b',
             label: 'JS'
         },
         {
-            value: 2,
+            value: 4,
             color: '#949FB1',
             highlight: '#A8B3C5',
             label: 'Other'
@@ -197,13 +197,13 @@ if (document.URL.indexOf('httpArchive') > -1 ){
             label: 'CSS'
         },
         {
-            value: 4,
+            value: 3,
             color: '#eeb302',
             highlight: '#fac62b',
             label: 'JS'
         },
         {
-            value: 2,
+            value: 4,
             color: '#949FB1',
             highlight: '#A8B3C5',
             label: 'Other'
@@ -212,7 +212,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataSiteSizeMobile = [
         {
-            value: 145,
+            value: 113,
             color: '#009f5d',
             highlight: '#10b06e',
             label: 'KB'
@@ -227,7 +227,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataSiteSizeDesktop = [
         {
-            value: 113,
+            value: 283,
             color: '#009f5d',
             highlight: '#10b06e',
             label: 'KB'

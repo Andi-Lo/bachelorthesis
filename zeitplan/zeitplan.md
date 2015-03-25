@@ -16,12 +16,12 @@
 * ~~Debugging~~
 * ~~Hosting via Azure in USA hosten~~  
 
-15.03. - Entwicklung fertig schreiben  
-16.03. - Bilder optimierung  
-17.03. - Bilder optimierung  
-18.03. - Workflow  
-19.03. - Workflow  
-20.03. - Workflow  
+~~15.03. - Entwicklung fertig schreiben~~  
+~~16.03. - Bilder optimierung~~  
+~~17.03. - Bilder optimierung~~  
+~~18.03. - Workflow~~  
+~~19.03. - Workflow~~  
+~~20.03. - Workflow~~  
 
 Weekend (TGIF)  
 
