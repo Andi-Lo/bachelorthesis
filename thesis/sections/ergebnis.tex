@@ -30,6 +30,23 @@
 			\item Bytes in Document
 		\end{itemize}
 
+        Das Diagramm in Abbildung \ref{fig:data_all}, zeigt eine Übersicht der verschiedenen Messwerte über den Zeitraum des Projekts. Die Y-Achse bildet die Zeit in Millisekunden ab und die X-Achse ist das Datum der Messung. Innerhalb von 36 Tagen haben sich alle Werte signifikant verbessert.
+        % todo: wirklich 36 Tage? Nachzählen!
+
+        \begin{itemize}
+            \item Speed Index: Ein Speed Index von < 1000 Punkten wird als "`schnell genug"' angesehen. Der Median des Speed Indexes konnte von 6063 Zählern auf 1028 Zähler verringert werden. Ein niedriger Speed Index zeugt von der beachtung der \texttt{best practices}, denn er berechnet sich aus einer vielzahl von Faktoren. 
+            % welche vielzahl an faktoren?
+            % todo, evt Zitat von Twittter (how fast is fast enough?)
+            % fazit: was bedeutet der Speed Index jetzt konkret für den Anwender / Nutzer / fürs Projekt?
+            % todo, evt vergleich mit speed index der top 1000 Alexa sites
+            \item Render Start: Während dieser Wert bereits bei Projektbeginn mit 2,4 Sekunden für das erste Rendern recht gut war, konnte auch hier fast das dreifache der Zeit (287\%) eingespart werden. Dieser Wert wird durch dieses Diagramm nicht drastisch genug ausgedrückt. So konnte die alte Version der Seite auf dem Smartphone durchaus einen \texttt{Render start} von ganzen 10 Sekunden haben. Das dieser Wert im Diagramm vergleichbar gering ausfällt liegt daran, dass auch viele Tests mittels Desktop PC und Kabelverbindung eingeflossen sind. Die jetzige Renderzeit auf dem Smartphone beträgt ungefähr 1,4 Sekunden. 
+            % note: daten, die den render start von 1,4 sec belegen?
+            \item Die Ladezeit bestimmt, wie lange ein Anwender warten muss, bis eine Interaktion mit der Seite möglich ist. Dieser Wert konnte um volle 2 Sekunden verringert werden.
+            % nachprüfen ob das mit der Interaktionszeit so stimmt
+            \item Visually Complete: Der höchste Messwert mit rund 7,6 Sekunden konnte auf 1,2 Sekunden verringert werden. Der Hauptgrund dafür ist die Priorisierung des Inhalts "`above the fold"'. Bei der alten Version erfolge keine priorisierung, welche Bilder zuerst und welche zuletzt geladen werden sollen. Dadurch konnte es sein, dass Bilder die sehr weit unten platziert waren, zuerst geladen wurden. In der neuen Version wird alles, was unterhalb des "`above the fold"' ist verzögert geladen.
+            \item TTFB: Dieser Wert ist grundsätzlich durch eine Verbesserung des Hostings gesunken. 
+        \end{itemize}
+
 		\begin{figure}[htbp]
 			\begin{center}
 				\includegraphics[width=\textwidth]{data_all.jpg}
@@ -55,12 +72,12 @@
 		\end{figure}	
 
 		\begin{figure}[htbp]
-				\begin{center}
-					\includegraphics[width=\textwidth]{amount_of_requests_mobile.jpg}
-					\caption{Anzahl an Requests via Mobile}
-					\label{fig:amount_of_requests_mobile}
-				\end{center}
-			\end{figure}
+			\begin{center}
+				\includegraphics[width=\textwidth]{amount_of_requests_mobile.jpg}
+				\caption{Anzahl an Requests via Mobile}
+				\label{fig:amount_of_requests_mobile}
+			\end{center}
+        \end{figure}
 			
 				
 
