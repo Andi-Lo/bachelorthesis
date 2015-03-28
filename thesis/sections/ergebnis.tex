@@ -87,7 +87,12 @@
 	% subsection datenauswertung (end)
 % section ergebnis (end)
 
+
+
 \pagebreak
+
+
+
 
 \section{Der Weg zur Performance} % (fold)
 \label{sec:der_weg_zur_performance}
@@ -137,33 +142,91 @@
 	\end{quote}
 	Dem Kunden muss Performance als visuell greifbares Erlebnis präsentiert werden. Dabei sind nicht nur Diagramme sondern auch Tools wie Webpagetest sehr nützlich. Damit können Vergleichsvideos erstellt werden. Denkbar wäre zum Beispiel ein direkter Vergleich mit den Konkurrenzseiten zu zeigen. Auch ein Vorher- / Nachervergleich eines erfolgreichen Projekts könnte dem Kunden präsentiert werden. Zum Launch kann dann ein Vergleich mit pre- und post-Performance aufgezeigt werden.\\
 
-	Für das Team der Projekt Manager ergeben sich laut Katie Kovalcin folgende Hürde: \autocite[p. 43]{kovalcin15}\\
-	\begin{itemize}
-		\item Understand the importance
-		\item Advocate with clients
-		\item Help maintain performance budget.
-	\end{itemize}
+		\subsubsection{Projekt Manager} % (fold)
+		\label{ssub:projekt_manager}
+			Für das Team der Projekt Manager ergeben sich laut Katie Kovalcin folgende Hürde: \autocite[p. 43]{kovalcin15}\\
+			\begin{itemize}
+				\item Understand the importance
+				\item Advocate with clients
+				\item Help maintain performance budget.
+			\end{itemize}
+			Zuerst müssen die Projekt Manager verstehen, warum Web Performance wichtig für das Projekt ist um den Kunden entsprechend führen und beraten zu können. Des weiteren muss jemand dafür Sorge tragen, dass das Performance Budget (dazu später mehr) eingehalten wird. Neue Anforderungen und features müssen dementsprechend bewertet und mit dem Kunden diskutiert werden.\\
+		% subsubsection projekt_manager (end)
 
-	Zuerst müssen die Projekt Manager verstehen, warum Web Performance wichtig für das Projekt ist um den Kunden entsprechend führen und beraten zu können. Des weiteren muss jemand dafür Sorge tragen, dass das Performance Budget (dazu später mehr) eingehalten wird. Neue Anforderungen müssen dementsprechend bewertet und mit dem Kunden diskutiert werden.\\
+		\subsubsection{Aesthetic heavy designers} % (fold)
+		\label{ssub:aesthetic_heavy_designers}
+			"`Aesthetic heavy designers"' können oft nicht abschätzen, was ihre Entscheidungen für einen Einfluss auf die Webanwendung haben. Die voraussetzung dafür ist zu wissen, wie das Web funktioniert. Warum Webanwendungen langsam sind und was dazu führt. Erst dann lassen sich Entscheidungen treffen, die sowohl den Endanwender und sein Online Erlebnis, als auch den ästhetischen Anspruch zufriedenstellen.	Wikipedia beschreibt den Begriff Design so:
 
-	"`Aesthetic heavy designers"' nehmen keine Rücksicht auf die Kosten, die ihre Entscheidungen beim Entwerfen einer Webanwendung entstehen. Der Designer muss sich Fragen stellen wie: "`Welchen Mehrwert hat der Nutzer durch dieses große Keyvisual auf der Startseite"', braucht es 3 \texttt{Font-Weights} um eine gewissen \texttt{Look \& Feel} zu vermitteln oder reicht eine? Gibt es alternative Fonts die fast identisch aussehen, aber viel weniger Kilobyte benötigen? Braucht es ein Karousell mit Bildern?
-	Wikipedia beschreibt den Begriff Design so:
-	\begin{quote}
-		\textit{"`Insbesondere umfasst Design auch die Auseinandersetzung des Designers \textbf{mit der Funktion eines Objekts sowie mit dessen Interaktion mit einem Benutzer}"'} \autocite{wikipediaDesign}
-	\end{quote}
-	Design ist also mehr als nur die visuelle Aufbereitung von Informationen, es muss dem Anwender dienen. Webseiten die zu groß sind, zerstören den Ansatz von Web Performance bereits schon zu Beginn. Wie in Punkt \ref{sub:perceived_performance} gesagt, verlassen über 50\% der Nutzer eine Seite nach einer Verzögerung von nur 3 Sekunden. Die emotionsvollsten Bilder und das prächtigste Design die den Besucher anregen sollen, nützen nichts, wenn sie niemals zu sehen sein werden.
+			\begin{quote}
+				\textit{"`Insbesondere umfasst Design auch die Auseinandersetzung des Designers \textbf{mit der Funktion eines Objekts sowie mit dessen Interaktion mit einem Benutzer}"'} \autocite{wikipediaDesign}
+			\end{quote}
 
-	\begin{quote}
-		\textit{"`When you want to be fast, you have to \textbf{give up} the things slowing you down."'}\autocite[p. 2]{osmani14}
-	\end{quote}
+			Design ist also mehr als nur die visuelle Aufbereitung von Informationen, es muss in erster Linie dem Anwender dienen. Webseiten die zu groß sind, zerstören den Ansatz von Web Performance bereits schon zu Beginn. Wie in Punkt \ref{sub:perceived_performance} gesagt, verlassen über 50\% der Nutzer eine Seite nach einer Verzögerung von nur 3 Sekunden. Die emotionsvollsten Bilder und das prächtigste Design kann dem Besucher keine Botschaft vermitteln, wenn sie niemals zu sehen sein werden.
 
-	Performance darf nicht als schlimmster Feind, sondern muss bester Freund betrachtet werden.
+			\begin{quote}
+				\textit{"`When you want to be fast, you have to \textbf{give up} the things slowing you down."'}\autocite[p. 2]{osmani14}
+			\end{quote}
 
-	% - Die Bereitschaft für Performance im Unternehmen muss geschaffen sein
-	% - Es muss klar sein, warum Performance wichtig ist (für jeden)
-	% - Es muss dem Client klar gemacht werden, das kann nur geschehen wenn man selber weiß wovon man spricht
-	% - Arbeitsprozess mittels Performance Budget
-	% - Auch das Design muss kommuniziert werden
+			Performance darf nicht als schlimmster Feind, sondern muss als bester Freund betrachtet werden. Dabei findet ein Balanceakt statt. Manchmal werden Entscheidungen zugunsten der Performance, ein anderes mal für die Ästhetik getroffen. Der Schlüssel ist es, alle verfügbaren Informationen zu nutzen, um die richtigen Entscheidungen für sich und die Webanwendung zu treffen.\autocite[p. 126]{laraHogan14}\\
+			Der Designer muss sich Fragen stellen wie: "`Welchen Mehrwert hat der Nutzer durch dieses große Bild auf der Startseite"', braucht es 3 Schriftarten um einen gewissen \texttt{Look \& Feel} zu vermitteln oder reicht eine? Gibt es eine alternative Schriftart die fast identisch aussehen, aber viel weniger Bytes benötigt? 
+
+			\begin{longtable}{|>{\raggedright \arraybackslash}p{4.9cm}|>{\raggedright \arraybackslash}p{4.9cm}|>{\raggedright \arraybackslash}p{5cm}|}
+			\caption{Beispiel: Abwägung - Performance oder Ästhetik  (Tabelle nach \autocite[p. 126]{laraHogan14})}\\
+			\hline
+				\textbf{Question} & \textbf{Aesthetische Consideration} & \textbf{Performance Consideration}\\
+				\hline
+				Can I put a large hero image at the top of every page? & Eye-catching represents the brand & This could be a really large file, we want to minimize page weight\\
+				\hline
+				Should I use three Font-Weights plus a text weight? & Lots of flexibility in typography & We want to reduce page weight and requests\\
+				\hline
+				Do I need a carousel on the landing page? & Showcases lots of different content & This adds a lot of page weight and additional requests. The user might never see the 2nd image.\\
+				\hline
+				How can I demonstrate the product functionalities? & Could use a GIF or embed a video & Videos and GIF's can be very heavy.\\
+				\hline
+			\end{longtable}
+
+			Die Antworten können je nach Projekt oder Designer unterschiedlich ausfallen.
+
+			\begin{longtable}{|>{\raggedright \arraybackslash}p{7.6cm}|>{\raggedright \arraybackslash}p{7.6cm}|}
+			\caption{Beispiel: Entscheidungen (Tabelle nach \autocite[p. 127]{laraHogan14})}\\
+				\hline
+				\textbf{Question} & \textbf{Decision}\\
+				\hline
+				Can I put a large hero image at the top of very page? & Yes, we use responsive images for the different screen sizes and compress them to reduce page weight! We might lose image quality.\\
+				\hline
+				Should I use three Font-Weights plus a text weight? & We need the 3 Font-Weights, they are used by the brand. No choice there\\
+				\hline
+				Do I need a carousel on the landing page? & No the extra images are not increasing the users experience.\\
+				\hline
+				How can I demonstrate the product functionalities? & We will use CSS-Animations instead of a GIF. This will cost some of the developers time.\\
+				\hline	
+			\end{longtable}
+
+			Für viele Entscheidungsschritte macht es oft Sinn, dass Entwickler und Designer kollaborieren. Dabei können bereits zu einem sehr frühen Zeitpunkt \texttt{Bottlenecks} erkannt, alterantiven vorgeschlagen und diskutiert werden. Dafür muss es klare Regeln geben. So haben Phrasen wie: "`Das ist zu schwierig, gefällt mir nicht, dumme Idee, da gibt es keine Alternative, das Bild muss genau so aussehen"' generell nichts verloren. Viel mehr Sinn macht es Alternativen aufzuzeigen, Prioritäten zu diskutieren oder Lösungen aufzuzeigen. Ebeneso kann es hilfreich sein, früh mit einem Mockup oder Prototyp auf Code-Basis anzufangen und gemeinsam an diesem zu arbeiten.
+
+			\begin{figure}[htbp]
+				\includegraphics[width=0.5\textwidth]{project_timeline.jpg}
+				\caption{Projekt Zeitlinie}
+				\label{fig:project_timeline}
+			\end{figure}
+			
+			Auch hier gilt wieder den Balanceakt zwischen Ästhetik und Performance zu finden und nicht gegeneinander sondern miteinander zu arbeiten. Um dem ganzen einen Rahmen zu geben, in dem sich sowohl Designer, Entwickler als auch der Kunde bewegen darf, wird von vielen Performance Führsprechern ein sogenanntes "`Performance Budget"' verwendet.
+		
+		% subsubsection aesthetic_heavy_designers (end)
+
+		\subsubsection{Performance Budget} % (fold)
+		\label{ssub:performance_budget}
+		
+
+		- was ist ein performance budget?\\
+		- welchen vorteil hat das arbeiten damit?\\
+		- welche metriken gibt es?\\
+		- wie bestimme ich das richtige Budget für das Projekt? -> how fast is fast enough -> how fast is my competitor and how mutch I have to be faster, so the user notices it?\\
+		- arbeiten mit einem budget -> design -> developer -> kunde\\
+		- Vorteil / Nachteil?\\
+
+
+		% subsubsection performance_budget (end)
 
 	% subsection hürden (end)
 
