@@ -109,7 +109,7 @@
 	\subsection{Hürden} % (fold)
 	\label{sub:hürden}
 	
-	Wenn man an das Thema Web Performance denkt, so mag man in erster Linie denken, dass dies ausschließlich für die Developer von Belangen ist.
+	Wenn man an das Thema Web Performance denkt, so mag man in erster Linie denken, dass dies ausschließlich für die Entwickler von Belangen ist.
 	
 	\begin{figure}[htbp]
 		\begin{center}
@@ -155,7 +155,7 @@
 
 		\subsubsection{Aesthetic heavy designers} % (fold)
 		\label{ssub:aesthetic_heavy_designers}
-			"`Aesthetic heavy designers"' können oft nicht abschätzen, was ihre Entscheidungen für einen Einfluss auf die Webanwendung haben. Die voraussetzung dafür ist zu wissen, wie das Web funktioniert. Warum Webanwendungen langsam sind und was dazu führt. Erst dann lassen sich Entscheidungen treffen, die sowohl den Endanwender und sein Online Erlebnis, als auch den ästhetischen Anspruch zufriedenstellen.	Wikipedia beschreibt den Begriff Design so:
+			"`Aesthetic heavy designers"' können oft nicht abschätzen, was ihre Entscheidungen für einen Einfluss auf die Webanwendung haben. Die voraussetzung dafür ist zu wissen, wie das Web funktioniert. Warum Webanwendungen langsam sind und was dazu führt. Erst dann lassen sich Entscheidungen treffen, die sowohl den Endanwender und sein Online Erlebnis, als auch den ästhetischen Anspruch zufriedenstellen. Wikipedia beschreibt den Begriff Design so:
 
 			\begin{quote}
 				\textit{"`Insbesondere umfasst Design auch die Auseinandersetzung des Designers \textbf{mit der Funktion eines Objekts sowie mit dessen Interaktion mit einem Benutzer}"'} \autocite{wikipediaDesign}
@@ -202,7 +202,7 @@
 				\hline	
 			\end{longtable}
 
-			Für viele Entscheidungsschritte macht es oft Sinn, dass Entwickler und Designer kollaborieren. Dabei können bereits zu einem sehr frühen Zeitpunkt \texttt{Bottlenecks} erkannt, alterantiven vorgeschlagen und diskutiert werden. Dafür muss es klare Regeln geben. So haben Phrasen wie: "`Das ist zu schwierig, gefällt mir nicht, dumme Idee, da gibt es keine Alternative, das Bild muss genau so aussehen"' generell nichts verloren. Viel mehr Sinn macht es Alternativen zu erarbeiten, Prioritäten zu diskutieren oder Lösungen aufzuzeigen. Ebeneso kann es hilfreich sein, früh mit einem Mockup oder Prototyp auf Code-Basis anzufangen und gemeinsam an diesem Dinge auszuprobieren.
+			Für viele Entscheidungsschritte macht es oft Sinn, dass Entwickler und Designer kollaborieren. Dabei können bereits zu einem sehr frühen Zeitpunkt \texttt{Bottlenecks} erkannt, alterantiven vorgeschlagen und diskutiert werden. Dafür muss es klare Regeln geben. So haben Phrasen wie: "`Das ist zu schwierig, gefällt mir nicht, dumme Idee, da gibt es keine Alternative, das Bild muss genau so aussehen"' generell nichts verloren. Das Wort "`Performance"' darf nicht als \texttt{Trumpfkarte} für einen Entwickler gegenüber dem Designer gesehen werden. Viel mehr Sinn macht es Alternativen zu erarbeiten, Prioritäten zu diskutieren oder Lösungen aufzuzeigen. Ebeneso kann es hilfreich sein, früh mit einem Mockup oder Prototyp auf Code-Basis anzufangen und gemeinsam an diesem auszuprobieren.
 
 			\begin{figure}[htbp]
 				\includegraphics[width=0.5\textwidth]{project_timeline.jpg}
@@ -210,40 +210,132 @@
 				\label{fig:project_timeline}
 			\end{figure}
 			
-			Auch hier gilt wieder den Balanceakt zwischen Ästhetik und Performance zu finden und nicht gegeneinander sondern miteinander zu arbeiten. Um dem ganzen einen Rahmen zu geben, in dem sich sowohl Designer, Entwickler als auch der Kunde bewegen darf, wird von vielen Performance Führsprechern ein sogenanntes "`Performance Budget"' verwendet.
+			Auch hier gilt wieder den Balanceakt zwischen Ästhetik und Performance zu finden und nicht gegeneinander, sondern miteinander zu arbeiten. Um dem ganzen einen Rahmen zu geben, in dem sich sowohl Designer, Entwickler als auch der Kunde bewegen darf, wird von vielen Performance Führsprechern ein sogenanntes "`Performance Budget"' verwendet.
 		
 		% subsubsection aesthetic_heavy_designers (end)
-
-		\subsubsection{Performance Budget} % (fold)
-		\label{ssub:performance_budget}
-
-			Ein Performance Budget bedeutet, dass ein Wert gesetzt wird, der von der Seite nicht überschritten werden darf. Dieser Wert kann ein ganz simpler sein, wie die Ladezeit der Seite oder aber eine komplexere Metrik aus verscheidenen Werten.\\
-			Ein sehr simple Metrik währe es, den Speed Index als Budget zu setzen. Jede Seite sollte dann unter diesem festgelegten Wert bleiben. Oftmals ist es aber besser verschiedene Werte als Budget zu setzen. Eine Kombination aus: Anzahl Requests, maximale Seitengröße, maximales Gewicht der Bilder plus der Speed Index können eine sinnvolle und verständliche Basis bilden. Es können aber je nach Projekt auch anwendungsbezogene Metriken verwendet werden. So benutzt Twitter zum Beispiel die Metrik "`Time to first Tweet"'.
-
-			\begin{quote}
-				\textit{"`The most important metric we used was “time to first Tweet”. This is a measurement we took from a sample of users, of the amount of time it takes from navigation (clicking the link) to viewing the first Tweet on each page’s timeline. The metric gives us a good idea of how snappy the site feels."'} \autocite{twitter12}
-			\end{quote}
-
-			Wie wird das Performance Budget gesetzt? Dazu ist es erforderlich zu wissen, wie schnell eigentlich schnell genug ist? Schnelligkeit ist ein relativer Begriff.
-
-			\begin{quote}
-				\textit{"`In the high-speed world of automated financial trading, milliseconds matter. So much so, in fact, that a saving of just \textbf{6 milliseconds} in transmission time is all that is required to justify the laying of the first transatlantic communications cable for 10 years at a cost of more than \$300m between London and the New York Wall Street."'} \autocite[vgl.]{telegraph11}
-			\end{quote}
-
-			Aber auch Google stellt fest, dass bereits der Einfluss von 100 - 400 ms einen Messbaren einfluss auf die Anzahl an Suchanfragen (-0,2\% bis -0,6\%) pro Anwender hat.\autocite{google09} Während 0,4\% sich nach vergleichbar wenig anhört, so ist bei jährlich 2,2 Billionen Suchanfragen (2013) wohl klar, was das für Google an Mehreinnahmen durch Werbung und Klicks bedeuten kann.\autocite{statista14}
-
-
-
 	
-		- welchen vorteil hat das arbeiten damit?\\
-		- wie bestimme ich das richtige Budget für das Projekt? -> how fast is fast enough -> how fast is my competitor and how mutch I have to be faster, so the user notices it?\\
-		- arbeiten mit einem budget -> design -> developer -> kunde\\
-		- Vorteil / Nachteil?\\
 
-
-		% subsubsection performance_budget (end)
-
+	%
 	% subsection hürden (end)
+	%
+
+
+		\subsection{Performance Budget} % (fold)
+		\label{sub:performance_budget}
+			Ein Performance Budget bedeutet, dass ein Wert gesetzt wird, der von der Seite nicht überschritten werden darf. Dieser Wert kann ganz simpel sein, wie die Ladezeit der Seite oder aber eine komplexere Metrik aus verscheidenen Werten.
+
+			\begin{quote}
+				\textit{"`The important point is to look at every decision, right through the design/build process, as something that has consequence. Having a pre-defined ‘budget’ is a clear, tangible way to frame decisions about what can and can’t be be included, and at a suitably early stage in the project. It can also potentially provide some justification to the client about why certain things have been omitted (or rather, swapped out for something else)."'}
+			\end{quote}
+
+			Die Einführung eines Performance Budgets bietet den Vorteil, einen festgelegten Rahmen über die Zeitspanne des Projekts zu haben. Es ist ein Referenzpunkt der mit darüber Entscheidet, welche und welche Komponenten nicht in die Seite mit einfließen können oder dürfen. Es Funktioniert wie Spielgeld, dass auf das Projekt aufgeteilt wird. Ist das Spielgeld leer, so gibt es diese 3 Regeln:
+			\begin{enumerate}
+				\item Optimiere eine existierende Funktion der Seite
+				\item Entferne eine existierende Funktion von der Seite
+				\item Füg es nicht hinzu
+			\end{enumerate}
+			Das Motto heißt dabei: "`you can't spend, what you don't have!"'
+
+			\subsubsection{Budget Metriken} % (fold)
+			\label{ssub:Budget_metriken}
+				
+				Eine sehr einfache Budget Metrik währe es, den Speed Index als Budget zu setzen. Jede Seite muss dann unter diesem festgelegten Wert bleiben. Oftmals ist es aber besser verschiedene Werte als Budget zu setzen. Eine Kombination aus: Anzahl Requests, start Render, maximale Seitengröße, maximales Gewicht der Bilder und zusätzlich der Speed Index können eine sinnvolle und verständliche Basis bilden. Es können aber je nach Projekt auch anwendungsbezogene Metriken verwendet werden. So benutzt Twitter zum Beispiel die Metrik "`Time to first Tweet"'.
+
+				\begin{quote}
+					\textit{"`The most important metric we used was “time to first Tweet”. This is a measurement we took from a sample of users, of the amount of time it takes from navigation (clicking the link) to viewing the first Tweet on each page’s timeline. The metric gives us a good idea of how snappy the site feels."'} \autocite{twitter12}
+				\end{quote}
+
+			% subsubsection Budget_metriken (end)
+
+			\subsubsection{Wie schnell, ist schnell genug?} % (fold)
+			\label{ssub:wie_schnell_ist_schnell_genug_}
+				Wie wird das Performance Budget gesetzt? Dazu ist es erforderlich zu wissen, wie schnell eigentlich schnell genug ist? Schnelligkeit ist ein relativer Begriff.
+
+				\begin{quote}
+					\textit{"`In the high-speed world of automated financial trading, milliseconds matter. So much so, in fact, that a saving of just \textbf{6 milliseconds} in transmission time is all that is required to justify the laying of the first transatlantic communications cable for 10 years at a cost of more than \$300m between London and the New York Wall Street."'} \autocite[vgl.]{telegraph11}
+				\end{quote}
+
+				Aber auch Google stellt fest, dass bereits der Einfluss von nur \textbf{100 - 400 ms} einen messbaren Einfluss auf die Anzahl an Suchanfragen (-0,2\% bis -0,6\%) pro Anwender hat.\autocite{google09} Während 0,4\% sich nach wenig anhört, so ist bei jährlich 2,2 Billionen Suchanfragen (2013) wohl klar, was das für Google an Mehreinnahmen durch Werbung und Klicks bedeuten kann.\autocite{statista14}\\
+					
+				Studien haben ergeben, dass Menschen den Unterschied zwischen 2 Zeitspannen erst dann erkennen, wenn die Differenz 20\% überschreitet.\autocite{seow09} Damit der Anwender eine Verbesserung gegenüber der Konkurrenz bemerkt, benötigt es in Folge dessen mindestens einen 20 prozentigen Unterschied. Anhand der Konkurrenzanalyse lässt sich ein Ergebnis bestimmen, mit dessen Hilfe das Performance Budget festgelegt werden kann. Bei einem \texttt{Relaunch} kann auch die alte Seite als Refernzpunkt dienen.\\
+				Zu beachten bleibt, die Daten richtig zu interpretieren. Eine Seite die eine 7 Sekunden Ladezeit hat muss nicht unbedingt langsamer sein (Stichwort: Perceived Performance) als eine Seite mit 5 Sekunden. Hier lohnt sich vor allem die Beachtung des Speed Indexes, der die Seite nach dem "`visuellen Fortschritt über Zeit"' bewertet. Die 20\%-Methode liefert den wohl minimalsten "`schnell-genug"' Wert der erreicht werden sollte, um sich von der Konkurrenz abzusetzen.\\
+				Paul Irish, Mitarbeiter des Google Chrome Teams, sieht das ganze drastischer und gibt folgendes Statement:
+				\begin{quote}
+					\textit{"`My answer to how fast is fast enough? A Speed Index of under 1000.\\
+					And for professionals that get there, they should shoot for delivering the critical-path view (above the fold) in the first 14kb of the page."'} \autocite{irish14}
+				\end{quote}
+				Für viele (vor allem im Bereich des E-Commerce) kann es sich rechnen, nicht nur schneller als die Konkurrenz zu sein.
+			% subsubsection wie_schnell_ist_schnell_genug_ (end)
+
+		\subsubsection{Arbeiten mit einem Performance Budget} % (fold)
+		\label{ssub:arbeiten_mit_einem_performance_budget}
+			Im folgenden soll Beispielhaft verdeutlicht werden, wie das Arbeiten mittels Performance Budget aussehen kann. Zu Projektbeginn wird das Performance Budget festgelegt.
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{establish_perf_budget.jpg}
+					\caption{Projekt Zeitline (Eigene Abbildung nach \autocite[p. 58]{kovalcin15}}
+					\label{fig:establish_perf_budget}
+				\end{center}
+			\end{figure}
+			
+			Vor Projektbeginn macht Sinn, denn hat die Seite erst einmal 3 Slider, 1 Karousel plus entsprechendes Plugin und zudem noch ein vollflächiges Hintergrundbild, so hat man keine Chance mehr die Seite in einen geordneten Rahmen zu bringen, ohne sie komplett neu zu überarbeiten.\\
+			Ein Beispiel Budget kann aus folgenden Metriken bestehen:
+
+			\begin{itemize}
+				\item Maximale Seitengröße 600 kb
+				\item Start Render 1000 ms
+				\item Speed Index 1000
+			\end{itemize}
+
+			Die Seitengröße lässt sich nun aufteilen:
+			\begin{longtable}{|>{\raggedright \arraybackslash}p{3.0cm}|>{\raggedright \arraybackslash}p{3.0cm}|}
+			\caption{Seitengröße mit einem Budget von 600 kb}\\
+				\hline
+				\textbf{Content} & \textbf{Size}\\
+				\hline
+				CSS & 50 kb\\
+				\hline
+				Fonts & 50 kb\\
+				\hline
+				Scripts & 100 kb\\
+				\hline
+				Images & 400 kb\\
+				\hline
+			\end{longtable}
+
+			Mit diesem Budget ist festgelegt, wieviel Spielraum jede Komponente hat. Will man 500 kb den Bildern zu Verfügung stellen, so muss in den anderen Bereichen eingespart werden. Dieses Beispiel verdeutlicht den Ansatz: "`You can't spend what you don't have"'.\\
+
+			Nachdem das Budget festgelegt wurde ist sowohl das Design, die Entwicklung als auch das Projektmanagement damit beauftragt, das Budget beizubehalten.
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=\textwidth]{perf_budget.jpg}
+					\caption{Projekt Zeitline (Eigene Abbildung nach \autocite[p. 59]{kovalcin15})}
+					\label{fig:perf_budget}
+				\end{center}
+			\end{figure}
+
+			Dafür muss dem Kunden vermittelt werden, um was es sich bei diesem Budget handelt und warum es verwendet wird: (Aufzählung nach \autocite[p. 72]{kovalcin15})
+
+			\begin{itemize}
+				\item Was ist ein Performance Budget?
+				\item Was ist das Performance Budget für dieses Projekt und wie kam es zustande?
+				\item Was sind die Bedingungen für dieses Budget?
+				\item Warum wird es verwendet?
+				\item Wie werden neue Funktionen hinzugefügt? (Optimieren, entfernen, nicht hinzufügen)
+				\item Wieviel Budget hat jede Seite- / Unterseite
+			\end{itemize}
+
+			Für Designer (als auch Entwickler) ergibt sich ein Rahmen. Dies muss in keiner Weise schlecht sein und Dan Mall, Art Director und Designer sagt dazu folgendes:\footnote{Den vollen Artikel gibt es hier: \url{http://danielmall.com/articles/how-to-make-a-performance-budget/}}
+
+			\begin{quote}
+				\textit{"`I believe designers do their best work within constraints, and knowing those constraints before starting a design can be incredibly enabling. What I wouldn’t give to know that I could use up to 10 images and 4 webfonts before starting a design! What a day that would be! Here’s how to make that possible. [We define a Performance Budget"'}\autocite{mall14}
+			\end{quote}
+
+		% subsubsection arbeiten_mit_einem_performance_budget (end)
+
+		% subsection performance_budget (end)
 
 % section der_weg_zur_performance (end)
 
