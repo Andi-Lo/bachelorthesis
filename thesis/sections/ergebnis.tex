@@ -217,11 +217,25 @@
 		\subsubsection{Performance Budget} % (fold)
 		\label{ssub:performance_budget}
 
-		
+			Ein Performance Budget bedeutet, dass ein Wert gesetzt wird, der von der Seite nicht überschritten werden darf. Dieser Wert kann ein ganz simpler sein, wie die Ladezeit der Seite oder aber eine komplexere Metrik aus verscheidenen Werten.\\
+			Ein sehr simple Metrik währe es, den Speed Index als Budget zu setzen. Jede Seite sollte dann unter diesem festgelegten Wert bleiben. Oftmals ist es aber besser verschiedene Werte als Budget zu setzen. Eine Kombination aus: Anzahl Requests, maximale Seitengröße, maximales Gewicht der Bilder plus der Speed Index können eine sinnvolle und verständliche Basis bilden. Es können aber je nach Projekt auch anwendungsbezogene Metriken verwendet werden. So benutzt Twitter zum Beispiel die Metrik "`Time to first Tweet"'.
 
-		- was ist ein performance budget?\\
+			\begin{quote}
+				\textit{"`The most important metric we used was “time to first Tweet”. This is a measurement we took from a sample of users, of the amount of time it takes from navigation (clicking the link) to viewing the first Tweet on each page’s timeline. The metric gives us a good idea of how snappy the site feels."'} \autocite{twitter12}
+			\end{quote}
+
+			Wie wird das Performance Budget gesetzt? Dazu ist es erforderlich zu wissen, wie schnell eigentlich schnell genug ist? Schnelligkeit ist ein relativer Begriff.
+
+			\begin{quote}
+				\textit{"`In the high-speed world of automated financial trading, milliseconds matter. So much so, in fact, that a saving of just \textbf{6 milliseconds} in transmission time is all that is required to justify the laying of the first transatlantic communications cable for 10 years at a cost of more than \$300m between London and the New York Wall Street."'} \autocite[vgl.]{telegraph11}
+			\end{quote}
+
+			Aber auch Google stellt fest, dass bereits der Einfluss von 100 - 400 ms einen Messbaren einfluss auf die Anzahl an Suchanfragen (-0,2\% bis -0,6\%) pro Anwender hat.\autocite{google09} Während 0,4\% sich nach vergleichbar wenig anhört, so ist bei jährlich 2,2 Billionen Suchanfragen (2013) wohl klar, was das für Google an Mehreinnahmen durch Werbung und Klicks bedeuten kann.\autocite{statista14}
+
+
+
+	
 		- welchen vorteil hat das arbeiten damit?\\
-		- welche metriken gibt es?\\
 		- wie bestimme ich das richtige Budget für das Projekt? -> how fast is fast enough -> how fast is my competitor and how mutch I have to be faster, so the user notices it?\\
 		- arbeiten mit einem budget -> design -> developer -> kunde\\
 		- Vorteil / Nachteil?\\

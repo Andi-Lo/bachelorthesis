@@ -25,11 +25,16 @@
 
 Weekend (TGIF)  
 
-23.03. - Datenauswertung  
-24.03. - Datenauswertung  
-25.03. - Unternehmenskultur  
-26.03. - Unternehmenskultur  
-27.03. - Unternehmenskultur  
+~~23.03. - Datenauswertung~~  
+~~24.03. - Datenauswertung~~  
+~~25.03. - Unternehmenskultur~~  
+~~26.03. - Unternehmenskultur~~  
+~~27.03. - Unternehmenskultur~~  
   
 Weekend  
 
+30.03. - Unternehmenskultur & Offenes
+31.03. - Schluss & Einleitung
+01.04. - Korrektur
+02.04. - Korrektur
+03.04. - Korrektur
