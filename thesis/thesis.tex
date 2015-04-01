@@ -20,9 +20,11 @@
 \usepackage{listings}
 \usepackage{longtable}
 \usepackage{array}
+\usepackage{fancyhdr}
 \addbibresource{sections/zitate.bib}
-\pagestyle{myheadings}
-\markright{\centerline{Web Performance für den mobilen Endanwender}}
+% \pagestyle{myheadings}
+\pagestyle{empty}
+% \markright{\centerline{Web Performance für den mobilen Endanwender}
 \author{Andreas Lorer}
 
 \graphicspath{{images/}}            
@@ -33,11 +35,9 @@
 \definecolor{materialRed}{rgb}{0.82, 0.1, 0.26}
 \definecolor{materialYellow}{rgb}{1.0, 0.5, 0.0}
 \definecolor{materialBlue}{rgb}{0.0, 0.5, 1.0}
-
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-
 
 \newenvironment{italicquotes}
 {\begin{quote}\itshape}
@@ -117,9 +117,17 @@
   \input{../deckblatt/logo.tex}
 	
 	%Inhaltsverzeichnis
+  \thispagestyle{empty}
 	\tableofcontents 
-	\thispagestyle{empty}
-	\pagebreak
+  \clearpage
+  % \pagestyle{myheadings}
+  \pagestyle{fancy}
+  \fancyhf{}
+  % \rhead{\thepage}
+  \lhead{Web Performance für den mobilen Endanwender}
+  \rfoot{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
 
   \input{sections/einleitung.tex}
   \input{sections/grundlagen.tex}
