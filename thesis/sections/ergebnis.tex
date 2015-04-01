@@ -85,13 +85,12 @@
 		
 
 	% subsection datenauswertung (end)
-% section ergebnis (end)
-
-
 
 \pagebreak
 
-
+%	
+% section ergebnis (end)
+%
 
 
 \section{Der Weg zur Performance} % (fold)
@@ -327,16 +326,29 @@
 				\item Wieviel Budget hat jede Seite- / Unterseite
 			\end{itemize}
 
-			Für Designer (als auch Entwickler) ergibt sich ein Rahmen. Dies muss in keiner Weise schlecht sein und Dan Mall, Art Director und Designer sagt dazu folgendes:\footnote{Den vollen Artikel gibt es hier: \url{http://danielmall.com/articles/how-to-make-a-performance-budget/}}
+			Für Designer (als auch Entwickler) ergibt sich ein Rahmen. Dies muss in keiner Weise schlecht sein und Dan Mall, Art Director und Designer sagt dazu folgendes:
 
 			\begin{quote}
-				\textit{"`I believe designers do their best work within constraints, and knowing those constraints before starting a design can be incredibly enabling. What I wouldn’t give to know that I could use up to 10 images and 4 webfonts before starting a design! What a day that would be! Here’s how to make that possible. [We define a Performance Budget"'}\autocite{mall14}
+				\textit{"`I believe designers do their best work within constraints, \textbf{and knowing those constraints before starting a design can be incredibly enabling}. What I wouldn’t give to know that I could use up to 10 images and 4 webfonts before starting a design! What a day that would be! Here’s how to make that possible. [We define a Performance Budget]"'}\autocite{mall14}
 			\end{quote}
 
+			Wenn diese Weichen für das Projekt gestellt wurden, dann kann das Entwickler-Team die Anwendung im Sinne der Performance umsetzen.\\
+			Mittels Grunt (leider gibt es noch keine gute Gulp Alternative) lässt sich ein npm Paket namens "`Grunt perfbudget"' installieren. Dieses ermöglicht es für die Seite einen Budget Task festzulegen. Dieser Task kann nun in den \texttt{Build-Prozess} der Seite integriert werden. Wird das Budget überschritten, so würde der \texttt{Build-Task} fehlschlagen.
+
+			\begin{figure}[htbp]
+				\begin{center}
+					\includegraphics[width=0.7\textwidth]{perf-budget.png}
+					\caption{Fehlschlagender Grunt Budget Task (Abbildung von \autocite{farman14})}
+					\label{fig:perf-budget}
+				\end{center}
+			\end{figure}
+		
+		Das setzen eines Performance Budget und das Arbeiten damit, ist eine Herausforderung. Das Budget unterscheidet sich je nach Projekt und es kann schwierig sein die richtigen Metriken festzulegen. Dieser Abschnitt hat auch gezeigt, dass Web Performance nicht abhängig von einem einzigen Entwickler ist, sondern kann nur gelingen, wenn alle an einem Strang ziehen.	
 		% subsubsection arbeiten_mit_einem_performance_budget (end)
 
-		% subsection performance_budget (end)
-
-% section der_weg_zur_performance (end)
+	% subsection performance_budget (end)
 
 \pagebreak
+%
+% section der_weg_zur_performance (end)
+%
