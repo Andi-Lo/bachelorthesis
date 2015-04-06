@@ -22,12 +22,10 @@
 \usepackage{array}
 \usepackage{fancyhdr}
 \addbibresource{sections/zitate.bib}
-% \pagestyle{myheadings}
 \pagestyle{empty}
-% \markright{\centerline{Web Performance für den mobilen Endanwender}
 \author{Andreas Lorer}
 
-\graphicspath{{images/}}            
+\graphicspath{{images/}}
 \setlength{\parindent}{0ex}  	% Absatzeinrueckung verhindern
 
 \definecolor{materialGrey}{rgb}{0.27,0.27,0.27}
@@ -38,10 +36,6 @@
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-
-\newenvironment{italicquotes}
-{\begin{quote}\itshape}
-{\end{quote}}
 
 \begin{document}
   % document styles for listings
@@ -120,10 +114,9 @@
   \thispagestyle{empty}
 	\tableofcontents 
   \clearpage
-  % \pagestyle{myheadings}
   \pagestyle{fancy}
   \fancyhf{}
-  % \rhead{\thepage}
+  % \rhead{}
   \lhead{Web Performance für den mobilen Endanwender}
   \rfoot{\thepage}
   \renewcommand{\headrulewidth}{0.4pt}

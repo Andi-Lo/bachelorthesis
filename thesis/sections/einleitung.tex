@@ -2,6 +2,7 @@
 
 \section{Einleitung} % (fold)
 \label{sec:einleitung}
+	Diese Arbeit beschäftigt sich umfassend mit dem Thema Web Performance unter dem Aspekt, dass immer mehr Anwender mittels Smartphone mit dem Web agieren. Sie soll die Frage klären, warum Webanwendungen auf einem Smartphone oftmals um ein vielfaches langsamer Laden, als via Desktop-PC, was für Auswirkungen sich daraus ergeben und welche Maßnahmen zur Optimierung ergriffen werden können. Daraus resultiert ein \texttt{Workflow} der sich nach den "`Best Practices"' richtet. Die Arbeit endet, mit den kulturellen Veränderungen, die das Thema Web Performance für ein Unternehmen mit sich bringen kann und welche Herausforderungen es zu meistern gilt.
 
 	\subsection{Motivation} % (fold)
 	\label{sub:motivation}
@@ -46,7 +47,7 @@
 
 	\subsection{Zielsetzung} % (fold)
 	\label{sub:zielsetzung}
-		Um gängige Methoden und Techniken der Ladezeit-Optimierung anzuwenden wird das Projekt anhand der Website \url{http://andreaslorer.de} durchgeführt. Das Ziel ist es, die Ladezeit der Website auf dem Smartphone, wie auch auf dem Desktop von 10 Sekunden auf unter 1 Sekunden zu verringern. Mit Ladezeit ist dabei nicht die Zeit gemeint, die benötigt wird um die Website komplett zu laden, sondern die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist. Diese vom Anwender wahrgenommene Rückmeldung nennt man auch "`Perceived Performance"' und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Näheres dazu wird in Punkt \ref{sub:perceived_performance} beschrieben.\\
+		Um gängige Methoden und Techniken der Ladezeit-Optimierung anzuwenden wird das Projekt anhand der Website \url{http://andreaslorer.de} durchgeführt. Das Ziel ist es, die Ladezeit der Website auf dem Smartphone, wie auch auf dem Desktop auf unter 1 Sekunden zu verringern. Mit Ladezeit ist dabei nicht die Zeit gemeint, die benötigt wird um die Website komplett zu laden, sondern die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist. Diese vom Anwender wahrgenommene Rückmeldung nennt man auch "`Perceived Performance"' und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Näheres dazu wird in Punkt \ref{sub:perceived_performance} beschrieben.\\
 
 	% subsection zielsetzung (end)
 
@@ -55,7 +56,7 @@
 
 		Meine Leistung besteht darin, einen Leitfaden zu erstellen, der einen Gesamtüberblick ermöglicht. Die Arbeit soll es dem Leser ermöglichen Fehler in der Struktur von Webanwendungen zu finden, die für die Geschwindigkeit hinderlich sind.
 		Es soll herausgefunden werden, was die "`Best Practices"' sind um die Ladezeit zu minimieren, wie ein moderner "`Workflow"' aussehen kann, damit eine Webanwendung schon bei seiner Entstehung schnell ladet und im Projektverlauf schnell bleibt. Des weiteren soll erklärt werden, was für Herausforderungen es zu meistern gilt um eine schnelle Webanwendung zu erreichen, welche Tools es gibt und welche Vor- oder Nachteile diese mit sich bringen.\\
-		Diese Arbeit befasst sich nicht, mit der Geschwindigkeit von Datenbanken, SQL-Abfragen oder sonstigen Problemen die durch solch einen Engpass ein schnelles Laden der Seite verhindern könnten.
+		Diese Arbeit befasst sich nicht, mit der Geschwindigkeit von Datenbanken, SQL-Abfragen oder sonstigen Problemen die durch einen Engpass ein schnelles Laden der Seite verhindern könnten.
 
 	% subsection eigene_leistung (end)
 
@@ -63,8 +64,12 @@
 	\label{sub:ist_zustand}
 		Die Webseite ist auf einem \texttt{shared Hosting}
 		\footnote{Bei shared Hosting werden mehrere Websites von verschiedenen Website-Betreibern von dem gleichen Webserver gehostet. Bei Shared Hosting teilen sich in der Regel Hunderte andere Websites einen Server \autocite{itWissen}} 
-		aufgesetzt und antwortet auf ein Ping Kommando in rund 13ms. Dadurch, dass es keine Möglichkeit gibt \texttt{root Rechte} \footnote{Standardmäßig existiert unter Linux immer ein Konto für den Benutzer "`root"' mit der User-ID 0. Dies ist ein Systemaccount mit vollem Zugriff auf das gesamte System, und damit auch auf alle Dateien und Einstellungen aller Benutzer \autocite{ubuntu14}} auf einem shared hosting zu bekommen, können so manche serverseitige Einstellungen nicht durchgeführt werden. Diese werden dann zwar Aufgezeigt, aber kommen für dieses Projekt nicht zum Einsatz.\\
+		aufgesetzt und antwortet auf ein Ping Kommando in rund 13ms. Dadurch, dass es keine Möglichkeit gibt \texttt{root Rechte} \footnote{Standardmäßig existiert unter Linux immer ein Konto für den Benutzer "`root"' mit der User-ID 0. Dies ist ein Systemaccount mit vollem Zugriff auf das gesamte System, und damit auch auf alle Dateien und Einstellungen aller Benutzer \autocite{ubuntu14}} auf einem shared hosting zu bekommen, können so manche serverseitige Einstellungen nicht durchgeführt werden. Diese werden dann zwar aufgezeigt, aber kommen für dieses Projekt nicht zum Einsatz.\\
 		Die Website hat als Ausgangsbasis einen gängigen Aufbau. Sie besteht aus einer Bilder Gallerie basierend auf PHP und dem Bootstrap Framework.
-		% subsection ist_zustand (end)
+	% subsection ist_zustand (end)
+
 		
+\pagebreak
+%
 % section einleitung (end)
+%
