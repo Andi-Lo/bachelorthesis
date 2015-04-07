@@ -1,6 +1,6 @@
 \section{Entwicklung} % (fold)
 \label{sec:entwicklung}
-	Dieses Kapitel soll den Entwicklungsprozess konkretisieren und den Optimierungsprozess einer Webanwendung aufzeigen. Es soll erläutern, welche Fragen sich stellten und welche Antworten darauf gefunden wurden. Wie bestimmte Probleme gelöst wurden. Welche Tools und Hilfsmittel zur verwendung kamen. Dies soll ein Bewusstsein dafür schaffen, was möglich ist und wie eine technische Umsetzung aussehen kann. 
+	Dieses Kapitel soll den Entwicklungsprozess konkretisieren und den Optimierungsprozess einer Webanwendung aufzeigen. Es soll erläutern, wie bestimmte Probleme gelöst, welche Fragen sich stellten und welche Antworten darauf gefunden wurden. Dafür werden die entsprechenden Tools und Hilfsmittel, die zu verwendung kamen vorgestellt und entsprechend erklärt. Dies soll ein Bewusstsein dafür schaffen, was möglich ist und wie eine technische Umsetzung aussehen kann.
 	
 	\subsection{Tools}
 	\label{sub:tools}
@@ -8,13 +8,13 @@
 
 		\subsubsection{Google Chrome Developer Tool} % (fold)
 		\label{ssub:google_chrome_developertool}
-			Dieses Tool ist über die Taste F12 im Chrome Browser zu finden. Nützliche Features sind: 
+			Dieses Tool ist über die Taste F12 im Chrome Browser zu finden. Nützliche Funktionen sind: 
 
 			\begin{itemize}
-				\item \texttt{Device Emulation} \footnote{Bei geöffnetem Tool (F12): strg + shift + M oder klick auf das Smartphone Symbol}: Damit lassen sich verschiedene Devices wie Smartphones, Ipad oder verschiedene Desktopauflösungen simulieren. Auch das Touch verhalten wird Simuliert.
-				\item In der Device Emulation lässt sich auch die Netzwerkgeschwindigkeit simulieren. Dies ist allerdings nur eine Simulation und kann unter wahren Bedingungen stark abweichen.
+				\item \texttt{Device Emulation} \footnote{Bei geöffnetem Tool (F12): strg + shift + M oder klick auf das Smartphone Symbol}: Damit lassen sich sowohl verschiedene Geräte wie Smartphones oder Tablets, als auch das Touch verhalten simulieren.
+				\item In der Device Emulation lässt sich auch die Netzwerkgeschwindigkeit simulieren.
 				\item Netzwerk: Hier lässt sich das Wasserfallmodell nachvollziehen. Auch lässt sich hier das Caching des Browsers abschalten, wärend das Developer Tool geöffnet ist.
-				\item Audits: Unter diesem Reiter bekommt man erste Informationen, welche Verbesserungen es für diese Seite aus dem Gesichtspunkt der Performance ergeben. So wird zum Beispiel aufgezeigt, wie viele CSS Selektoren auf dieser Seite gar keine verwendung finden (gerade bei CSS-Frameworks wie Bootstrap kann es sein, dass rund 90\% der Selektoren keine Verwendung haben)
+				\item Audits: Unter diesem Reiter bekommt man erste Informationen, welche Verbesserungen es für diese Seite aus dem Gesichtspunkt der Performance ergeben. So wird zum Beispiel aufgezeigt, wie viele CSS Selektoren auf dieser Seite gar keine Verwendung finden (gerade bei CSS-Frameworks wie Bootstrap kann es sein, dass rund 90\% der Selektoren keine Verwendung haben)
 			\end{itemize}
 		% subsubsection google_chrome_developertool (end)
 
@@ -64,6 +64,15 @@
 			\url{Webpagetest.org} ist das wohl umfangreichst und beste Website-Analysetool das im Internet zu finden ist. Es ist ein kostenloser Service der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen aber schwer zu beherschen ("`easy to use, hard to master"') und es gibt zahllose Einstellungen und undokumentierte Funktionen auf die man nur in Vorträgen oder Foren stoßt. Es gibt auch ein Buch, dass sich nur mit diesem Tool beschäftigt, beim Verlag \texttt{O'Reilly}.\footnote{Buch - Using WebPagetest: \url{http://shop.oreilly.com/product/0636920033592.do}}.	Die Features für Webpagetest sind vielseitig:
 
 			\begin{itemize}
+				\item Webpagetest hat die wohl genauste Erfassung von Netzwerkzeiten und spiegelt damit realitätsgetreu die Ladezeiten einer Seite wieder.
+
+				\item Webpagtest liefer eine enormes Spektrum an Daten und Diagrammen, was ausführliche Analysen zulässt.
+
+				\item Speed Index: Dies ist eine von diesem Tool eigene Maßeinheit zum bestimmen der \texttt{Perceived Performance} einer Seite. 
+				\begin{quote}
+					\textit{"`'The Speed Index metric was added to WebPagetest in April, 2012 and measures how quickly the page contents are visually populated (where lower numbers are better).  It is particularly useful for comparing experiences of pages against each other (before/after optimizing, my site vs competitor, etc) and should be used in combination with the other metrics (load time, start render, etc) to better understand a site's performance."'}\autocite[vgl.]{webpagetestDocs}
+				\end{quote}
+
 				\item Es lassen sich Webanwendungen mittels eines in der realität existierenden Geräts testen. So kann vom Standort Dulles VA ein MOTOG zum Testen einer Seite verwendet werden. Dieses Gerät ruft dann auch wirklich die eingegebene URL auf und die darunterliegende Schicht misst die Zeit. Abbildung \ref{fig:wpt-android} zeigt den Teststandort Dulles VA.\footnote{Einen detailierten einblick vom Gründervater und Entwickler Patrick Meenan gibt es hier: \url{http://tinyurl.com/o4b3rxh}}
 
 				\begin{figure}[htbp]
@@ -73,27 +82,21 @@
 						\label{fig:wpt-android}
 					\end{center}
 				\end{figure}
-				\item Webpagetest hat die wohl genauste Erfassung von Netzwerkzeiten und spiegelt damit realitätsgetreu die Ladezeiten einer Seite wieder.
-
-				\item Webpagtest liefer eine enormes Spektrum an Daten und Diagrammen, was ausführliche Analysen zulässt.
-
-				\item Speed Index: Dies ist eine von diesem Tool eigene Maßeinheit zum bestimmen der \texttt{Perceived Performance} einer Seite. \textit{"`'The Speed Index metric was added to WebPagetest in April, 2012 and measures how quickly the page contents are visually populated (where lower numbers are better).  It is particularly useful for comparing experiences of pages against each other (before/after optimizing, my site vs competitor, etc) and should be used in combination with the other metrics (load time, start render, etc) to better understand a site's performance."'}\autocite{webpagetestDocs}
 
 				\item Man kann Tests direkt miteinander vergleichen. Das ist möglich, indem diese URL eingegeben wird: \url{www.webpagetest.org/video/compare.php?tests=} und nach dem "`="' Zeichen die Test ID eingibt, beispielsweise "`150310\_8E\_GRH"'.
 				Mit einem Komma getrennt wird eine 2. oder 3. ID angefügt. Die Tests werden dann in einer Vergleichsansicht dargestellt.
 
 				\item Filmstrip Ansicht: Damit lässt sich visuell erkennen, wann welches Element gerendet wird.
 
-				\item Video erstellung: Aus der Filmstrip Ansicht lässt sich ein Video erstellen. Das ist vor allem interessant, wenn mit der Vergleichsmethode mehrere Tests geladen sind. Der Ladevorgang der Testläufe wird dann in einem Video Parallel abgespielt. Vor allem für Präsentationen oder vorher / nachher Vergleiche ist dies nützlich.
+				\item Videoerstellung: Aus der Filmstrip Ansicht lässt sich ein Video erstellen. Das ist vor allem interessant, wenn mit der Vergleichsmethode mehrere Tests geladen sind. Der Ladevorgang der Testläufe wird dann in einem Video Parallel abgespielt. Vor allem für Präsentationen oder vorher- / nachher-Vergleiche ist dies nützlich.
 
 				\item Test History: Durch eine Registrierung auf der Seite wird ein eigenes Testprofil angelegt in dem alle Test-ID's gespeichert werden.
 
 				\item Testen von verschiedenen Standpunkten: Webpagetest ermöglicht es die eigene Seite von ganz verschiedenen Geographischen Standpunkten aus aufzurufen. Dadurch lässt sich ein Eindruck gewinnen, wie schnell die Seite aus dem Ausland aufrufbar ist und wie stark die Abweichung sein kann.
 
-				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{ssub:wie_wurde_getestet}. Diese Schnittstelle Limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene Private Instanz erstellen. 
-				%todo ref
+				\item API: Webpagtest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben. Mehr dazu in Punkt: \ref{ssub:wie_wurde_getestet}. Diese Schnittstelle limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene private Instanz erstellen. 
 
-				\item Private Instanz: Da webpagetest Open Source ist, gibt es die möglichkeit eine eigene Private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann soviele Tests ausführen, wie die Leistungs des Servers bietet.
+				\item Private Instanz: Da Webpagetest Open Source ist, gibt es die möglichkeit eine eigene Private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann beliebig viele Tests ausführen.
 
 			\end{itemize}
 		% subsubsection webpagetest (end)	
