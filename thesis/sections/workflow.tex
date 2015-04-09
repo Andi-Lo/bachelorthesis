@@ -1,16 +1,16 @@
 \section{Workflow} % (fold)
 \label{sec:workflow}
-	Im folgenden Abschnitt soll erläutert werden wie ein moderner Workflow aussehen kann. Dabei sollen viele Aufgaben, die von vielen noch per Hand erfolgen, automatisiert werden.\\
+	Im folgenden Abschnitt soll erläutert werden, wie ein moderner Workflow aussehen kann. Dabei sollen viele Aufgaben, die von Vielen noch per Hand erfolgen, automatisiert werden.\\
 
 	\subsection{Nodejs} % (fold)
 	\label{sub:nodejs}
-		Nodejs - ist eine auf Chromes Javascript runtime aufbauende Plattform. Wärend Server vor allem in PHP oder anderen Sprachen programmiert werden ist dies durch Nodejs auch mit Javascript möglich. Nodejs liefert einen eigenen Paket Manager namens "`npm"'.
+		Nodejs ist eine auf Google Chromes Javascript Runtime aufbauende Plattform. Nodejs liefert einen eigenen Paket Manager namens "`npm"'.
 	% subsection nodejs (end)
 
 	\subsection{Node Package Manager} % (fold)
 	\label{sub:node_package_manager}
-		Auch als "`npm"' abgekürzt, erlaubt das installieren von Paketen mittels der Kommandozeile. Ein Beispiel:\\
-		Das Paket "`tmi - too many images"' analysiert eine gegebene URL nach ihrer totalen Bildgröße und vergleicht es mit der durchschnittlichen größe des Webs. Es lässt sich mittels \texttt{npm}-Befehl über die Kommandozeile installieren:
+		Auch als "`npm"' abgekürzt, erlaubt das Installieren von Paketen mittels der Kommandozeile. Ein Beispiel:\\
+		Das Paket "`tmi - too many images"' analysiert eine gegebene URL nach ihrer totalen Bildgröße und vergleicht es mit der durchschnittlichen Größe des Webs. Es lässt sich mittels \texttt{npm}-Befehl über die Kommandozeile installieren:
 		\begin{figure}[htbp]
 			\begin{center}
 				\includegraphics[width=0.7\textwidth]{npm_install_tmi.jpg}
@@ -19,46 +19,51 @@
 		\end{figure}
 		Danach lässt es sich ganz einfach per Befehl aufrufen:
 
-		Es wäre aber auch möglich das unter Punkt \ref{ssub:google_pagespeed_insight} vorgestellte \texttt{Google Pagespeed Insight} mittels "`npm install -g psi"' zu installieren und per "`psi someURL.de"' aufzurufen. Es gibt bereits mehr als 134,082 Pakete (Stand 21.03.2015) die verschiedenste Aufgaben erledigen können. Das Spektrum an Paketen ist sehr groß und reicht von sinnlosen Aufgaben (wie dem zufälligen generieren von Katzennamen\footnote{Cat-names: \url{https://www.npmjs.com/package/cat-names}}) bis hin zu hoch komplexen Programmen wie "`sitespeed.io"'\footnote{Sitespeed.io: \url{http://www.sitespeed.io/}}, dass eine rekursive Performance-Analyse einer ganzen Webanwendung ermöglicht.\\
+		Es wäre aber auch möglich, das unter Punkt \ref{ssub:google_pagespeed_insight} vorgestellte \texttt{Google Pagespeed Insight}, mittels "`npm install -g psi"' zu installieren und per "`psi someURL.de"' aufzurufen. Es gibt bereits mehr als 134,082 Pakete (Stand 21.03.2015), die verschiedenste Aufgaben erledigen können. Das Spektrum an Paketen ist sehr groß und reicht von sinnlosen Aufgaben (wie dem zufälligen generieren von Katzennamen\footnote{Cat-names: \url{https://www.npmjs.com/package/cat-names}}) bis hin zu hoch komplexen Programmen wie "`sitespeed.io"'\footnote{Sitespeed.io: \url{http://www.sitespeed.io/}}, das eine rekursive Performance-Analyse einer ganzen Webanwendung ermöglicht.\\
 
 		\subsubsection{Dependency Management} % (fold)
 		\label{ssub:dependency_management}
-			Der klassische Weg wie externe Abhängigkeiten des Projekts geregelt werden sieht wie folgt aus:
+			Der klassische Weg, wie externe Abhängigkeiten im Projekt geregelt werden, sieht wie folgt aus:
 			\begin{itemize}
 				\item Zu Beginn des Projekts werden Bibliotheken und Frameworks heruntergeladen.
 				\item Es folgt das Entpacken und das Verschieben in das richtige Projektverzeichnis.
-				\item Erscheint beispielsweise eine neue Version des Frameworks beginnt dieser Prozess von neuem.
+				\item Erscheint beispielsweise eine neue Version des Frameworks, beginnt dieser Prozess von neuem.
 			\end{itemize}
 
-			Dependency Manager (wie z.B. npm oder Bower\ref{ssub:bower}) schaffen hier Abhilfe. Durch Ausführen des Befehls: "`npm init"' lässt sich eine neue Abhängigkeitsstruktur für ein Projekt anlegen. Dabei wird eine Datei mit dem Namen: "`package.json"' erzeugt. In dieser Datei werden nun sowohl die Beschreibung, die Version als auch alle Abhängigkeiten gespeichert. Will man nun beispielsweise das Programm "`Gulp"' \ref{sub:task_manager_gulp} installieren, erfolgt dies ganz einfach über das Kommando:\\
-			"`npm install -save gulp"'. Die \texttt{-save} Option bedeutet dabei, dass folgender Eintrag in die package.json Datei erfolgen soll:
+			Dependency Manager (wie z.B. npm oder Bower) schaffen hier Abhilfe. Durch Ausführen des Befehls: "`npm init"' lässt sich eine neue Abhängigkeitsstruktur für ein Projekt anlegen. Dabei wird eine Datei mit dem Namen: "`package.json"' erzeugt. In dieser Datei werden nun sowohl die Beschreibung, die Version, als auch alle Abhängigkeiten gespeichert. Will man nun beispielsweise das Programm "`Gulp"' installieren, erfolgt das ganz einfach über das Kommando:
+			\begin{lstlisting}[captionpos=b, caption=, label=lst:npm-install]
+			npm install -save gulp
+			\end{lstlisting}
+				
+			Die \texttt{-save} Option gibt die Anweisung, dass folgender Eintrag in die package.json Datei erfolgen soll:
 
-			\begin{lstlisting}[captionpos=b, caption=, label=lst:]
-{
-  "dependencies": {
-    "gulp": "^3.8.11"
-  }
-}
+			\begin{lstlisting}[captionpos=b, caption=, label=lst:dependencies]
+			{
+			  "dependencies": {
+			    "gulp": "^3.8.11"
+			  }
+			}
 			\end{lstlisting}
 
-			\texttt{\textasciicircum 3.8.11} bedeutet dabei, dass für dieses Projekt mindestens eine Gulp Version größer als 3.8.11 vorliegen muss. Der große Vorteil besteht nicht nur darin, dass weder ein Seitenaufruf erfolgt, noch die Dateien entpackt und verschoben werden müssen. Zudem lässt sich über den Befehl "`npm update"' alle Pakete auf die neuste Version bringen. Die package.json Datei lässt sich zudem in die Versionskontrolle einfügen. Der von npm angelegte Ordner: "`node\_modules"' sollte unbedingt per \texttt{.gitignore} von der Versionierung ausgeschlossen werden! Läd ein Teammitglied das Repository herunter, so muss nur noch "`npm install"' aufgerufen werden und alle Abhängigkeiten, mit den für dieses Projekt verwendeten Versionsnummern werden heruntergeladen und installiert. Damit ist jedes Teammitglied auf dem selben Stand und verwenden die selbe Version. Neue Abhängigkeiten lassen sich so auch ganz einfach an alle Mitglieder verteilen.			
+			\texttt{\textasciicircum 3.8.11} bedeutet dabei, dass für dieses Projekt mindestens eine Gulp Version größer als 3.8.11 vorliegen muss. Der große Vorteil besteht nicht nur darin, dass weder ein Seitenaufruf getätigt, noch die Dateien entpackt und verschoben werden müssen. Zudem lässt sich über den Befehl "`npm update"' alle Pakete auf die neuste Version bringen. Die package.json Datei sollte in die Versionskontrolle hinzugefügt werden. Der von npm angelegte Ordner: "`node\_modules"' sollte dabei unbedingt per \texttt{.gitignore} von der Versionierung ausgeschlossen werden. Lädt ein Teammitglied das Repository herunter, so muss nur noch "`npm install"' aufgerufen werden und alle Abhängigkeiten, mit den für dieses Projekt verwendeten Versionsnummern, werden heruntergeladen und installiert. Damit ist jedes Teammitglied auf dem selben Stand und verwendet die selben Versionen. Neue Abhängigkeiten lassen sich so auch ganz einfach an alle Mitglieder verteilen.
 			
 		% subsubsection dependency_management (end)
 
 		\subsubsection{Bower} % (fold)
 		\label{ssub:bower}
-			Wie \texttt{npm} so ist auch \texttt{Bower} ein Paket Manager. Um genau zu sein basiert Bower auf npm und lässt sich mittels "`npm install -save bower"' für das Projekt installieren. Der Vorteil von Bower besteht darin, dass über eine \texttt{.bowerrc} Datei angeben werden kann, in welchem Ordner die Pakete installiert werden sollen. Dies ist bei npm nicht möglich.\\
-			Es lohnt sich Frameworks und Libraries wie z.B. \texttt{Bootstrap} oder \texttt{Underscore} mittels Bower zu installieren und andere Programme wie zum Beispiel Gulp oder Nodejs Module per npm.\\
+			Wie \texttt{npm}, so ist auch \texttt{Bower} ein Paket Manager. Um genau zu sein, basiert Bower auf npm und lässt sich mittels "`npm install -save bower"' für das Projekt installieren. Der Vorteil von Bower besteht darin, dass über eine \texttt{.bowerrc} Datei angeben werden kann, in welchem Ordner die Pakete installiert werden sollen. Dies ist bei npm nicht möglich.\\
+			Es lohnt sich, Frameworks und Libraries wie z.B. \texttt{Bootstrap} oder \texttt{Underscore} mittels Bower zu installieren und andere Programme, wie zum Beispiel Gulp oder andere Nodejs Module, per npm.\\
 			Bower lässt sich, ähnlich wie npm, über das Kommando: "`bower init"' Initialisieren. Danach lassen sich per Befehl "`bower install -save bootstrap"' das Bootstrap Framework installieren. 
 
 			\begin{figure}[htbp]
 				\begin{center}
-					\includegraphics[width=0.3\textwidth]{bower_structure.jpg}
+					\includegraphics[width=0.2\textwidth]{bower_structure.jpg}
+					\caption{Projektstruktur}
 					\label{fig:bower_structure}
 				\end{center}
 			\end{figure}
 			
-			Wie zu sehen ist, wurde nicht nur Bootstrap von Bower installiert, sondern auch JQuery. Das liegt daran, dass Bootstrap als interne Abhängigkeit wiederrum auch Abhängigkeiten besitzt, die bei der Installation von Bootstrap gleich mit installiert werden. Entfernt man Bootstrap nun wieder, so würde auch JQuery entfernt werden. Würde Bootstrap in einer neuen Version erscheinen, die von einer höheren JQuery Version abhängt, so würde Bower automatisch auch JQuery auf die nötige Version aktualisieren.
+			Wie in Abbildung \ref{fig:bower_structure} zu sehen ist, wurde nicht nur Bootstrap, sondern auch JQuery von Bower installiert. Das liegt daran, dass Bootstrap als interne Abhängigkeit wiederrum auch Abhängigkeiten besitzt. Diese werden bei der Installation von Bootstrap gleich mit installiert werden. Entfernt man Bootstrap wieder, so würde auch JQuery entfernt werden. Würde Bootstrap in einer neuen Version erscheinen, die von einer höheren JQuery Version abhängt, so würde Bower automatisch auch JQuery auf die nötige Version aktualisieren.
 		
 		% subsubsection bower (end)
 
@@ -70,7 +75,7 @@
 		\begin{quote}
 			\textit{If you aren't using productivity tools or task automation, you are working \textbf{too hard.} [...] Automation isn't about being lazy. It's about being \textbf{efficient}.}\autocite[p. 18,78]{addyOsmani14}
 		\end{quote}
-		Ein Task Manager übernimmt immer wiederkehrende Arbeiten. Dazu zählt zum Beispiel die Aufgabe "`minify, uglify und concatenating"' wie in Punkte: \ref{ssub:ressourcen_reduzieren} bereits beschrieben. Aber auch das Übersetzen von "`Sass"'\footnote{Sass is the most mature, stable, and powerful professional grade CSS extension language in the world. \url{http://sass-lang.com}}, oder das optimieren und verkleinern von Bildern lassen sich als Task beschreiben und automatisieren.
+		Ein Task Manager übernimmt immer wiederkehrende Arbeiten. Dazu zählt zum Beispiel die Aufgabe "`minify, uglify und concatenating"' wie in Punkte: \ref{ssub:ressourcen_reduzieren} bereits beschrieben. Aber auch das Übersetzen von "`Sass"'\footnote{Sass is the most mature, stable, and powerful professional grade CSS extension language in the world. \url{http://sass-lang.com}}, oder das Optimieren und Verkleinern von Bildern lässt sich als Task beschreiben und automatisieren.
 		Die zwei bekanntesten Task Manager heißen \texttt{Gulp} und \texttt{Grunt}. Hier soll das Arbeiten mittels Gulp beschrieben werden, denn er ist sehr viel einfacher zu benutzen als Grunt.
 
 		\begin{figure}[htbp]
@@ -81,9 +86,9 @@
 			\end{center}
 		\end{figure}
 
-		Gulp besteht aus nur 4 Kommandos:
+		Gulp besteht nur aus 4 Kommandos:
 		\begin{enumerate}
-			\item gulp.task: Definiert einen Namen für einen Gulp Task. Dadurch wird dieser Task über die Kommandozeile benutzbar. Für Anwender die wenig mit der Kommandozeile arbeiten wollen gibt es auch eine Google Chrome Browsererweiterung namens Gulp-devtools. Damit lassen sich die verschiedenen Tasks ganz einfach über eine Benutzeroberfläche verwenden.
+			\item gulp.task: Definiert einen Namen für einen Gulp Task. Dadurch wird dieser Task über die Kommandozeile benutzbar. Für Anwender, die wenig mit der Kommandozeile arbeiten wollen, gibt es auch eine Google Chrome Browsererweiterung namens Gulp-devtools. Damit lassen sich die verschiedenen Tasks ganz einfach über eine Benutzeroberfläche anklicken.
 			\item gulp.src: Greift auf eine oder mehrere Dateien zu. Auch Ordner können angegeben werden.
 			\item gulp.dest: Schreibt die Datei in den angegebenen Ort.
 			\item pipe: Mittels "`pipe"' lassen sich die Dateien (auch "`file streams"'  genannt) modifizieren. Dabei lässt sich pipe beliebig oft aufrufen. Die Aufgabe: "`minify, uglify und concatenating"' könnte dabei so erfolgen:
@@ -101,17 +106,16 @@ gulp.task('javascript', function () {
       .pipe(gulp.dest('dist/assets/js/'));
 });
 			\end{lstlisting}
-			Dieser Task mit dem namen "`javascript"' holt nun alle Javascript Dateien aus dem Ordner "`libs"' und "`js"', fügt diese zu einer einzigen Datei zusammen und bennent sie "`bundle.min.js"'. Danach erfolgt das "`uglify"' (beinhaltet das "`minify"'). Zum Schluss wird die Datei in den Ordner "`dist/assets/js"' geschrieben. Die original Dateien werden dabei nicht modifiziert. Es sind auch so genannte "`watch"' Tasks möglich, die bei einer Dateiänderung ausgeführt werden können. So kann der Browser immer dann neu geladen werden, wenn sich eine CSS Datei geändert hat. Dadurch wird ein manuelles neu Laden, um die Änderungen zu betrachten, hinfällig.	
+			Dieser Task mit dem Namen "`javascript"' holt nun alle Javascript Dateien aus dem Ordner "`libs"' und "`js"', fügt diese zu einer einzigen Datei zusammen und benennt sie "`bundle.min.js"'. Danach erfolgt das "`uglify"' (beinhaltet das "`minify"'). Zum Schluss wird die Datei in den Ordner "`dist/assets/js"' geschrieben. Die originalen Dateien werden dabei nicht modifiziert. Es sind auch so genannte "`watch"' Tasks möglich, die bei einer Dateiänderung ausgeführt werden können. So kann der Browser immer dann neu geladen werden, wenn sich eine CSS Datei geändert hat. Dadurch wird ein manuelles neu Laden, um die Änderungen zu betrachten, hinfällig.	
 		\end{enumerate}
 
-		Grunt hat gegenüber Gulp den Vorteil, dass es älter ist als sein Konkurrent. Dadurch gibt es viele Pakete, die nur mittels Grunt zur Verfügung stehen. Beispielsweise das Paket "`grunt-responsive-images"'. Damit lassen sich aus einem gegebenen Bild, automatisch verschiedenste Bildgrößen herausrechnen und abspeichern. Dies ist besonders hilfreich, wenn man "`responsive images"' wie in Punkt: \ref{ssub:responsive_images} beschrieben, verwenden möchte. Einen Blick auf Grunt kann sich also druchaus lohnen.\\
-		\pagebreak
+		Grunt hat gegenüber Gulp den Vorteil, dass es älter ist als sein Konkurrent. Dadurch gibt es viele Pakete, die nur mittels Grunt zur Verfügung stehen. Beispielsweise das Paket "`grunt-responsive-images"'. Damit lassen sich aus einem gegebenen Bild automatisch verschiedenste Bildgrößen herausrechnen und abspeichern. Dies ist besonders hilfreich, wenn man "`responsive images"' wie in Punkt: \ref{ssub:responsive_images} beschrieben, verwenden möchte. Einen Blick auf Grunt kann sich also durchaus lohnen.\\
 		
 	% subsection gulp_task_manager (end)
 
 	\subsection{Yeoman} % (fold)
 	\label{sub:yeoman}
-		Ein Projekt wird oftmals Manuell oder mittels eines Programms, wie zum Beispiel Php-Storm oder Visual Studio erstellt. Es wird ein passender Projekttyp gewählt und das Programm erzeugt dann eine fertige Ordnerstruktur mit den wichtigsten Dateien.
+		Ein Projekt wird oftmals manuell oder mittels eines Programms, wie zum Beispiel PHP-Storm oder Visual Studio erstellt. Es wird ein passender Projekttyp gewählt und das Programm erzeugt dann eine fertige Ordnerstruktur mit den wichtigsten Dateien. Zum Beispiel so:
 
 		\begin{figure}[htbp]
 			\begin{center}
@@ -129,7 +133,7 @@ gulp.task('javascript', function () {
 			Through our official Generators, we promote the "`Yeoman workflow"'. [...] We take care of providing everything needed to get started without any of the normal headaches associated with a manual setup."'} (\url{http://yeoman.io})
 		\end{quote}
 
-		Es stellt sogenannte "`Generators"' zur Verfügung, die genau diese Funktionalität der Projekterstellung abbildet. Dabei wird das Ziel verfolgt, "`Best Practices"' für das jeweilige Projekt umzusetzen.
+		Es stellt sogenannte "`Generators"' zur Verfügung, die genau diese Funktionalität der Projekterstellung abbilden. Dabei wird das Ziel verfolgt, "`Best Practices"' für das jeweilige Projekt umzusetzen.
 		Der Vorteil von Yeoman besteht darin, dass es eine enorme Vielzahl an Generatoren zur Verfügung stellt. So gibt es Generatoren für die Erstellung von Web-Apps, Chrome Browser Erweiterungen, Wordpress Blogs, Firefox OS Apps und noch 1538 \footnote{Eine volle Liste an verfügbaren Generatoren ist hier zu finden: \url{http://yeoman.io/generators/}} weitere (Stand 23.03.15). 
 		Es steht als \texttt{npm} Paket zur Verfügung und lässt sich mittels. "`npm install -g yo"' mit Hilfe der Kommandozeile installieren. Via "`nmp install -g generator-someName"' lassen sich dann beliebige Generatoren dazu installieren. Yeoman bringt dabei die zuvor vorgestellten Tools wie Gulp / Grunt und Bower zusammen. Durch das Ausführen wird das gesamte Projekt angelegt:
 		
@@ -137,12 +141,12 @@ gulp.task('javascript', function () {
 			\item Es werden alle \texttt{npm} Pakete (Bower, Gulp usw.) die nötig sind automatisch installiert.
 			\item Die Ordnersturktur mit einer CSS und Javascript Datei wird angelegt und im HTML Dokument eingebunden.
 			\item Nach der Installation stehen die wichtigsten Gulp Tasks zur Verfügung, ohne dass man sie selber schreiben muss.
-			\item Durch Gulp besteht die Möglichkeit einen Webserver mittels Kommando "`gulp serve"' zu starten.
+			\item Durch Gulp besteht die Möglichkeit, einen Webserver mittels Kommando "`gulp serve"' zu starten.
 			\item Es bestehen zusätzliche Funktionalitäten, wie das automatische Aktualisieren des Browsers nach einer Änderung, zur Verfügung.
 			\item Mittels Eingabeaufforderung lässt sich auswählen, welche Module (Sass, Bootstrap, Modernizr) enthalten sein sollen und welche nicht.
 		\end{itemize}
 
-		Das Ausführen von:
+		Das Ausführen von "`yo gulp-webapp"':
 		\begin{figure}[htbp]
 			\begin{center}
 				\includegraphics[width=0.6\textwidth]{yeoman_generator.jpg}
@@ -151,7 +155,7 @@ gulp.task('javascript', function () {
 			\end{center}
 		\end{figure}
 
-		würde innerhalb von wenigen Minuten ein Projekt anlegen, dass bereits fertig mit Bootstrap, JQuery und einem HTML Dokument konfiguriert ist. Mittels "`gulp serve"' kann das direkt im Browser betrachtet werden:
+		würde innerhalb von wenigen Minuten ein Projekt anlegen, das bereits fertig mit Bootstrap, JQuery und einem HTML Dokument konfiguriert ist. Mittels "`gulp serve"' kann das direkt im Browser betrachtet werden:
 
 		\begin{figure}[htbp]
 			\begin{center}
@@ -163,9 +167,9 @@ gulp.task('javascript', function () {
 				
 		\subsubsection{Eigene Generatoren erstellen} % (fold)
 		\label{ssub:eigene_generatoren_erstellen}
-			Yeoman bietet jedem die Möglichkeit einen eigenen Generator zu erstellen. Auch dafür gibt es wiederrum einen Generator, den "`generator-generator"'. Damit lässt sich eine persönliche Projektstruktur erstellen, die den eigenen Projekten gerecht wird. Dadurch lassen sich beispielsweise Skripte zum verzögerten Laden von Javascript, damit das Rendern nicht blockiert wird, von Beginn an in das eigene Projekt integrieren. Eigene Generatoren können ganz einfach Veröffentlicht werden. Es muss lediglich ein Benutzer mittels "`npm adduser"' angelegt werden und dann kann mittels "`npm publish"' der eigene Generator als \texttt{npm} Paket zur Verfügung gestellt werden. Auch Updates lassen sich mittels "`npm publish"' binnen Sekunden einspielen. Mein persönlicher Generator ist zum Beispiel unter: \url{https://www.npmjs.com/package/generator-4dev} zu finden und kann von jedem über "`npm install -g generator-4dev"' installiert und anschließend mittels "`yo 4dev"' aufgerufen werden.\\
+			Yeoman bietet jedem die Möglichkeit, einen eigenen Generator zu erstellen. Auch dafür gibt es wiederrum einen Generator, den "`generator-generator"'. Damit lässt sich eine persönliche Projektstruktur erstellen, die den eigenen Projekten gerecht wird. Dadurch lassen sich beispielsweise Skripte zum verzögerten Laden von Javascript, damit das Rendern nicht blockiert wird, von Beginn an in das eigene Projekt integrieren. Eigene Generatoren können ganz einfach veröffentlicht werden. Es muss lediglich ein Benutzer mittels "`npm adduser"' angelegt werden und dann kann mittels "`npm publish"' der eigene Generator als \texttt{npm} Paket zur Verfügung gestellt werden. Auch Updates lassen sich mittels "`npm publish"' binnen Sekunden einspielen. Mein persönlicher Generator ist zum Beispiel unter: \url{https://www.npmjs.com/package/generator-4dev} zu finden und kann von jedem über "`npm install -g generator-4dev"' installiert und anschließend mittels "`yo 4dev"' aufgerufen werden.\\
 
-			Für ein Unternehmen könnte dies zum Beispiel bedeuten, mit einem eigenen Generator eine einheitliche Projektstruktur einzuführen, der die "`best practices"' des Unternehmens abbildet. Alternativ könnte auch ein Konsens gefunden werden, welcher der bereits existierenden Generatoren für die jeweils eigenen Projekte einsetzbar wäre.\\
+			Für ein Unternehmen könnte dies zum Beispiel bedeuten, mit einem eigenen Generator eine einheitliche Projektstruktur einzuführen, der die best practices des Unternehmens abbildet. Alternativ könnte auch ein Konsens gefunden werden, welcher der bereits existierenden Generatoren für die jeweils eigenen Projekte einsetzbar wäre.\\
 
 			Eine ausführliche Anleitung und Dokumentation zur Erstellung von Generatoren ist der offiziellen Seite: \url{http://yeoman.io/authoring/index.html} zu entnehmen.
 		
@@ -175,7 +179,7 @@ gulp.task('javascript', function () {
 
 	\subsection{Zusammengefasst}
 	\label{sub:zusammengefasst}
-		Gulp, Bower und Yeoman arbeiten perfekt zusammen und ermöglichen einen modernen Workflow mit den momentan gültigen "`best practices"'. Mittels \texttt{npm} und \texttt{Bower} lassen sich Pakete ganz einfach installieren, deinstallieren und updaten, während gleichzeitig eine einheitliche Entwicklungsumgebung bereitgestellt wird. Außerdem bieten viele Frameworks die Möglichkeit, mittels Bower nur einzelne Module zu installieren. Dadurch ist es möglich nur das Nötigste in die Seite einzubinden.\\ Gulp ermöglicht eine umfassende Automatisierung von Aufgaben, die gerade für die web performance sehr wichtig sind. Folgende Projektstruktur erweist sich als sinnvoll:
+		Gulp, Bower und Yeoman arbeiten perfekt zusammen und ermöglichen einen modernen Workflow. Mittels \texttt{npm} und \texttt{Bower} lassen sich Pakete ganz einfach installieren, deinstallieren und aktualisieren, während gleichzeitig eine einheitliche Entwicklungsumgebung bereitgestellt wird. Außerdem bieten viele Frameworks die Möglichkeit, mittels Bower, nur einzelne Module zu installieren. Dadurch ist es möglich, nur das Nötigste in die Seite einzubinden.\\ Gulp ermöglicht eine umfassende Automatisierung von Aufgaben, die gerade für die Web Performance sehr wichtig sind. Folgende Projektstruktur erweist sich als sinnvoll:
 
 		\lstset{
 		 morekeywords={dist,site, node_modules}
@@ -222,8 +226,8 @@ gulp.task('javascript', function () {
 		|_ ...
 		\end{lstlisting}
 
-		Der Ordner "`./site"' ist dabei der Ordner, in dem die Entwicklung stattfindet. Der Ordner "`./dist"' beinhaltet die für die Veröffentlichung angepasste Version von optimierten Bildern, verkleinertes und zusammengefügte CSS und Javascript Dateien und eine Kopie der restlichen, für die Webanwendung wichtigen Elemente. Diese werden automatisch mittels Gulp erzeugt (meistens durch einne sogenannten "`build Task"' ) und lassen sich selbst bei kleinsten Änderungen an der Seite mit nur einem Kommando neu erstellen. Durch diese Arbeitsweise ist es möglich, dass das Projekt von beginn an einen für die Veröffentlichung optimalen Stand hat. Gulp bietet für fast alle Aufgaben eine Automatisierung und es lohnt sich ein Blick in die zahllosen Pakete \footnote{Gulp Plugin Suchmaschiene: \url{http://gulpjs.com/plugins/}} die von einer immer weiter wachsenden Community bereitgestellt werden.\\
-		Durch beachten des Kritischen Rendering-Pfads (\ref{sub:critical_render_path}), das einsetzen der unter Punkt \ref{sub:tools} vorgestellten Tools und den in dieser Arbeit vorgestellten Optimierungsmaßnahmen lässt sich eine für den Endanwender akzeptable Ladezeit erreichen.
+		"`./site"' ist dabei der Ordner, in dem die Entwicklung stattfindet. Der Ordner "`./dist"' beinhaltet die für die Veröffentlichung angepasste Version von optimierten Bildern, verkleinerte und zusammengefügte CSS und Javascript Dateien und eine Kopie der restlichen, für die Webanwendung wichtigen Elemente. Diese werden automatisch mittels Gulp erzeugt (meistens durch einne sogenannten "`build Task"' ) und lassen sich selbst bei kleinsten Änderungen an der Seite, mit nur einem Kommando neu erstellen. Durch diese Arbeitsweise ist es möglich, dass das Projekt von Beginn an einen, für die Veröffentlichung optimalen Stand hat. Gulp bietet für fast alle Aufgaben eine Automatisierung und es lohnt sich, ein Blick in die zahllosen Pakete\footnote{Gulp Plugin Suchmaschiene: \url{http://gulpjs.com/plugins/}} die von einer immer weiter wachsenden Community bereitgestellt werden.\\
+		Durch Beachten des kritischen Rendering-Pfads (\ref{sub:critical_render_path}), das Einsetzen der unter Punkt \ref{sub:tools} vorgestellten Tools und den in dieser Arbeit beschriebenen Optimierungsmaßnahmen, lässt sich eine für den Endanwender akzeptable Ladezeit erreichen.
 
 	% subsection zusammengefasst (end)
 

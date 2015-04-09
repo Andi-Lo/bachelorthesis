@@ -1,17 +1,17 @@
 \section{Ergebnis} % (fold)
 \label{sec:ergebnis}
-	Bereits zu Beginn des Projekts war es wichtig es messbar zu machen. Dafür wurde eine Testumgebung aufgebaut, mit deren Hilfe die Seite nach ihrer Geschwindigkeit getestet werden kann. Ganz entscheidend war dabei die Webpagetest API in Verbindung mit Google Spreadsheets. Damit lassen sich regelmäßig automatisierte Tests durchführen und die Daten werden nach erfolgreichem Test automatisch in einer Spreadsheet Tabelle gespeichert. Die über den Zeitraum der Arbeit hinweig gesammelten Daten sind hier finden: \url{http://tinyurl.com/l5usz79}. Diese Daten wurden anschließend mittels \url{http://Chartjs.org} in Diagrammen aufbereitet und alle Diagramme sind auch Online abrufbar unter: \url{http://bithugger.github.io/bachelorthesis/}
+	Bereits zu Beginn des Projekts war es wichtig den Projektfortschritt messbar zu machen. Dafür wurde eine Testumgebung aufgebaut, mit deren Hilfe die Seite nach ihrer Geschwindigkeit getestet werden kann. Ganz entscheidend war dabei die Webpagetest API in Verbindung mit Google Spreadsheets. Damit lassen sich regelmäßig automatisierte Tests durchführen und die Daten werden nach erfolgreichem Test automatisch in einer Spreadsheet Tabelle gespeichert. Die über den Zeitraum der Arbeit hinweig gesammelten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}. Diese Daten wurden anschließend mittels \url{http://Chartjs.org} in Diagrammen aufbereitet und alle Diagramme sind auch online abrufbar unter: \url{http://bithugger.github.io/bachelorthesis/}
 
 	\subsection{Wie wurde getestet?} % (fold)
 	\label{sub:wie_wurde_getestet}
-		Damit mittels Google Spreadsheets die Webpagetest API verwendet werden kann, ist es nötig einen sogenannten API-Key anzufordern. Ein solcher Key ist kostenlos unter der Adresse: \url{http://www.webpagetest.org/getkey.php} zu erhalten und bietet die Möglichkeit täglich 200 Seitenaufrufe zu tätigen. Als Seitenaufruf zählt sowohl die "`first view"' als auch "`repeat view"'. Die Tests sind 30 Tage abrufbar und gespeichert.\\
+		Damit mittels Google Spreadsheets die Webpagetest API verwendet werden kann, ist es nötig, einen sogenannten API-Key anzufordern. Ein solcher Key ist kostenlos unter der Adresse: \url{http://www.webpagetest.org/getkey.php} zu erhalten und bietet die Möglichkeit, täglich 200 Seitenaufrufe zu tätigen. Als Seitenaufruf zählt sowohl die "`first view"' als auch "`repeat view"'. Die Tests sind 30 Tage abrufbar und gespeichert.\\
 
-		Für das Testen der Seite kann aus einer Vielzahl an Teststandorten gewählt werden. Damit lässt sich nachvollziehen wie beispielsweise die Ladezeiten aus der USA oder Asien sind. Je nach Zielgruppe sollten Tests von verschiedenen Standorten in betracht gezogen werden.\footnote{Eine volle Liste der zur Verfügung stehenden Teststandorte ist im Anhang unter Punkt: \ref{sub:webpagetest_teststandorte} zu finden.} Für dieses Projekt wurden ausschließlich Teststandorte aus der USA und Europa gewählt.\\
+		Für das Testen der Seite kann aus einer Vielzahl an Teststandorten gewählt werden. Damit lässt sich nachvollziehen, wie beispielsweise die Ladezeiten aus der USA oder Asien sind. Je nach Zielgruppe sollten Tests von verschiedenen Standorten in betracht gezogen werden.\footnote{Eine volle Liste der zur Verfügung stehenden Teststandorte ist im Anhang unter Punkt: \ref{sub:webpagetest_teststandorte} zu finden.} Für dieses Projekt wurden ausschließlich Teststandorte aus den USA und Europa gewählt.\\
 
 		Als Testparameter wurde eine Anzahl von 9 Tests pro Testlauf gewählt. Dabei wurde sowohl die "`first view"' als auch die "`repeat view"' aufgezeichnet. Von den 9 Testläufen wurde der Median als Ergebnis des Testlaufs verwendet. Über den Zeitraum der Arbeit wurde die Seite 1089 Tests unterzogen.\\
 
-		Das größte Problem bestand in der möglichst genauen Messzeiterfassung für die Ladezeiten mittels Smartphone. Webpagetest stellt nur einen Smartphones Teststandort in Dulles USA zu Verfügung. Da die Latenz zwischen dem Hosting in Deutschland und dem Seitenaufruf in der USA sehr viel größer ist, als wenn dieser direkt aus Deutschland erfolgt, wurde nach einer Lösung gesucht diese Messungen exakter zu gestalten.
-		Die Lösung dafür ist, ein zweites Hosting mit der selben Seite in den USA zu erstellen. Dafür wurde die "`Microsoft Azure Cloud"' verwendet. Eine kostenlose Testversion ermöglicht es, ganz einfach auf verschiedensten Kontinenten eine Webseite zu hosten. Die Seite wurde für die Tests Online geschaltet und nach den Testläufen wieder Offline genommen.
+		Das größte Problem bestand in der möglichst genauen Messzeiterfassung für die Ladezeiten mittels Smartphone. Webpagetest stellt nur einen Smartphones Teststandort in Dulles USA zu Verfügung. Da die Latenz zwischen dem Hosting in Deutschland und dem Seitenaufruf in der USA sehr viel größer ist, als wenn dieser direkt aus Deutschland erfolgt, wurde nach einer Lösung gesucht, diese Messungen exakter zu gestalten.
+		Die Lösung dafür ist, ein zweites Hosting mit der selben Seite in den USA zu erstellen. Dafür wurde die "`Microsoft Azure Cloud"' verwendet. Eine kostenlose Testversion ermöglicht es, ganz einfach auf verschiedensten Kontinenten eine Webseite zu hosten. Die Seite wurde für die Tests online geschaltet und nach den Testläufen wieder offline genommen.
 
 	% subsection wie_wurde_getestet (end)
 
@@ -19,7 +19,7 @@
 	\label{sub:datenauswertung}
 		Folgende Daten wurden bei jedem Testlauf erfasst: Speed Index, TTFB (ms), Render start (ms), Visually complete (ms), Dom Content loaded (ms), Site fully loaded (ms), Requests, Bytes in Document.
 
-    Das Diagramm in Abbildung \ref{fig:data_all}, zeigt eine Übersicht der verschiedenen Messwerte über den Zeitraum des Projekts. Die Y-Achse bildet die Zeit in Millisekunden ab und die X-Achse ist das Datum der Messung. Innerhalb von 36 Tagen haben sich alle Werte signifikant verbessert.
+    Das Diagramm in Abbildung \ref{fig:data_all} zeigt eine Übersicht der verschiedenen Messwerte über den Zeitraum des Projekts. Die Y-Achse bildet die Zeit in Millisekunden ab und die X-Achse ist das Datum der Messung. Innerhalb von 36 Tagen haben sich alle Werte signifikant verbessert.
     % todo: wirklich 36 Tage? Nachzählen!
 
     \begin{figure}[htbp]
@@ -31,17 +31,17 @@
     \end{figure}
 
     \begin{itemize}
-        \item Speed Index: Ein Speed Index von < 1000 Punkten wird als "`schnell genug"' angesehen. Der Median des Speed Indexes konnte von 6063 Zählern auf 1028 Zähler verringert werden. 
-        % todo, evt Zitat von Twittter (how fast is fast enough?)
-        % fazit: was bedeutet der Speed Index jetzt konkret für den Anwender / Nutzer / fürs Projekt?
-        % todo, evt vergleich mit speed index der top 1000 Alexa sites
-        \item Render Start: Während dieser Wert bereits bei Projektbeginn mit 2,4 Sekunden für das erste Rendern recht gut war, konnte auch hier fast das dreifache der Zeit (287\%) eingespart werden. Dieser Wert wird durch dieses Diagramm nicht drastisch genug ausgedrückt. So konnte die alte Version der Seite auf dem Smartphone durchaus einen \texttt{Render start} von ganzen 10 Sekunden haben. Das dieser Wert im Diagramm vergleichbar gering ausfällt liegt daran, dass auch viele Tests mittels Desktop PC und Kabelverbindung eingeflossen sind. Die jetzige Renderzeit auf dem Smartphone beträgt ungefähr 1,4 Sekunden. 
-        % note: daten, die den render start von 1,4 sec belegen?
-        \item Load Time bestimmt, wie lange ein Anwender warten muss, bis eine Interaktion mit der Seite möglich ist. Dieser Wert konnte um volle 2 Sekunden verringert werden. Dies wurde vor allem durch eine verringerung der Seitengröße erreicht.
-        % nachprüfen ob das mit der Interaktionszeit so stimmt
-        \item Visually Complete: Der höchste Messwert mit rund 7,6 Sekunden konnte auf 1,2 Sekunden verringert werden. Der Hauptgrund dafür ist die Priorisierung des Inhalts "`above the fold"'. Bei der alten Version erfolgte keine priorisierung, welche Bilder zuerst und welche zuletzt geladen werden sollen. Dadurch konnte es sein, dass Bilder die sehr weit unten platziert waren, zuerst geladen wurden was die "`Visually Complete"' Zeit erhöhte. In der neuen Version wird alles, was unterhalb des "`above the fold"' ist verzögert geladen.
+        \item Speed Index: Ein Speed Index von < 1000 Punkten wird als "`schnell genug"' angesehen. Der Median des Speed Indexes konnte von 6063 Zählern auf 1028 Zähler verringert werden.
+
+        \item Render Start: Während dieser Wert bereits bei Projektbeginn mit 2,4 Sekunden für das erste Rendern recht gut war, konnte auch hier fast das dreifache der Zeit (287\%) eingespart werden. Dieser Wert wird durch dieses Diagramm nicht drastisch genug ausgedrückt. So konnte die alte Version der Seite auf dem Smartphone durchaus einen \texttt{Render start} von ganzen 10 Sekunden haben. Dass dieser Wert im Diagramm vergleichbar gering ausfällt liegt daran, dass auch viele Tests mittels Desktop PC und Kabelverbindung eingeflossen sind. Die jetzige Renderzeit auf dem Smartphone beträgt ungefähr 1,4 Sekunden.
+
+        \item Load Time bestimmt, wie lange ein Anwender warten muss, bis eine Interaktion mit der Seite möglich ist. Dieser Wert konnte um volle 2 Sekunden verringert werden. Dies wurde vor allem durch eine Verringerung der Seitengröße erreicht.
+
+        \item Visually Complete: Der höchste Messwert mit rund 7,6 Sekunden konnte auf 1,2 Sekunden verringert werden. Der Hauptgrund dafür ist die Priorisierung des Inhalts "`above the fold"'. Bei der alten Version erfolgte keine Priorisierung, welche Bilder zuerst und welche zuletzt geladen werden sollen. Dadurch konnte es sein, dass Bilder die sehr weit unten platziert waren, zuerst geladen wurden, was die "`Visually Complete"' Zeit erhöhte. In der neuen Version wird alles, was unterhalb des "`above the fold"' ist, verzögert geladen.
+
         \item TTFB: Dieser Wert ist grundsätzlich nicht beeinflussbar und sollte durch die Wahl des richtigen Hosting Anbieters so niedrig wie möglich gehalten werden.
     \end{itemize}
+
     \pagebreak
 
 		\begin{figure}[htbp]
@@ -52,15 +52,23 @@
 			\end{center}
 		\end{figure}
 
-		Die Seitengröße konnte in der Mobilen und Desktop Variante um rund 3/4 reduziert werden. Dadurch sinkt für den Anwender nicht nur die Ladezeit, sondern auch sein Datenvolumen wird weniger in Anspruch genommen. Laut \url{http://whatdoesmysitecost.com/site/andreaslorer.de} kostet ein Seitenaufruf zwischen 0,01\$ und 0,04\$. Die reduzierung wurde durch mehrere Dinge erreicht: 
+		Die Seitengröße konnte in der Mobilen und Desktop Variante um rund 3/4 reduziert werden. Dadurch sinkt für den Anwender nicht nur die Ladezeit, sondern auch sein Datenvolumen wird weniger in Anspruch genommen. Laut \url{http://whatdoesmysitecost.com/site/andreaslorer.de} kostet ein Seitenaufruf zwischen 0,01\$ und 0,04\$. Die Reduzierung wurde durch folgende Änderungen erreicht: 
+
 		\begin{itemize}
 			\item Die "`best practices"' wurden umgesetzt und der Server, wie oben beschrieben, entsprechend konfiguriert.
+
 			\item Bilder "`below the fold"' werden erst dann geladen, wenn der Anwender dort hin scrollt.
-			\item Bilder wurden umfassend Komprimiert und \texttt{Progressive} abgespeichert
+
+			\item Bilder wurden umfassend komprimiert und \texttt{Progressive} abgespeichert.
+
 			\item Das Framework wurde von Bootstrap auf \texttt{Pure.css} gewechselt.
+
 			\item Verwendung von "`Responsive Images"'.
+
 			\item Es werden mittels \texttt{Fontello} nur die Icons geladen, die auch in der Seite eine Verwendung finden.
+
 			\item JQuery wurde als Abhängigkeit für die Bildergallery entfernt. Dadurch kann das herunterladen von JQuery soweit verzögert werden, bis alle wichtigen Teile der Seite geladen wurden. 
+
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.8\textwidth]{amount_of_requests.jpg}
@@ -79,9 +87,10 @@
 	    \end{figure}
 
 			\item In der Mobilen Variante konnten weitere Requests eingespart werden und es wird nur noch der Hintergrund und das erste Bild der Bildergallery geladen.
+
 		\end{itemize}
 
-		Beim Seitenaufruf mittels Desktop-PC und Kabelverbindung können "`first Render"' Zeiten von unter 189 ms und ein Speed Index von 468 erreicht werden.\footnote{Test Desktop: \url{http://www.webpagetest.org/result/150324_EW_105M/5/details/}} Auf Smartphones mit 3G Netz und 300 ms RTT siehen die Werte etwas schlechter aus und so kann je nach Tag oder Uhrzeit das Ergebnis entsprechend anders ausfallen. Hier sind Werte von 1,3 Sekunden bis zum "`first Render"' und einem Speed Index von 1948 möglich.\footnote{Test Mobile: \url{http://www.webpagetest.org/result/150308_5V_JSD/4/details/}}. Ein visueller Vergleich zwischen der alten und neuen Seite ist in Form eines Videos unter der URL: \url{http://tinyurl.com/o8xoy7m} zu sehen.
+		Beim Seitenaufruf mittels Desktop-PC und Kabelverbindung können "`first Render"' Zeiten von unter 189 ms und ein Speed Index von 468 erreicht werden.\footnote{Test Desktop: \url{http://www.webpagetest.org/result/150324_EW_105M/5/details/}} Auf Smartphones mit 3G Netz und 300 ms RTT sehen die Werte etwas schlechter aus und so kann je nach Tag oder Uhrzeit das Ergebnis entsprechend anders ausfallen. Hier sind Werte von 1,3 Sekunden bis zum "`first Render"' und einem Speed Index von 1948 möglich.\footnote{Test Mobile: \url{http://www.webpagetest.org/result/150308_5V_JSD/4/details/}}. Ein visueller Vergleich zwischen der alten und neuen Seite ist in Form eines Videos unter der URL: \url{http://tinyurl.com/o8xoy7m} zu sehen.
 		
 
 	% subsection datenauswertung (end)
@@ -95,7 +104,7 @@
 
 \section{Der Weg zur Performance} % (fold)
 \label{sec:der_weg_zur_performance}
-	Damit Webanwendungen überhaupt eine gute Performance  bieten können, gibt es eine fundamentale Bedingung: Sowohl das ganze Team als auch das ganze Unternehmen muss hinter dem Gedanken "`Speed is feature number one"'\autocite{holzle10} stehen. Diese Voraussetzung zu erfüllen und alle in ein "`Boot"' zu bekommen kann bereits sehr schwierig sein, ist aber für den Erfolg einer schnellen Webanwendung unabdingbar.
+	Damit Webanwendungen überhaupt eine gute Performance  bieten können, gibt es eine fundamentale Bedingung: Sowohl das ganze Team als auch das ganze Unternehmen muss hinter dem Gedanken "`Speed is feature number one"'\autocite{holzle10} stehen. Diese Voraussetzung zu erfüllen und alle in ein "`Boot"' zu bekommen, kann bereits sehr schwierig sein, ist aber für den Erfolg einer schnellen Webanwendung unabdingbar.
 
 	\begin{quote}
 		\textit{"`Performance more often comes down to a cultural challenge, rather than simply a technical one."'} \autocite[p. 13]{kovalcin15}
@@ -103,12 +112,12 @@
 		\textit{"`If other designers and developers who shape the site aren’t educated on performance, how can they make the best decisions about user experience? How can they weigh the balance between aesthetics and page speed? If they aren’t empowered to make improvements, any performance champions will simply be playing cleanup after other people’s work. Spending your time cleaning up other people’s work (especially when it’s preventable) is a one-way ticket to burnout."'} \autocite{hogan14}
 	\end{quote}
 
-	Damit dies gelingt beschäftigt sich dieser Abschnitt mit der Frage, wie der Weg zur Web Performance aussehen kann und welche Hürden es zu meistern gibt.
+	Damit dies gelingt, beschäftigt sich dieser Abschnitt mit der Frage, wie der Weg zur Web Performance aussehen kann und welche Hürden es zu meistern gibt.
 
 	\subsection{Hürden} % (fold)
 	\label{sub:hürden}
 	
-	Wenn man an das Thema Web Performance denkt, so mag man in erster Linie denken, dass dies ausschließlich für die Entwickler von Belangen ist.
+	Wenn man an das Thema Web Performance denkt, so scheint es, dass dies ausschließlich für die Entwickler von Belangen ist.
 	
 	\begin{figure}[htbp]
 		\begin{center}
@@ -118,7 +127,7 @@
 		\end{center}
 	\end{figure}
 
-	Genau das Gegenteil ist allerdings der Fall. Wenn eine Webanwendung klassischerweise in die Entwicklungsphase geht, sind bereits die meisten Weichen gestellt. Das Design ist ausgearbeitet und kann mehr oder weniger Mächtig ausfallen. Das Budget für das Projekt wurde vereinbart und der Umfang wurde Vertraglich festgelegt. Das Projektmanagement muss darauf achten, dass die Wünsche und Erwartungen des Kunden erfüllt werden und die Entwicklung sich auf diesen Aspekt konzentriert.
+	Genau das Gegenteil ist allerdings der Fall. Wenn eine Webanwendung klassischerweise in die Entwicklungsphase geht, sind bereits die meisten Weichen gestellt. Das Design ist ausgearbeitet und kann mehr oder weniger mächtig ausfallen. Das Budget für das Projekt wurde vereinbart und der Umfang wurde vertraglich festgelegt. Das Projektmanagement muss darauf achten, dass die Wünsche und Erwartungen des Kunden erfüllt werden und die Entwicklung sich auf diesen Aspekt konzentriert.
 
 	\begin{figure}[htbp]
 		\begin{center}
@@ -128,18 +137,18 @@
 		\end{center}
 	\end{figure}
 
-	Deshalb beginnt das Thema Web Performance schon bereits ganz am Anfang. Der Kunde muss mit in das Boot geholt werden und es muss verdeutlicht werden, warum sich schnelle Ladezeiten lohnen, was für negative Auswirkungen langsame und was für positive Auswirkungen schnelle Ladezeiten auf den Endanwender haben. Der Kunde sieht oftmals nicht den Mehrwert an einer schnellen Webanwendung und möchte für etwas, dass er nicht sehen kann auch kein Geld investieren. Argumente wie:
+	Deshalb beginnt das Thema Web Performance bereits ganz am Anfang. Der Kunde muss mit in das Boot geholt werden und es muss verdeutlicht werden, warum sich schnelle Ladezeiten lohnen, was für negative Auswirkungen langsame und was für positive Auswirkungen schnelle Ladezeiten auf den Endanwender haben. Der Kunde sieht oftmals nicht den Mehrwert an einer schnellen Webanwendung und möchte für etwas, das er nicht sehen kann auch kein Geld investieren. Argumente wie:
 	\begin{quote}
 		\textit{"`We surveyed 3000 users about 17 key product drivers. They rated speed 2nd most important only after easy to find content."'} \autocite[p. 8]{hamann14}
 
 		\textit{"`User load time expectations are 2 seconds or less and decreasing"'} \autocite{bixby13}
 	\end{quote}
-	oder die in dieser Arbeit genannten Argumente können bei der Überzeugungsarbeit helfen.\footnote{Eine Sammlung mit Argumenten ist im Anhang unter Punkt \ref{sub:argumentations_sammlung} zu finden.} Aktuelle Reports oder Zahlen und Fakten die den direkten Zusammenhang zwischen Ladezeit und dem daraus resultierenden Profit verdeutlichen sind, entsprechend aufbereitet, sehr hilfreich.\\
-	Der Kunde könnte auch Argumentieren, dass er gar nicht so viele Mobile Anwender hat und es sich deshalb nicht lohnt. Dies war damals die selbe Argumentationsweise, die gegen "`Responsive Webdesign"' sprach. \textit{"`Amongst the top 10,000 websites, almost 8\% of websites went responsive within the span of a single year – an incredible growth!"'}\autocite{guypo14}. Diese Argumentation hielt nicht lange und heute spricht jede Firma von Responsive, will eine Responsive Website oder hat zumindest darüber nachgedacht.\autocite{guypo14} Web Performance ist ein Zukunftstrend, der mit der steigenden Anzahl an Smartphone Nutzer einher geht und damit früher oder später für jeden relevant ist. Ein guter "`sales pitch"' könnte sein:
+	oder die in dieser Arbeit genannten Argumente können bei der Überzeugungsarbeit helfen.\footnote{Eine Sammlung mit Argumenten ist im Anhang unter Punkt \ref{sub:argumentations_sammlung} zu finden.} Aktuelle Reports oder Zahlen und Fakten, die den direkten Zusammenhang zwischen Ladezeit und dem daraus resultierenden Profit verdeutlichen, sind, entsprechend aufbereitet, sehr hilfreich.\\
+	Der Kunde könnte auch argumentieren, dass er gar nicht so viele Mobile Anwender hat und es sich deshalb nicht lohnt. Dies war damals die selbe Argumentationsweise, die gegen "`Responsive Webdesign"' sprach. \textit{"`Amongst the top 10,000 websites, almost 8\% of websites went responsive within the span of a single year – an incredible growth!"'}\autocite{guypo14}. Diese Argumentation hielt nicht lange und heute spricht jede Firma von Responsive, will eine Responsive Website oder hat zumindest darüber nachgedacht.\autocite{guypo14} Web Performance ist ein Zukunftstrend, der mit der steigenden Anzahl an Smartphone Nutzern einher geht und damit früher oder später für jeden relevant ist. Ein guter "`sales pitch"' könnte sein:
 	\begin{quote}
 		 \textit{"`We'll provide you with a \textbf{fast}, responsive, immersive online experience."'}\autocite[p. 32]{kovalcin15}
 	\end{quote}
-	Dem Kunden muss Performance als visuell greifbares Erlebnis präsentiert werden. Dabei sind nicht nur Diagramme sondern auch Tools wie Webpagetest sehr nützlich. Damit können Vergleichsvideos erstellt werden. Denkbar wäre zum Beispiel ein direkter Vergleich mit den Konkurrenzseiten zu zeigen. Auch ein Vorher- / Nachervergleich eines erfolgreichen Projekts könnte dem Kunden präsentiert werden. Zum Launch kann dann ein Vergleich mit pre- und post-Performance aufgezeigt werden.\\
+	Dem Kunden muss Performance als visuell greifbares Erlebnis präsentiert werden. Dabei sind nicht nur Diagramme, sondern auch Tools wie Webpagetest sehr nützlich. Damit können Vergleichsvideos erstellt werden. Denkbar wäre zum Beispiel ein direkter Vergleich mit den Konkurrenzseiten zu zeigen. Auch ein Vorher- / Nachervergleich eines erfolgreichen Projekts könnte dem Kunden präsentiert werden. Zum Launch kann dann ein Vergleich mit pre- und post-Performance aufgezeigt werden.\\
 
 		\subsubsection{Projekt Manager} % (fold)
 		\label{ssub:projekt_manager}
@@ -149,25 +158,25 @@
 				\item Advocate with clients
 				\item Help maintain performance budget.
 			\end{itemize}
-			Zuerst müssen die Projekt Manager verstehen, warum Web Performance wichtig für das Projekt ist um den Kunden entsprechend führen und beraten zu können. Des weiteren muss jemand dafür Sorge tragen, dass das Performance Budget (dazu später mehr) eingehalten wird. Neue Anforderungen und features müssen dementsprechend bewertet und mit dem Kunden diskutiert werden.\\
+			Zuerst müssen die Projekt Manager verstehen, warum Web Performance wichtig für das Projekt ist, um den Kunden entsprechend führen und beraten zu können. Des Weiteren muss jemand dafür Sorge tragen, dass das Performance Budget (dazu später mehr) eingehalten wird. Neue Anforderungen und features müssen dementsprechend bewertet und mit dem Kunden diskutiert werden.\\
 		% subsubsection projekt_manager (end)
 
 		\subsubsection{Aesthetic heavy designers} % (fold)
 		\label{ssub:aesthetic_heavy_designers}
-			"`Aesthetic heavy designers"' können oft nicht abschätzen, was ihre Entscheidungen für einen Einfluss auf die Webanwendung haben. Die voraussetzung dafür ist zu wissen, wie das Web funktioniert. Warum Webanwendungen langsam sind und was dazu führt. Erst dann lassen sich Entscheidungen treffen, die sowohl den Endanwender und sein Online Erlebnis, als auch den ästhetischen Anspruch zufriedenstellen. Wikipedia beschreibt den Begriff Design so:
+			"`Aesthetic heavy designers"' können oft nicht abschätzen, was ihre Entscheidungen für einen Einfluss auf die Webanwendung haben. Die Voraussetzung dafür ist, zu wissen, wie das Web funktioniert. Warum Webanwendungen langsam sind und was dazu führt. Erst dann lassen sich Entscheidungen treffen, die sowohl den Endanwender und sein Online Erlebnis, als auch den ästhetischen Anspruch zufrieden stellen. Wikipedia beschreibt den Begriff Design so:
 
 			\begin{quote}
 				\textit{"`Insbesondere umfasst Design auch die Auseinandersetzung des Designers \textbf{mit der Funktion eines Objekts sowie mit dessen Interaktion mit einem Benutzer}"'} \autocite{wikipediaDesign}
 			\end{quote}
 
-			Design ist also mehr als nur die visuelle Aufbereitung von Informationen, es muss in erster Linie dem Anwender dienen. Webseiten die zu groß sind, zerstören den Ansatz von Web Performance bereits schon zu Beginn. Wie in Punkt \ref{sub:perceived_performance} gesagt, verlassen über 50\% der Nutzer eine Seite nach einer Verzögerung von nur 3 Sekunden. Die emotionsvollsten Bilder und das prächtigste Design kann dem Besucher keine Botschaft vermitteln, wenn sie niemals zu sehen sein werden.
+			Design ist also mehr als nur die visuelle Aufbereitung von Informationen, es muss in erster Linie dem Anwender dienen. Webseiten, die zu groß sind, zerstören den Ansatz von Web Performance bereits schon zu Beginn. Wie in Punkt \ref{sub:perceived_performance} gesagt, verlassen über 50\% der Nutzer eine Seite nach einer Verzögerung von nur 3 Sekunden. Die emotionsvollsten Bilder und das prächtigste Design kann dem Besucher keine Botschaft vermitteln, wenn sie niemals zu sehen sein werden.
 
 			\begin{quote}
 				\textit{"`When you want to be fast, you have to \textbf{give up} the things slowing you down."'}\autocite[p. 2]{osmani14}
 			\end{quote}
 
-			Performance darf nicht als schlimmster Feind, sondern muss als bester Freund betrachtet werden. Dabei findet ein Balanceakt statt. Manchmal werden Entscheidungen zugunsten der Performance, ein anderes mal für die Ästhetik getroffen. Der Schlüssel ist es, alle verfügbaren Informationen zu nutzen, um die richtigen Entscheidungen für sich und die Webanwendung zu treffen.\autocite[p. 126]{laraHogan14}\\
-			Der Designer muss sich Fragen stellen wie: "`Welchen Mehrwert hat der Nutzer durch dieses große Bild auf der Startseite"', braucht es 3 Schriftarten um einen gewissen \texttt{Look \& Feel} zu vermitteln oder reicht eine? Gibt es eine alternative Schriftart die fast identisch aussehen, aber viel weniger Bytes benötigt? 
+			Performance darf nicht als schlimmster Feind, sondern muss als bester Freund betrachtet werden. Dabei findet ein Balanceakt statt. Manchmal werden Entscheidungen zugunsten der Performance, ein anderes Mal für die Ästhetik getroffen. Der Schlüssel ist es, alle verfügbaren Informationen zu nutzen, um die richtigen Entscheidungen für sich und die Webanwendung zu treffen.\autocite[p. 126]{laraHogan14}\\
+			Der Designer muss sich Fragen stellen wie: "`Welchen Mehrwert hat der Nutzer durch dieses große Bild auf der Startseite"', braucht es 3 Schriftarten um einen gewissen \texttt{Look \& Feel} zu vermitteln oder reicht eine? Gibt es eine alternative Schriftart die fast identisch aussieht, aber viel weniger Bytes benötigt? 
 
 			\begin{longtable}{|>{\raggedright \arraybackslash}p{4.9cm}|>{\raggedright \arraybackslash}p{4.9cm}|>{\raggedright \arraybackslash}p{5cm}|}
 			\caption{Beispiel: Abwägung - Performance oder Ästhetik  (Tabelle nach \autocite[p. 126]{laraHogan14})}\\
@@ -201,7 +210,7 @@
 				\hline	
 			\end{longtable}
 
-			Für viele Entscheidungsschritte macht es oft Sinn, dass Entwickler und Designer kollaborieren. Dabei können bereits zu einem sehr frühen Zeitpunkt \texttt{Bottlenecks} erkannt, alterantiven vorgeschlagen und diskutiert werden. Dafür muss es klare Regeln geben. So haben Phrasen wie: "`Das ist zu schwierig, gefällt mir nicht, dumme Idee, da gibt es keine Alternative, das Bild muss genau so aussehen"' generell nichts verloren. Das Wort "`Performance"' darf nicht als \texttt{Trumpfkarte} für einen Entwickler gegenüber dem Designer gesehen werden. Viel mehr Sinn macht es Alternativen zu erarbeiten, Prioritäten zu diskutieren oder Lösungen aufzuzeigen. Ebeneso kann es hilfreich sein, früh mit einem Mockup oder Prototyp auf Code-Basis anzufangen und gemeinsam an diesem auszuprobieren.
+			Für viele Entscheidungsschritte macht es oft Sinn, dass Entwickler und Designer kollaborieren. Dabei können bereits zu einem sehr frühen Zeitpunkt \texttt{Bottlenecks} erkannt, Alterantiven vorgeschlagen und diskutiert werden. Dafür muss es klare Regeln geben. So haben Phrasen wie: "`Das ist zu schwierig, gefällt mir nicht, dumme Idee, da gibt es keine Alternative, das Bild muss genau so aussehen"' generell nichts verloren. Das Wort "`Performance"' darf nicht als \texttt{Trumpfkarte} für einen Entwickler gegenüber dem Designer gesehen werden. Viel mehr Sinn macht es Alternativen zu erarbeiten, Prioritäten zu diskutieren oder Lösungen aufzuzeigen. Ebeneso kann es hilfreich sein, früh mit einem Mockup oder Prototyp auf Code-Basis anzufangen und gemeinsam an diesem auszuprobieren.
 
 			\begin{figure}[htbp]
 				\includegraphics[width=0.5\textwidth]{project_timeline.jpg}
@@ -209,7 +218,7 @@
 				\label{fig:project_timeline}
 			\end{figure}
 			
-			Auch hier gilt wieder den Balanceakt zwischen Ästhetik und Performance zu finden und nicht gegeneinander, sondern miteinander zu arbeiten. Um dem ganzen einen Rahmen zu geben, in dem sich sowohl Designer, Entwickler als auch der Kunde bewegen darf, wird von vielen Performance Führsprechern ein sogenanntes "`Performance Budget"' verwendet.
+			Auch hier gilt es den Balanceakt zwischen Ästhetik und Performance zu finden und nicht gegeneinander, sondern miteinander zu arbeiten. Um dem Ganzen einen Rahmen zu geben, in dem sich sowohl Designer, Entwickler als auch der Kunde bewegen dürfen, wird von vielen Performance Führsprechern ein sogenanntes "`Performance Budget"' verwendet.
 		
 		% subsubsection aesthetic_heavy_designers (end)
 	
@@ -227,7 +236,7 @@
 				\textit{"`The important point is to look at every decision, right through the design/build process, as something that has consequence. Having a pre-defined ‘budget’ is a clear, tangible way to frame decisions about what can and can’t be be included, and at a suitably early stage in the project. It can also potentially provide some justification to the client about why certain things have been omitted (or rather, swapped out for something else)."'}
 			\end{quote}
 
-			Die Einführung eines Performance Budgets bietet den Vorteil, einen festgelegten Rahmen über die Zeitspanne des Projekts zu haben. Es ist ein Referenzpunkt der mit darüber Entscheidet, welche und welche Komponenten nicht in die Seite mit einfließen können oder dürfen. Es Funktioniert wie Spielgeld, dass auf das Projekt aufgeteilt wird. Ist das Spielgeld leer, so gibt es diese 3 Regeln:
+			Die Einführung eines Performance Budgets bietet den Vorteil, einen festgelegten Rahmen über die Zeitspanne des Projekts zu haben. Es ist ein Referenzpunkt, der mit darüber entscheidet, welche und welche Komponenten nicht in die Seite mit einfließen können oder dürfen. Es funktioniert wie Spielgeld, das auf das Projekt aufgeteilt wird. Ist das Spielgeld leer, so gibt es diese 3 Regeln:
 			\begin{enumerate}
 				\item Optimiere eine existierende Funktion der Seite
 				\item Entferne eine existierende Funktion von der Seite
@@ -238,7 +247,7 @@
 			\subsubsection{Budget Metriken} % (fold)
 			\label{ssub:Budget_metriken}
 				
-				Eine sehr einfache Budget Metrik währe es, den Speed Index als Budget zu setzen. Jede Seite muss dann unter diesem festgelegten Wert bleiben. Oftmals ist es aber besser verschiedene Werte als Budget zu setzen. Eine Kombination aus: Anzahl Requests, start Render, maximale Seitengröße, maximales Gewicht der Bilder und zusätzlich der Speed Index können eine sinnvolle und verständliche Basis bilden. Es können aber je nach Projekt auch anwendungsbezogene Metriken verwendet werden. So benutzt Twitter zum Beispiel die Metrik "`Time to first Tweet"'.
+				Eine sehr einfache Budget Metrik wäre es, den Speed Index als Budget zu setzen. Jede Seite muss dann unter diesem festgelegten Wert bleiben. Oftmals ist es aber besser, verschiedene Werte als Budget zu setzen. Eine Kombination aus: Anzahl Requests, start Render, maximale Seitengröße, maximales Gewicht der Bilder und zusätzlich der Speed Index können eine sinnvolle und verständliche Basis bilden. Es können aber je nach Projekt auch anwendungsbezogene Metriken verwendet werden. So benutzt Twitter zum Beispiel die Metrik "`Time to first Tweet"'.
 
 				\begin{quote}
 					\textit{"`The most important metric we used was “time to first Tweet”. This is a measurement we took from a sample of users, of the amount of time it takes from navigation (clicking the link) to viewing the first Tweet on each page’s timeline. The metric gives us a good idea of how snappy the site feels."'} \autocite{twitter12}
@@ -248,16 +257,16 @@
 
 			\subsubsection{Wie schnell, ist schnell genug?} % (fold)
 			\label{ssub:wie_schnell_ist_schnell_genug_}
-				Wie wird das Performance Budget gesetzt? Dazu ist es erforderlich zu wissen, wie schnell eigentlich schnell genug ist? Schnelligkeit ist ein relativer Begriff.
+				Wie wird das Performance Budget gesetzt? Dazu ist es erforderlich, zu wissen, wie schnell eigentlich schnell genug ist? Schnelligkeit ist ein relativer Begriff.
 
 				\begin{quote}
 					\textit{"`In the high-speed world of automated financial trading, milliseconds matter. So much so, in fact, that a saving of just \textbf{6 milliseconds} in transmission time is all that is required to justify the laying of the first transatlantic communications cable for 10 years at a cost of more than \$300m between London and the New York Wall Street."'} \autocite[vgl.]{telegraph11}
 				\end{quote}
 
-				Aber auch Google stellt fest, dass bereits der Einfluss von nur \textbf{100 - 400 ms} einen messbaren Einfluss auf die Anzahl an Suchanfragen (-0,2\% bis -0,6\%) pro Anwender hat.\autocite{google09} Während 0,4\% sich nach wenig anhört, so ist bei jährlich 2,2 Billionen Suchanfragen (2013) wohl klar, was das für Google an Mehreinnahmen durch Werbung und Klicks bedeuten kann.\autocite{statista14}\\
+				Aber auch Google stellt fest, dass bereits der Einfluss von nur \textbf{100 - 400 ms} einen messbaren Einfluss auf die Anzahl an Suchanfragen (-0,2\% bis -0,6\%) pro Anwender hat.\autocite{google09} Während 0,4\% nach wenig klingen mag, so ist bei jährlich \textbf{2,2 Billionen} Suchanfragen (2013) wohl klar, was das für Google an Mehreinnahmen durch Werbung und Klicks bedeuten kann.\autocite{statista14}\\
 					
 				Studien haben ergeben, dass Menschen den Unterschied zwischen 2 Zeitspannen erst dann erkennen, wenn die Differenz 20\% überschreitet.\autocite{seow09} Damit der Anwender eine Verbesserung gegenüber der Konkurrenz bemerkt, benötigt es in Folge dessen mindestens einen 20 prozentigen Unterschied. Anhand der Konkurrenzanalyse lässt sich ein Ergebnis bestimmen, mit dessen Hilfe das Performance Budget festgelegt werden kann. Bei einem \texttt{Relaunch} kann auch die alte Seite als Refernzpunkt dienen.\\
-				Zu beachten bleibt, die Daten richtig zu interpretieren. Eine Seite die eine 7 Sekunden Ladezeit hat muss nicht unbedingt langsamer sein (Stichwort: Perceived Performance) als eine Seite mit 5 Sekunden. Hier lohnt sich vor allem die Beachtung des Speed Indexes, der die Seite nach dem "`visuellen Fortschritt über Zeit"' bewertet. Die 20\%-Methode liefert den wohl minimalsten "`schnell-genug"' Wert der erreicht werden sollte, um sich von der Konkurrenz abzusetzen.\\
+				Zu beachten bleibt, die Daten richtig zu interpretieren. Eine Seite die eine 7 Sekunden Ladezeit hat, muss nicht unbedingt langsamer sein (Stichwort: Perceived Performance) als eine Seite mit 5 Sekunden. Hier lohnt sich vor allem die Beachtung des Speed Indexes, der die Seite nach dem "`visuellen Fortschritt über Zeit"' bewertet. Die 20\%-Methode liefert den wohl minimalsten "`schnell-genug"' Wert, der erreicht werden sollte, um sich von der Konkurrenz abzusetzen.\\
 				Paul Irish, Mitarbeiter des Google Chrome Teams, sieht das ganze drastischer und gibt folgendes Statement:
 				\begin{quote}
 					\textit{"`My answer to how fast is fast enough? A Speed Index of under 1000.\\
@@ -268,7 +277,7 @@
 
 		\subsubsection{Arbeiten mit einem Performance Budget} % (fold)
 		\label{ssub:arbeiten_mit_einem_performance_budget}
-			Im folgenden soll Beispielhaft verdeutlicht werden, wie das Arbeiten mittels Performance Budget aussehen kann. Zu Projektbeginn wird das Performance Budget festgelegt.
+			Im folgenden soll beispielhaft verdeutlicht werden, wie das Arbeiten mittels Performance Budget aussehen kann. Zu Projektbeginn wird das Performance Budget festgelegt.
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -278,7 +287,7 @@
 				\end{center}
 			\end{figure}
 			
-			Vor Projektbeginn macht Sinn, denn hat die Seite erst einmal 3 Slider, 1 Karousel plus entsprechendes Plugin und zudem noch ein vollflächiges Hintergrundbild, so hat man keine Chance mehr die Seite in einen geordneten Rahmen zu bringen, ohne sie komplett neu zu überarbeiten.\\
+			Zu Projektbeginn macht deshalb Sinn, denn wenn die Seite erst einmal 3 Slider, 1 Karousel plus entsprechendes Plugin und zudem noch ein vollflächiges Hintergrundbild hat, so gibt es keine Chance mehr, die Seite in einen geordneten Rahmen zu bringen, ohne sie komplett neu zu überarbeiten.\\
 			Ein Beispiel Budget kann aus folgenden Metriken bestehen:
 
 			\begin{itemize}
@@ -303,9 +312,9 @@
 				\hline
 			\end{longtable}
 
-			Mit diesem Budget ist festgelegt, wieviel Spielraum jede Komponente hat. Will man 500 kb den Bildern zu Verfügung stellen, so muss in den anderen Bereichen eingespart werden. Dieses Beispiel verdeutlicht den Ansatz: "`You can't spend what you don't have"'.\\
+			Mit diesem Budget ist festgelegt, wie viel Spielraum jede Komponente hat. Will man 500 kb den Bildern zu Verfügung stellen, so muss in den anderen Bereichen eingespart werden. Dieses Beispiel verdeutlicht den Ansatz: "`You can't spend what you don't have"'.\\
 
-			Nachdem das Budget festgelegt wurde ist sowohl das Design, die Entwicklung als auch das Projektmanagement damit beauftragt, das Budget beizubehalten.
+			Nachdem das Budget festgelegt wurde, ist sowohl das Design, die Entwicklung als auch das Projektmanagement damit beauftragt, das Budget beizubehalten.
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -343,7 +352,7 @@
 				\end{center}
 			\end{figure}
 		
-		Das setzen eines Performance Budget und das Arbeiten damit, ist eine Herausforderung. Das Budget unterscheidet sich je nach Projekt und es kann schwierig sein die richtigen Metriken festzulegen. Dieser Abschnitt hat auch gezeigt, dass Web Performance nicht abhängig von einem einzigen Entwickler ist, sondern kann nur gelingen, wenn alle an einem Strang ziehen.	
+		Das Setzen eines Performance Budget und das Arbeiten damit, ist eine Herausforderung. Das Budget unterscheidet sich je nach Projekt und es kann schwierig sein, die richtigen Metriken festzulegen. Dieser Abschnitt hat auch gezeigt, dass Web Performance nicht abhängig von einem einzigen Entwickler ist, sondern nur gelingen kann, wenn alle an einem Strang ziehen.	
 		% subsubsection arbeiten_mit_einem_performance_budget (end)
 
 	% subsection performance_budget (end)

@@ -2,18 +2,18 @@
 
 \section{Einleitung} % (fold)
 \label{sec:einleitung}
-	Diese Arbeit beschäftigt sich umfassend mit dem Thema Web Performance unter dem Aspekt, dass immer mehr Anwender mittels Smartphone mit dem Web agieren. Sie soll die Frage klären, warum Webanwendungen auf einem Smartphone oftmals um ein vielfaches langsamer Laden, als via Desktop-PC, was für Auswirkungen sich daraus ergeben und welche Maßnahmen zur Optimierung ergriffen werden können. Daraus resultiert ein \texttt{Workflow} der sich nach den "`Best Practices"' richtet. Die Arbeit endet, mit den kulturellen Veränderungen, die das Thema Web Performance für ein Unternehmen mit sich bringen kann und welche Herausforderungen es zu meistern gilt.
+	Diese Arbeit beschäftigt sich umfassend mit dem Thema Web Performance unter dem Aspekt, dass immer mehr Anwender mittels Smartphone mit dem Web agieren. Sie soll die Frage klären, warum Webanwendungen auf einem Smartphone oftmals um ein Vielfaches langsamer Laden, als via Desktop-PC, welche Auswirkungen sich daraus ergeben und welche Maßnahmen zur Optimierung ergriffen werden können. Daraus resultiert ein \texttt{Workflow}, der sich nach den "`Best Practices"' richtet. Die Arbeit endet mit den kulturellen Veränderungen, die das Thema Web Performance für ein Unternehmen mit sich bringen kann und welche Herausforderungen es zu meistern gilt.
 
 	\subsection{Motivation} % (fold)
 	\label{sub:motivation}
 
-		Niemand mag es zu warten. Sei es auf Bus, Bahn oder an der Kasse im Supermarkt. Wir warten auch nicht gerne im Internet auf das Buffern eines Videos, beim Besuch einer Webseite oder beim Shoppen via App. Zu oft wird aus dem "`nur mal eben diesen Begriff nachschlagen"' ein endloses Starren auf den weißen Bildschirm. Jeder kennt das.\\
+		Niemand mag es, zu warten. Sei es auf Bus, Bahn oder an der Kasse im Supermarkt. Wir warten auch nicht gerne im Internet auf das Buffern eines Videos, beim Besuch einer Webseite oder beim Shoppen via App. Zu oft wird aus dem "`nur mal eben diesen Begriff nachschlagen"' ein endloses Starren auf den weißen Bildschirm. Jeder kennt das.\\
 
 		Larry Page, CEO und Mitgründer von Google, sagt:
 		\begin{quote}
 			\textit{"`As a product manager you should know that speed is the number one feature."'}\autocite{holzle10}
 		\end{quote}
-		Niemand mag es zu warten, auch nicht auf eine Webanwendung. Die Studie "`The Psychology of Web Performance"' kam schon bereits im Jahr 2008 auf folgende Ergebnisse:
+		Niemand mag es, zu warten, auch nicht auf eine Webanwendung. Die Studie "`The Psychology of Web Performance"' zitierte bereits im Jahr 2008 folgende Ergebnisse:
 
 		\begin{quote}\itshape
 			"`Slow web pages lower perceived credibility and quality. Keep your page load times below tolerable attention thresholds, and users will experience less frustration, lower blood pressure, deeper flow states, higher conversion rates, and lower bailout rates. Faster websites are actually perceived to be more interesting and attractive."' \autocite{webOpti08}
@@ -36,7 +36,7 @@
 			\label{fig:geraetenutzung}
 		\end{figure}
 
-		Die Antwort auf diesen Trend läutete eine Ära ein, die wir heute unter dem Namen \texttt{Responsive Webdesign} kennen. "`Responsive"' muss aber sehr viel mehr bedeuten, als nur eine angepasste Darstellung für eine bestimmte Art von Gerät. \textit{"`Two out of three mobile shoppers expect pages to load in 4 seconds or less."'} \autocite{radware13}. Der Anwender erwartet also auf dem Smartphone ähnliche oder gleiche Ladezeiten wie er auch von der Nutzung des Desktop Pc's gewohnt ist. Diese Erwartungen werden von dem Großteil der Internetseiten nicht erfüllt. Der Inhalt einer Seite muss darum so aufbereitet werden, dass dieser auch auf Geräten mit langsamer Internetverbindung, hoher Latenz und einem begrenzten Datentarif, in einer für den Anwender annehmbaren Geschwindigkeit, angezeigt werden kann.\\
+		Die Antwort auf diesen Trend läutete eine Ära ein, die wir heute unter dem Namen \texttt{Responsive Webdesign} kennen. "`Responsive"' muss aber sehr viel mehr bedeuten, als nur eine angepasste Darstellung für eine bestimmte Art von Gerät. \textit{"`Two out of three mobile shoppers expect pages to load in 4 seconds or less."'} \autocite{radware13}. Der Anwender erwartet also auf dem Smartphone ähnliche oder gleiche Ladezeiten wie er sie auch von der Nutzung des Desktop Pc's gewohnt ist. Diese Erwartungen werden von dem Großteil der Internetseiten nicht erfüllt. Der Inhalt einer Seite muss darum so aufbereitet werden, dass dieser auch auf Geräten mit langsamer Internetverbindung, hoher Latenz und einem begrenzten Datentarif, in einer für den Anwender annehmbaren Geschwindigkeit, angezeigt werden kann.\\
 
 	% subsection motivation (end)
 
@@ -44,7 +44,7 @@
 
 	\subsection{Zielsetzung} % (fold)
 	\label{sub:zielsetzung}
-		Um gängige Methoden und Techniken der Ladezeit-Optimierung anzuwenden wird das Projekt anhand der Website \url{http://andreaslorer.de/old/} durchgeführt. Das Ziel ist es, die Ladezeit der Website auf dem Smartphone, wie auch auf dem Desktop auf unter 1000 Millisekunden zu verringern. Mit Ladezeit ist dabei nicht die Zeit gemeint, die benötigt wird um die Website komplett zu laden, sondern die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist. Diese vom Anwender wahrgenommene Rückmeldung nennt man auch "`Perceived Performance"' und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Näheres dazu wird in Punkt \ref{sub:perceived_performance} beschrieben.\\
+		Um gängige Methoden und Techniken der Ladezeit-Optimierung anzuwenden, wird das Projekt anhand der Website \url{http://andreaslorer.de/old/} durchgeführt. Das Ziel ist es, die Ladezeit der Website auf dem Smartphone, wie auch auf dem Desktop auf unter 1000 Millisekunden zu verringern. Mit Ladezeit ist dabei nicht die Zeit gemeint, die benötigt wird, um die Website komplett zu laden, sondern die Zeit, bis eine erste visuelle Rückmeldung für den Anwender zu sehen ist. Diese, vom Anwender wahrgenommene Rückmeldung, nennt man auch "`Perceived Performance"' und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Näheres dazu wird in Punkt \ref{sub:perceived_performance} beschrieben.\\
 
 	% subsection zielsetzung (end)
 
@@ -52,9 +52,9 @@
 
 	\subsection{Eigene Leistung} % (fold)
 	\label{sub:eigene_leistung}
-		Die Leistung besteht darin, einen Leitfaden zu erstellen, der einen Gesamtüberblick ermöglicht. Die Arbeit soll es dem Leser ermöglichen Fehler in der Struktur von Webanwendungen zu finden, die für die Geschwindigkeit hinderlich sind.
-		Es soll herausgefunden werden, was die "`Best Practices"' sind um die Ladezeit zu minimieren, wie ein moderner "`Workflow"' aussehen kann, damit eine Webanwendung schon bei seiner Entstehung schnell ladet und im Projektverlauf schnell bleibt. Des Weiteren soll erklärt werden, was für Herausforderungen es zu meistern gilt um eine schnelle Webanwendung zu erreichen, welche Tools es gibt und welche Vor- oder Nachteile diese mit sich bringen.\\
-		Diese Arbeit befasst sich nicht, mit der Geschwindigkeit von Datenbanken, SQL-Abfragen oder sonstigen Problemen die durch einen Engpass ein schnelles Laden der Seite verhindern könnten.
+		Die Leistung besteht darin, einen Gesamtüberblick über die heutigen Best Practices zu ermöglicht. Die Arbeit soll dem Leser ein Gespühr für Fehler in der Struktur von Webanwendungen geben, die für die Geschwindigkeit hinderlich sind.
+		Es soll herausgefunden werden, was getan werden muss um die Ladezeit zu minimieren, wie ein moderner "`Workflow"' aussehen kann, damit eine Webanwendung schon bei seiner Entstehung schnell lädt und im Projektverlauf schnell bleibt. Des Weiteren soll erklärt werden, welche Herausforderungen es zu meistern gilt um eine schnelle Webanwendung zu erreichen, welche Tools es gibt und welche Vor- oder Nachteile diese mit sich bringen.\\
+		Diese Arbeit befasst sich nicht mit der Geschwindigkeit von Datenbanken, SQL-Abfragen oder sonstigen Problemen, die durch einen Engpass ein schnelles Laden der Seite verhindern könnten.
 
 	% subsection eigene_leistung (end)
 
@@ -62,9 +62,9 @@
 
 	\subsection{Ist-Zustand} % (fold)
 	\label{sub:ist_zustand}
-		Die Webseite ist auf einem \texttt{Shared Hosting}
+		Die Webseite \url{www.andreaslorer.de}  ist auf einem \texttt{Shared Hosting}
 		\footnote{Bei shared Hosting werden mehrere Websites von verschiedenen Website-Betreibern von dem gleichen Webserver gehostet. Bei Shared Hosting teilen sich in der Regel Hunderte andere Websites einen Server \autocite{itWissen}} 
-		aufgesetzt und die Antwortzeit des Servers beträgt circa <200 Millisekunden. Dadurch, dass es keine Möglichkeit gibt \texttt{Root Rechte}\footnote{Standardmäßig existiert unter Linux immer ein Konto für den Benutzer "`root"' mit der User-ID 0. Dies ist ein Systemaccount mit vollem Zugriff auf das gesamte System, und damit auch auf alle Dateien und Einstellungen aller Benutzer \autocite{ubuntu14}} auf einem Shared Hosting zu bekommen, können so manche serverseitige Einstellungen nicht durchgeführt werden. Diese werden dann zwar aufgezeigt, kommen aber für dieses Projekt nicht zum Einsatz.\\
+		aufgesetzt und die Antwortzeit des Servers beträgt circa <200 Millisekunden. Dadurch, dass es keine Möglichkeit gibt, \texttt{Root Rechte}\footnote{Standardmäßig existiert unter Linux immer ein Konto für den Benutzer "`root"' mit der User-ID 0. Dies ist ein Systemaccount mit vollem Zugriff auf das gesamte System, und damit auch auf alle Dateien und Einstellungen aller Benutzer \autocite{ubuntu14}} auf einem Shared Hosting zu bekommen, können so manche serverseitige Einstellungen nicht durchgeführt werden. Diese werden dann zwar aufgezeigt, kommen aber für dieses Projekt nicht zum Einsatz.\\
 		Die Website hat als Ausgangsbasis einen einfachen Aufbau. Sie besteht aus einer Bilder Gallerie basierend auf PHP und dem Bootstrap Framework.
 	% subsection ist_zustand (end)
 
