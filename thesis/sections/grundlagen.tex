@@ -13,11 +13,11 @@
 
 	\subsection{Content Delivery Network (CDN)} % (fold)
 	\label{sub:content_delivery_network}
-		Ein Content Delivery Network (CDN), oder auch Content Distribution Network genannt, ist ein Netz lokal verteilter und über das Internet verbundener Server, mit dem Inhalte ausgeliefert werden. CDN-Knoten sind auf viele Orte verteilt, um Anfragen (Requests) von End-Nutzern nach Inhalten (Content) möglichst ökonomisch zu bedienen. Große CDNs unterhalten tausende Knoten mit zehntausenden Servern.\autocite[vgl.]{wikipediaCDN}
+		Ein Content Delivery Network (CDN) oder auch Content Distribution Network genannt, ist ein Netz regional verteilter und über das Internet verbundener Server, mit dem Inhalte ausgeliefert werden. CDN-Knoten sind auf viele Orte verteilt, um Anfragen (Requests) von End-Nutzern nach Inhalten (Content) möglichst ökonomisch zu bedienen. Im Hintergrund (transparent) werden die Daten im Netz so vorgehalten (Caching), dass die jeweilige Auslieferung entweder möglichst schnell geht (Performance-Optimierung) oder möglichst wenig Bandbreite verbraucht (Kosten-Optimierung), oder beides zugleich.	Durch eine nähere Platzierung des Servers zum Endverbraucher, verringert sich beispielsweise die Latenzzeit. Vor allem für globale Inhaltsangebote ist dadurch die Nutzung eines CDN von Vorteil. Große CDNs unterhalten tausende Knoten mit zehntausenden Servern.\autocite[vgl.]{wikipediaCDN}
 
 		\begin{figure}[htbp]
 			\begin{center}
-				\includegraphics[width=0.8\textwidth]{cdn_network.jpg}
+				\includegraphics[width=0.9\textwidth]{cdn_network2.jpg}
 				\caption{Schematische Darstellung eines CDN (Eigene Abbildung, Karte nach \autocite{ritz14})}
 				\label{fig:cdn_network}
 			\end{center}
@@ -34,21 +34,21 @@
 
 	\subsection{Round Trip Time (RTT)} % (fold)
 	\label{sub:round_trip_time_}
-		"`Round Trip Time"' wird im Deutschen Paketumlaufzeit genannt. Es bezeichnet die Zeit, die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen. Bei einer Latenz von 100 ms würde die RTT folglich 200 ms betragen (Annahme: Hin- und Rückweg haben dieselbe Zeit). Wie später noch zu sehen ist, spielt die RTT für die Web Performance eine maßgebliche Rolle.
+		"`Round Trip Time"' wird im Deutschen "`Paketumlaufzeit"' genannt. Es bezeichnet die Zeit die ein Datenpaket braucht um in einem Netzwerk von Sender A zu Empfänger B und wieder zurück zu gelangen. Bei einer Latenz von 100 ms würde die RTT folglich 200 ms betragen (Annahme: Hin- und Rückweg haben dieselbe Zeit). Wie später noch zu sehen ist, spielt die RTT für die Web Performance eine maßgebliche Rolle.
 	
 	% subsection round_trip_time_ (end)
 
 
 	\subsection{Http/1.1 Protokoll}
 	\label{sub:http_1_1_Protokoll}
-		Der für diese Arbeit wichtige Aspekt der HTTP/1.1 Spezifikation ist die Limitierung von Verbindungen pro Domain Name. Dabei weicht die Limitierung zwischen den Browsern ab und reicht von 6 (Google Chrome) bis 13 (Internet Explorer 11) parallelen TCP Verbindungen. Eine Übersichtsliste ist hier zu finden \url{http://www.browserscope.org/?category=network}.
+		Der für diese Arbeit wichtige Aspekt der HTTP/1.1 Spezifikation ist die Limitierung von Verbindungen pro Domain Name. Dabei weicht die Limitierung zwischen den Browsern ab und reicht von 6 (Google Chrome) bis 13 (Internet Explorer 11) parallelen TCP Verbindungen.\footnote{Eine Übersichtsliste ist hier zu finden \url{http://www.browserscope.org/?category=network}.}
 	% subsection http_1_1_Protokoll (end)
 
 
 	\subsection{TCP Three Way Handshake}
 	\label{sub:tcp_three_way_handshake}
 		TCP ist das meistgenutzte Verbindungsprotokoll im Internet. Auf diesem Protokoll wird der HTTP Request aufgebaut, der die eigentlichen Daten enthält.
-		Bevor diese Daten zwischen Server und Browser ausgetauscht werden können, muss eine Verbindung aufgebaut werden. Abbildung \ref{fig:three_way_handshake} beschreibt den Prozess des Verbindungsaufbaus.\footnote{Für ein tieferes Verständnis empfiehlt sich dieser Artikel: \href{http://chimera.labs.oreilly.com/books/1230000000545/ch02.html}{High Performance Browser Networking - Chapter 2: Building Blocks of TCP}} Dabei werden sogenannte SYN- und ACK-"`Flags"' zwischen Server und Browser versendet.
+		Bevor diese Daten zwischen Server und Browser ausgetauscht werden können, muss eine Verbindung aufgebaut werden. Abbildung \ref{fig:three_way_handshake} beschreibt den Prozess des Verbindungsaufbaus.\footnote{Für ein tieferes Verständnis empfiehlt sich dieser Artikel: High Performance Browser Networking - Chapter 2: Building Blocks of TCP: \url{http://tinyurl.com/ljna35v}} Dabei werden sogenannte SYN- und ACK-"`Flags"' zwischen Server und Browser versendet.
 
 		\begin{figure}[htbp]
 			\begin{center}
@@ -73,9 +73,9 @@
 		\end{figure} 
 
 		\begin{itemize}
-			\item Congestion Control: Nachdem eine neue Verbindung per TCP aufgebaut wurde, können weder Server noch Client wissen, wie schnell die verfügbare Bandbreite ist, mit der Daten ausgetauscht werden können. Um das Netzwerk vor einem Datenstau zu schützen, wird mit einem sehr niedrigen Wert begonnen, der dann ansteigt bis das Limit erreicht ist. Dieses Verhalten nennt sich auch "`Congestion Control"'.
+			\item Congestion Control: Nachdem eine neue Verbindung per TCP aufgebaut wurde, können weder Server noch Client wissen wie schnell die verfügbare Bandbreite ist, mit der Daten ausgetauscht werden können. Um das Netzwerk vor einem Datenstau zu schützen, wird mit einem sehr niedrigen Wert begonnen, der dann ansteigt bis das Limit erreicht ist. Dieses Verhalten nennt sich auch "`Congestion Control"'.
 
-			\item Congestion Window Size: Diese Größe bestimmt, wieviel Bytes pro Segment gesendet werden darf, bis diese vom Empfänger per \texttt{ACK} (acknowledgement) bestätigt werden müssen. Die Größe der Segmente ist standardmäßig 1460 Bytes und die Rate bis zum ACK ist im April 2013 von 4 auf 10 Segmente erhöht worden.\autocite{grigorikSlowStart}. In der Grafik wird noch von dem alten Wert mit nur 4 Segmenten pro Round Trip ausgegangen. Die Datenrate wächst exponentiell an, damit möglichst schnell die volle Bandbreite nutzbar ist.
+			\item Congestion Window Size: Diese Größe bestimmt, wieviel Bytes pro Segment gesendet werden dürfen, bis diese vom Empfänger per \texttt{ACK} (acknowledgement) bestätigt werden müssen. Die Größe der Segmente ist standardmäßig 1460 Bytes und die Rate bis zum ACK ist im April 2013 von 4 auf 10 Segmente erhöht worden.\autocite{grigorikSlowStart}. In der Grafik wird noch von dem alten Wert mit nur 4 Segmenten pro Round Trip ausgegangen. Die Datenrate wächst exponentiell an, damit möglichst schnell die volle Bandbreite nutzbar ist.
 
 			\item Congestion Avoidance bedeutet, dass sich die Datenrate wieder um ein Vielfaches verringert, falls es zu einem Paketverlust kommt. Da es besonders bei WLAN oder Mobilfunknetzen des Öfteren zu Paketverlusten kommen kann, ist dieser Aspekt besonders hervorzuheben, denn er verzögert das Erreichen der maximal möglichen Datenrate.
 		\end{itemize}
@@ -101,7 +101,7 @@
 
 		Wichtige Informationen oder Navigationselemente sind meistens dort zu finden. Eine Webseite, die nach dem Paradigma des Responsive-Webdesign aufgebaut ist, kann dabei 3 oder mehrere Ansichten haben die alle einen unterschiedlichen "`above the fold"' Bereich haben. Eine Anwendung kann aber auch unterschiedliche Seiten haben, auf dem der Anwender landen kann. Zum Beispiel wenn dieser an- oder abgemeldet ist. Paradebeispiel dafür sind Facebook oder Twitter.\\
 
-		Innerhalb des \texttt{above the fold} ist es wichtig, den Inhalt für den Seitenbesucher richtig zu strukturieren. Dafür ist es nötig zu wissen, welcher Inhalt denn für den Anwender am bedeutungsvollsten ist. Bei einer Online Zeitung mag das die neuste Schlagzeile sein, bei einem Portal wie Facebook die Timeline. Da das HTML Dokument vom Browser von oben nach unten gelesen wird, macht es folglich Sinn, die wichtigen Elemente vor den unwichtigen zu strukturieren. Damit werden diese zuerst gelesen und können damit früher angezeigt werden.
+		Innerhalb des \texttt{above the fold} ist es wichtig, den Inhalt für den Seitenbesucher richtig zu strukturieren. Dafür ist es nötig zu wissen, welcher Inhalt denn für den Anwender am bedeutungsvollsten ist. Bei einer Online Zeitung mag das die neuste Schlagzeile sein, bei einem Portal wie Facebook die Timeline. Da das HTML Dokument vom Browser von oben nach unten gelesen wird, macht es folglich Sinn, die wichtigen Elemente vor den unwichtigen zu platzieren. Damit werden diese zuerst verarbeitet und können damit früher angezeigt werden.
 
 	% subsubsection above_the_fold (end)
 	\pagebreak
@@ -118,17 +118,17 @@
 		\end{figure}
 
 		Abbildung \ref{fig:perceived_performance} zeigt die Seiten A und B, mit nahezu identischer Ladezeit. Der Unterschied besteht darin, dass Seite B bereits nach 1.5 Sekunden dem Anwender eine erste visuelle Rückmeldung gibt, wohingegen Seite A ganze 5.5 Sekunden dafür benötigt.
-		"`Perceived Performance"' steht also für die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Warum diese "`Perceived Performance"' für eine Webanwendung so wichtig ist, zeigen mehrere Studien, deren Daten in folgender Grafik aufbereitet sind.
+		"`Perceived Performance"' steht also für die Zeit bis ein erste visuelle Rückmeldung für den Anwender zu sehen ist und bedeutet, dass die Ladezeit als schneller empfunden wird, als es eigentlich laut Messwerten der Fall ist. Warum diese "`Perceived Performance"' für eine Webanwendung so wichtig ist zeigen mehrere Studien, deren Daten in folgender Grafik aufbereitet sind.
 
 		\begin{figure}[htbp]
 			\begin{center}
-				\includegraphics[width=0.6\textwidth]{effect_of_slow_loadtimes.jpg}
+				\includegraphics[width=0.7\textwidth]{effect_of_slow_loadtimes.jpg}
 				\caption{Einfluss und Effekt einer langsamen Seite auf den Anwender (Eigene Abbildung nach Daten von: \autocite[p. 8]{radware14})}
 				\label{fig:effect_of_slow_loadtimes}
 			\end{center}
 		\end{figure}
 
-		Bereits kleine Verbesser- oder Verschlechterungen der Ladezeit können einen großen Einfluss auf den Anwender haben. Yahoo hat herausgefunden, dass eine Seite, die um nur 400 Millisekunden schneller lädt, den Traffic um 9\% erhöhte.\autocite{stefanov08} 57\% der Online Konsumenten haben eine Seite, die länger als 3 Sekunden ladet bereits wieder verlassen. 78\% der Anwender empfinden sogar Zorn oder Stress, wenn eine Seite nicht Ladet oder dies nicht ersichtlich ist. Perceived Performance ist also wichtiger als die Ladezeit an sich und Maßnahmen, die sie verbessern, sind besonders wichtig.
+		Bereits kleine Verbesser- oder Verschlechterungen der Ladezeit können einen großen Einfluss auf den Anwender haben. Yahoo hat herausgefunden, dass eine Seite, die um nur 400 Millisekunden schneller lädt, den Traffic um 9\% erhöhte.\autocite{stefanov08} 57\% der Online Konsumenten haben eine Seite die länger als 3 Sekunden lädt bereits wieder verlassen. 78\% der Anwender empfinden sogar Zorn oder Stress wenn eine Seite nicht lädt oder der Vorgang nicht ersichtlich ist. Perceived Performance ist also wichtiger als die Ladezeit selbst und Maßnahmen die sie verbessern sind besonders wichtig.
 
 	% subsubsection perceived_performance (end)
 
@@ -140,7 +140,7 @@
 
 \section{Die 1000 ms Barriere} % (fold)
 \label{sec:die_1000_ms_barriere}
-	Das Ziel dieser Arbeit, die 1000 Millisekunden Barriere zu durchbrechen, wurde nicht durch Zufall gewählt. Der Anwender nimmt die Geschwindigkeit einer Seite subjektiv wahr. Sie wird in der folgenden Grafik interpretiert:
+	Das Ziel dieser Arbeit die 1000 Millisekunden Barriere zu durchbrechen wurde nicht durch Zufall gewählt. Der Anwender nimmt die Geschwindigkeit einer Seite subjektiv wahr. Sie wird in der folgenden Grafik interpretiert:
 
 	\begin{figure}[htbp]
 		\begin{center}
@@ -150,15 +150,15 @@
 		\end{center}
 	\end{figure}
 
-	Wie zu sehen ist, bleibt gerade einmal eine Sekunde, bevor das Gehirn uns sagt, man solle doch einer anderen Aufgabe nachgehen, bis der Ladevorgang abgeschlossen ist. Der Anwender verlangt visuelle Rückmeldung, um "`am Ball zu bleiben"'. Dies wurde bereits in Punkt \ref{sub:perceived_performance} "`Perceived Performance"' angesprochen. Auf vielen Webseiten sieht man deshalb Ladebalken oder sogenannte \texttt{Spinner}, die erkennbar machen, dass der Ladevorgang in Gange, aber noch nicht abgeschlossen ist.
+	Wie zu sehen ist, bleibt gerade einmal eine Sekunde Zeit, bevor das Gehirn uns sagt man solle doch einer anderen Aufgabe nachgehen, bis der Ladevorgang abgeschlossen ist. Der Anwender verlangt visuelle Rückmeldung, um "`am Ball zu bleiben"'. Auf vielen Webseiten sieht man deshalb Ladebalken oder sogenannte \texttt{Spinner}, die erkennbar machen, dass der Ladevorgang im Gange, aber noch nicht abgeschlossen ist.
 
-	Um das Ziel von einer Sekunde Ladezeit bis zum ersten Render zu erreichen, ist es nötig zu verstehen, an welcher Stelle die meiste Zeit verbracht wird. Bevor eine Seite mittels Smartphone vom Browser dargestellt wird, laufen eine ganze Reihe von Prozessen ab.
+	Um das Ziel von einer einsekündigen Ladezeit bis zum ersten Render zu erreichen, ist es nötig zu verstehen an welcher Stelle die meiste Zeit verbracht wird. Bevor eine Seite mittels Smartphone vom Browser dargestellt wird, laufen eine ganze Reihe von Prozessen ab, die im Weiteren erklärt werden.
 
 
 
 	\subsection{Touch Event} % (fold)
 	\label{sub:touch_event}
-		Der Aufruf einer Seite über das Smartphone erfolgt über ein Touch Event auf einen Link, Button oder die Seite wird per URL aufgerufen. Hierbei können je nach Gerät zwischen 50 (IPhone 5) und 123 Millisekunden (Moto X - Android) zwischen der Berührung des Touch Screen und dem Registrieren des Events vergehen.\autocite{venturebeat} Der Browser wartet allerdings nochmals bis zu 300 Millisekunden, denn er muss abwarten ob vielleicht noch ein zweiter Finger aufgelegt wird (Multitouch), oder ob der Anwender Scrollen oder Zoomen möchte.\autocite{google11}
+		Der Aufruf einer Seite über das Smartphone erfolgt über ein Touch Event auf einen Link, Button oder die Seite wird per URL aufgerufen. Hierbei können je nach Gerät zwischen 50 (IPhone 5) und 120 Millisekunden (Moto X - Android) zwischen der Berührung des Touch Screen und dem Registrieren des Events vergehen.\autocite{venturebeat} Der Browser wartet allerdings nochmals bis zu 300 Millisekunden, denn er muss abwarten ob vielleicht noch ein zweiter Finger aufgelegt wird (Multitouch), oder ob der Anwender Scrollen oder Zoomen möchte.\autocite{google11}
 
 		Dieses Verhalten lässt sich bei vielen Browsern per \texttt{Meta Tag} abstellen:
 
@@ -166,13 +166,13 @@
 			<meta name="viewport" content="user-scalable=no">
 		\end{lstlisting}
 
-		Dies setzt natürlich voraus, dass die Webanwendung kein Zoomen benötigt, um sie zu bedienen. Gerade bei älteren Webseiten trifft das oftmals nicht zu, da sie keine, für das Smartphone angepasste, Ansicht haben (responsive view). Eine vollständige Liste mit Meta Tags für die verschiedenen Browser ist der Fußnote zu entnehmen.\footnote{Suppressing 300ms delay for touchscreen interactions: \url{http://tinyurl.com/psj5nxz}}
+		Dies setzt natürlich voraus, dass die Webanwendung kein Zoomen benötigt, um sie zu bedienen. Gerade bei älteren Webseiten trifft das oftmals nicht zu, da sie keine für das Smartphone angepasste Ansicht haben (Responsive View). Eine vollständige Liste mit Meta Tags für die verschiedenen Browser ist der Fußnote zu entnehmen.\footnote{Suppressing 300ms delay for touchscreen interactions: \url{http://tinyurl.com/psj5nxz}}
 
 	% subsection touch_event (end)
 
 	\subsection{Netzwerke} % (fold)
 	\label{sub:netzwerke}
-		Warum gerade das Nutzen des Internets per Smartphone so langsam sein kann (und oftmals ist), liegt zu einem Großteil am Netzwerk. Eine Studie untersuchte die Top eine Millionen Webseiten des Internets auf ihre Ladezeiten. Dabei wurde eine Verbindung von 5 Mbit/s und 28ms RTT benutzt. Eine RTT von 28 ms ist sehr schnell, vergleicht man sie zum Beispiel mit der Latenz des 3G Netzes (100 - 500 ms RTT: Abbildung \ref{fig:mobile_networks}). Diese Studie kam zu dem Ergebnis, dass fast 70\% der Ladezeit nur durch Warten auf das Netzwerk verbracht wird:
+		Warum gerade das Nutzen des Internets per Smartphone so langsam sein kann (und oftmals ist), liegt zu einem Großteil am Netzwerk. Eine Studie untersuchte die Top eine Millionen Webseiten des Internets auf ihre Ladezeiten. Dabei wurde eine Verbindung von 5 Mbit/s und 28ms RTT benutzt. Eine RTT von 28 ms ist sehr schnell, verglichen mit der Latenz des 3G Netzes (100 - 500 ms RTT: Abbildung \ref{fig:mobile_networks}). Diese Studie kam zu dem Ergebnis, dass fast 70\% der Ladezeit nur durch Warten auf das Netzwerk verbracht wird:
 
 		\begin{figure}[htbp]
 			\begin{center}
@@ -182,16 +182,16 @@
 			\end{center}
 		\end{figure}
 
-		Es macht also durchaus Sinn, sich diesen Bereich näher anzusehen, um zu verstehen, worauf Einfluss genommen werden kann und wo nicht.
+		Es macht also durchaus Sinn sich diesen Bereich näher anzusehen, um zu verstehen worauf Einfluss genommen werden kann und wo nicht.
 
 		\subsubsection{Mobilfunknetz} % (fold)
 		\label{ssub:Mobilfunknetz}
-			Es gibt unterschiedliche Mobilfunkstandards, mit denen Anwender Anbindung an das Internet erlangen. Aber selbst wenn einem Anwender 4G vom Mobilfunkanbieter versprochen werden, so ist die Netzabdeckung mit 4G noch nicht vollständig deckend.
+			Es gibt unterschiedliche Mobilfunkstandards, mit denen Anwender Zugriff auf das Internet erlangen. Selbst wenn einem Anwender 4G vom Mobilfunkanbieter versprochen werden, so ist die Netzabdeckung mit 4G noch nicht vollständig.
 			\begin{quote}
 				\textit{"`Bereits Mitte 2013 konnten laut dem Breitbandatlas der Bundesregierung 70 Prozent der deutschen Haushalte über LTE verfügen. E-Plus startete mit LTE im März 2014."' \autocite{netzagentur}}
 			\end{quote}
 
-			Das bedeutet, dass der 4G Anwender auf ein niedrigeres Netz wie zum Beispiel 3G ausweichen muss. Die verschiedenen Netzwerke unterscheiden sich entscheidend in ihrer Datenrate und vor allem in der Latenz. Die Tabelle in Abbildung \ref{fig:mobile_networks} gibt eine Übersicht:
+			Das bedeutet, dass der 4G Anwender auf ein niedrigeres Netz wie zum Beispiel 3G ausweichen muss. Die verschiedenen Netzwerke unterscheiden sich entscheidend in ihrer Datenrate und vor allem in der Latenz. Die Tabelle in Abbildung \ref{fig:mobile_networks} gibt eine Übersicht.
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -201,7 +201,7 @@
 				\end{center}
 			\end{figure}
 
-			Unser Smartphone ist nicht ständig mit dem "`wireless service provider"' verbunden. Ist eine erste Verbindung nötig, so muss das Smartphone dem Sendeturm mitteilen, dass es Kommunizieren möchte. Der Anbieter muss die Anfrage authentifizieren, die Verbindung herstellen und dann die Anfrage in das Internet weiter leiten. Bis eine Authentifizierung erfolgt ist, kann je nach Anbieter und Mobilfunkstandard zwischen <100ms (LTE) und 2,5 Sekunden (3G) vergehen \autocite{grigorikRadio}. Bereits hier ist zu sehen, dass es "`worst case"' Szenarien gibt, durch die es nicht möglich sein kann, dass eine Webanwendung in unter einer Sekunde eine Rückmeldung gibt. Gerade Mobilfunknetze unterliegen Stoßzeiten, die Funksignale von Smartphones können sich gegenseitig stören oder das Signal kann in gewissen Gegenden stärker oder schwächer sein.
+			Unser Smartphone ist nicht ständig mit dem "`wireless service provider"' verbunden. Ist eine erste Verbindung nötig, so muss das Smartphone dem Sendeturm mitteilen, dass es Kommunizieren möchte. Der Anbieter muss die Anfrage authentifizieren, die Verbindung herstellen und dann die Anfrage in das Internet weiterleiten. Bis eine Authentifizierung erfolgt ist, kann je nach Anbieter und Mobilfunkstandard zwischen <100ms (LTE) und 2,5 Sekunden (3G) vergehen \autocite{grigorikRadio}. Bereits hier ist zu sehen, dass es "`worst case"' Szenarien gibt durch die es nicht möglich sein kann, dass eine Webanwendung in unter einer Sekunde eine Rückmeldung gibt. Gerade Mobilfunknetze unterliegen Stoßzeiten, die Funksignale von Smartphones können sich gegenseitig stören oder das Signal kann in gewissen Gegenden stärker oder schwächer sein.
 
 		% subsubsection Mobilfunknetz (end)
 
@@ -219,15 +219,15 @@
 			\end{figure}
 
 			\begin{itemize}
-				\item DNS Lookup: Um eine Verbindung mit dem Server herzustellen, benötigt das HTTP Protokoll die IP Adresse des Ziels. Dafür wird ein DNS Server dazu beauftragt, für den Namen "`http://andreaslorer.de"' die zugehörige IP Adresse zurück zu gegeben.
+				\item DNS Lookup: Um eine Verbindung mit dem Server herzustellen, benötigt das HTTP Protokoll die IP Adresse des Ziels. Dafür wird ein DNS Server damit beauftragt für den Namen "`http://andreaslorer.de"' die zugehörige IP Adresse zurück zu gegeben.
 
-				\item Initial Connection bezeichnet die Zeit, die vergeht, bis eine neue Verbindung zum Server hergestellt wurde damit eine Kommunikation zwischen Browser und Server möglich ist. Hierbei findet der sogenannte TCP "`Three-Way-Handshake"' statt, der dafür einen Round Trip benötigt.
+				\item Initial Connection bezeichnet die Zeit die vergeht, bis eine neue Verbindung zum Server hergestellt wurde damit eine Kommunikation zwischen Browser und Server möglich ist. Hierbei findet der sogenannte TCP "`Three-Way-Handshake"' statt, der dafür einen Round Trip benötigt.
 
-				\item TTFB: Ist die Abkürzung für "`Time To First Byte"'. Dieser Begriff beschreibt die Zeit die vergeht, bis das erste Byte vom Server den Browser erreicht. Der Server muss dabei die Antwort erst zusammenstellen, bevor er sie versenden kann. Dafür werden unter Umständen Ressourcen aus der Datenbank abgefragt oder es müssen Berechnungen stattfinden. Diese Faktoren beeinflussen die TTFB und können optimiert werden (schnellerer Server, bessere Datenbankanbindung, Caching).
+				\item TTFB: Ist die Abkürzung für "`Time To First Byte"'. Dieser Begriff beschreibt die Zeit die vergeht bis das erste Byte vom Server den Browser erreicht. Der Server muss dabei die Antwort erst zusammenstellen, bevor er sie versenden kann. Dafür werden unter Umständen Ressourcen aus der Datenbank abgefragt oder es müssen Berechnungen stattfinden. Diese Faktoren beeinflussen die TTFB und können optimiert werden (schnellerer Server, bessere Datenbankanbindung, Caching).
 
-				\item Content Download: Die Zeit, die benötigt wird, bis die Datei vom Server heruntergeladen wurde.
+				\item Content Download: Die Zeit die benötigt wird, bis die Datei vom Server heruntergeladen wurde.
 
-				\item Nachdem das HTML Dokument heruntergeladen wurde, muss es vom Browser noch gelesen und interpretiert werden. Diese Zeit taucht im Diagramm nicht auf.
+				\item Nachdem das HTML Dokument heruntergeladen wurde muss es vom Browser noch gelesen und interpretiert werden. Diese Zeit taucht im Diagramm nicht auf.
 			\end{itemize}
 					
 		% subsection http_request_komponente (end)
@@ -235,7 +235,7 @@
 
 	\subsection{Das Herunterladen einer 40 Kilobyte Datei} % (fold)
 	\label{sub:das_herunterladen_einer_40_kb_datei}
-		Abbildung \ref{fig:fetching_40kb} zeigt schematisch wie eine 40kb Datei mittels einer neuen TCP Verbindung heruntergeladen wird. Sie soll verdeutlichen, wie vor allem die RTT eine entscheidende Rolle spielt und warum sie die Geschwindigkeit einer Seite viel höher beeinflusst als die Bandbreite. Damit soll der Mythos "`Schnelles Internet gleich schnelles Laden einer Webseite"' aufgeräumt werden.
+		Abbildung \ref{fig:fetching_40kb} zeigt schematisch wie eine 40kb Datei mittels einer neuen TCP Verbindung heruntergeladen wird. Sie soll verdeutlichen, wie vor allem die RTT eine entscheidende Rolle spielt und warum sie die Geschwindigkeit einer Seite viel höher beeinflusst als die Bandbreite. Damit soll mit dem Mythos "`Schnelles Internet gleich schnelles Laden einer Webseite"' aufgeräumt werden.
 
 		\begin{figure}[htbp]
 			\begin{center}
@@ -246,7 +246,7 @@
 		\end{figure}
 
 		Zuerst erfolgt der DNS Lookup, dann muss mittels TCP \texttt{three way handshake} eine Verbindung aufgebaut werden. Dies kostet bereits 2 Round Trips, was in diesem Beispiel 400 ms entspricht. Anschließend wird die Anfrage vom Server verarbeitet (request processing) und die Antwort vorbereitet.
-		Durch den TCP slow start (siehe Punkt: \ref{sub:tcp_slow_start}) steht bei einer neuen Verbindung nicht die gesamte Bandbreite zur Verfügung. Deshalb kann die volle Datenmenge nicht auf einmal, sondern nur durch zusätzliche Round Trips heruntergeladen werden. Wenn die Performance einer Webanwendung verbessert werden soll, macht es also Sinn in Round Trips zu denken. Wie viele Round Trips sind nötig, bis ich dem Browser Informationen übermittelt habe, sodass dieser etwas anzeigen kann? Idealerweise genau einer. 
+		Durch den TCP slow start (siehe Punkt: \ref{sub:tcp_slow_start}) steht bei einer neuen Verbindung nicht die gesamte Bandbreite zur Verfügung. Deshalb kann die volle Datenmenge nicht auf einmal, sondern nur durch zusätzliche Round Trips heruntergeladen werden. Wenn die Performance einer Webanwendung verbessert werden soll macht es also Sinn in Round Trips zu denken. Wie viele Round Trips sind nötig, bis ich dem Browser Informationen übermittelt habe, sodass dieser etwas anzeigen kann? Idealerweise genau einer. 
 		
 		\begin{figure}[htbp]
 			\begin{center}
@@ -256,16 +256,19 @@
 			\end{center}
 		\end{figure}
 
-		Abbildung \ref{fig:1000ms_budget} veranschaulicht die Kosten in Millisekunden, die auf jeder Ebene anfallen. Dieses Rechenbeispiel gibt eine ungefähre Vorstellung davon, wie viel noch von dem 1000 Millisekunden Budged bleibt, wenn alleine die Netzwerkzeiten abgezogen werden. Für Nutzer mit 3G Netz ist es laut dieser These selbst im "`best case"' Szenario nicht möglich, die 1000 ms Marke zu durchbrechen. Vor allem, wenn man bedenkt, dass das 3G Netz eine Latenz von 100 bis 500 ms haben kann und hier schon ein optimistischer Wert von 200 ms verwendet wurde. Für Nutzer von 4G schaut es besser aus und es bleiben 445 ms übrig.\\
-		Für die Performance Optimierung bedeutet es, dass in den ersten Kilobytes bereits genügend nützliche Informationen vorhanden sein sollten, sodass der Browser mit dem Rendering beginnen kann, obwohl noch nicht alle Daten heruntergeladen sind. Noch spitzer formuliert: Der Browser sollte mit den ersten 14 KB (das ist die Menge an Daten die der erste Round Trip transportieren kann, siehe Abbildung \ref{fig:fetching_40kb}) bereits den \texttt{above the fold} Bereich rendern können. Um das zu ermöglichen, ist es nötig, den kritischen Rendering-Pfad zu optimieren.
+		Abbildung \ref{fig:1000ms_budget} veranschaulicht die Kosten in Millisekunden, die auf jeder Ebene anfallen. Dieses Rechenbeispiel gibt eine ungefähre Vorstellung davon, wie viel noch von dem 1000 Millisekunden Budget bleibt, wenn alleine die Netzwerkzeiten abgezogen werden. Für Nutzer mit 3G Netz ist es laut dieser These selbst im "`best case"' Szenario nicht möglich, die 1000 ms Marke zu durchbrechen. Vor allem wenn man bedenkt, dass das 3G Netz eine Latenz von 100 bis 500 ms haben kann und hier schon ein optimistischer Wert von 200 ms verwendet wurde. Für Nutzer von 4G schaut es besser aus und es bleiben theoretisch 445 ms übrig.\\
+		Für die Performance Optimierung bedeutet es, dass in den ersten Kilobytes bereits genügend nützliche Informationen vorhanden sein sollten, damit der Browser mit dem Rendering beginnen kann, obwohl noch nicht alle Daten heruntergeladen sind. Noch spitzer formuliert: Der Browser sollte mit den ersten 14 kB (das ist die Menge an Daten die der erste Round Trip transportieren kann, siehe Abbildung \ref{fig:fetching_40kb}) bereits den \texttt{above the fold} Bereich rendern können. Um das zu ermöglichen ist es nötig den kritischen Rendering-Pfad zu optimieren.
 		
 	% subsection das_herunterladen_einer_40_kb_datei (end)
 
 	\subsection{Zusammengefasst} % (fold)
-	\label{sub:zusammengefasst}
-		Dieses Kapitel hat aufgezeigt, dass die Bandbreite eine nur untergeordnete Rolle spielt, wenn von schnellen Webanwendungen die Rede ist. Die Ladezeit wird dominiert von der Latenz und der damit verbundenen Round Trip Time. Diese entscheidet maßgeblich, wie schnell oder wie langsam der Ladevorgang ist.
+	\label{sub:zusammengefasst_grundlagen}
+		Dieses Kapitel hat aufgezeigt, dass die Bandbreite nur eine untergeordnete Rolle spielt, wenn von schnellen Webanwendungen die Rede ist. Die Ladezeit wird dominiert von der Latenz und der damit verbundenen Round Trip Time. Diese entscheidet maßgeblich, wie schnell oder wie langsam der Ladevorgang ist.
 		Folgendes ergibt sich auf der Ebene des Netzwerks:
 		\begin{itemize}
+
+			\item Die Ladezeit wird für mobile Anwender durch die Latenz bestimmt. 4G kann hier bereits Zeiten von <100 ms liefern, was das Erreichen der 1000 ms Barriere enorm erleichtert.
+
 			\item Wahl eines guten Hostings: Die RTT als auch die \texttt{Server Response Time} sind je nach Anbieter unterschiedlich. Ein gutes Hosting kann hier unter Umständen bereits eine enorme Verbesserung bedeuten. Zur Not sollte gewechselt werden.
 
 			\begin{figure}[htbp]
@@ -276,8 +279,7 @@
 				\end{center}
 			\end{figure}
 			
-			Wie in der Grafik zu sehen ist, sank die Response Zeit meines Hosting Providers von durchschnittlichen fast 400 Millisekunden auf 186 ms. Dies kann mehrere Gründe haben. So kann sich das Routing zum Server geändert haben, der Server kann ein Update erhalten haben oder die Maschine kann gewechselt worden sein. Was letzten Endes dazu geführt hat, kann nicht genau gesagt werden.
-			\item Die Ladezeit wird für mobile Anwender durch die Latenz bestimmt. 4G kann hier bereits Zeiten von <100 ms liefern, was das Erreichen der 1000 ms Barriere enorm erleichtert.
+			Wie in der Grafik zu sehen ist, sank die Response Zeit meines Hosting Providers von durchschnittlichen fast 400 Millisekunden auf 186 ms. Dies kann mehrere Gründe haben. So kann sich das Routing zum Server geändert haben, der Server kann ein Update erhalten haben oder die Maschine kann gewechselt worden sein. Was letzten Endes dazu geführt hat, kann in diesem Fall nicht genau gesagt werden.
 
 			\item Vermeiden von Weiterleitungen: Abbildung ~\ref{fig:eliminate_redirects} zeigt den Seitenaufruf von hasbro.com. Wie zu sehen ist, gibt es einen HTTP 301 (Wert in Klammer) Response zurück: 
 
@@ -293,7 +295,7 @@
 				\end{center}
 			\end{figure}
 			
-			Wenn ein Anwender \url{hasbro.com} eingibt (Abbildung \ref{fig:eliminate_redirects}) erfolgt der DNS Lookup und die TCP Verbindung wird aufgebaut. Der Browser erfährt dann, dass die Ressource unter einer anderen Adresse zur Verfügung steht. Danach erfolgt die DNS Auflösung für www.hasbro.com bei dem der gleiche Vorgang von statten geht. Es erfolgt die Weiterleitung auf die jeweilige Ländersprache. Nach rund 3,2 Sekunden konnte die erste Anfrage an die richtige Zieladresse aufgegeben werden. Aber auch Bilder werden auf dieser Seite weitergeleitet, wie in den Anfragen 49, 51 und 53 zu sehen ist. Ruft man sich die RTT von einem 3G Netz ins Gedächtnis, dürfte klar werden, was dies für den Smartphonenutzer bedeuten kann. \\
+			Wenn ein Anwender \url{hasbro.com} eingibt (Abbildung \ref{fig:eliminate_redirects}) erfolgt der DNS Lookup und die TCP Verbindung wird aufgebaut. Der Browser erfährt dann, dass die Ressource unter einer anderen Adresse zur Verfügung steht. Danach erfolgt die DNS Auflösung für www.hasbro.com bei dem der gleiche Vorgang nochmals von statten geht. Es erfolgt die Weiterleitung auf die jeweilige Ländersprache. Nach rund 3,2 Sekunden konnte die erste Anfrage an die richtige Zieladresse aufgegeben werden. Aber auch Bilder werden auf dieser Seite weitergeleitet, wie in den Anfragen 49, 51 und 53 zu sehen ist. Ruft man sich die RTT von einem 3G Netz ins Gedächtnis, dürfte klar werden, was dies für den Smartphonenutzer bedeuten kann. \\
 
 			\begin{figure}[htbp]
 				\begin{center}
@@ -305,30 +307,30 @@
 
 			Abbildung \ref{fig:eliminate_redirects_smartphone} zeigt den Aufruf von hasbro.com mittels Smartphone mit 3G Netz. 5.5 Sekunden dauert alleine der Verbindungsaufbau zum HTML Dokument der Seite.\\
 
-			Die Weiterleitung von hasbro.com auf www.hasbro.com ist für die Suchmaschinenoptimierung \footnote{engl. SEO - search engine optimization} allerdings sinnvoll, denn sonst würde unter zwei Namen der gleiche Inhalt zu finden sein. Dies ist aus Sicht von Google "`Duplicated Content"' und kann zu einer Abstrafung im Ranking führen.\footnote{Mehr zu diesem Thema gibt es unter \url{http://www.sem-deutschland.de/seo-tipps/duplicate-content-definition/}}
+			Die Weiterleitung von hasbro.com auf www.hasbro.com ist für die Suchmaschinenoptimierung\footnote{engl. SEO - Search engine optimization} allerdings sinnvoll, denn sonst würde unter zwei Namen der gleiche Inhalt zu finden sein. Dies ist aus Sicht von Google "`Duplicated Content"' und kann zu einer Abstrafung im Ranking führen.\footnote{Mehr zu diesem Thema gibt es unter \url{http://www.sem-deutschland.de/seo-tipps/duplicate-content-definition/}}
 
-			\item Bei Anwendern, die mittels 3G Verbindung im Internet sind, bestehen wenig Möglichkeiten, eine Seite in unter einer Sekunde zu übermitteln, denn die Zeit ab dem Touch Event und im Netzwerk kann bereits schon 900 ms betragen. Diese These deckt sich auch mit den Werten, die im Laufe des Projektes gesammelt wurden. Eine Auswertung davon findet unter Punkt \ref{sec:ergebnis} statt.
+			\item Bei Anwendern die mittels 3G Verbindung im Internet sind bestehen wenig Möglichkeiten, eine Seite in unter einer Sekunde zu übermitteln. Die Zeit ab dem Touch Event und im Netzwerk kann bereits schon 900 ms betragen. Diese These deckt sich auch mit den Werten, die im Laufe des Projektes gesammelt wurden. Eine Auswertung davon findet in Kapitel \ref{sec:ergebnis} statt.
 
-			\item Näheres Platzieren der Bits: Durch die Benutzung eines CDN's lassen sich Bits und Bytes näher am Endanwender platzieren, was die Netzwerkzeiten verringert.
+			\item Näheres positionieren der Bits: Durch die Benutzung eines CDN's lassen sich Bits und Bytes näher am Endanwender bereitstellen, was die Netzwerkzeiten verringert.
 
-			\item Sage das Nutzerverhalten voraus: Wenn der Anwender in einer Einkaufs-App 3 Schritte zum Vollenden des Kaufvorgangs benötigt, dann lässt sich bei Schritt 1 bereits vorhersagen, was er für weitere Ressourcen im nächsten Schritt benötigt. Diese Ressourcen könnten bereits geladen werden. Das hat den Nachteil, dass wenn der Nutzer nie zu Schritt 2 oder 3 kommt, dann wurde das Internetvolumen des Anwenders (für die der Nutzer eventuell zahlt) umsonst belastet.
+			\item Sage das Nutzerverhalten voraus: Wenn der Anwender in einer Einkaufs-App 3 Schritte zum Vollenden des Kaufvorgangs benötigt, dann lässt sich bei Schritt 1 bereits vorhersagen, was er für weitere Ressourcen im nächsten Schritt benötigt. Diese Ressourcen könnten bereits geladen werden. Das hat den Nachteil, dass wenn der Nutzer nie zu Schritt 2 oder 3 kommt, dann wurde das Internetvolumen des Anwenders (für die der Nutzer eventuell bezahlt) umsonst belastet.
 
-			\item Senden von weniger Daten: Das schnellste Bit ist das, das nicht gesendet wird. Das Zusammenfügen und Verkleinern von Javascript und CSS Dateien verringert die Dateigröße. Zudem lassen sich die Daten per \texttt{GZIP} zwischen Browser und Server komprimieren. Zudem wissen wir aus Abschnitt \ref{sub:http_1_1_Protokoll} (Http/1.1 Protokoll) bereits, dass die Anzahl von parallelen TCP Verbindungen limitiert ist und Abschnitt \ref{sub:tcp_slow_start} hat den Einfluss des TCP slow start gezeigt. Wie das Verkleinern und Zusammenfügen in der Praxis umgesetzt werden kann, soll unter Punkt \ref{sub:gulp_task_manager} konkretisiert werden.
+			\item Senden von weniger Daten: Das schnellste Bit ist das, das nicht gesendet wird. Das Zusammenfügen und Verkleinern von Javascript und CSS Dateien verringert die Dateigröße. Zudem lassen sich die Daten per \texttt{GZIP} zwischen Browser und Server komprimieren. Wir wissen außerdem aus Abschnitt \ref{sub:http_1_1_Protokoll} (Http/1.1 Protokoll) bereits, dass die Anzahl von parallelen TCP Verbindungen limitiert ist und Abschnitt \ref{sub:tcp_slow_start} hat den Einfluss des TCP slow start gezeigt. Wie das Verkleinern und Zusammenfügen in der Praxis umgesetzt werden kann, soll unter Punkt \ref{sub:gulp_task_manager} konkretisiert werden.
 
 			\item Damit nicht jede TCP-Verbindung neu aufgebaut werden muss, gibt es die Möglichkeit, die Verbindungen wiederzuverwenden. Dies nennt sich auch "`Keep Alive"'. Damit kann unter anderem der "`three way handshake"' eingespart werden. Näheres dazu wird in Punkt \ref{ssub:keep_alive_ermöglichen} beschrieben.
 
-			\item Stelle nützliche Bytes zu Verfügung: Wie in Abbildung \ref{fig:fetching_40kb} zu sehen ist, erfolgt mit dem ersten Round Trip eine Datenübertragung von  14 KB. Optimal ist es, wenn bereits mit dieser ersten Antwort genügend Informationen vorliegen, um etwas auf den Bildschirm des Anwenders zu zeichnen. Das setzt voraus, dass die HTML Datei 14 KB (nach Kompression) nicht überschreitet.
+			\item Stelle nützliche Bytes zu Verfügung: Wie in Abbildung \ref{fig:fetching_40kb} zu sehen ist, erfolgt mit dem ersten Round Trip eine Datenübertragung von  14 kB. Optimal ist es, wenn bereits mit dieser ersten Antwort genügend Informationen vorliegen, um etwas auf den Bildschirm des Anwenders zu zeichnen. Das setzt voraus, dass die HTML Datei 14 kB (nach Kompression) nicht überschreitet.
 
 		\end{itemize}
 
 	\pagebreak
 	%
-	% subsection zusammengefasst (end)
+	% subsection zusammengefasst_grundlagen (end)
 	%
 
 	\subsection{Kritischer Rendering-Pfad} % (fold)
 	\label{sub:critical_render_path}
-		Auf Englisch "`Critical Render Path"' genannt, ist der wohl wichtigste Begriff, wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering-Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine wesentliche Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden. Dabei wird der Begriff in seine Teile zerlegt: Kritischer, Rendering und Rendering-Pfad.
+		Auf Englisch "`Critical Render Path"' genannt, ist der wohl wichtigste Begriff wenn es um schnelle Ladezeiten geht. Durch die Optimierung des Rendering-Pfads kann die benötigte Zeit für das erste Rendern der Seite erheblich verkürzt werden. Das Verständnis des Rendering-Pfads ist zudem eine wesentliche Voraussetzung für die Erstellung von schnellen Webanwendungen und soll in diesem Abschnitt ausführlich erklärt werden. Dabei wird der Begriff in seine Teile zerlegt: Kritischer, Rendering und Rendering-Pfad.
 
 		\subsubsection{Rendering} % (fold)
 		\label{ssub:rendering}
@@ -353,7 +355,7 @@
 			\begin{figure}[htbp]
 				\begin{center}
 					\includegraphics[width=0.85\textwidth]{critical_render_path.jpg}
-					\caption{Ressourcen die für das Rendern von Nöten sind (Eigene Abbildung)}
+					\caption{Ressourcen die für das Rendern nötig sind (Eigene Abbildung)}
 					\label{fig:critical_render_path}
 				\end{center}
 			\end{figure}
@@ -372,7 +374,7 @@
 
 			\end{lstlisting}
 
-			Nachdem diese HTML Datei heruntergeladen wurde, beginnt der Browser sie von oben nach unten zu parsen. Dabei stößt er in Zeile 5 auf einen \texttt{Link-Tag}, der ihn anweist, diese Datei herunterzuladen. In Zeile 6 findet der Browser einen \texttt{Script-Tag}. Auch diese Datei muss heruntergeladen, interpretiert und ausgeführt werden, denn jede Javascript Datei kann den DOM-Baum\footnote{Der DOM-Baum: \url{http://wiki.selfhtml.org/wiki/JavaScript/Objekte/DOM}} oder das CSS manipulieren. So können per Javascript sowohl Elemente dem DOM-Baum hinzugefügt, als auch weggenommen werden oder Elemente können eine Änderung ihrer CSS Attribute erhalten. Dieser Umstand verbietet es dem Browser, mit dem Rendering zu beginnen, da bis zur Ausführung der Javascript Dateien noch Manipulationen erfolgen können.
+			Nachdem diese HTML Datei heruntergeladen wurde, beginnt der Browser sie von oben nach unten zu parsen. Dabei stößt er in Zeile 5 auf einen \texttt{Link-Tag}, der ihn anweist diese Datei herunterzuladen. In Zeile 6 findet der Browser einen \texttt{Script-Tag}. Auch diese Datei muss heruntergeladen, interpretiert und ausgeführt werden, denn jede Javascript Datei kann den DOM-Baum\footnote{Der DOM-Baum: \url{http://wiki.selfhtml.org/wiki/JavaScript/Objekte/DOM}} oder das CSS manipulieren. So können per Javascript sowohl Elemente dem DOM-Baum hinzugefügt, als auch weggenommen werden oder Elemente können eine Änderung ihrer CSS Attribute erhalten. Dieser Umstand verbietet es dem Browser, mit dem Rendering zu beginnen, da bis zur Ausführung der Javascript Dateien noch Manipulationen erfolgen können.
 			Bevor also das "`Hello world"' in Zeile 8 angezeigt werden kann, ist das Rendern blockiert. Dieses Verhalten nennt sich auch "`Render Blocking"' und wird sowohl von Javascript als auch von CSS Dateien ausgelöst. Folglich spricht man hierbei auch von "`Render Blocking Javascript"' und "`Render Blocking CSS"'. Erst wenn diese blockierenden Ressourcen geladen und interpretiert wurden, kann der Browser den Render Tree erstellen, das Layout festlegen und schlussendlich mit dem Rendern beginnen. 
 
 		% subsubsection rendering_pfad (end)
@@ -388,7 +390,7 @@
 				\end{center}
 			\end{figure}
 			
-			Der \texttt{Critical Render Path} besteht aus genau den Javascript und CSS Dateien, die für das Rendern des \texttt{above the fold} (Punkt: \ref{sub:above_the_fold}) von Nöten sind. Um dies umzusetzen, ist es nötig, die Ressourcen in zwei Teile zu zerlegen: Für das Rendering \textbf{absolut} notwendig und nicht notwendig. Alle Dateien, die für das erste Rendern nicht notwendig sind, sollten so lange mit dem Laden verzögert werden, bis der above the told der Anwendung geladen ist. Wie genau so eine Umsetzung aussieht, wird in Punkt \ref{ssub:render_blocking_javascript} noch ausführlich gezeigt.
+			Der \texttt{Critical Render Path} besteht aus genau den Javascript und CSS Dateien, die für das Rendern des \texttt{above the fold} (Punkt: \ref{sub:above_the_fold}) von Nöten sind. Um dies umzusetzen ist es nötig die Ressourcen in zwei Teile zu zerlegen: Für das Rendering \textbf{absolut} notwendig und nicht notwendige Ressourcen. Alle Dateien, die für das \textbf{erste} Rendern nicht notwendig sind, sollten so lange mit dem Laden verzögert werden, bis der above the fold der Anwendung geladen ist. Wie genau so eine Umsetzung aussieht, wird in Punkt \ref{ssub:render_blocking_javascript} noch ausführlich gezeigt.
 		% subsubsection critical_render_path (end)
 
 
@@ -402,11 +404,11 @@
 
 				\item Zusammenfügen von Dateien: Je weniger einzelne Dateien, umso weniger wird das Rendern der Seite blockiert.
 
-				\item Aufteilen von Ressourcen in 2 Gruppen: Für das Rendering kritisch und unkritisch. Das gilt sowohl für CSS als auch für Javascript Dateien. Unkritische Dateien werden so lange verzögert, bis der above the fold der Seite geladen wurde.
+				\item Aufteilen von Ressourcen in 2 Gruppen: Für das Rendering kritisch und unkritisch. Das gilt sowohl für CSS als auch für Javascript-Dateien. Unkritische Dateien werden so lange verzögert, bis der above the fold der Seite geladen wurde.
 
 				\item Inlining von CSS im HTML Dokument: Durch das Einbetten von CSS direkt in das HTML Dokument wird das CSS bereits mit der ersten Serverantwort mitgesendet. Dadurch muss der Browser die Datei nicht anfordern und herunterladen, sondern kann gleich mit dem Parsen beginnen.
 
-				\item Die Herausforderung besteht darin, in der eigenen Webanwendung, die für das Rendern kritischen Ressourcen zu erkennen und aufzuteilen, ohne die Funktionalität der Anwendung in Mitleidenschaft zu ziehen. Dinge, die fast immer verzögert geladen werden können, sind zum Beispiel Social Media Buttons (Facebook, Google+, Twitter ect.), Widgets oder Tracking Codes wie Google Analytics.
+				\item Die Herausforderung besteht darin in der eigenen Webanwendung die für das Rendern kritischen Ressourcen zu erkennen und aufzuteilen, ohne die Funktionalität der Anwendung in Mitleidenschaft zu ziehen. Dinge die fast immer verzögert geladen werden können sind zum Beispiel Social Media Buttons (Facebook, Google+, Twitter ect.), Widgets oder Tracking Codes wie Google Analytics.
 			\end{itemize}
 
 		% subsubsection zusammengefasst (end)
@@ -428,7 +430,7 @@
 			\end{center}
 		\end{figure}
 		
-	  Sie zeigt, das typische Verhalten des Browsers: Es werden zuerst CSS, Javascript und anschließend die Bilder heruntergeladen. Hierbei fällt auf, dass er nicht mit allen Dateien gleichzeitig beginnen kann, sondern (wie in Punkt \ref{sub:http_1_1_Protokoll}: HTTP/1.1 beschrieben) nur 6 TCP Verbindungen pro Host Name aufbauen darf.\footnote{Es sind deshalb 7 Verbindungen, da die Datei: "`code.jquery"' von einer Google Domäne kommt und deshalb als neuer Host Name zählt.} Je weniger einzelne Dateien die Webseite benötigt, umso weniger bilden sich Warteschlangen für eine frei werdende TCP Verbindung (der Wasserfall wird flacher).\\
+	  Sie zeigt das typische Verhalten des Browsers: Es werden zuerst CSS, Javascript und anschließend Bild-Dateien heruntergeladen. Hierbei fällt auf, dass er nicht mit allen Dateien gleichzeitig beginnen kann, sondern (wie in Punkt \ref{sub:http_1_1_Protokoll}: HTTP/1.1 beschrieben) nur 6 TCP Verbindungen pro Host Name aufbauen darf.\footnote{Es sind hier 7 Verbindungen, da die Datei: "`code.jquery"' von einer Google Domäne kommt und deshalb als neuer Host Name zählt.} Je weniger einzelne Dateien die Webseite benötigt, umso weniger bilden sich Warteschlangen für eine frei werdende TCP Verbindung (der Wasserfall wird flacher).\\
 	  Auch ist wieder die Latenz als dominierender Faktor zu sehen. Es fällt auf, dass es nur einen relativ langen blauen Balken gibt (Anfrage Nr. 12 Gallery.php), bei dem für längere Zeit etwas heruntergeladen wird. Das Herunterladen der meisten Inhalte dauert überwiegend gerade so lange, wie die benötigte Zeit um eine Verbindung herzustellen.\\
 	  Bei Sekunde 7 (senkrechte grüne Line) tritt das \texttt{Start Render Event} ein: Der Browser hat mit dem Rendern begonnen. Das Ziel des Kritischen Rendering-Pfads ist es, diese senkrechte grüne Linie möglichst weit nach links zu schieben, also die Zeit bis zum ersten Rendern zu verringern.\\
 
@@ -442,11 +444,11 @@
 	  	\end{center}
 	  \end{figure}
 	  Wie zu sehen ist, fällt die senkrechte grüne Linie bereits bei rund 1.6 Sekunden (5.4 Sekunden schneller). Das CSS und Javascript wird zu diesem Zeitpunkt noch heruntergeladen. Daraus lässt sich schlussfolgern, dass in dieser optimierten Version kein \texttt{Render Blocking Javascript / CSS} mehr vorhanden ist. Dadurch ist der Browser nicht blockiert und kann bereits früh mit dem Rendern der Seite beginnen. Dieses Diagramm lässt sich noch viel weiter interpretieren und belegt die Hauptaussage dieses Kapitels "`Brechen der 1000 ms Barriere"':\\
-	  Request Nummer 1 in Abbildung \ref{fig:wasserfall_detail} zeigt genau dass, was im Kapitel \ref{sub:netzwerke} Netzwerke beschrieben wurde. Es spiegelt sehr schön die 300 ms RTT des 3G Netzes wieder:
+	  Request Nummer 1 in Abbildung \ref{fig:wasserfall_detail} zeigt genau, was in Kapitel \ref{sub:netzwerke} beschrieben wurde. Es spiegelt sehr schön die 300 ms RTT des 3G Netzes wieder:
 	  
 	  \begin{figure}[htbp]
 	  	\begin{center}
-	  		\includegraphics[width=0.8\textwidth]{wasserfall_detail.jpg}
+	  		\includegraphics[width=\textwidth]{wasserfall_detail.jpg}
 	  		\caption{Request Nr. 1 im Detail (Abbildung nach webpagetest.org)}
 	  		\label{fig:wasserfall_detail}
 	  	\end{center}
@@ -458,11 +460,11 @@
 	  	\item DNS Lookup: 1 RTT = 300 ms
 	  	\item Initial Connection (TCP - 3 Way Handshake): 1 RTT = 300 ms
 	  	\item TTFB: Server Processing Time\footnote{die Antwort muss erst vom Server generiert werden}: = 300 ms
-	  	\item Content Download\footnote{Das HTML Dokument beträgt 6.3 KB (siehe in Abbildung \ref{fig:wasserfall_detail} Eintrag: Bytes In (downloaded)), TCP kann mit dem ersten Round Trip rund 14 KB transportieren. Das HTML Dokument kann also in einem Round Trip geliefert werden.}: 1 RTT = 300 ms 
+	  	\item Content Download\footnote{Das HTML Dokument beträgt 6.3 kB (siehe in Abbildung \ref{fig:wasserfall_detail} Eintrag: Bytes In (downloaded)), TCP kann mit dem ersten Round Trip rund 14 kB transportieren. Das HTML Dokument kann also in einem Round Trip geliefert werden.}: 1 RTT = 300 ms 
 	  	\item Zeit fürs Parsen, Ausführen von Scripts ect.: ca. 500 ms \footnote{Dies ist in der Abbildung mittels rotem Pfeil (<- ->) makiert}:  
 	  \end{itemize}
  
-	  Obwohl hier nur eine 6.3kb Datei heruntergeladen wurde und keine 40kb sowie in Beispiel \ref{fig:1000ms_budget}, ist es ohne eine geringere Latenz (4G) nicht möglich, unter die 1000 ms Barriere zu kommen. Leider stellt der Serviceanbieter von \url{Webpagtest.org} keine Testumgebung mit 4G zu Verfügung. Ein Beweis für das Erreichen eines "`First Render"' mittels Smartphone in unter 1000 ms Sekunde steht folglich aus. Mittels Kabelverbindung sind Werte um die 200 ms zu erreichen; dies wird per Datenauswertung in Kapitel \ref{sec:ergebnis} gezeigt.
+	  Obwohl hier nur eine 6.3kb Datei heruntergeladen wurde und keine 40kb wie in Beispiel \ref{fig:1000ms_budget}, ist es ohne eine geringere Latenz (4G) nicht möglich, unter die 1000 ms Barriere zu kommen. Leider stellt der Serviceanbieter von \url{Webpagtest.org} keine Testumgebung mit 4G zu Verfügung. Ein Beweis für das Erreichen eines "`First Render"' mittels Smartphone in unter 1000 ms Sekunde steht folglich aus. Mittels Kabelverbindung sind Werte um die 200 ms zu erreichen; dies wird per Datenauswertung in Kapitel \ref{sec:ergebnis} gezeigt.
 
 	% subsection analyse_des_wasserfalls (end)
 

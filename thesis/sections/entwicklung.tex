@@ -1,17 +1,17 @@
 \section{Entwicklung} % (fold)
 \label{sec:entwicklung}
-	Dieses Kapitel soll den Entwicklungsprozess konkretisieren und den Optimierungsprozess einer Webanwendung aufzeigen. Es soll erläutert werden, wie bestimmte Probleme gelöst werden, welche Fragen sich stellten und welche Antworten darauf gefunden wurden. Dafür werden die entsprechenden Tools und Hilfsmittel, die zu Verwendung kamen vorgestellt und entsprechend erklärt. Dies soll ein Bewusstsein dafür schaffen, was möglich ist und wie eine technische Umsetzung aussehen kann.
+	Dieses Kapitel soll den Entwicklungsprozess konkretisieren und den Optimierungsprozess einer Webanwendung aufzeigen. Es soll erläutert werden, wie bestimmte Probleme gelöst werden, welche Fragen sich stellten und welche Antworten darauf gefunden wurden. Dafür werden die entsprechenden Tools und Hilfsmittel die zu Verwendung kamen vorgestellt und entsprechend erklärt. Dies soll ein Bewusstsein dafür schaffen, was möglich ist und wie eine technische Umsetzung aussehen kann.
 	
 	\subsection{Tools}
 	\label{sub:tools}
-		Dies ist eine Auflistung an Tools und nützlichen Seiten, die entweder im Projekt verwendet, oder für wertvoll befunden wurden und deshalb hier ihren Platz finden, damit jeder für sich entscheiden kann, ob ihr Einsatz sinnvoll sein könnte.
+		Dies ist eine Auflistung an Tools und nützlichen Seiten, die entweder im Projekt verwendet oder für wertvoll befunden wurden und deshalb hier ihren Platz finden, damit jeder für sich entscheiden kann, ob ihr Einsatz sinnvoll sein könnte.
 
 		\subsubsection{Google Chrome Developer Tool} % (fold)
 		\label{ssub:google_chrome_developertool}
 			Dieses Tool ist über die Taste F12 im Chrome Browser zu finden. Nützliche Funktionen sind: 
 
 			\begin{itemize}
-				\item \texttt{Device Emulation} \footnote{Bei geöffnetem Tool (F12): strg + shift + M oder klick auf das Smartphone Symbol}: Damit lassen sich sowohl verschiedene Geräte wie Smartphones oder Tablets, als auch das Touchverhalten simulieren.
+				\item \texttt{Device Emulation}\footnote{Bei geöffnetem Tool (F12): strg + shift + M oder klick auf das Smartphone Symbol}: Damit lassen sich sowohl verschiedene Geräte wie Smartphones oder Tablets, als auch das Touchverhalten simulieren.
 
 				\item In der Device Emulation lässt sich auch die Netzwerkgeschwindigkeit simulieren.
 
@@ -23,13 +23,13 @@
 
 		\subsubsection{Google Pagespeed Insight} % (fold)
 		\label{ssub:google_pagespeed_insight}
-			Pagespeed Insight ist ein Analysetool für Webanwendungen. Per URL Eingabe wird die Anwendung aufgerufen und gegen die "`Best Practices"' von Google getestet\footnote{Beispiel für einen Test: \url{http://tinyurl.com/nvxksks}}. Dabei wird eine Wertung von 1 (schlecht) bis 100 (gut) vergeben. Mobile und Desktop Version werden voneinander unabhängig bewertet. Findet das Tool einen Verstoß, so gibt es Hilfestellungen wie zum Beispiel weiterführende Links oder Hinweise zur Behebung des Problems. Für die Verbesserung der Perfomance ist dieses Tool eines der besten Anlaufziele, um die Probleme zu finden. Pagespeed Insight gibt es auch als Plugin für das Google Chrome Developer Tool.\footnote{Plugin - Pagespeed Insight: \url{http://tinyurl.com/mv8fcx8}}
+			Pagespeed Insight ist ein Analysetool für Webanwendungen. Per URL Eingabe wird die Anwendung aufgerufen und gegen die "`Best Practices"' von Google getestet\footnote{Beispiel für einen Test: \url{http://tinyurl.com/nvxksks}}. Dabei wird eine Wertung von 1 (schlecht) bis 100 (gut) vergeben. Mobile und Desktop Version werden voneinander unabhängig bewertet. Findet das Tool einen Verstoß, so gibt es Hilfestellungen wie zum Beispiel weiterführende Links oder Hinweise zur Behebung des Problems. Für die Verbesserung der Perfomance ist dieses Tool eines der besten Anlaufziele um die Probleme zu finden. Pagespeed Insight gibt es auch als Plugin für das Google Chrome Developer Tool.\footnote{Plugin - Pagespeed Insight: \url{http://tinyurl.com/mv8fcx8}}
 		
 		% subsubsection google_pagespeed_insight (end)
 
 		\subsubsection{Google Closure Compiler} % (fold)
 		\label{ssub:closure_compiler}
-			Das ist ein einfaches Tool von Google\footnote{\url{http://closure-compiler.appspot.com/}}, mit der Aufgabe, Javascript zu verkleinern. Dieser Vorgang nennt sich "`minify"' und ist auch für HTML und CSS möglich. Ein Beispiel:
+			Das ist ein einfaches Tool von Google\footnote{\url{http://closure-compiler.appspot.com/}} mit der Aufgabe Javascript zu verkleinern. Dieser Vorgang nennt sich "`minify"' und ist auch für HTML und CSS möglich. Ein Beispiel:
 
 			\begin{lstlisting}[captionpos=t, caption=Input, label=lst:minifyInput]
 			/**
@@ -58,13 +58,13 @@
 			(0<a.length&&(a+="&"),a+=encodeURI(b+"="+c[b]));return a};
 			\end{lstlisting}
 
-			Wie zu sehen ist, werden nicht nur alle Kommentare, Leerzeichen und Zeilenumbrüche entfernt, sondern auch Variablennamen werden auf 1 Zeichen reduziert um weitere Bytes zu sparen. Die Funktionalität bleibt dabei gewährleistet. Dieser Vorgang ist auch unter dem Namen "`uglify"' bekannt.
+			Wie zu sehen ist werden nicht nur alle Kommentare, Leerzeichen und Zeilenumbrüche entfernt, sondern auch Variablennamen werden auf 1 Zeichen reduziert um weitere Bytes zu sparen. Die Funktionalität bleibt dabei gewährleistet. Dieser Vorgang ist auch unter dem Namen "`uglify"' bekannt.
 		
 		% subsubsection closure_compiler (end)
 
 		\subsubsection{Webpagetest} % (fold)
 		\label{ssub:webpagetest}
-			\url{Webpagetest.org} ist das wohl umfangreichste und beste Webseiten Analysetool das im Internet zu finden ist. Es ist ein kostenloser Service, der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen, aber schwer zu beherschen ("`easy to use, hard to master"') und es gibt zahllose Einstellungen und undokumentierte Funktionen, auf die man nur in Vorträgen oder Foren stößt. Es gibt auch ein Buch, das sich nur mit diesem Tool beschäftigt beim Verlag \texttt{O'Reilly}.\footnote{Buch - Using WebPagetest: \url{http://shop.oreilly.com/product/0636920033592.do}}.	Die Features für Webpagetest sind vielseitig:
+			\url{Webpagetest.org} ist das wohl umfangreichste und beste Webseiten Analysetool das im Internet zu finden ist. Es ist ein kostenloser Service, der hauptsächlich von Patrick Meenan entwickelt wurde. Das Tool ist leicht zu bedienen aber schwer zu beherschen ("`easy to use, hard to master"'). Es gibt zahllose Einstellungen und undokumentierte Funktionen auf die man nur in Vorträgen oder Foren stößt. Ein Buch, das sich nur mit diesem Tool beschäftigt ist beim Verlag \texttt{O'Reilly}.\footnote{Buch - Using WebPagetest: \url{http://shop.oreilly.com/product/0636920033592.do}} erschienen.	Die Features für Webpagetest sind vielseitig:
 
 			\begin{itemize}
 				\item Webpagetest hat die wohl genaueste Erfassung von Netzwerkzeiten und spiegelt damit realitätsgetreu die Ladezeiten einer Seite wieder.
@@ -89,7 +89,7 @@
 				\item Man kann Tests direkt miteinander vergleichen. Das ist möglich, indem diese URL eingegeben wird: \url{www.webpagetest.org/video/compare.php?tests=} und nach dem "`="' Zeichen die Test ID, beispielsweise "`150310\_8E\_GRH"', eingegeben wird.
 				Mit einem Komma getrennt wird eine 2. oder 3. ID angefügt. Die Tests werden dann in einer Vergleichsansicht dargestellt.
 
-				\item Filmstrip Ansicht: Damit lässt sich visuell erkennen, wann welches Element gerendert wird.
+				\item Filmstrip Ansicht: Damit lässt sich visuell erkennen wann welches Element gerendert wird.
 
 				\item Videoerstellung: Aus der Filmstrip Ansicht lässt sich ein Video erstellen. Das ist vor allem interessant, wenn mit der Vergleichsmethode mehrere Tests geladen sind. Der Ladevorgang der Testläufe wird dann in einem Video parallel abgespielt. Vor allem für Präsentationen oder vorher- / nachher-Vergleiche ist dies nützlich.
 
@@ -97,9 +97,9 @@
 
 				\item Testen von verschiedenen Standpunkten: Webpagetest ermöglicht es die eigene Seite von ganz verschiedenen geographischen Standpunkten aus aufzurufen. Dadurch lässt sich ein Eindruck gewinnen, wie schnell die Seite aus dem Ausland aufrufbar ist und wie stark die Abweichung sein kann.
 
-				\item API: Webpagetest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben (mehr dazu in Punkt: \ref{sub:wie_wurde_getestet} "`Wie wurde getestet?"'). Diese Schnittstelle limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene private Instanz erstellen. 
+				\item API: Webpagetest hat eine offene API (Schnittstelle) durch die das Tool von außerhalb erreichbar ist. So lässt sich ein Test beispielsweise in Google-Spreadsheets aufrufen und das Ergebnis direkt in eine Tabelle schreiben (mehr dazu in Kapitel: \ref{sub:wie_wurde_getestet} "`Wie wurde getestet?"'). Diese Schnittstelle limitiert allerdings die Anzahl an Tests pro Tag auf 200. Für mehr muss man sich eine eigene private Instanz erstellen. 
 
-				\item Private Instanz: Da Webpagetest Open Source ist, gibt es die Möglichkeit, eine eigene private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann beliebig viele Tests ausführen.
+				\item Private Instanz: Da Webpagetest Open Source is, gibt es die Möglichkeit eine eigene private Instanz aufzusetzen. Dies kann sowohl per Amazon Cloud oder auf einem eigenen Server geschehen. Damit lassen sich dann beliebig viele Tests ausführen.
 
 			\end{itemize}
 		% subsubsection webpagetest (end)	
@@ -114,11 +114,11 @@
 
 		\subsubsection{Speedcurve} % (fold)
 		\label{ssub:speedcurve}
-			Speedcurve ist ein kommerzielles Tool basierend auf Webpagetest. Es liefert einen "`life monitoring"' Service mit dem sich Webanwendungen vergleichen lassen. So kann man zum Beispiel die eigene Webanwendung dauerhaft und über einen längeren Zeitraum mit denen der Konkurrenz vergleichen. Dies ist vor allem nützlich, um nicht nur eine schnelle Seite beim Go-Live zu haben, sondern auch schnell zu bleiben und dies validieren zu können.
+			Speedcurve ist ein kommerzielles Tool basierend auf Webpagetest. Es liefert einen "`life monitoring"' Service mit dem sich Webanwendungen vergleichen lassen. So kann man zum Beispiel die eigene Webanwendung dauerhaft und über einen längeren Zeitraum mit der Konkurrenz vergleichen. Dies ist vor allem nützlich um nicht nur eine schnelle Seite beim Go-Live zu haben, sondern auch schnell zu bleiben und dies validieren zu können.
 
 			\begin{figure}[htbp]
 				\begin{center}
-					\includegraphics[width=0.7\textwidth]{speedcurve.jpg}
+					\includegraphics[width=0.75\textwidth]{speedcurve.jpg}
 					\caption{Speedcurve Life Monitoring (Abbildung von \url{http://speedcurve.com/})}
 					\label{fig:speedcurve}
 				\end{center}
@@ -128,8 +128,7 @@
 
 		\subsubsection{Google Spreadsheet} % (fold)
 		\label{ssub:google_spreadsheet}
-			Google Spreadsheet ist im Grunde wie Microsofts Excel. In Tabellen können Werte eingetragen und Berechnungen ausgeführt werden.
-			Der große Vorteil an Google Spreadhseet besteht in der Möglichkeit, dass es einen Skript Editor gibt, mit dem sich Programme schreiben lassen. So sind zum Beispiel API Abfragen möglich, dessen Ergebnisse dann direkt in die Tabelle geschrieben werden können.		
+			Google Spreadsheet bietet ähnliche Funktionen wie Microsofts Excel. In Tabellen können Werte eingetragen und Berechnungen ausgeführt werden. Der große Vorteil an Google Spreadhseet besteht in der Möglichkeit, dass es einen Skript Editor gibt, mit dem sich Programme schreiben lassen. So sind zum Beispiel API Abfragen möglich, dessen Ergebnisse dann direkt in die Tabelle geschrieben werden können.		
 		% subsubsection google_spreadsheet (end)
 
 		\subsubsection{Feed the Bot} % (fold)
@@ -149,7 +148,7 @@
 
 		\begin{figure}[htbp]
 			\begin{center}
-				\includegraphics[width=0.7\textwidth]{what_does_my_site_cost.jpg}
+				\includegraphics[width=0.6\textwidth]{what_does_my_site_cost.jpg}
 				\caption{Find out how much it costs for someone to use your site on mobile networks around the world.\autocite{siteCosts}}
 				\label{fig:what_does_my_site_cost}
 			\end{center}
@@ -160,9 +159,9 @@
 
 		\subsubsection{Critical Path CSS Generator} % (fold)
 		\label{ssub:critical_path_css_generator}
-			Im Kapitel "`Brechen der 1000 ms Barriere"'\ref{sec:die_1000_ms_barriere} wurde gesagt, man solle das CSS des above the folds direkt in das HTML als \texttt{inline CSS} schreiben. \url{http://jonassebastianohlsson.com/criticalpathcssgenerator/} erstellt aus einer gegebener URL und dem dazugehörigen CSS genau den CSS-Code, der für den above the fold Bereich nötig ist. Das Ergebnis lässt sich dann bequem in das eigene HTML integrieren.\\
+			Im Kapitel \ref{sec:die_1000_ms_barriere} "`Brechen der 1000 ms Barriere"' wurde empfohlen, man solle das CSS des above the folds direkt in das HTML als \texttt{inline CSS} einbetten. \url{http://jonassebastianohlsson.com/criticalpathcssgenerator/} erstellt aus einer gegebenen URL und dem dazugehörigen CSS genau den CSS-Code, der für den above the fold Bereich nötig ist. Das Ergebnis lässt sich dann bequem in das eigene HTML Dokument integrieren.\\
 
-			Dieser Generator funktioniert allerdings nur dann gut, wenn sowohl die Smartphone, als auch Desktop Darstellung identisches CSS haben. Bootstrap zum Beispiel manipuliert die Navigation auf der Smartphone Ansicht per Javascript und fügt dabei Elemente ein. Diese hinzugefügten Elemente kennt dieser Generator natürlich nicht und kann sie folglich auch nicht beachten.
+			Dieser Generator funktioniert allerdings nur dann zuverlässig, wenn sowohl die Smartphone, als auch Desktop Darstellung identisches CSS haben. Bootstrap zum Beispiel manipuliert die Navigation auf der Smartphone Ansicht per Javascript und fügt dabei Elemente ein. Diese hinzugefügten Elemente kennt dieser Generator natürlich nicht und kann sie folglich auch nicht beachten.
 
 		% subsubsection critical_path_css_generator (end)
 
@@ -183,7 +182,7 @@
 
 		\subsubsection{Twitter} % (fold)
 		\label{ssub:twitter}
-			Twitter bietet die Möglichkeit, am Puls der Zeit zu sein und unter dem Hashtag \#webperf und \#perfmatters erhält man neuste Erkentnisse, Tools oder Links, die sonst unentdeckt bleiben.
+			Twitter bietet die Möglichkeit, am Puls der Zeit zu sein und unter dem Hashtag \#webperf und \#perfmatters erhält man neuste Erkentnisse, Tools oder Links, die sonst vielleicht unentdeckt bleiben.
 		
 		% subsubsection twitter (end)
 	\pagebreak
@@ -192,16 +191,16 @@
 
 	\subsection{Ausgangspunkt}
 	\label{sub:ausgangspunkt}
-		Im folgenden Abschnitt soll der Prozess beschrieben werden, um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von Beginn an war es wichtig, den Verbesserungsablauf zu dokumentieren und in konkreten Daten zu erfassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die Möglichkeit, Skripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu Nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), das es ermöglicht, Webpagetest innerhalb von Google Spreadsheet\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurden während der Entwicklungsphase täglich Tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Messdaten erfolgt in Punkt \ref{sec:ergebnis}.\\
+		Im folgenden Abschnitt soll der Prozess beschrieben werden um von einer langsamen Webanwendung zu einer schnellen zu gelangen. Von Beginn an war es wichtig, den Verbesserungsablauf zu dokumentieren und in konkreten Daten zu erfassen. Wie bereits unter Punkt \ref{ssub:google_spreadsheet} beschrieben, bietet Google Spreadsheets die Möglichkeit, Skripte zu schreiben und die Ergebnisse direkt in eine Tabelle auszugeben. Diesen Umstand hat sich \texttt{Andy Davies} zu Nutzen gemacht und ein Programm\footnote{WebPageTest Bulk Tester via GitHub: \url{https://github.com/andydavies/WPT-Bulk-Tester}} geschrieben (MIT License), das es ermöglicht Webpagetest innerhalb von Google Spreadsheet\footnote{Das Google Dokument ist hier zu finden: \url{http://tinyurl.com/nv4pge5}} aufzurufen. Damit wurden während der Entwicklungsphase täglich Tests aufgezeichnet.\footnote{Die gesamten Daten sind hier zu finden: \url{http://tinyurl.com/l5usz79}} Die Auswertung dieser Messdaten erfolgt in Kapitel \ref{sec:ergebnis}.\\
 
-		Da nur in Dulles VA eine Testinstanz mit richtigen Smartphones zur Verfügung steht, wurde mittels der \texttt{Microsoft Azure Cloud} die selbe Seite auch in den USA gehostet, um die Latenz zwischen USA und Europa zu eliminieren. Dadurch lässt sich exakter bestimmen, wie schnell ein Smartphone mit 3G Netz die Seite aufrufen kann. Leider steht keine Testinstanz mit 4G zur Verfügung.\\
+		Da nur in Dulles VA eine Testinstanz mit echten physikalischen Smartphones zur Verfügung steht, wurde mittels der \texttt{Microsoft Azure Cloud} die selbe Seite auch in den USA gehostet, um die Latenz zwischen USA und Europa zu umgehen. Dadurch lässt sich exakter bestimmen wie schnell ein Smartphone mit 3G Netz die Seite aufrufen kann. Leider steht aktuell keine Testinstanz mit 4G zur Verfügung.\\
 
 		Als Ausgangspunkt dient die Seite \url{http://andreaslorer.de/old/}. Zu Beginn des Optimierungsprozesses gab es folgenden Ausgangspunkt (Daten via Developer Tool \& Webpagetest):\\
 
 		Desktop: \footnote{Webpagtest: \url{http://www.webpagetest.org/result/150312_Z1_18QD/}}
 		\begin{itemize}
 			\item 42 requests: 30 Images, 5 JS, 3 CSS, 4 other
-			\item 1000 kb Seitengröße
+			\item 1000 kB Seitengröße
 			\item Speed Index: \textbf{3584}
 			\item Start Render: \textbf{1399}  ms
 			\item Load Time: 1926 ms
@@ -211,19 +210,19 @@
 		Mobile: \footnote{Webpagtest: \url{http://www.webpagetest.org/result/150308_A1_2W4/}}
 		\begin{itemize}
 			\item 17 requests: 4 Images, 5 JS, 3 CSS, 4 other
-			\item 363 kb Seitengröße
+			\item 363 kB Seitengröße
 			\item Speed Index: \textbf{10642}
 			\item Start Render \textbf{6968} ms
 			\item Load Time: 5587 ms
 			\item TTFB: 1292 ms
 		\end{itemize}
 
-		Diese Werte sind nicht zufriedenstellend und für dieses Projekt wurden eine Start Render Zeit von weniger als einer Sekunde und ein Speed Index von unter 1000, für sowohl Mobile- als auch Desktopgeräte, angestrebt.\\
+		Diese Werte sind nicht zufriedenstellend und für dieses Projekt wurden eine Start Render Zeit von weniger als einer Sekunde und ein Speed Index von unter 1000, sowohl für Mobile- als auch Desktopgeräte, angestrebt.\\
 
-		Der erste Schritt war es, die Seitengröße zu verringern. Aus diesem Grund wurde das Framework gewechselt und die Seite neu aufgebaut. Bootstrap ist zwar ein sehr populäres Framework, hat aber gerade für kleine Seiten sehr viele Komponenten, die keine Verwendung finden (auch als Overhead bezeichnet). Bootstrap lässt sich zwar per "`Customize"' Funktion so zusammenstellen, dass nur die Komponenten zur Verfügung gestellt werden, die für das eigene Projekt von Nöten sind, es ist aber dennoch ein Framework mit relativ großem Volumen (~30 bis 90 kb). Die Alternativen zu Bootstrap sind vielzählig. Die Entscheidung für dieses Projekt fiel auf \url{http://purecss.io/}. Dieses Framework von Yahoo ist komprimiert gerade einmal \textbf{4 kb} groß, vollkommen responsive und kommt mit den wichtigsten Komponenten wie einer Navigations Bar, Buttons, Tabellen, Menüs und Form Elementen. Je nach gewählten Komponenten, benötigt es kein Javascript und kein JQuery. Dadurch lassen sich weitere Kilobytes als auch Requests einsparen.\\
-		Da Bootstrap seine eigene Icon-Font liefert, musste hier eine Alternative gefunden werden. "`Font Awesome"'\footnote{Font-Awesome: \url{http://fortawesome.github.io/Font-Awesome/}} bietet dabei eine der umfangreichsten Icon Sammlungen im Web an und ist unter der \texttt{Open Font License} komplett frei benutzbar (auch kommerziell). Font Awesome ist mit seinen 519 Icons allerdings nicht gerade ein Leichtgewicht und kann bis zu 100 kb groß sein. Da auf der Seite \url{http://andreaslorer.de} weniger als 20 Icons zum Einsatz kommen, ist der Überschuss folglich enorm. Deshalb gibt es eine Webanwendung namens \url{http://fontello.com}. Damit lassen sich aus einer Vielzahl an Icons genau die jenigen wählen, die für die eigene Seite benötigt werden. Auch das Wählen aus verschiedenen Icon-Sammlungen ist möglich. Heruntergeladen wird anschließend eine ZIP-Datei. Das Resultat: Die neue Version der Seite benötigt nur noch 5.6 kb für die Icons. Verglichen mit: Bootstrap 43 kb, Font-Awesome 97 kb.\\
+		Der erste Schritt war es die Seitengröße zu verringern. Aus diesem Grund wurde das Framework gewechselt und die Seite neu aufgebaut. Bootstrap ist zwar ein sehr populäres Framework, hat aber gerade für kleine Seiten sehr viele Komponenten, die keine Verwendung finden (auch als Overhead bezeichnet). Bootstrap lässt sich zwar per "`Customize"' Funktion so zusammenstellen, dass nur die Komponenten zur Verfügung gestellt werden die für das eigene Projekt von Nöten sind, es ist aber dennoch ein Framework mit relativ großem Volumen (30 bis 90 kB). Die Alternativen zu Bootstrap sind vielzählig. Die Entscheidung für dieses Projekt fiel auf \url{http://purecss.io/}. Dieses Framework von Yahoo ist komprimiert gerade einmal \textbf{4 kB} groß, vollkommen responsive und kommt mit den wichtigsten Komponenten wie einer Navigations Bar, Buttons, Tabellen, Menüs und Form Elementen. Je nach gewählten Komponenten benötigt es kein Javascript und kein JQuery. Dadurch lassen sich weitere Kilobytes als auch Requests einsparen.\\
+		Da Bootstrap seine eigene Icon-Font liefert musste hierzu eine Alternative gefunden werden. "`Font Awesome"'\footnote{Font-Awesome: \url{http://fortawesome.github.io/Font-Awesome/}} bietet dabei eine der umfangreichsten Icon Sammlungen im Web an und ist unter der \texttt{Open Font License} komplett frei benutzbar (auch kommerziell). Font Awesome ist mit seinen 519 Icons allerdings nicht gerade ein Leichtgewicht und kann bis zu 100 kB groß sein. Da auf der Seite \url{http://andreaslorer.de} weniger als 20 Icons zum Einsatz kommen, ist der Überschuss folglich enorm. Deshalb gibt es eine Webanwendung namens \url{http://fontello.com}. Damit lassen sich aus einer Vielzahl an Icons genau die jenigen wählen, die für die eigene Seite benötigt werden. Auch das Wählen aus verschiedenen Icon-Sammlungen ist möglich. Heruntergeladen wird anschließend eine ZIP-Datei. Das Resultat: Die neue Version der Seite benötigt nur noch 5.6 kB für die Icons. Verglichen mit: Bootstrap 43 kB, Font-Awesome 97 kB.\\
 
-		Als nächstes wird die Webanwendung mittels \texttt{Pagespeed Insight} \ref{ssub:google_pagespeed_insight} analyisert. Das Ergebnis liefert Anhaltspunkte, was alles umgesetzt werden sollte. Im Folgenden soll erläutert werden, welche Verbesserungen möglich sind und wie eine mögliche Umsetzung in der Praxis aussieht.
+		Als nächstes wird die Webanwendung mittels \texttt{Pagespeed Insight} \ref{ssub:google_pagespeed_insight} analyisert. Das Ergebnis liefert Anhaltspunkte, welche weiteren Änderungen umgesetzt werden sollte. Im Folgenden soll erläutert werden, welche Verbesserungen möglich sind und wie eine mögliche Umsetzung in der Praxis aussieht.
 
 		\pagebreak
 		%
@@ -233,11 +232,11 @@
 		\subsection{Best Practices}
 		\label{sub:best_practices}
 		
-			\subsubsection{Render Blocking Javascript} % (fold)
+			\subsubsection{Render Blocking Javascript / CSS} % (fold)
 			\label{ssub:render_blocking_javascript}
-				Bereits unter Punkt \ref{ssub:rendering_pfad} "`Rendering-Pfad"' ist das blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre, für das Rendern kritische, und für das Rendern unkritische, Teile zerlegt wurde. 
+				Bereits unter Punkt \ref{ssub:rendering_pfad} "`Rendering-Pfad"' ist das blockierende Verhalten von Javascript und CSS angesprochen worden. Grundvoraussetzung für diesen Punkt ist, dass das Javascript der Webanwendung in ihre für das Rendern kritische und unkritische Teile zerlegt wurde.
 
-				Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und wofür das Parsen pausiert werden muss. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie die Reihenfolge der Skripte im HTML Dokument vorliegen.
+				Der Browser stellt bereits von Haus aus zwei Attribute bereit, mit denen sich Skripte asynchron herunterladen lassen. Diese Attribute heißen "`async"' und "`defer"' und werden von jedem Browsertyp unterstützt.\autocite{canIuse} Sie erlauben es, dass der Browser nicht auf das Herunterladen der Dateien warten muss, sondern mit dem Parsen des Dokuments fortfahren darf. Async wird direkt nach dem herunterladen ausgeführt und dafür muss das Parsen pausiert werden. Defer hingegen unterscheidet sich von async in zwei Punkten: 1. Das Skripte wird nach Ende des Parsens ausgeführt. 2. Mit defer verzögert geladene Skripte werden in genau der Reihenfolge ausgeführt, wie sie im HTML Dokument vorliegen.
 				
 				\begin{figure}[htbp]
 					\begin{center}
@@ -247,26 +246,22 @@
 					\end{center}
 				\end{figure}
 
-				Diese Methode erlaubt es, Skripte parallel herunterzuladen, ohne dass der Renderprozess warten muss. Was damit nicht erreicht werden kann ist das herunterladen so lange zu verzögern, bis die für diese Seite primär wichtigen Ressourcen zuerst geladen wurden.\\
+				Diese Methode erlaubt es Skripte parallel herunterzuladen, ohne dass der Renderprozess warten muss. Was damit nicht erreicht werden kann ist das herunterladen so lange zu verzögern, bis die für diese Seite primär wichtigen Ressourcen zuerst geladen wurden.
 
-				Mit Hilfe des Javascripts in Listing \ref{lst:deferJs}, kann die Datei "`defer.js"' komplett mit dem Laden verzögert werden, bis der Ladeprozess der Seite abgeschlossen ist.
-				\begin{lstlisting}[captionpos=b, caption=Javascript nach \autocite{deferJS}, label=lst:deferJs]
-				// the function to asynchronous load js
-				function loadJS( src, cb ){
-					"use strict";
-					var ref = window.document.getElementsByTagName( "script" )[ 0 ];
-					var script = window.document.createElement( "script" );
-					script.src = src;
-					script.async = true;
-					ref.parentNode.insertBefore( script, ref );
-					if (cb && typeof(cb) === "function") {
-						script.onload = cb;
-					}
-					return script;
-				}
-				// the function call to load your script
-				loadJS( "path/to/script.js" );
-				\end{lstlisting}
+				Im Vergleich dazu kann mit Hilfe des Javascripts in Listing \ref{lst:deferJs} die Datei "`defer.js"' komplett mit dem Laden verzögert werden, bis der Ladeprozess der Seite abgeschlossen ist.
+\begin{lstlisting}[captionpos=b, caption=Javascript nach \autocite{deferJS}, label=lst:deferJs]
+	function loadJS( src, cb ){			// the function to asynchronous load js
+		var ref = window.document.getElementsByTagName( "script" )[ 0 ];
+		var script = window.document.createElement( "script" );
+		script.src = src;
+		script.async = true;
+		ref.parentNode.insertBefore( script, ref );
+		if (cb && typeof(cb) === "function")
+			script.onload = cb;
+		return script;
+	}
+	loadJS( "path/to/script.js" );			// the function call to load your script
+\end{lstlisting}
 
 				Dieses Skript hat einen Nachteil: Es kann nicht mehrere Skripte laden, die voneinander abhängen und deren Reihenfolge wichtig ist, um die Funktionalität zu gewährleisten. 
 
@@ -274,7 +269,7 @@
 					\textit{"`loadJS does nothing to manage execution order of requested scripts, so we do not advise using it to load multiple javascript files that depend on one another. It simply fetches a script and executes it as soon as possible. You can certainly use loadJS to load multiple scripts as long as those scripts are designed to execute independently of any other scripts being loaded by loadJS."'\autocite{deferJS}}
 				\end{quote}
 
-				So gibt es Skripte (Skript A), die von anderen Frameworks wie zum Beispiel JQuery (Skript B) abhängen. Das bedeutet, wenn Skript A schneller heruntergeladen und ausgeführt wird als Skript B, dann kann A bereits Funktionen von B aufruft, die noch nicht zur Verfügung stehen. Daraus resultiert ein Fehlschlagen des Skripts und somit können Teile der Webanwendung nicht mehr wie beabsichtigt funktionieren.\\
+				So gibt es Skripte (Skript A), die von anderen Frameworks wie zum Beispiel JQuery (Skript B) abhängen. Das bedeutet: Wenn Skript A schneller heruntergeladen und ausgeführt wird als Skript B, dann kann A bereits Funktionen von B aufruft, die noch nicht zur Verfügung stehen. Daraus resultiert ein Fehlschlagen des Skripts und somit können Teile der Webanwendung nicht mehr wie beabsichtigt funktionieren.\\
 
 				Darum gibt es Skripte, die genau diese Funktionalität bereitstellen können. Skript A und B werden gleichzeitig heruntergeladen, A wird aber erst genau dann ausgeführt, wenn B zur Verfügung steht.\\
 
@@ -289,7 +284,7 @@
 				});
 				\end{lstlisting}
 
-				Headjs hat den Nachteil, dass es auch noch andere Funktionalitäten außer dem Laden von Javascript ermöglicht. Dies wird aber nicht benötigt und deshalb ist Headjs mit 2.1 kb doch zu groß, um es \texttt{Inline} in das HTML Dokument zu schreiben. Eine bessere Alternative ist \texttt{jQl}.\footnote{jQl an asynchronous jQuery Loader: \url{http://www.yterium.net/jQl-an-asynchronous-jQuery-Loader}}
+				Headjs hat den Nachteil, dass es auch noch andere Funktionalitäten außer dem Laden von Javascript ermöglicht. Dies wird aber nicht benötigt und deshalb ist Headjs mit 2.1 kB doch zu groß, um es \texttt{Inline} in ein HTML Dokument einzubetten. Eine bessere Alternative ist \texttt{jQl}.\footnote{jQl an asynchronous jQuery Loader: \url{http://www.yterium.net/jQl-an-asynchronous-jQuery-Loader}}
 				Die Verwendung ist sehr Simpel:
 
 				\begin{lstlisting}[captionpos=b, caption=jQl asynchronous jQuery-Loader, label=lst:jQl]
@@ -302,14 +297,8 @@
 
 				Dieses Skript sagt im Grunde: Lade beide Dateien gleichzeitig herunter, beachte aber die Abhängigkeit (loadjQdep steht für: load dependency) von defer.js gegenüber JQuery. Ist defer.js früher heruntergeladen als JQuery, so wird gewartet und anschließend werden die Skripte in der richtigen Reihenfolge ausgeführt.\\
 
-				Für die Webseite \url{http://andreaslorer.de} wurde sowohl defer, als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann. Das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.
+				Für die Webseite \url{http://andreaslorer.de} wurde sowohl defer, als auch das Skript \texttt{jQl} verwendet. "`<script defer src='critical.js'></script>"' wird dabei in den "`<head>"' bereich des HTML Dokments platziert, damit es möglichst früh erkannt wird und der Download bereits beginnen kann. Das Skript aus Listing \ref{lst:jQl} befindet sich vor dem "`</body>"'-Tag.\\
 
-				\pagebreak
-
-			% subsubsection render_blocking_javascript (end)
-
-			\subsubsection{Render Blocking CSS} % (fold)
-			\label{ssub:render_blocking_css}
 				Wie Javascript blockiert auch CSS das Rendern der Seite. In Listing \ref{lst:deferCSS} ist ein Skript der Filament Group zu sehen. Dieses Skript ermöglicht es CSS verzögert zu laden. 
 
 				\begin{lstlisting}[captionpos=b, caption=Lädt eine CSS Datei asynchron, label=lst:deferCSS, breaklines=false]
@@ -330,14 +319,15 @@
 				<noscript><link href="path/to/css"></noscript>
 				\end{lstlisting}
 
-				Mehr als dieses Skript und der entsprechende Funktionsaufruf: "`loadCSS(...)"' ist nicht notwendig.
-					
-			% subsubsection render_blocking_css (end)
+				Mehr als dieses Skript und der entsprechende Funktionsaufruf: "`loadCSS(...)"' ist nicht notwendig. Dabei ist in Zeile 15 auch eine \texttt{Fallback}-Option vorhanden die in Kraft tritt, wenn der Anwender Javascript im Browser deaktiviert hat. Somit ist selbst ohne Javascript die Funktionalität gewährleistet.
+			% subsubsection render_blocking_javascript_css (end)
 
-			\subsubsection{Inline CSS} % (fold)
-			\label{ssub:inline_css}
-				Kleinere Mengen an CSS lassen sich direkt \texttt{Inline} in das HTML Dokument einfügen. Dadurch sind diese gleich mit dem ersten Request bereits im Dokument enthalten und müssen nicht erst angefordert und heruntergeladen werden.
-			% subsubsection inline_css (end)
+
+			\subsubsection{CSS-Bereitstellung optimieren} % (fold)
+			\label{ssub:css_bereitstellung_optimieren}
+				Wenn externe Ressourcen klein sind, können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Das trifft vor allem auf das CSS zu, dass für die korrekte Darstellung des above the fold nötig ist. Dabei sollte darauf geachtet werden, dass das komprimierte HTML Dokument nicht die 14 kB Marke überschreitet. Dadurch kann es im ersten round trip geliefert werden. CSS Dateien die groß sind, sollten per \texttt{Link-Tag} eingebunden und mittels Skript verzögert geladen werden. Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
+			% subsubsection css_bereitstellung_optimieren (end)
+
 
 			\subsubsection{Ressourcen reduzieren} % (fold)
 			\label{ssub:ressourcen_reduzieren}
@@ -347,17 +337,17 @@
 					\item "`Minify"': Kommentare, Leerzeichen oder Zeilenumbrüche sind für die Funktionalität nicht notwendig. Bei der Verkleinerung des HTML- CSS oder Javascript Codes werden diese entfernt und dadurch die Dateigröße verkleinert. Wie unter Punkt \ref{ssub:google_pagespeed_insight} angesprochen, gibt es Pagespeed Insight auch als Chrome-Erweiterung. Damit ist es möglich, eine reduzierte Version des HTML Dokuments zu erzeugen. Für Javascript ist der Closure Compiler (\ref{ssub:closure_compiler}) das richtige Werkzeug. CSS lässt sich per \url{http://cssminifier.com/} verkleinern.
 					\item "`Uglify"': Dabei werden Variablennamen auf nur wenige Zeichen reduziert. Aber auch der Code wird teilweise umgeschrieben, wenn für einen verwendeten Ausdruck beispielsweise eine kürzere Schreibweise existiert.
 
-					\begin{lstlisting}[captionpos=b, caption=Beispiel: Uglify eines Ausdrucks, label=lst:uglify]
-					// input:
-					if(foo){
-						bar();
-					}
-					else{
-						boo();
-					}
-					// output:
-					foo?bar():boo();
-					\end{lstlisting}
+			\begin{lstlisting}[captionpos=b, caption=Beispiel: Uglify eines Ausdrucks, label=lst:uglify]
+			// input:
+			if(foo){
+				bar();
+			}
+			else{
+				boo();
+			}
+			// output:
+			foo?bar():boo();
+			\end{lstlisting}
 
 					Input und Output sind identisch in ihrem Ausdruck, die Zeichenanzahl wurde aber von 27 auf 16 verringert.
 
@@ -365,20 +355,16 @@
 				\end{itemize}
 			% subsubsection ressourcen_reduzieren (end)
 
-			\subsubsection{CSS-Bereitstellung optimieren} % (fold)
-			\label{ssub:css_bereitstellung_optimieren}
-				Wenn externe Ressourcen klein sind, können diese direkt in das HTML Dokument \texttt{Inline} platziert werden. Dabei sollte darauf geachtet werden, dass das komprimierte HTML Dokument nicht die 14 kb Marke überschreitet. Dadurch kann es im ersten round trip geliefert werden. CSS Dateien die groß sind, sollten per \texttt{Link-Tag} eingebunden und mittels Skript verzögert geladen werden. Das CSS für den above the fold Bereich sollte \texttt{Inline} im "`<head>"' Bereich der Seite stehen. 
-			% subsubsection css_bereitstellung_optimieren (end)
 
 			\subsubsection{Antwortzeit des Servers reduzieren} % (fold)
 			\label{ssub:antwortzeit_des_servers_reduzieren}
-				Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit Webpagtest herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}. Bereits unter Punkt: \ref{sub:zusammengefasst} wurde nahegelegt, ein gutes Hosting zu wählen. Besser man wechselt das Hosting als der Kunden den Service.
+				Die Zeit zur Antwort des Servers lässt sich zum Beispiel mit Webpagtest oder Pingdom herausfinden. Ein Server sollte auf eine Response Zeit von unter 200 ms kommen. \textit{"`Es gibt Dutzende potenzielle Faktoren, die die Antwortzeit Ihres Servers beeinträchtigen können: eine langsame Anwendungslogik, langsame Datenbankabfragen, langsames Routing, Frameworks, Bibliotheken, CPU-Ressourcenmangel oder Speicherplatzmangel. Berücksichtigen Sie zur Verkürzung der Antwortzeit Ihres Servers alle diese Faktoren."'} \autocite{google15}. Bereits unter Punkt: \ref{sub:zusammengefasst_grundlagen} wurde nahegelegt, ein gutes Hosting zu wählen. Besser man wechselt das Hosting als der Kunde den Service.
 			% subsubsection antwortzeit_des_servers_reduzieren (end)
 
 			\subsubsection{Browser-Caching nutzen} % (fold)
 			\label{ssub:browser_caching_nutzen}
 				Fehlendes Browser-Caching (das lokale Speichern von Daten) wird von Pagspeed Insight bemängelt, wenn der Server bei seiner Antwort keinen expliziten \texttt{Caching-Header} versendet.
-				Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres Mal aufruft. Generell sollten alle statischen Ressourchen außer das HTML Dokument selbst, gechached werden.
+				Durch das Speichern von statischen Ressourcen wie Javascript, Stylesheets und Bildern kann Zeit eingespart werden, wenn der Besucher die Webanwendung ein weiteres Mal aufruft. Generell sollten alle statischen Ressourcen, außer das HTML Dokument selbst, gechached werden.
 				Um auf dem Server (Apache) das Caching von statischen Ressourcen zu ermöglichen, ist ein Eintrag in die \texttt{htaccess} Datei des Servers nötig. Folgender Eintrag sollte dort platziert werden:
 
 			  \begin{lstlisting}[captionpos=b, caption=Aktivieren von Browser Caching in Apache (Listing nach: \autocite{sextonCaching}), label=lst:caching, language=bash]
@@ -398,7 +384,7 @@
 			  	</IfModule>
 			  \end{lstlisting}
 
-			  Listing \ref{lst:caching} hat zwei Aufgaben. Erstens: Es setzt die Ablaufzeit für alle statischen Ressourcen auf 1 Jahr und erfüllt damit den von Google empfohlenen Wert. Längere Speicherzeiten sind dagegen nicht empfohlen, da dies gegen die RFC-Richtlinien verstoßen würde \autocite{google14Caching}. Zweitens: Es wird mit dem HTTP Request ein Header mitgesendet. Dieser ermöglicht es, dem Browser seine lokal gespeicherten Ressourcen zu managen. Er besteht aus folgenden Teilen und es ist jeweils nur \textbf{eine} der Optionen nötig.
+			  Listing \ref{lst:caching} hat zwei Aufgaben. Erstens: Es setzt die Ablaufzeit für alle statischen Ressourcen auf 1 Jahr und erfüllt damit den von Google empfohlenen Wert. Längere Speicherzeiten sind dagegen nicht empfohlen, da dies gegen die RFC-Richtlinien verstoßen würde \autocite{google14Caching}. Zweitens: Es wird mit dem HTTP Request ein Header mitgesendet. Dieser ermöglicht es dem Browser seine lokal gespeicherten Ressourcen zu managen. Er besteht aus folgenden Teilen und es ist jeweils nur \textbf{eine} der Optionen nötig.
 
 			  \begin{itemize}
 			  	\item Last-Modified: date
@@ -413,7 +399,7 @@
 			  	\item Expires: date
 			  \end{itemize}
 
-			  Mit diesen Headern ist es möglich, Serveranfragen komplett zu vermeiden. Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet, um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor, wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden.\autocite[vgl.]{grigorikCaching} Das bedeutet, dass die Latenz bei Smartphones für gecachte Dateien komplett negiert werden kann. Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header muss der Browser für jede in seinem Cache befindliche Ressource den Server anfragen. Dafür ist jedes mal ein round trip nötig.\\
+			  Mit diesen Headern ist es möglich Serveranfragen komplett zu vermeiden. Sämtliche vom Browser ausgegebenen HTTP-Anfragen werden zuerst an den Browsercache weitergeleitet um zu überprüfen, ob eine gültige Antwort im Cachespeicher vorliegt, die der Anfrage entspricht. Liegt eine Übereinstimmung vor wird die Antwort aus dem Cache ausgelesen, wodurch sowohl die Netzwerklatenz als auch die durch die Übertragung anfallenden Datenkosten umgangen werden.\autocite[vgl.]{grigorikCaching} Das bedeutet, dass die Latenz bei Smartphones für gecachte Dateien komplett vermieden werden kann. Gültige Ressourcen werden erst gar nicht angefragt, sondern gleich aus dem Cache geladen. Ungültige oder abgelaufene Ressourcen werden dagegen vom Server geholt. Ohne diesen Header muss der Browser für jede in seinem Cache befindliche Ressource den Server anfragen. Dafür ist jedes mal ein Round Trip nötig.\\
 
 			  \begin{figure}[htbp]
 			  	\begin{center}
@@ -423,7 +409,7 @@
 			  	\end{center}
 			  \end{figure}
 			  
-			  Das rot Unterstrichene in Abbildung \ref{fig:caching_enabled} zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`304 - Not-Modified"'. Grün zeigt mit seinen 0 ms, dass keinerlei Kommunikation mit dem Server nötig ist, sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
+			  Der in Abbildung \ref{fig:caching_enabled} rot Unterstrichene Wert zeigt, dass 59 ms im Netzwerk verbraucht wurde (Kabel Verbindung). Der Server antwortete mit: "`304 - Not-Modified"'. Grün zeigt mit seinen 0 ms, dass keinerlei Kommunikation mit dem Server nötig ist, sondern die Datei, in diesem Fall ein Bild, direkt aus dem Cache geholt wird.\\
 			  Fazit: Ohne Cache-Control lässt sich durch die Browser eigene Caching Funktionalität das erneute Herunterladen der Datei vermeiden. Mit Cache-Control kann sowohl das Herunterladen, als auch der gesamte Verbindungsaufbau zum Server vermieden werden.\\
 			 
 			  Was aber, wenn sich zum Beispiel eine CSS-Datei geändert hat? Dann würden nun Besucher mit leerem Cache eine andere Darstellung erhalten wie Besucher mit der gecachten Version. Dafür gibt es mehrere Lösungsansätze.
@@ -431,11 +417,11 @@
 			  \begin{enumerate}
 			  	\item Die HTML Datei sollte nicht gecached werden, da sonst Änderungen nicht mehr den Anwender erreichen können.
 
-			  	\item Eine für die Datei angemessene max-age: Dateien, die sich oft ändern, dürfen auch entsprechend niedrige max-age Werte haben. Dadurch wird die Datei zeitnah ablaufen und für alle Anwender neu angefordert.
+			  	\item Eine für die Datei angemessene max-age: Dateien die sich oft ändern dürfen auch entsprechend niedrige max-age Werte haben. Dadurch wird die Datei zeitnah ablaufen und für alle Anwender neu angefordert.
 
-			  	\item Ressourcen können mit einer ID versehen werden: \texttt{styles.css} wird in \texttt{styles.v1.0.1.css} umbenannt. Bei jeder Änderung wird dann diese Versionsnummer um hochgezählt. Dadurch ändert sich der Dateiname und wird vom Browser als eine neue, noch nicht im Cache enthaltene Ressource erkannt, die er herunterladen muss.
+			  	\item Ressourcen können mit einer ID versehen werden: \texttt{styles.css} wird in \texttt{styles.v1.0.1.css} umbenannt. Bei jeder Änderung wird dann diese Versionsnummer hochgezählt. Dadurch ändert sich der Dateiname und wird vom Browser als eine neue, noch nicht im Cache enthaltene Ressource erkannt, die er herunterladen muss.
 
-			  	\item Alternativ zur ID ist auch in \texttt{Fingerprint} möglich. Dabei wird eine Zahl aus der Datei generiert. Ändert sich die Datei, so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
+			  	\item Alternativ zur ID ist auch ein \texttt{Fingerprint} möglich. Dabei wird eine Zahl aus der Datei generiert. Ändert sich die Datei, so ändert sich auch der Fingerprint. Dieser Fingerprint wird auch wiederrum dem Dateiname angefügt. Das kann so aussehen: \texttt{styles.82s0dfsa.css}.\footnote{Dieses Verfahren lässt sich auch automatisieren, ich verweise auf folgenden Artikel: \url{https://adactio.com/journal/8504}}
 			  \end{enumerate}
 
 			  Browser-Caching ist eine mächtige Funktionalität, die sich jeder zu Nutzen machen sollte. Sie ist zudem ganz einfach mit nur einem Eintrag in die \texttt{htaccess} Datei realisierbar. Allerdings hat eine Studie von Yahoo ergeben, dass 40-60\% der Besucher beim Seitenaufruf einen leeren Cache haben und rund 20\% aller aufgerufenen Seiten wurden mit einem leeren Cache aufgerufen.
@@ -443,7 +429,7 @@
 					\textit{"`[...] I don't know about you, but these results came to us as a big surprise. It says that even if your assets are optimized for maximum caching, there are a significant number of users that will always have an empty cache."'\autocite{yahoo07}}
 				\end{quote}
 
-				Folglich macht es Sinn, die Geschwindigkeit der Seite für die sogenannten "`first users"' zu optimieren und nicht von einem gecachten Zustand der Seite auszugehen.\\
+				Folglich macht es Sinn die Geschwindigkeit der Seite für die sogenannten "`first users"' zu optimieren und nicht von einem gecachten Zustand der Seite auszugehen.\\
 				\texttt{Feed-The-Bot} stellt ein Tool\footnote{Browser-Caching Tool: \url{http://www.feedthebot.com/tools/if-modified/}} zu Verfügung, mit dessen Hilfe sich überprüfen lässt, ob die eigene Webseite "`Browser-Caching"' richtig einsetzt. Abbildung Nummer \ref{fig:expires_header} zeigt links eine Seite mit aktiviertem Browser-Caching und rechts eine Seite ohne.
 			  \begin{figure}[htbp]
 			  	\begin{center}
@@ -468,7 +454,7 @@
 		AAAZZBBBBEEEMMM EEETTTAAAA
 				\end{lstlisting}
 
-				Diese Nachricht ist 200 Zeichen lang und kann durch einfache Regeln verkürzt werden. Zuerst werden die Kommentare, die mit \# gekennzeichnet sind, entfernt, denn sie sind für die Bedeutung der Nachricht nicht relevant. Das Datum könnte in eine ID konvertiert werden: 210315. Die Nutzdaten der Nachricht wird nach Wiederholungen durchsucht. Daraus ergibt sich dann: 3A2Z4B3E3M 3E3T4A \autocite{grigorikGzip}. Die Neue Nachricht:
+				Diese Nachricht ist 200 Zeichen lang und kann durch einfache Regeln verkürzt werden. Zuerst werden die Kommentare, die mit \# gekennzeichnet sind, entfernt. Sie sind für die Bedeutung der Nachricht nicht relevant. Das Datum könnte in eine ID konvertiert werden: 210315. Die Nutzdaten der Nachricht wird nach Wiederholungen durchsucht. Daraus ergibt sich dann: 3A2Z4B3E3M 3E3T4A \autocite{grigorikGzip}. Die Neue Nachricht:
 
 				\begin{lstlisting}[captionpos=b, caption=, label=lst:compressed, language=bash]
 		format: text/plain
@@ -497,13 +483,13 @@
 
 				\begin{figure}[htbp]
 					\begin{center}
-						\includegraphics[width=0.5\textwidth]{gzip_compression.jpg}
+						\includegraphics[width=0.65\textwidth]{gzip_compression.jpg}
 						\caption{Testen von GZIP anhand von andreaslorer.de (Eigene Abbildung nach: feedTheBot.com)}
 						\label{fig:gzip_compression}
 					\end{center}
 				\end{figure}
 
-				Diesem Tool sollte aber nicht einfach nur blind vertraut werden. Es gibt Ressourcen, welche explizit als Komprimierbar gekennzeichnet werden müssen. So sollte mittels "`Chrome Developer Tool"' (oder vergleichbare Tools wie z.B. Firebug in Firefox) nachgesehen werden, ob alle Ressourcen auch tatsächlich mittels GZIP komprimiert werden. Abbildung \ref{fig:gzip_json} zeigt, dass die Datei: "`Gallery.php"' trotz aktiviertem GZIP keine Komprimierung verwendete.
+				Diesem Tool sollte aber nicht einfach nur blind vertraut werden. Es gibt Ressourcen welche explizit als Komprimierbar gekennzeichnet werden müssen. So sollte mittels "`Chrome Developer Tool"' (oder vergleichbare Tools wie z.B. Firebug in Firefox) nachgesehen werden, ob alle Ressourcen auch tatsächlich mittels GZIP komprimiert werden. Abbildung \ref{fig:gzip_json} zeigt, dass die Datei: "`Gallery.php"' trotz aktiviertem GZIP keine Komprimierung verwendete.
 
 				\begin{figure}[htbp]
 					\begin{center}
@@ -513,7 +499,7 @@
 					\end{center}
 				\end{figure}
 
-				Der unterstrichene Wert ist dabei die Datengröße vor GZIP und der farblich hinterlegte Wert nach GZIP. Wie zu sehen ist, konnte die zu übertragende Datengröße um fast das 20-Fache verringert werden. Entsprechend drastisch sank auch die Zeit für das Herunterladen der Datei (blauer Balken). Wie konnte das erreicht werden? Um GZIP für json-Dateiformate zu ermöglichen ist nur dieser Eintrag in der PHP-Datei (hier in "`Gallery.php"') nötig:
+				Der unterstrichene Wert ist dabei die Datengröße vor GZIP und der farblich hinterlegte Wert nach GZIP. Wie zu sehen ist, konnte die zu übertragende Datengröße um fast das 20-Fache verringert werden. Entsprechend drastisch sank auch die Zeit für das Herunterladen der Datei (blauer Balken). Wie konnte das erreicht werden? Um GZIP für json-Dateiformate zu ermöglichen ist nur dieser Eintrag in der entsprechenden PHP-Datei (hier in "`Gallery.php"') nötig:
 
 				\begin{lstlisting}[captionpos=b, caption=, label=lst:encodeJson]
 				header('Content-Type: text/javascript');
@@ -523,13 +509,14 @@
 
 				Manchmal sind es sehr kleine Dinge, die eine überaus große Wirkung haben können und die oftmals übersehen werden.
 				
+			\pagebreak
 			% subsubsection komprimierung_aktivieren (end)
 
 
 
 			\subsubsection{"`Keep-alive"' ermöglichen} % (fold)
 			\label{ssub:keep_alive_ermöglichen}
-				Eine weitere Einstellung die in Apache vorgenommen werden kann, ist "`keep-live"' und hat folgende Bedeutung:
+				Eine weitere Einstellung die in Apache vorgenommen werden kann ist "`keep-alive"' und hat folgende Bedeutung:
 				\begin{quote}
 					\textit{"`Webpages are often a collection of many files and if a new connection (the brief communication) has to be opened for each and everyone of those files it could take significantly longer to display that webpage.\\
 					More officially the definition of HTTP keep-alive would be something like: a method to allow the same tcp connection for HTTP conversation instead of opening new one with each new request."'}\autocite{sextonAlive}
@@ -542,7 +529,7 @@
 				</ifModule>
 			\end{lstlisting}
 				
-			Dieser Eintrag in der htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep-alive zu aktivieren.} Mittels Webpagetest kann überprüft werden, ob keep-alive auf dem Server aktiviert ist. Das Wiederverwenden von Verbindungen ist überaus wichtig, denn dadurch spart man sich den kompletten Verbindungsaufbau (three way handshake) ein.
+			Dieser Eintrag in der htaccess Datei fügt den \texttt{keep alive header} bei Serveranfragen hinzu.\footnote{Bei Shared Hostings kann es trotz dieser Einstellung oft nicht erreicht werden, keep-alive zu aktivieren.} Mittels Webpagetest kann überprüft werden, ob keep-alive auf dem Server aktiviert ist. Das Wiederverwenden von Verbindungen ist überaus wichtig, denn dadurch spart man sich den kompletten Verbindungsaufbau (three way handshake) ein.
 
 			% subsubsection keep_alive_ermöglichen (end)
 
@@ -552,7 +539,7 @@
 				Mit HTML5 gibt es ein neues Link-Attribut namens "`prefetch"'. Damit lassen sich Ressourcen herunterladen, die auf der aktuellen Seite noch nicht benötigt werden. Zum Beispiel in einem Bestellprozess lässt sich bereits bei Schritt 1 sagen, was auf der Seite von Schritt 2 benötigt wird. Dadurch lässt sich die Latenz und die Zeit zum Herunterladen in den Hintergrund verlagern, ohne das der Anwender davon etwas mitbekommt. Natürlich ist dies mit Bedacht einzusetzen und es macht wenig Sinn, große Mengen an Daten zu laden, die der Anwender vielleicht gar nie verwendet. \texttt{Prefetch} ist ganz einfach über den \texttt{Link-Tag} zu verwenden:
 				\begin{lstlisting}[captionpos=b, caption=Prefetching via Link-Tag, label=lst:prefetch]
 					<!-- load a single ressource -->
-					<link rel="prefetch" href="http://your-ressource-comes-here.jpg" />
+					<link rel="prefetch" href="http://your-resource-comes-here.jpg" />
 					<!-- or a full page -->
 					<link rel="prefetch" href="http://your-site/your-sub-site" />
 				\end{lstlisting}
@@ -563,7 +550,7 @@
 
 			\subsubsection{Domain Sharding} % (fold)
 			\label{ssub:domain_sharding}
-				Bei Domain Sharding werden die Seiten Ressourcen (Bilder, Javascript, CSS), auf verschiedene Domain Namen verteilt. Der Vorteil besteht darin, dass HTTP/1.1 die Anzahl an paralellen Downloads pro Domain Name limitiert, durch Domain Sharding kann künstlich die Anzahl an parallelen Verbindungen erhöht werden. Der Nachteil besteht in zusätzlichen DNS Lookups. Für Seiten mit vielen Ressourcen, kann sich diese Methode durchaus lohnen.
+				Bei Domain Sharding werden die Seiten Ressourcen (Bilder, Javascript, CSS), auf verschiedene Domain Namen verteilt. Der Vorteil besteht darin, dass HTTP/1.1 die Anzahl an paralellen Downloads pro Domain Name limitiert, durch Domain Sharding kann künstlich die Anzahl an parallelen Verbindungen erhöht werden. Der Nachteil besteht in zusätzlichen DNS Lookups. Für Seiten mit vielen Ressourcen kann sich diese Methode aber durchaus lohnen.
 			% subsubsection domain_sharding (end)
 			
 
@@ -575,7 +562,7 @@
 
 	\subsection{Bilder optimieren} % (fold)
 	\label{sub:bilder_optimieren}
-		"`Ein Bild sagt mehr als Tausend Worte."' Auch im modernen Web haben immer mehr und immer größere Bilder Einzug gehalten. Sie werden eingesetzt um eine Botschaft zu übermitteln, Emotionen zu erzeugen oder als \texttt{Eyecatcher}. In Abbildung \ref{fig:site_weight} ist die durchschnittliche Seitengröße der Top 1000 Seiten\footnote{Top 1000 Seiten nach dem Ranking von Alexa: (Alexa gehört zu Amazon und liefert umfassende Analysen über das Web \url{http://www.alexa.com/})} des Webs abgebildet. So beträgt die durchschnittliche Seitengröße (Abbildung \ref{fig:site_weight} rechts) zum Zeitpunkt März 2015 rund 1843 kb. Davon sind 65\% (1112 kb) Bildmaterial. Das linke Diagramm zeigt einen Aufwärtstrend der Seitengröße in Kilobyte über die Zeitspanne von einem Jahr. Dabei repräsentiert der Graph in Lila die schlechtesten 90\% der Internetseiten, Grün die 10\% der besten Seiten und Gelb stellt den Median (Mittelwert) dar. Wie zu sehen ist, werden die schlechtesten Seiten weiterhin schlechter, indem sie weiter an Kilobytes zulegen, auch der Median und die besten 10\% sind über das Jahr hinweg leicht angestiegen.\\
+		"`Ein Bild sagt mehr als Tausend Worte."' Auch im modernen Web haben immer mehr und immer größere Bilder Einzug gehalten. Sie werden eingesetzt um eine Botschaft zu übermitteln, Emotionen zu erzeugen oder als \texttt{Eyecatcher}. In Abbildung \ref{fig:site_weight} ist die durchschnittliche Seitengröße der Top 1000 Seiten\footnote{Top 1000 Seiten nach dem Ranking von Alexa: (Alexa gehört zu Amazon und liefert umfassende Analysen über das Web \url{http://www.alexa.com/})} des Webs abgebildet. So beträgt die durchschnittliche Seitengröße (Abbildung \ref{fig:site_weight} rechts) zum Zeitpunkt März 2015 rund 1843 kB. Davon sind 65\% (1112 kB) Bildmaterial. Das linke Diagramm zeigt einen Aufwärtstrend der Seitengröße in Kilobyte über die Zeitspanne von einem Jahr. Dabei repräsentiert der Graph in Lila die schlechtesten 90\% der Internetseiten, Grün die 10\% der besten Seiten und Gelb stellt den Median dar. Wie zu sehen ist, werden die schlechtesten Seiten weiterhin schlechter, indem sie weiter an Kilobytes zulegen, auch der Median und die besten 10\% sind über das Jahr hinweg leicht angestiegen.\\
 
 		Mit dem Optimieren von Bildern können sehr viele Kilobytes gespart werden.
 
@@ -597,7 +584,7 @@
 			Eigentlich eine sehr alte Technik ist das "`Progressive Image Rendering"'. Es kam längere Zeit außer Mode, Bilder als Progressive zu speichern. Der Trend hat sich aber wieder geändert und Progressive Images gilt als "`Best Practice"' im Web. Sowohl Webpagetest als auch Google schlagen vor, Bilder Progressive an den Anwender auszuliefern. Testet man eine Seite via Webpagetest.org, so bekommt man unter dem Reiter "`Compress Images"' beispielsweise solch eine Auswertung:
 			\begin{quote}
 				Use Progressive JPEGs: 100/100\\
-				124.8 KB of a possible 124.8 KB (100\%) were from progressive JPEG images
+				124.8 kB of a possible 124.8 kB (100\%) were from progressive JPEG images
 			\end{quote}
 
 			Abbildung \ref{fig:progressive_images} zeigt einmal den normalen Ladevorgang eines Bildes (unten) gegenüber dem "`Progressive Rendering"' (oben).
@@ -625,7 +612,7 @@
 				\end{center}
 			\end{figure}
 			
-			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird, um alle Icons, die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung, muss die ganze Datei (die im besten Fall bereits gecached wurde) neu heruntergeladen werden.
+			Der Vorteil dieser Methode ist, dass nur ein Request benötigt wird um alle Icons die für die Seite benötigt werden, herunterzuladen. Der Nachteil ist, dass durch die größere Datei der Download länger dauern kann und sich so die Zeit für das erste Rendern verringert. Auch bei einer einzigen Änderung muss die ganze Datei (die im besten Fall bereits gecached wurde) neu heruntergeladen werden.
 			
 		% subsubsection image_spriting (end)
 
@@ -665,14 +652,14 @@
 
 			Das Bild wurde nicht nur viel zu Groß gewählt, es wird auch auf jedem Gerät, egal ob Tablet, Smartphone oder Desktop die selbe Anzahl an Bytes über die Leitung gesendet. Diese Methode nennt man Downsampling. Das bedeutet, dass nicht das Bild selbst verkleinert wird, sondern der Browser das Bild herunterlädt und dann auf die entsprechende Größe skaliert. Das kostet nicht nur Rechenleistung, sondern vor allem sehr viel unnötige Bandbreite und sollte unter allen Umständen vermieden werden.\\
 
-			Seit HTML 5 gibt es ein neues HTML Attribut namens \texttt{srcset}. Dieses Attribut ist leider noch nicht in allen Browsern implementiert, hat aber immerhin bereits eine globale Abdeckung von rund 50\% \autocite{canIuse}. Für dieses Problem gibt es allerdings Abhilfe. Es gibt ein Polyfill \footnote{\textit{"`Ein Polyfill [...] ist ein - meist in Javascript geschriebender - Code-Baustein, der in älteren Browsern eine neuere, von diesen nicht unterstützte Funktion mittels eines Workarounds nachrüsten soll. Beispielsweise sind Features von HTML5 in älteren Browsern nicht verfügbar. Webseiten können diese Funktionen trotzdem verwenden, wenn sie ein entsprechendes Polyfill mitliefern."'}\autocite{wikipediaPolyfill}} namens "`Picturefill"'\footnote{Das offizielle Picturefill Projekt ist hier zu finden: \url{http://scottjehl.github.io/picturefill/}}, dassgenau diese Funktionalität für alle Browser zur Verfügung stellen kann. Nötig ist dazu nur das Herunterladen und Einbinden des Skripts in das HTML Dokument. Dadurch wird folgendes Listing möglich: 
+			Seit HTML 5 gibt es ein neues HTML Attribut namens \texttt{srcset}. Dieses Attribut ist leider noch nicht in allen Browsern implementiert, hat aber immerhin bereits eine globale Abdeckung von rund 50\% \autocite{canIuse}. Für dieses Problem gibt es allerdings Abhilfe. Es gibt ein Polyfill\footnote{\textit{"`Ein Polyfill [...] ist ein - meist in Javascript geschriebender - Code-Baustein, der in älteren Browsern eine neuere, von diesen nicht unterstützte Funktion mittels eines Workarounds nachrüsten soll. Beispielsweise sind Features von HTML5 in älteren Browsern nicht verfügbar. Webseiten können diese Funktionen trotzdem verwenden, wenn sie ein entsprechendes Polyfill mitliefern."'}\autocite{wikipediaPolyfill}} namens "`Picturefill"'\footnote{Das offizielle Picturefill Projekt ist hier zu finden: \url{http://scottjehl.github.io/picturefill/}}, dass genau diese Funktion für alle Browser zur Verfügung stellen kann. Nötig ist dazu nur das Herunterladen und Einbinden des Skripts in das HTML Dokument. Dadurch wird folgendes Listing möglich: 
 
 			\begin{lstlisting}[captionpos=b, caption=Srcset in Verwendung, label=lst:srcset]
 			<picture id="hero-image">
-		    <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
-		    <source srcset="someImg_md.jpg" media="(min-width: 768px)">
-		    <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
-		    <img srcset="fallback_md.jpg" alt="Some alt text">
+			  <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
+			  <source srcset="someImg_md.jpg" media="(min-width: 768px)">
+			  <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
+			  <img srcset="fallback_md.jpg" alt="Some alt text">
 			</picture>
 			\end{lstlisting}
 
@@ -680,18 +667,18 @@
 
 			\begin{lstlisting}[captionpos=b, caption=Srcset mit webp, label=lst:srcsetWebp]
 			<picture id="hero-image">
-		    <source srcset="someImg_lg.webp" type="image/webp" media="(min-width: 1367px)">
-		    <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
-		    <source srcset="someImg_md.webp" type="image/webp" media="(min-width: 768px)">
-		    <source srcset="someImg_md.jpg" media="(min-width: 768px)">
-		    <source srcset="someImg_xs.webp" type="image/webp" media="(min-width: 300px)">
-		    <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
-		    <img srcset="fallback_md.jpg" alt="Some alt text">
+			  <source srcset="someImg_lg.webp" type="image/webp" media="(min-width: 1367px)">
+			  <source srcset="someImg_lg.jpg" media="(min-width: 1367px)">
+			  <source srcset="someImg_md.webp" type="image/webp" media="(min-width: 768px)">
+			  <source srcset="someImg_md.jpg" media="(min-width: 768px)">
+			  <source srcset="someImg_xs.webp" type="image/webp" media="(min-width: 300px)">
+			  <source srcset="someImg_xs.jpg" media="(min-width: 300px)">
+			  <img srcset="fallback_md.jpg" alt="Some alt text">
 			</picture>
 			\end{lstlisting}
 
 			Wie zu sehen ist, wurden 3 Zeilen eingefügt, die sich lediglich im Attribut (type="'image/webp"') unterscheiden. Das bedeutet, dass Anwender mit Chrome Browser das Chrome eigene Bildformat \texttt{webp} bekommen und alle anderen das normale \texttt{jpg} Format. Voraussetzung ist natürlich, all diese Bilder in ihren verschiedenen Auflösungen und Formaten anzulegen und bereit zu stellen, was einen Mehraufwand bedeutet.
-			Picturefill ermöglicht es, Downsampling zu vermeiden und eine auf das Gerät angepasste Version des Bildes auszuliefern. Dadurch sinkt die Anzahl von Bytes, die übertragen werden müssen, enorm.
+			Picturefill ermöglicht es Downsampling zu vermeiden und eine auf das Gerät angepasste Version des Bildes auszuliefern. Dadurch sinkt die Anzahl von Bytes die übertragen werden müssen enorm.
 
 		% subsubsection responsive_images (end)
 
@@ -705,8 +692,8 @@
 
 	\subsection{Zusammengefasst} % (fold)
 	\label{sub:zusammengefasst_entwicklung}
-		Durch Anwendung der Best Practices ist es möglich, die Ladezeit drastisch zu verringern. Viele Einstellungen sind serverseitig einfach umzusetzen, anderes erfordert einen erheblichen Mehraufwand und mag sich für bestimmte Projekte nicht lohnen.\\
-		Für alle Seitenbetreiber, die einen Root Zugriff auf ihren Server haben, gibt es eine Apache oder auch Nginx Erweiterung von Google namens "`Pagespeed Module"'.\footnote{Zu Pagespeed Module: \url{https://developers.google.com/speed/pagespeed/module}} Dieses Modul kann einem die gesamte Handarbeit abnehmen (wie das Zusammenfügen von Scripts ect.) und führt viele der Best Practices automatisiert aus. Es lässt sich umfassend konfigurieren und bietet die Möglichkeit, gewisse Regeln ein oder ausgeschaltet zu lassen. Mittels Webpagetest lässt sich eine Seite gegen dieses Modul testen. Dadurch kann man sehen, wie groß die Ladezeitverringerung wäre, allein durch die Aktivierung dieser serverseitigen Erweiterung. Einen solchen Test lässt sich über diese URL ausführen: \url{http://www.webpagetest.org/compare} 
+		Durch Anwendung der Best Practices ist es möglich die Ladezeit drastisch zu verringern. Viele Einstellungen sind serverseitig einfach umzusetzen, anderes erfordert einen erheblichen Mehraufwand und mag sich für bestimmte Projekte nicht lohnen.\\
+		Für alle Seitenbetreiber die einen Root Zugriff auf ihren Server haben gibt es eine Apache oder auch Nginx Erweiterung von Google namens "`Pagespeed Module"'.\footnote{Zu Pagespeed Module: \url{https://developers.google.com/speed/pagespeed/module}} Dieses Modul kann einem die gesamte Handarbeit abnehmen (wie das Zusammenfügen von Scripts ect.) und führt viele der Best Practices automatisiert aus. Es lässt sich umfassend konfigurieren und bietet die Möglichkeit gewisse Regeln ein oder ausgeschaltet zu lassen. Mittels Webpagetest lässt sich eine Seite gegen dieses Modul testen. Dadurch kann man sehen wie groß die Ladezeitverringerung wäre, allein durch die Aktivierung dieser serverseitigen Erweiterung. Einen solchen Test lässt sich über diese URL ausführen: \url{http://www.webpagetest.org/compare} 
 
 	% subsection zusammengefasst_entwicklung (end)
 
