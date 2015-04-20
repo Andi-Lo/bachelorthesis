@@ -26,7 +26,7 @@ section > header.slide > h1 {
 }
 
 html {
-	background: black url(../img/git_bright.jpg) bottom center;
+	background: black url(../img/git_bright.jpg) bottom right;
 	background-size: cover;
 }
 
@@ -88,7 +88,10 @@ strong, b {
 		text-shadow: 0 0 .6em white;
 	}
 
-
+blockquote{
+  background-color: #797979;
+	border-color: #DC4437;
+}
 
 #indicator {
 	background: #dc4437;
@@ -153,7 +156,7 @@ strong, b {
 		
 		.slide > ul > li:before {
 			content:'\2714';
-			color: #a0c12c;
+			color: #DC4437;
 			padding-right: .2em;
 		}
 		
@@ -163,8 +166,16 @@ strong, b {
 				padding-right: .2em;
 			}
 			
-section > header.slide {
+section > header.slide:after {
 	/*background-color: rgba(0,0,0,.8);*/
+	content: '';
+	background: url('../img/hs_de.png');
+	background-size: 250px auto;
+	width: 250px;
+	height: 97px;
+	position: absolute;
+	top: 10px;
+	right: 60px;
 }
 
 	section > header.slide > h1 {
