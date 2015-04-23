@@ -26,17 +26,19 @@
  	margin: 0;
  }
 
+img {
+	width: 100%;
+	margin-top: 75px;
+}
+
 ul > li > blockquote {
 	margin-left: 50px;
 }
 blockquote {
   padding: 10px 20px;
-  margin: 0 0 20px;
+  margin: 0 0 40px;
   font-size: 32px;
   border-left: 5px solid #eee;
-  font-style: italic;
-  font-family: serif;
-  width: 80%;
 }
 	blockquote p:last-child,
 	blockquote ul:last-child,
@@ -84,6 +86,7 @@ blockquote {
 	blockquote > span {
 		font-style: normal;
 		font-family: sans-serif;
+		font-weight: normal;
 	}
 	blockquote > span.cite {
 		font-size: 24px;
@@ -413,4 +416,10 @@ iframe.csss-import.show {
 
 .presenter .slide:target > .presenter-notes {
 	display: block;
+}
+
+/* Center */
+.center {
+	text-align: center;
+	margin: 0 auto;
 }

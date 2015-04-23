@@ -91,6 +91,11 @@ strong, b {
 blockquote{
   background-color: #797979;
 	border-color: #DC4437;
+	font-size: 36px;
+	font-weight: bold;
+	font-style: italic;
+	font-family: serif;
+	width: 90%;
 }
 
 #indicator {
@@ -113,6 +118,7 @@ blockquote{
 
 .slide {
 		padding:0 2.5% 2%;
+		padding-right: 200px;
 		background: rgba(100,100,100,.5);
 		background-clip: padding-box;
 		text-shadow:.05em .05em .1em rgba(0,0,0,.4);
@@ -166,7 +172,7 @@ blockquote{
 				padding-right: .2em;
 			}
 			
-section > header.slide:after {
+section > .slide:after {
 	/*background-color: rgba(0,0,0,.8);*/
 	content: '';
 	background: url('../img/hs_de.png');
@@ -175,7 +181,7 @@ section > header.slide:after {
 	height: 97px;
 	position: absolute;
 	top: 10px;
-	right: 60px;
+	right: 80px;
 }
 
 	section > header.slide > h1 {
