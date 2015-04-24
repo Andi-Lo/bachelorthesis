@@ -15,6 +15,9 @@
 <!-- Talk-specific styles go here -->
 <link href="assets/css/talk.css" rel="stylesheet" />
 
+<!-- Font Awesome -->
+<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+
 <!-- Take care of prefixes -->
 <script src="assets/js/prefixfree.min.js"></script>
 
@@ -24,7 +27,7 @@
 <header id="intro" class="slide">
 
 	<h1 style="text-align: center; font-size: 1.5em;">
-			<img src="assets/img/logo.png" alt="Web Performance für den mobilen Endanwender" style="margin: 50px auto; display:block;"/>
+			<img src="assets/img/logo.png" alt="Web Performance für den mobilen Endanwender" style="margin: 50px auto; display:block; width:500px;"/>
 
 			Web Performance für den mobilen Endanwender
 	</h1>
@@ -36,12 +39,12 @@
 		<h2>Content:</h2>
 		<ul>
 			<li> Motivation</li>
-			<li> Das Projekt</li>
-			<li> Grundlagen</li>
+			<li> The Project</li>
+			<li> Basics</li>
 			<li> Tools</li>
 			<li> Best Practices</li>
-			<li> Ergebnis</li>
-			<li> Ausblick</li>
+			<li> Results</li>
+			<li> Prospects</li>
 		</ul>
 	</header><!-- /header -->
 </section>
@@ -54,13 +57,24 @@
 	<section class="slide">
 		<h2>Motivation</h2>
 
-		<p class="delayed">Zwischen 2011 und 2014 stieg die Anzahl der Smartphonenutzer von 18% auf 50% an.
-		<br />
-		Dies ist ein Wachstum von 32% innerhalb von nur 3 Jahren.</p>
+		<!-- <p class="delayed">Zwischen 2011 und 2014 stieg die Anzahl der Smartphonenutzer von 18% auf 50% an.</p> -->
 
-		<div class="center delayed">
+		<div class="center">
 			<img src="assets/img/smartphoneUsage.png" alt="Smartphone usage in germany" style="height:500px; width:auto;">
 		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Motivation</h2>
+
+		<blockquote class="delayed hidden-after">&#8222;73% of mobile users said they've encountered a site that was too slow to load&#8221; <span class="cite">&mdash; Akamai.com</span></blockquote>
+	
+		<div class="center delayed">
+			<video height="550" controls>
+			  <source src="assets/videos/hs-wgt.mp4" type="video/mp4">
+			</video>
+		</div>
+
 	</section>
 
 	<section class="slide">
@@ -76,27 +90,177 @@
 			<span class="cite"> &mdash; Patrick Hamann, The Guardian 2014</span>
 		</blockquote>
 
-		<img class="delayed" src="assets/img/effect_of_slow_loadtimes.png" alt="Effect of slow loading times">
+	</section>
+
+	<section class="slide">
+		<h2>Motivation</h2>
+		<img style="margin-top:75px" src="assets/img/effect_of_slow_loadtimes.png" alt="Effect of slow loading times">
+	</section>
+
+</section>
+
+<section>
+	<header class="slide">
+		<h1>The Project</h1>
+	</header>
+	
+	<section class="slide">
+		<h2>Project</h2>
+		<p class="delayed hidden-after">Performance optimizing: <a href="http://andreaslorer.de/old/" target="_blank">andreaslorer.de</a></p>
+		
+		<div class="center delayed">
+			<video height="550" controls>
+			  <source src="assets/videos/andreas_lorer_old.mp4" type="video/mp4">
+			</video>
+		</div>
+
+	</section>
+
+	<section class="slide">
+		<h2>Project</h2>
+		<p>Performance optimizing: <a href="http://andreaslorer.de/old/" target="_blank">andreaslorer.de</a></p>
+		<ul>
+			<!-- <li class="delayed"></li> -->
+			<li class="delayed"> Goal: Load times < 1000 ms on smartphones</li>
+		</ul>
+		<br />
+		<div class="center delayed">
+			<h3>Why 1000 ms?</h3>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>The Human Perception</h2>
+		<div class="center">
+			<img style="margin-top: 50px" src="assets/img/human_perception.png" alt="Human Perception">
+		</div>
 	</section>
 </section>
 
 <section>
 	<header class="slide">
-		<h1>Das Projekt</h1>
-
+		<h1>Basics</h1>
 	</header>
-	
+
 	<section class="slide">
-		<h2>Performance Optimierung</h2>
-		<p>anhand von: <a href="http://andreaslorer.de" target="_blank">andreaslorer.de</a></p>
-		<ul>
-			<li class="delayed">bla</li>
-			<li class="delayed">bla</li>
-			<li class="delayed">bla</li>
-			<li class="delayed">bla</li>
-			<li class="delayed">bla</li>
-		</ul>
+		<h2 style="font-size: 0.7in;">Basics: Perceived Performance</h2>
+
+		<div class="center">
+			<video height="550" controls>
+			  <source src="assets/videos/perceived_performance.mp4" type="video/mp4">
+			</video>
+		</div>
+
 	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Perceived Performance</h2>
+
+		<ul>
+			<li class="delayed">Progressive Images</li>
+			<li class="delayed">Loading bars</li>
+			<li class="delayed">Prefetch</li>
+			<li class="delayed">Spinners</li>
+			<li class="delayed">Load things in the background if possible</li>
+			<li class="delayed">Show what the user is looking for first</li>
+			<li class="delayed">Load useful things first</li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Above the fold</h2>
+
+		<blockquote style="margin-top:50px">
+			&#8222;Elements above the fold were seen more than elements below the fold: the 100 pixels just	above the fold were viewed 102% more than the 100 pixels just below the fold.&#8221; <span class="cite">&mdash; Amy Schade 2015</span>
+		</blockquote>
+
+		<div class="center">
+			<img src="assets/img/above_the_fold.png" alt="Above the fold" style="width: 240px; height:auto;">
+		</div>
+
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Touch Event</h2>
+
+		<ul>
+			<li>55 ms (Iphone 5) - 120 ms (MotoX) delay</li>
+			<li class="delayed">Disable via Meta-Tag</li>
+		</ul>
+
+<pre class="delayed">
+<code lang="javascript">
+&#60;meta name="viewport" content="user-scalable=no"&#62;
+</code>
+</pre>
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Networks</h2>
+	
+		<p class="delayed hidden-after">Most time is spend on the network</p>
+
+		<div class="center delayed hidden-after">
+			<img src="assets/img/time_on_network.jpg" alt="Time on Network" style="width: 900px; height: auto; margin-top:50px;">
+		</div>
+		<div class="center delayed hidden-after">
+			<img src="assets/img/time_on_network_out.jpg" alt="Time on Network" style="width: 900px; height: auto; margin-top:50px;">
+		</div>
+
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
+
+		<blockquote style="margin-top:50px;">&#8222;Mitte 2013 konnten 70% der deutschen Haushalte über LTE verfügen.&#8221; <span class="cite">&mdash; Bundesnetzagentur 2014</span></blockquote>
+	
+		<table>
+			<tbody>
+				<tr>
+					<th>Generation</th>
+					<th>Data rate</th>
+					<th>Latency</th>
+				</tr>
+				<tr>
+					<td>2G</td>
+					<td>100 - 400 Kbit/s</td>
+					<td>300 - 1000 ms</td>
+				</tr>
+				<tr>
+					<td>3G</td>
+					<td>0,5 - 5 Mbit/s</td>
+					<td>100 - 500 ms</td>
+				</tr>
+				<tr>
+					<td>4G</td>
+					<td>1 - 50 Mbit/s</td>
+					<td>< 100 ms</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
+
+		<div class="center">
+			<img src="assets/img/" alt="">
+		</div>
+		
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
+
+		<div class="center">
+			<img src="assets/img/1000ms_budget.png" alt="1000 ms Budget" style="margin-top: 75px;">
+		</div>
+		
+	</section>
+
+
 </section>
 
 <footer class="slide">
@@ -106,13 +270,15 @@
 
 <script src="assets/js/slideshow.js"></script>
 
-<!-- Uncomment the plugins you need
+Uncomment the plugins you need
 <script src="plugins/css-edit.js"></script>
 <script src="plugins/css-snippets.js"></script>
 <script src="plugins/css-controls.js"></script>
 <script src="plugins/code-highlight.js"></script>
--->
+
 <script>var slideshow = new SlideShow();</script>
 	
+<div id="credits">powered by - CSSS <i class="fa fa-github fa-lg"></i></div>
+
 </body>
 </html>

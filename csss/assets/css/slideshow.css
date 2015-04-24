@@ -28,7 +28,6 @@
 
 img {
 	width: 100%;
-	margin-top: 75px;
 }
 
 ul > li > blockquote {
@@ -142,6 +141,13 @@ blockquote {
   	box-sizing: border-box;
 }
 
+#credits {
+	position: absolute;
+	bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
 /**
  	On-screen navigation
  */
@@ -206,6 +212,10 @@ blockquote {
 .delayed.displayed,
 .delayed-children > .displayed {
 	opacity: .3;
+}
+
+.delayed.displayed.hidden-after {
+	display: none;
 }
 
 .delayed.current,

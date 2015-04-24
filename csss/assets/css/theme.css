@@ -34,6 +34,22 @@ body {
 	font-family: sans-serif;
 }
 
+table {
+	width: 1065px;
+	margin-top: 50px;
+}
+
+table > tbody > tr > th {
+	text-align: left;
+	border: 1px solid white;
+	border-width: 0 0 2px 0;
+	font-weight: bold;
+}
+
+table > tbody > tr:nth-child(3){
+	background-color: dimgrey;
+}
+
 button {
 	padding:.2em .5em;
 }
@@ -116,6 +132,11 @@ blockquote{
 		content: 'overtime ';
 	}
 
+#credits {
+	opacity: .3;
+	color: rgb(0, 178, 255);
+}
+
 .slide {
 		padding:0 2.5% 2%;
 		padding-right: 200px;
@@ -130,7 +151,13 @@ blockquote{
 	.slide h2 {
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
 		font-weight: 100;
+		font-size: 0.8in;
+	}
+
+	.slide h3 {
 		font-size: 1.2in;
+		font-weight:bold;
+		text-align:center;
 	}
 	
 	.slide p,
@@ -238,7 +265,7 @@ section > .slide:after {
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 3em;
+	bottom: 2em;
 	padding: .5em 1em;
 	font-size: 30%;
 	text-shadow: .05em .05em .1em black;
