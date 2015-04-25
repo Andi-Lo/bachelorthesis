@@ -27,7 +27,7 @@
 <header id="intro" class="slide">
 
 	<h1 style="text-align: center; font-size: 1.5em;">
-			<img src="assets/img/logo.png" alt="Web Performance für den mobilen Endanwender" style="margin: 50px auto; display:block; width:500px;"/>
+		<img src="assets/img/logo.png" alt="Web Performance für den mobilen Endanwender" style="margin: 50px auto; display:block; width:500px;"/>
 
 			Web Performance für den mobilen Endanwender
 	</h1>
@@ -56,8 +56,6 @@
 
 	<section class="slide">
 		<h2>Motivation</h2>
-
-		<!-- <p class="delayed">Zwischen 2011 und 2014 stieg die Anzahl der Smartphonenutzer von 18% auf 50% an.</p> -->
 
 		<div class="center">
 			<img src="assets/img/smartphoneUsage.png" alt="Smartphone usage in germany" style="height:500px; width:auto;">
@@ -196,7 +194,7 @@
 </pre>
 	</section>
 
-	<section class="slide">
+	<section class="slide" style="overflow: hidden">
 		<h2 style="font-size: 0.7in;">Basics: Networks</h2>
 	
 		<p class="delayed hidden-after">Most time is spend on the network</p>
@@ -208,6 +206,22 @@
 			<img src="assets/img/time_on_network_out.jpg" alt="Time on Network" style="width: 900px; height: auto; margin-top:50px;">
 		</div>
 
+	</section>
+
+
+	<section class="slide">
+		<h2 style="font-size: 0.7in;">Basics: Definitions</h2>
+		<ul>
+			<li class="delayed">Latency:</li>
+		</ul>
+
+		<blockquote class="delayed">&#8222;describes the network duration between sending a package from A and receiving it on B&#8221;</blockquote>
+		<ul>
+
+			<li class="delayed">Round Trip Time (RTT):</li>
+		</ul>
+		<blockquote class="delayed">&#8222;is the duration a package needs in the network to get from A to B and back.&#8221;</blockquote>
+		
 	</section>
 
 	<section class="slide">
@@ -242,20 +256,39 @@
 		
 	</section>
 
+	<section class="slide">
+		<h2 style="font-size: 0.6in;">Basics: TCP - Three Way Handshake</h2>
+
+		<div class="center">
+			<img src="assets/img/three_way_handshake.png" alt="TCP - Three way handshake" style="margin-top: 75px;">
+		</div>
+		
+	</section>
+
+	<section class="slide">
+		<h2 style="font-size: 0.6in;">Basics: TCP - Slow Start</h2>
+
+		<div class="center">
+			<img src="assets/img/congestion_window_size.png" alt="TCP - Three way handshake" style="margin-top: 75px;">
+		</div>
+		
+	</section>
 
 	<section class="slide">
 		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
 
 		<div class="center">
-			<img src="assets/img/fetching_40kb.jpg" alt="1000 ms Budget" style="margin-top: 75px;">
+			<img src="assets/img/fetching_40kb.jpg" alt="fetching 40kB" style="margin-top: 75px;">
 		</div>
 		
 	</section>
 
 
-	<section class="slide">
+	<section class="slide" style="padding-right: 120px;">
 		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
 
+		<p>Theoretical approach:</p>
+		<hr>
 		<div class="center">
 			<img src="assets/img/1000ms_budget.png" alt="1000 ms Budget" style="margin-top: 75px;">
 		</div>
@@ -263,16 +296,143 @@
 	</section>
 
 
+	<section class="slide" style="padding-right: 120px;">
+		<h2 style="font-size: 0.7in;">Basics: Mobile Networks</h2>
+		<p>HTTP Components</p>
+
+		<div class="center">
+			<img src="assets/img/http_components.jpg" alt="Http Components" style="margin-top: 75px;">
+		</div>
+		
+	</section>
+	
 </section>
 
-<footer class="slide">
+<section>
+	<header class="slide">
+		<h1 style="text-align: center; font-size: 3em;">Critical rendering path</h1>
+	</header><!-- /header -->	
+
+	<section class="slide">
+		<h2>Critical rendering path</h2>
+		<p>Consinsts of 3 parts:</p>
+		<ul>
+			<li> Critical +</li>
+			<li> rendering +</li>
+			<li> path</li>
+		</ul>
+		<hr>
+		<p>= Critical rendering path</p>
+
+	</section>
+
+	<section class="slide">
+		<h2>Rendering</h2>
+		<p>The browser rendering process:</p>
+
+		<div class="center">
+			<img src="assets/img/browser_render.png" alt="Browser Render" style="margin-top: 25px;">
+		</div>
+
+		<ul>
+			<li class="delayed">Parsing the HTML-Document</li>
+			<li class="delayed">Request resources (images, css, js)</li>
+			<li class="delayed">Execute Javascript</li>
+			<li class="delayed">Render to screen</li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2>Rendering Path</h2>
+
+<pre style="font-size: 18px;">
+<code lang="">
+&#60;!DOCTYPE html&#62;
+&#60;<span class="tags">meta</span> charset=<span class="string">"utf-8"</span>&#62;
+&#60;<span class="tags">title</span>&#62;Web Performance for mobile users&#60;/<span class="tags">title</span>&#62;
+
+&#60;<span class="tags">link</span> <span class="atr">href</span>=<span class="string">"assets/styles.css"</span> <span class="atr">rel</span>=<span class="string">"stylesheet"</span> /&#62;
+&#60;<span class="tags">script</span> <span class="atr">src</span>=<span class="string">"assets/script.js"</span>&#62;&#60;/<span class="tags">script</span>&#62;
+
+&#60;<span class="tags">p</span>&#62; Hello world! &#60;/<span class="tags">p</span>&#62;
+</code>
+</pre>
+	</section>
+
+
+	<section class="slide">
+		<h2>Rendering Path</h2>
+
+<pre style="font-size: 18px;">
+<code lang="">
+<span class="delayed">&#60;!DOCTYPE html&#62;
+&#60;<span class="tags">meta</span> charset=<span class="string">"utf-8"</span>&#62;
+&#60;<span class="tags">title</span>&#62;Web Performance for mobile users&#60;/<span class="tags">title</span>&#62;</span>
+
+<span class="delayed">&#60;<span class="tags">link</span> <span class="atr">href</span>=<span class="string">"assets/styles.css"</span> <span class="atr">rel</span>=<span class="string">"stylesheet"</span> /&#62;</span>
+<span class="delayed">&#60;<span class="tags">script</span> <span class="atr">src</span>=<span class="string">"assets/script.js"</span>&#62;&#60;/<span class="tags">script</span>&#62;</span>
+
+<span class="delayed">&#60;<span class="tags">p</span>&#62; Hello world! &#60;/<span class="tags">p</span>&#62;</span>
+</code>
+</pre>
+
+		<div class="center delayed">
+			<img src="assets/img/rendering_path.png" alt="Rendering Path" style="margin-top: 25px; width: 700px;">
+		</div>
+
+	</section>
+
+	<section class="slide">
+		<h2>Critical rendering path</h2>
+
+		<div class="center">
+			<img src="assets/img/critical_rendering_path.png" alt="Critical rendering path" style="margin-top: 25px;">
+		</div>
+
+	</section>
+
+	<section class="slide" style="padding-right: 100px;">
+		<h2>Critical rendering path</h2>
+
+		<div class="center">
+			<img src="assets/img/wasserfall_old.jpg" alt="Analytics of the waterfall" style="margin-top: 25px; width: 1050px;">
+		</div>
+
+	</section>
+
+	<section class="slide" style="padding-right: 100px;">
+		<h2>Critical rendering path</h2>
+
+		<div class="center">
+			<img src="assets/img/wasserfall_neu.jpg" alt="Analytics of the waterfall" style="margin-top: 25px; width: 1000px;">
+		</div>
+
+	</section>
+
+	<section class="slide" style="padding-right: 100px;">
+		<h2>Critical rendering path</h2>
+
+		<div class="center">
+			<img src="assets/img/wasserfall_detail.jpg" alt="Analytics of the waterfall" style="margin-top: 75px; width: 1000px;">
+		</div>
+
+	</section>
+
+</section>
+
+<footer class="slide" style="padding-right: 0;">
 	<h2>Thank you!</h2>
-	<p>Closing remarks</p>
+	<p>Questions</p>
+	<div class="center">
+		<i class="fa fa-question-circle fa-5x" style="font-size: 10em; color:#dc4437;"></i>
+	</div>	
+
 </footer>
 
 <script src="assets/js/slideshow.js"></script>
 
-Uncomment the plugins you need
+<!-- Uncomment the plugins you need -->
 <script src="plugins/css-edit.js"></script>
 <script src="plugins/css-snippets.js"></script>
 <script src="plugins/css-controls.js"></script>

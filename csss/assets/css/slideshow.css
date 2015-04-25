@@ -95,6 +95,16 @@ blockquote {
 		line-height: 1;
 	}
 
+span.string{
+	color: deeppink;
+}
+span.atr{
+	color: orange;
+}
+span.tags{
+	color: rgb(153, 244, 80);
+}
+
 .slide {
 	display: none;
 	position:absolute;
