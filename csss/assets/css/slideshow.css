@@ -95,16 +95,6 @@ blockquote {
 		line-height: 1;
 	}
 
-span.string{
-	color: deeppink;
-}
-span.atr{
-	color: orange;
-}
-span.tags{
-	color: rgb(153, 244, 80);
-}
-
 .slide {
 	display: none;
 	position:absolute;
@@ -442,4 +432,19 @@ iframe.csss-import.show {
 .center {
 	text-align: center;
 	margin: 0 auto;
+}
+
+/* footer-portrait*/
+
+.portrait {
+	width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: url('../img/portrait.jpg');
+  background-size: 127px auto;
+  background-position: bottom;
+  border: 1px solid white;
+  border-right-width: 1px;
+  border-color: white;
+  border-style: solid;
 }

@@ -199,7 +199,7 @@ blockquote{
 				padding-right: .2em;
 			}
 			
-section > .slide:after {
+section > .slide:after{
 	/*background-color: rgba(0,0,0,.8);*/
 	content: '';
 	background: url('../img/hs_de.png');
@@ -209,6 +209,9 @@ section > .slide:after {
 	position: absolute;
 	top: 10px;
 	right: 80px;
+}
+section > .logo-hidden.slide:after {
+	display: none;
 }
 
 	section > header.slide > h1 {
@@ -221,6 +224,18 @@ section > .slide:after {
 		line-height: 1;
 		text-align: center;
 	}
+
+footer.slide {
+	background: transparent;
+}
+
+.slide.h1-hidden > h1 {
+	display: none;
+}
+
+.slide.slide-iframe {
+	padding: 0 2.5% 0%;
+}
 
 .slide .emphasis {
 	padding: .4em .5em .3em;
@@ -281,17 +296,23 @@ section > .slide:after {
 
 /* Syntax highlighting */
 
+.string{
+	color: deeppink;
+}
+.atr{
+	color: orange;
+}
+.tags{
+	color: greenyellow;
+}
+
 .comment {
 	color: #999;
 }
 
-.string {
-	color: yellow;
-}
-
 .keyword {
 	font-weight: bold;
-	color: deeppink;
+	color: yellow;
 }
 
 .number, .boolean {
