@@ -443,8 +443,5 @@ iframe.csss-import.show {
   background-image: url('../img/portrait.jpg');
   background-size: 127px auto;
   background-position: bottom;
-  border: 1px solid white;
-  border-right-width: 1px;
-  border-color: white;
-  border-style: solid;
+  border: 2px solid white;
 }

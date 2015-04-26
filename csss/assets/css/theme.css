@@ -62,6 +62,10 @@ select {
 	color: black;
 }
 
+video {
+	box-shadow: .1em .1em .5em black;
+}
+
 code, pre, style, textarea, input {
 	font-family: Consolas, 'Andale Mono', 'Courier New', monospace;	
 	background:rgba(0,0,0,.4);
