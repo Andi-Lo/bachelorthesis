@@ -25,7 +25,7 @@
 		\subsubsection{Http/1.1 Optimierungen in Http/2} % (fold)
 		\label{ssub:http_1_1_optimierungen_in_http_2}
 			Viele Optimierungs-Pattern für Http/1.1 stellen sich für das Http/2 Protokoll als Anti-Pattern heraus. Http/2 bringt den Vorteil, dass es genau eine TCP Verbindung benötigt. Damit wird \texttt{Domain Sharding} ein Performance Anti-Pattern für HTTP 2.0. Auch die Verwendung von \texttt{Image Sprites}, das Zusammenfügen von CSS und Javascript zu einer Datei ist ein Anti-Pattern wenn Http/2 verwendet wird. Eine Vielzahl von kleinen einzelnen Dateien werden zu keinem Performance Problem mehr durch Http/2.\autocite{grigorikHttp2}\\
-			"`Server Push"' ist eine Mechanik die in Http/1.1 durch das Inlinen von CSS in das HTML Dokument bereits simuliert wird. De facto ist dies ein Workaround für eine Funktionalität die nun durch Http/2 bereitstellt wird. Durch Inlinen wird bei einer Anfrage gleich das CSS / Javascript als Antwort mitgesendet, das der Browser zur Darstellung des "`above the fold"' Inhaltes braucht.
+			"`Server Push"' ist eine Mechanik die in Http/1.1 durch das Inlinen von CSS in das HTML Dokument bereits simuliert wird. De facto ist dies ein Workaround für eine Funktionalität die nun durch Http/2 bereitgestellt wird. Durch Inlinen wird bei einer Anfrage gleich das CSS / Javascript als Antwort mitgesendet, das der Browser zur Darstellung des "`above the fold"' Inhaltes braucht.
 
 			\begin{figure}[htbp]
 				\begin{center}
