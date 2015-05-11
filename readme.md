@@ -1,7 +1,13 @@
-Push to gh-pages
-
-```$ git subtree push --prefix Charts/dist origin gh-pages```
-
-Site:
+### Results and evaluation:
 
 http://bithugger.github.io/bachelorthesis
+
+
+### Slides:
+
+http://bithugger.github.io/bachelorthesis/slides.html
+
+
+### Project page:
+
+http://andreaslorer.de
