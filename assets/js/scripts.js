@@ -1,4 +1,3 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 /**
  * TODO: 
@@ -132,7 +131,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataRequestsNew = [
         {
-            value: 9,
+            value: 14,
             color:'#dc4437',
             highlight: '#eb6156',
             label: 'Images'
@@ -144,13 +143,13 @@ if (document.URL.indexOf('httpArchive') > -1 ){
             label: 'CSS'
         },
         {
-            value: 4,
+            value: 3,
             color: '#eeb302',
             highlight: '#fac62b',
             label: 'JS'
         },
         {
-            value: 2,
+            value: 4,
             color: '#949FB1',
             highlight: '#A8B3C5',
             label: 'Other'
@@ -198,13 +197,13 @@ if (document.URL.indexOf('httpArchive') > -1 ){
             label: 'CSS'
         },
         {
-            value: 4,
+            value: 3,
             color: '#eeb302',
             highlight: '#fac62b',
             label: 'JS'
         },
         {
-            value: 2,
+            value: 4,
             color: '#949FB1',
             highlight: '#A8B3C5',
             label: 'Other'
@@ -213,7 +212,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataSiteSizeMobile = [
         {
-            value: 145,
+            value: 113,
             color: '#009f5d',
             highlight: '#10b06e',
             label: 'KB'
@@ -228,7 +227,7 @@ if (document.URL.indexOf('httpArchive') > -1 ){
 
     var dataSiteSizeDesktop = [
         {
-            value: 517,
+            value: 283,
             color: '#009f5d',
             highlight: '#10b06e',
             label: 'KB'
@@ -470,4 +469,3 @@ if (document.URL.indexOf('httpArchive') > -1 ){
     new Chart(tmpAllData).Line(dataAll, {});
 
 }
-},{}]},{},[1])
