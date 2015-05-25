@@ -1,11 +1,11 @@
 ### Results and evaluation:
 
-http://bithugger.github.io/bachelorthesis
+http://Andi-Lo.github.io/bachelorthesis
 
 
 ### Slides:
 
-http://bithugger.github.io/bachelorthesis/slides.html
+http://Andi-Lo.github.io/bachelorthesis/slides.html
 
 
 ### Project page:
